@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Statistical Analysis – Child Wellbeing and Education Research</title>
+<title>5&nbsp; Project Organization – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,7 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/data/project-organization.html" rel="prev">
+<link href="../../chapters/analysis/statistical-analysis.html" rel="next">
+<link href="../../chapters/tools/tools-overview.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -84,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data/project-organization.html">Data Management</a></li><li class="breadcrumb-item"><a href="../../chapters/data/project-organization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data/project-organization.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/data/project-organization.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
   </div>
 </li>
@@ -192,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span></a>
   </div>
 </li>
@@ -208,27 +244,33 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-software" id="toc-statistical-software" class="nav-link active" data-scroll-target="#statistical-software"><span class="header-section-number">6.1</span> Statistical Software</a></li>
-  <li><a href="#using-ai-for-data-analysis" id="toc-using-ai-for-data-analysis" class="nav-link" data-scroll-target="#using-ai-for-data-analysis"><span class="header-section-number">6.2</span> Using AI for Data Analysis</a>
+  <li><a href="#the-core-principle" id="toc-the-core-principle" class="nav-link active" data-scroll-target="#the-core-principle"><span class="header-section-number">5.1</span> The Core Principle</a></li>
+  <li><a href="#standard-project-structure" id="toc-standard-project-structure" class="nav-link" data-scroll-target="#standard-project-structure"><span class="header-section-number">5.2</span> Standard Project Structure</a></li>
+  <li><a href="#the-data-folder" id="toc-the-data-folder" class="nav-link" data-scroll-target="#the-data-folder"><span class="header-section-number">5.3</span> The data/ Folder</a>
   <ul class="collapse">
-  <li><a href="#ides" id="toc-ides" class="nav-link" data-scroll-target="#ides"><span class="header-section-number">6.2.1</span> IDEs</a></li>
-  <li><a href="#claude-code" id="toc-claude-code" class="nav-link" data-scroll-target="#claude-code"><span class="header-section-number">6.2.2</span> Claude Code</a></li>
+  <li><a href="#dataraw" id="toc-dataraw" class="nav-link" data-scroll-target="#dataraw"><span class="header-section-number">5.3.1</span> data/raw/</a></li>
+  <li><a href="#datacleaned" id="toc-datacleaned" class="nav-link" data-scroll-target="#datacleaned"><span class="header-section-number">5.3.2</span> data/cleaned/</a></li>
+  <li><a href="#datareadme.md" id="toc-datareadme.md" class="nav-link" data-scroll-target="#datareadme.md"><span class="header-section-number">5.3.3</span> data/README.md</a></li>
   </ul></li>
-  <li><a href="#quality-control-for-analyses" id="toc-quality-control-for-analyses" class="nav-link" data-scroll-target="#quality-control-for-analyses"><span class="header-section-number">6.3</span> Quality Control for Analyses</a></li>
-  <li><a href="#statistical-language" id="toc-statistical-language" class="nav-link" data-scroll-target="#statistical-language"><span class="header-section-number">6.4</span> Statistical Language</a>
+  <li><a href="#the-code-folder" id="toc-the-code-folder" class="nav-link" data-scroll-target="#the-code-folder"><span class="header-section-number">5.4</span> The code/ Folder</a>
   <ul class="collapse">
-  <li><a href="#statistical-significance" id="toc-statistical-significance" class="nav-link" data-scroll-target="#statistical-significance"><span class="header-section-number">6.4.1</span> Statistical Significance</a></li>
-  <li><a href="#effect-sizes" id="toc-effect-sizes" class="nav-link" data-scroll-target="#effect-sizes"><span class="header-section-number">6.4.2</span> Effect Sizes</a></li>
+  <li><a href="#script-headers" id="toc-script-headers" class="nav-link" data-scroll-target="#script-headers"><span class="header-section-number">5.4.1</span> Script Headers</a></li>
+  <li><a href="#script-status" id="toc-script-status" class="nav-link" data-scroll-target="#script-status"><span class="header-section-number">5.4.2</span> Script Status</a></li>
+  <li><a href="#exploratory-scripts" id="toc-exploratory-scripts" class="nav-link" data-scroll-target="#exploratory-scripts"><span class="header-section-number">5.4.3</span> Exploratory Scripts</a></li>
   </ul></li>
+  <li><a href="#the-output-folder" id="toc-the-output-folder" class="nav-link" data-scroll-target="#the-output-folder"><span class="header-section-number">5.5</span> The output/ Folder</a></li>
+  <li><a href="#the-docs-folder" id="toc-the-docs-folder" class="nav-link" data-scroll-target="#the-docs-folder"><span class="header-section-number">5.6</span> The docs/ Folder</a></li>
+  <li><a href="#file-naming-conventions" id="toc-file-naming-conventions" class="nav-link" data-scroll-target="#file-naming-conventions"><span class="header-section-number">5.7</span> File Naming Conventions</a></li>
+  <li><a href="#cross-software-data-format" id="toc-cross-software-data-format" class="nav-link" data-scroll-target="#cross-software-data-format"><span class="header-section-number">5.8</span> Cross-Software Data Format</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data/project-organization.html">Data Management</a></li><li class="breadcrumb-item"><a href="../../chapters/data/project-organization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></h1>
 </div>
 
 
@@ -245,69 +287,172 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="statistical-software" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="statistical-software"><span class="header-section-number">6.1</span> Statistical Software</h2>
+<p>A well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.</p>
+<section id="the-core-principle" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">5.1</span> The Core Principle</h2>
+<p>Every project has two types of files, and keeping them separate is the foundation of everything else:</p>
+<ol type="1">
+<li><p><strong>Input files are fixed.</strong> Data that comes from outside the project such as partner-provided files, downloaded datasets, or exported survey data, goes in <code>data/raw/</code> and is never modified by your scripts. If you need a cleaned version, your script reads the original, transforms it, and saves the result to <code>data/cleaned/</code>.</p></li>
+<li><p><strong>Outputs are reproducible.</strong> Everything your scripts produce such as figures, tables, and rendered reports goes in <code>output/</code> and can always be regenerated by rerunning the script that created it. Because of this, they are not committed to GitHub.</p></li>
+</ol>
+<p>When you know that everything in <code>data/raw/</code> is an original, untouched input, you can always trust it as the ground truth for the project.</p>
+</section>
+<section id="standard-project-structure" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="standard-project-structure"><span class="header-section-number">5.2</span> Standard Project Structure</h2>
+<p>A typical CWER project looks like this:</p>
+<pre><code>my-project/
+├── data/                   # All data files
+│   ├── raw/                # Original inputs — scripts never modify these
+│   ├── cleaned/            # Processed data produced by cleaning scripts
+│   └── README.md           # Documents where each raw file came from
+├── code/                   # Analysis scripts (.qmd, .do, .R, .inp)
+│   └── exploratory/        # One-off analyses and sanity checks
+├── output/                 # All generated outputs
+│   ├── tables/             # Tables (.docx, .xlsx, .csv)
+│   └── figures/            # Figures (.png, .pdf)
+├── docs/                   # Reports, presentations, manuscripts
+└── README.md               # Project overview</code></pre>
+<p>Not every project needs every subfolder. Adapt as needed, but keep the core separation between <code>data/raw/</code> and everything else intact.</p>
+</section>
+<section id="the-data-folder" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="the-data-folder"><span class="header-section-number">5.3</span> The data/ Folder</h2>
+<section id="dataraw" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="dataraw"><span class="header-section-number">5.3.1</span> data/raw/</h3>
+<p>The <code>data/raw/</code> folder holds files that come from <strong>outside</strong> the project — things your scripts read but never modify. This includes:</p>
 <ul>
-<li><p><strong>Excel</strong>: Whenever possible, data should be stored in Excel or CSV format, as these are the most accessible formats for sharing across software platforms.</p></li>
-<li><p><strong>R</strong>: R has the most flexibility of all our stats software and is very powerful. It also comes with a steep learning curve. However, AI developments have made R dramatically more accessible, so using R is highly encouraged. See the R Workflows section for lab-specific guidance.</p></li>
-<li><p><strong>Mplus</strong>: We use Mplus heavily — mostly for analyses including Monte Carlo simulations for assessing statistical power, path analysis, structural equation modeling (SEM), multilevel modeling (MLM), mixture modeling, and approaches that blend these techniques (e.g., multilevel SEM). This is an especially useful package for examining psychometrics. See the Mplus Workflows section for templates and conventions.</p></li>
-<li><p><strong>Stata</strong>: A very flexible and comprehensive stats package. See the Stata Workflows section for lab-specific guidance.</p></li>
-<li><p><strong>SPSS</strong>: We have mostly used SPSS for data processing and management, data exploration, and basic analyses such as descriptive statistics and OLS regression.</p></li>
+<li>Survey data exported from Qualtrics or a partner system</li>
+<li>Data received from school districts or community partners</li>
+<li>Publicly available datasets downloaded from external sources</li>
+<li>Codebooks and metadata provided by partners</li>
+</ul>
+<p>Treat everything in <code>data/raw/</code> as read-only. Scripts read from it but never write to it. If a raw file needs to be corrected, replace it and document the change in <code>data/README.md</code>. Do not silently overwrite it.</p>
+</section>
+<section id="datacleaned" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="datacleaned"><span class="header-section-number">5.3.2</span> data/cleaned/</h3>
+<p>The <code>data/cleaned/</code> folder holds processed versions of raw data produced by your cleaning scripts. These are intermediate files that other scripts will use as inputs, such as merged datasets, recoded variables, reshaped files, and so on. Because cleaned files are generated by code, they can always be recreated by rerunning the cleaning script.</p>
+</section>
+<section id="datareadme.md" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="datareadme.md"><span class="header-section-number">5.3.3</span> data/README.md</h3>
+<p><strong>Always include a <code>data/README.md</code></strong> that documents where each raw file came from, when it was received, and any relevant notes. This takes two minutes to write and is invaluable six months later when you are trying to remember which version of a dataset came from which partner, or which Qualtrics export corresponds to which wave of data collection.</p>
+<p>Example <code>data/README.md</code>:</p>
+<pre><code># Data Sources
+
+## raw/care4kids_survey_wave1.csv
+- Source: CT Office of Early Childhood, received from Jane Smith via Yale OneDrive File Transfer
+- Received: 2025-09-15
+- Notes: Wave 1 only (fall 2025). N=342. Includes provider ID but no names.
+
+## raw/sel_codebook_v3.xlsx
+- Source: Internal; developed by CWER team
+- Last updated: 2025-08-01
+- Notes: Version 3 adds items from the revised teacher observation protocol</code></pre>
+</section>
+</section>
+<section id="the-code-folder" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="the-code-folder"><span class="header-section-number">5.4</span> The code/ Folder</h2>
+<p>Analysis scripts are numbered to reflect the order of the pipeline:</p>
+<pre><code>code/
+├── 01_data_cleaning.qmd
+├── 02_descriptives.qmd
+├── 03_mlm_analysis.qmd
+├── 04_tables_figures.qmd
+└── exploratory/</code></pre>
+<p>The two-digit prefix means scripts appear in pipeline order when you list the folder. Script 01 reads from <code>data/raw/</code> and writes cleaned files to <code>data/cleaned/</code>. Script 02 reads from <code>data/cleaned/</code> and produces descriptives. A new team member can look at the file list and understand the overall flow without reading any code.</p>
+<p>Numbers reflect <strong>logical order</strong>, not strict dependencies. Script 04 might read outputs from both scripts 01 and 03. The numbering just helps you understand the overall structure.</p>
+<p><strong>When you add a new script, assign the next available number. If you retire a script, do not renumber the others.</strong> Leave gaps rather than creating confusion about which script a particular output came from.</p>
+<section id="script-headers" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="script-headers"><span class="header-section-number">5.4.1</span> Script Headers</h3>
+<p>Every script should begin with a header block identifying the author, purpose, inputs, and outputs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Script:  01_data_cleaning.qmd</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author:  Your Name (your.email@yale.edu)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Created: 2025-10-01</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Purpose: Clean and merge Wave 1 survey data</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs:  data/raw/care4kids_survey_wave1.csv</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Outputs: data/cleaned/wave1_cleaned.rds</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># AI:      Code developed with Claude assistance</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Review:  Reviewed by Michael Strambler, 2025-10-05</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>AI</code> and <code>Review</code> lines reflect our commitments to transparency and quality control described in the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter.</p>
+</section>
+<section id="script-status" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="script-status"><span class="header-section-number">5.4.2</span> Script Status</h3>
+<p>Add a <code>status</code> field to each script’s YAML header to signal where it is in its lifecycle:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Multilevel Model Analysis"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>development</code></td>
+<td>In active development; outputs may change</td>
+</tr>
+<tr class="even">
+<td><code>finalized</code></td>
+<td>Outputs are publication-ready; changes should be deliberate</td>
+</tr>
+<tr class="odd">
+<td><code>deprecated</code></td>
+<td>Superseded by a newer script; kept for reference</td>
+</tr>
+</tbody>
+</table>
+<p>When results are heading toward a report or publication, mark the relevant scripts <code>finalized</code>. This signals to collaborators that any changes should be intentional and that outputs should be re-verified if the script is rerun.</p>
+</section>
+<section id="exploratory-scripts" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="exploratory-scripts"><span class="header-section-number">5.4.3</span> Exploratory Scripts</h3>
+<p>Think of the <code>code/exploratory/</code> subfolder as a playground for for one-off analyses, sanity checks, and ideas you are testing. Exploratory scripts follow relaxed rules with no number prefixes required, and nothing else in the project depends on their outputs. This makes it safe to experiment without worrying about breaking the main pipeline. If an exploratory analysis turns out to be valuable, promote it to a numbered script in the main directory.</p>
+</section>
+</section>
+<section id="the-output-folder" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="the-output-folder"><span class="header-section-number">5.5</span> The output/ Folder</h2>
+<p>All generated outputs go in <code>output/</code>, organized into two subfolders:</p>
+<pre><code>output/
+├── tables/
+│   ├── descriptives_table.docx
+│   └── mlm_results_table.docx
+└── figures/
+    ├── figure1_histogram.png
+    └── figure2_scatter.pdf</code></pre>
+<p>Keep file names descriptive so their purpose is clear without opening them. Avoid generic names like <code>table1.docx</code> or <code>figure_final.png</code>.</p>
+</section>
+<section id="the-docs-folder" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="the-docs-folder"><span class="header-section-number">5.6</span> The docs/ Folder</h2>
+<p>The <code>docs/</code> folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike <code>output/</code>, which holds raw generated files, <code>docs/</code> holds polished, finalized deliverables.</p>
+</section>
+<section id="file-naming-conventions" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="file-naming-conventions"><span class="header-section-number">5.7</span> File Naming Conventions</h2>
+<ul>
+<li>Use lowercase and underscores: <code>wave1_cleaned.rds</code>, not <code>Wave1Cleaned.rds</code> or <code>wave1 cleaned.rds</code></li>
+<li>Be descriptive: <code>wave1_provider_survey.csv</code>, not <code>data.csv</code></li>
+<li>Avoid spaces and special characters in all file and folder names</li>
+<li>Do not use date prefixes on individual files — let Git track versions instead</li>
 </ul>
 </section>
-<section id="using-ai-for-data-analysis" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="using-ai-for-data-analysis"><span class="header-section-number">6.2</span> Using AI for Data Analysis</h2>
-<p>AI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:</p>
-<ol type="1">
-<li><strong>Never share identifiable participant data with AI tools.</strong> Paste only anonymized or synthetic examples when asking for help with data-related code.</li>
-<li><strong>Always review and understand the code AI produces before running it.</strong> Do not run code you cannot explain.</li>
-<li><strong>AI output should be treated like a first draft</strong>: check it, test it, and own it.</li>
-<li><strong>Note AI contributions in your code header</strong> as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).</li>
-</ol>
-<section id="ides" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="ides"><span class="header-section-number">6.2.1</span> IDEs</h3>
-<p>An IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is <a href="https://positron.posit.co/">Positron</a>, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.</p>
-<p><a href="https://www.cursor.com/">Cursor</a> is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.</p>
-</section>
-<section id="claude-code" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="claude-code"><span class="header-section-number">6.2.2</span> Claude Code</h3>
-<p>Claude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.</p>
-</section>
-</section>
-<section id="quality-control-for-analyses" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="quality-control-for-analyses"><span class="header-section-number">6.3</span> Quality Control for Analyses</h2>
-<p>It is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:</p>
-<ol type="1">
-<li>At the beginning of all code, indicate the code author(s) and contact information.</li>
-<li>Add a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.</li>
-<li>Have another team member check your code. Suggested reviewers by software:
+<section id="cross-software-data-format" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="cross-software-data-format"><span class="header-section-number">5.8</span> Cross-Software Data Format</h2>
+<p>When data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:</p>
 <ul>
-<li>SPSS: Mike, Joanna</li>
-<li>Mplus: Mike</li>
-<li>Stata: Mike</li>
-<li>R: Mike</li>
-</ul></li>
-<li>When the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).</li>
-<li>After summarizing findings in narrative and/or table format, use AI to check for any misreporting.</li>
-</ol>
-</section>
-<section id="statistical-language" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="statistical-language"><span class="header-section-number">6.4</span> Statistical Language</h2>
-<p>See the <a href="https://docs.google.com/document/d/1mHRUDA6sObskBAb8ejLNZ3f8meg-19WXdmGB52P28D8/edit">Data Analysis Primer</a> for descriptions of common statistics we use. A few things are worth emphasizing here.</p>
-<section id="statistical-significance" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="statistical-significance"><span class="header-section-number">6.4.1</span> Statistical Significance</h3>
-<p>Statistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a <em>statistical effect</em> or a <em>statistical difference</em>. For example:</p>
-<ul>
-<li><em>The two groups were <strong>statistically different</strong>.</em></li>
-<li><em>We interpreted a p-value of &lt;.05 as a <strong>statistical effect</strong>.</em></li>
+<li><strong>CSV</strong> is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS</li>
+<li><strong>Excel (.xlsx)</strong> is acceptable when the recipient is more comfortable with spreadsheets, but be aware that formatting and formulas can cause problems when read programmatically</li>
+<li>When saving from R for Mplus input, use <code>MplusAutomation</code> package functions to ensure the format is correct</li>
 </ul>
-</section>
-<section id="effect-sizes" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="effect-sizes"><span class="header-section-number">6.4.2</span> Effect Sizes</h3>
-<p>The real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).</p>
+<p>Within a single software environment, use native formats where appropriate (<code>.rds</code> for R objects, <code>.dta</code> for Stata) to preserve data types and attributes.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -713,11 +858,14 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/data/project-organization.html" class="pagination-link" aria-label="Project Organization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></span>
+      <a href="../../chapters/tools/tools-overview.html" class="pagination-link" aria-label="Tools Overview">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../chapters/analysis/statistical-analysis.html" class="pagination-link" aria-label="Statistical Analysis">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
