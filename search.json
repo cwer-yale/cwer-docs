@@ -295,773 +295,839 @@
     ]
   },
   {
-    "objectID": "chapters/workflows/r/r-basics.html",
-    "href": "chapters/workflows/r/r-basics.html",
-    "title": "6  R Basics",
+    "objectID": "chapters/tools/ai-prompts.html",
+    "href": "chapters/tools/ai-prompts.html",
+    "title": "6  Working with AI",
     "section": "",
-    "text": "6.1 Installing R and Positron\nR is a free, open-source programming language designed for statistical computing and data analysis. Unlike point-and-click software like SPSS, R requires you to write code — instructions that tell the software exactly what to do with your data. This has a steeper learning curve at first, but pays off quickly: R code is reproducible, shareable, and far more flexible than menu-driven software.\nR works through packages — collections of functions written by the research community that extend what R can do. Base R comes with a set of built-in functions, and packages add specialized capabilities on top of that.\nDownload and install R from cran.r-project.org. Download and install Positron from positron.posit.co.\nPositron is the IDE (Integrated Development Environment) we use for writing and running R code. Think of it as the application you work in, while R is the engine running underneath.",
+    "text": "6.1 About Our AI Tools\nThis chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.\nCWER uses Claude (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. Gemini (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale’s Clarity platform (see below).\nWe do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Working with AI</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/ai-prompts.html#data-security-and-ai",
+    "href": "chapters/tools/ai-prompts.html#data-security-and-ai",
+    "title": "6  Working with AI",
+    "section": "6.2 Data Security and AI",
+    "text": "6.2 Data Security and AI\nYale’s Clarity platform (clarity.yale.edu) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.\nWhen using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Working with AI</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/ai-prompts.html#general-prompting-principles",
+    "href": "chapters/tools/ai-prompts.html#general-prompting-principles",
+    "title": "6  Working with AI",
+    "section": "6.3 General Prompting Principles",
+    "text": "6.3 General Prompting Principles\nGetting useful output from AI requires clear, specific input. A few principles that apply across all tasks:\nGive context first. AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.\nBe specific about what you want. “Help me clean this data” is too vague. “I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse.” gives the AI something concrete to work with.\nTreat output as a first draft. Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.\nUse AI as a thought partner, not an oracle. Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.\nNote AI contributions. Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the Being a Team Member chapter.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Working with AI</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/ai-prompts.html#idea-generation",
+    "href": "chapters/tools/ai-prompts.html#idea-generation",
+    "title": "6  Working with AI",
+    "section": "6.4 Idea Generation",
+    "text": "6.4 Idea Generation\nAI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.\n\n6.4.1 Effect Size Interpretation\nWhen evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen’s conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft’s adjusted benchmarks are:\n\n\n\nCategory\nThreshold\n\n\n\n\nSmall\n&lt; 0.05 SD\n\n\nMedium\n0.05–0.19 SD\n\n\nLarge\n≥ 0.20 SD\n\n\n\nThe median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.\nWhen asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen’s conventions.\nSystem prompt for effect size work (use in a Claude Project or paste at the start of a conversation):\nWhen evaluating education-related research involving effect sizes, \nuse Kraft (2019) benchmarks rather than Cohen's conventions: \nsmall &lt; 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median \neffect size across education RCTs is 0.10 SD. Note the following \nwhen contextualizing effects: (1) whether the design is causal or \ncorrelational, (2) whether the outcome is proximal or distal to the \nintervention, (3) design features that may inflate effect sizes \n(small/targeted samples, researcher-designed measures, TOT vs. ITT), \nand (4) cost and scalability considerations.\nInterpreting an effect size:\nI am reviewing a study of an SEL intervention that reports a \nCohen's d of 0.18 on a teacher-reported SEL measure administered \nimmediately post-intervention. The study used a randomized design \nwith N=280 students in grades 3-5. Using Kraft (2019) benchmarks, \nhow should I interpret this effect size? What contextual factors \nare relevant?\nExploring a literature:\nI am designing a study on [topic]. Before I finalize the design, \nwhat are the key bodies of empirical literature I should be \nfamiliar with? What are the main debates or unresolved questions \nin this area? Please be specific about subfields and landmark \npapers where possible — I will verify and read the primary sources.\nStress-testing a research design:\nHere is my proposed research design: [describe design]. Before \nI finalize it, what are the strongest methodological objections \nsomeone could raise? What threats to validity am I most exposed \nto? What would a skeptical reviewer say about this approach?\n\n\n6.4.2 Measurement Development\nFor measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.\nThe reference document is scale_best_practices.docx, which lives in the lab’s shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick & Presser (2010), Preston & Colman (2000), Saris et al. (2010), Schaeffer & Dykema (2020), Ward & Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI’s general impressions of measurement best practices.\nThis is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.\nSystem prompt for the Claude Project:\nThis involves measurement issues related to other research projects. \nTake the role of an expert in measurement development. Use the \ndocument on best practices to guide but feel free to go beyond this.\nAttach scale_best_practices.docx to the project before beginning.\nDesigning a new scale:\nI am developing a teacher-report measure of student self-management \nfor use in grades K-3. The construct includes behavioral regulation, \nemotional control, and goal-directed persistence. I plan to use a \n5-point response scale. Based on the best practices document, what \nresponse format and label set would you recommend? Are there any \nconsiderations specific to teacher-report measures I should be \naware of?\nReviewing existing items:\nHere are 8 draft items for a social awareness subscale. Please \nreview them against the best practices document and flag any \nconcerns about item wording, response format match, potential \nacquiescence bias, or cognitive burden. Suggest revisions where \nneeded.\n\n[paste items here]\nUsing AI as a thought partner on scale design:\nI have made the following decisions about my scale design: \n[describe decisions]. Before I finalize, what considerations or \ntradeoffs might I be overlooking? Are there bodies of psychometric \nliterature I should consult that the best practices document does \nnot cover?",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Working with AI</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/ai-prompts.html#reviewing-editing",
+    "href": "chapters/tools/ai-prompts.html#reviewing-editing",
+    "title": "6  Working with AI",
+    "section": "6.5 Reviewing & Editing",
+    "text": "6.5 Reviewing & Editing\nWhen asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.\nSystem prompt for reviewing research writing:\nContent in here concerns research projects.\n\nWhen I ask you to review something I've written, check to make \nsure of the following:\n1. Text is in APA format unless requested otherwise.\n2. The writing is clear, as free of jargon as possible, and concise.\n3. Logical arguments are sound.\n4. There are no statements that are weakly argued or lack \n   justification. Arguments should not overstate or understate \n   the evidence.\n5. If I'm critiquing someone's work, make sure I'm doing so \n   charitably and accurately.\n\nDo not flatter me when reviewing my work. Be constructively \ncritical and put yourself in the role of a reviewer at a \nscientific journal who is aiming to improve the work through \nstrong critique.\nReviewing a manuscript section:\nPlease review the following [methods / results / discussion] \nsection using the criteria in your instructions. Identify the \nmost important issues first, then secondary issues. Be specific \nabout what to fix and why.\n\n[paste text here]\nVerifying a reference:\nPlease verify that the following reference is real and provide \na correctly formatted APA 7th edition citation and a sample \nparenthetical in-text citation I can use directly in a manuscript.\n\n[paste reference here]\nChecking for misreporting:\nHere are my analysis results and the corresponding text from my \nresults section. Please check for any discrepancies between the \nnumbers in the text and the numbers in the output — wrong values, \nrounding errors, or results described in the wrong direction.\n\nResults output: [paste output]\nResults text: [paste text]\nDrafting a methods section:\nI ran a multilevel model in R using lme4. Here are the details: \n[describe model]. Write a methods section paragraph describing \nthe analytic approach in APA style, appropriate for a journal \nmanuscript. Do not invent any details — only use what I have \nprovided.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Working with AI</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/ai-prompts.html#data-management-analysis",
+    "href": "chapters/tools/ai-prompts.html#data-management-analysis",
+    "title": "6  Working with AI",
+    "section": "6.6 Data Management & Analysis",
+    "text": "6.6 Data Management & Analysis\n\n6.6.1 General Principles\nReview every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the Statistical Analysis chapter for the full quality control process.\n\n\n6.6.2 Data Cleaning and Wrangling\nRecoding missing values:\nI am working in R using tidyverse. My dataset has variables coded \n-99 (skipped), -98 (not applicable), and -97 (data not available). \nI want to recode all three to NA before analysis. The data are in \na dataframe called `data`. Write code to do this and then produce \na summary showing how many NAs each variable has.\nMerging datasets:\nI have two dataframes in R: `student_data` with one row per student \n(N=342, key variable: student_id) and `school_data` with one row \nper school (N=18, key variable: school_id). Each student has a \nschool_id variable. I want to merge school-level variables into \nthe student dataframe. Write tidyverse code to do this and include \nchecks to verify the merge worked correctly — row counts before \nand after, and a check for any unmatched IDs.\nReverse scoring:\nI have a scale in R with 10 items (sel_1 through sel_10). Items \n3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse \ncode to reverse score these items and create new variables named \nwith the _r suffix, then compute a mean composite score across \nall 10 items (using the reversed versions where applicable) \nexcluding cases with more than 20% missing data.\n\n\n6.6.3 Multilevel Modeling\nSetting up a multilevel model in R:\nI am running a multilevel model in R using lme4. My data have \nstudents nested within schools (N=342 students, N=18 schools). \nThe outcome is sel_total_mean (continuous). Level-1 predictors \nare grade and gender. The level-2 predictor is school_size. \nWrite code to: (1) run a null model and calculate the ICC, \n(2) add level-1 predictors, (3) add the level-2 predictor, \nand (4) compare models. Use broom.mixed to extract results.\nInterpreting output:\nHere is the summary output from an lme4 model. Please help me \ninterpret the fixed effects, random effects, and variance \ncomponents. Flag anything that looks unusual or worth \ninvestigating further.\n\n[paste output here]\n\n\n6.6.4 Meta-Analysis\nSetting up a meta-analysis in R:\nI am running a meta-analysis in R using metafor with robust \nvariance estimation (RVE) via the clubSandwich package. I have \neffect sizes in a dataframe called `meta_data` with columns: \nstudy_id, effect_id, yi (effect size), vi (variance), and \nmoderator variables [list them]. Write code to fit a multilevel \nrandom effects model with RVE, produce a forest plot, and test \nfor publication bias using Egger's test.\n\n\n6.6.5 Table and Figure Production\nProducing a results table in Word:\nI have model results stored in a dataframe called `results` in R \nwith columns: term, estimate, std.error, conf.low, conf.high, \np.value. Write code using flextable and officer to produce an \nAPA-style results table and save it as a Word document at \noutput/tables/model_results.docx. Use Times New Roman 12pt, \ninclude a table title, and format p-values to three decimal places.\nSaving a ggplot figure:\nI have a ggplot object called `p` in R. Write code to save it \nas both a PNG (300 dpi, 6x4 inches) and a PDF to \noutput/figures/figure1. Use the here package for the file path.\n\n\n6.6.6 Debugging Code\nDebugging an error:\nI am running the following R code and getting this error. \nPlease explain what is causing the error and provide corrected code.\n\nCode:\n[paste code]\n\nError message:\n[paste error]\n\nHere is a sample of my data structure:\n[paste head(data) or glimpse(data) output]\nCode review:\nPlease review the following R code for correctness, efficiency, \nand adherence to tidyverse style conventions. Flag any potential \nerrors, inefficiencies, or places where the code could be \nclearer. Do not rewrite the whole thing — just identify issues \nand suggest targeted improvements.\n\n[paste code]\n\n\n6.6.7 Mplus Syntax\nWriting a CFA model:\nWrite Mplus syntax for a confirmatory factor analysis with the \nfollowing structure: one factor with 6 indicators, continuous \noutcomes, WLSMV estimator, and FIML for missing data. The data \nfile is wave1_data.dat and the variables are [list them]. \nInclude MODEL FIT and STANDARDIZED output.\nTroubleshooting non-convergence:\nMy Mplus model is not converging. Here is the output file. \nPlease identify the likely cause of the non-convergence and \nsuggest modifications to the syntax or starting values to \naddress it.\n\n[paste relevant sections of .out file]",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Working with AI</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/workflows/r/r-basics.html",
+    "href": "chapters/workflows/r/r-basics.html",
+    "title": "7  R Basics",
+    "section": "",
+    "text": "7.1 Installing R and Positron\nR is a free, open-source programming language designed for statistical computing and data analysis. Unlike point-and-click software like SPSS, R requires you to write code — instructions that tell the software exactly what to do with your data. This has a steeper learning curve at first, but pays off quickly: R code is reproducible, shareable, and far more flexible than menu-driven software.\nR works through packages — collections of functions written by the research community that extend what R can do. Base R comes with a set of built-in functions, and packages add specialized capabilities on top of that.\nDownload and install R from cran.r-project.org. Download and install Positron from positron.posit.co.\nPositron is the IDE (Integrated Development Environment) we use for writing and running R code. Think of it as the application you work in, while R is the engine running underneath.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/r-basics.html#the-console-and-scripts",
     "href": "chapters/workflows/r/r-basics.html#the-console-and-scripts",
-    "title": "6  R Basics",
-    "section": "6.2 The Console and Scripts",
-    "text": "6.2 The Console and Scripts\nWhen you open a project in Positron, you will see a Console panel at the bottom. This is where R runs. You can type commands directly into the console and press Enter to run them:\n2 + 2\nHowever, for any real analysis you should write code in a script file rather than typing directly into the console. Script files save your work so you can run it again later. In CWER we use Quarto documents (.qmd) as our script files — these combine R code and written explanation in a single document. See the Quarto for Reporting chapter for more.",
+    "title": "7  R Basics",
+    "section": "7.2 The Console and Scripts",
+    "text": "7.2 The Console and Scripts\nWhen you open a project in Positron, you will see a Console panel at the bottom. This is where R runs. You can type commands directly into the console and press Enter to run them:\n2 + 2\nHowever, for any real analysis you should write code in a script file rather than typing directly into the console. Script files save your work so you can run it again later. In CWER we use Quarto documents (.qmd) as our script files — these combine R code and written explanation in a single document. See the Quarto for Reporting chapter for more.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/r-basics.html#objects-and-assignment",
     "href": "chapters/workflows/r/r-basics.html#objects-and-assignment",
-    "title": "6  R Basics",
-    "section": "6.3 Objects and Assignment",
-    "text": "6.3 Objects and Assignment\nR stores information in objects. You create an object by assigning a value to a name using &lt;-:\nmy_number &lt;- 42\nmy_name &lt;- \"Michael\"\nOnce created, you can use the object by name:\nmy_number * 2\nObject names should follow the same snake_case conventions described in the Data Management chapter.",
+    "title": "7  R Basics",
+    "section": "7.3 Objects and Assignment",
+    "text": "7.3 Objects and Assignment\nR stores information in objects. You create an object by assigning a value to a name using &lt;-:\nmy_number &lt;- 42\nmy_name &lt;- \"Michael\"\nOnce created, you can use the object by name:\nmy_number * 2\nObject names should follow the same snake_case conventions described in the Data Management chapter.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/r-basics.html#functions",
     "href": "chapters/workflows/r/r-basics.html#functions",
-    "title": "6  R Basics",
-    "section": "6.4 Functions",
-    "text": "6.4 Functions\nR does things through functions. A function takes inputs (called arguments), does something with them, and returns an output:\nmean(c(1, 2, 3, 4, 5))\nHere mean() is the function and c(1, 2, 3, 4, 5) is the argument — a vector of five numbers. The function returns their mean: 3.\nYou will spend most of your time in R calling functions from packages. The pattern is always the same: function_name(argument1, argument2, ...).",
+    "title": "7  R Basics",
+    "section": "7.4 Functions",
+    "text": "7.4 Functions\nR does things through functions. A function takes inputs (called arguments), does something with them, and returns an output:\nmean(c(1, 2, 3, 4, 5))\nHere mean() is the function and c(1, 2, 3, 4, 5) is the argument — a vector of five numbers. The function returns their mean: 3.\nYou will spend most of your time in R calling functions from packages. The pattern is always the same: function_name(argument1, argument2, ...).",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/r-basics.html#getting-help",
     "href": "chapters/workflows/r/r-basics.html#getting-help",
-    "title": "6  R Basics",
-    "section": "6.5 Getting Help",
-    "text": "6.5 Getting Help\nTo see the documentation for any function, type ? followed by the function name:\n?mean\nThis opens the help page for that function, which describes what it does, what arguments it takes, and includes examples.",
+    "title": "7  R Basics",
+    "section": "7.5 Getting Help",
+    "text": "7.5 Getting Help\nTo see the documentation for any function, type ? followed by the function name:\n?mean\nThis opens the help page for that function, which describes what it does, what arguments it takes, and includes examples.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/r-basics.html#installing-and-loading-packages",
     "href": "chapters/workflows/r/r-basics.html#installing-and-loading-packages",
-    "title": "6  R Basics",
-    "section": "6.6 Installing and Loading Packages",
-    "text": "6.6 Installing and Loading Packages\nInstall a package once using install.packages():\ninstall.packages(\"tidyverse\")\nLoad a package at the start of each session using library():\nlibrary(tidyverse)\nYou only need to install a package once, but you need to load it with library() every time you start a new R session.\nIn CWER projects that use renv, package installation is managed automatically — see the Managing Packages with renv chapter.",
+    "title": "7  R Basics",
+    "section": "7.6 Installing and Loading Packages",
+    "text": "7.6 Installing and Loading Packages\nInstall a package once using install.packages():\ninstall.packages(\"tidyverse\")\nLoad a package at the start of each session using library():\nlibrary(tidyverse)\nYou only need to install a package once, but you need to load it with library() every time you start a new R session.\nIn CWER projects that use renv, package installation is managed automatically — see the Managing Packages with renv chapter.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/r-basics.html#cwer-r-conventions",
     "href": "chapters/workflows/r/r-basics.html#cwer-r-conventions",
-    "title": "6  R Basics",
-    "section": "6.7 CWER R Conventions",
-    "text": "6.7 CWER R Conventions\nA few conventions that apply across all R work in CWER:\n\nUse snake_case for all object and variable names\nAlways use here() for file paths — never hardcode absolute paths like /Users/yourname/Documents/...\nLoad all packages at the top of each script in the setup chunk\nRecode CWER missing data codes (-99, -98, -97, -96) to NA before any analysis\nNever overwrite raw data — read from data/raw/, write to data/cleaned/\nInclude a script header with author, purpose, inputs, outputs, AI use, and review status",
+    "title": "7  R Basics",
+    "section": "7.7 CWER R Conventions",
+    "text": "7.7 CWER R Conventions\nA few conventions that apply across all R work in CWER:\n\nUse snake_case for all object and variable names\nAlways use here() for file paths — never hardcode absolute paths like /Users/yourname/Documents/...\nLoad all packages at the top of each script in the setup chunk\nRecode CWER missing data codes (-99, -98, -97, -96) to NA before any analysis\nNever overwrite raw data — read from data/raw/, write to data/cleaned/\nInclude a script header with author, purpose, inputs, outputs, AI use, and review status",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R Basics</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R Basics</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/tidyverse.html",
     "href": "chapters/workflows/r/tidyverse.html",
-    "title": "7  Data Wrangling with tidyverse",
+    "title": "8  Data Wrangling with tidyverse",
     "section": "",
-    "text": "7.1 Reading Data\nThe tidyverse is a collection of R packages designed for data science that share a common philosophy and syntax. Rather than learning many unrelated packages, the tidyverse gives you a coherent set of tools that work well together. Load it with:\nThis loads several packages at once, including dplyr for data manipulation and ggplot2 for visualization.\nUse read_csv() to read a CSV file into R:\nThe here() function constructs file paths relative to the project root, so your code works regardless of where the project is stored on someone’s computer. Always use here() rather than hardcoded paths.\nFor Excel files, use the readxl package:\nFor Stata files, use the haven package:",
+    "text": "8.1 Reading Data\nThe tidyverse is a collection of R packages designed for data science that share a common philosophy and syntax. Rather than learning many unrelated packages, the tidyverse gives you a coherent set of tools that work well together. Load it with:\nThis loads several packages at once, including dplyr for data manipulation and ggplot2 for visualization.\nUse read_csv() to read a CSV file into R:\nThe here() function constructs file paths relative to the project root, so your code works regardless of where the project is stored on someone’s computer. Always use here() rather than hardcoded paths.\nFor Excel files, use the readxl package:\nFor Stata files, use the haven package:",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/tidyverse.html#reading-data",
     "href": "chapters/workflows/r/tidyverse.html#reading-data",
-    "title": "7  Data Wrangling with tidyverse",
+    "title": "8  Data Wrangling with tidyverse",
     "section": "",
     "text": "library(tidyverse)\nlibrary(here)\n\ndata &lt;- read_csv(here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n\nlibrary(readxl)\n\ndata &lt;- read_excel(here(\"data\", \"raw\", \"survey_data.xlsx\"))\n\nlibrary(haven)\n\ndata &lt;- read_dta(here(\"data\", \"raw\", \"survey_data.dta\"))",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/tidyverse.html#viewing-data",
     "href": "chapters/workflows/r/tidyverse.html#viewing-data",
-    "title": "7  Data Wrangling with tidyverse",
-    "section": "7.2 Viewing Data",
-    "text": "7.2 Viewing Data\nAfter loading data, get a quick overview:\n# Print the first few rows\nhead(data)\n\n# See dimensions (rows and columns)\ndim(data)\n\n# See variable names\nnames(data)\n\n# See variable types and a preview\nglimpse(data)\n\n# Summary statistics for all variables\nsummary(data)",
+    "title": "8  Data Wrangling with tidyverse",
+    "section": "8.2 Viewing Data",
+    "text": "8.2 Viewing Data\nAfter loading data, get a quick overview:\n# Print the first few rows\nhead(data)\n\n# See dimensions (rows and columns)\ndim(data)\n\n# See variable names\nnames(data)\n\n# See variable types and a preview\nglimpse(data)\n\n# Summary statistics for all variables\nsummary(data)",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/tidyverse.html#manipulating-data-with-dplyr",
     "href": "chapters/workflows/r/tidyverse.html#manipulating-data-with-dplyr",
-    "title": "7  Data Wrangling with tidyverse",
-    "section": "7.3 Manipulating Data with dplyr",
-    "text": "7.3 Manipulating Data with dplyr\ndplyr provides a set of functions for common data manipulation tasks. These functions are designed to be used with the pipe operator |&gt;, which passes the output of one function as the input to the next:\nSelect columns:\ndata |&gt;\n  select(student_id, grade, sel_total_mean)\nFilter rows:\ndata |&gt;\n  filter(grade == 3)\n\ndata |&gt;\n  filter(grade &gt;= 3 & sel_total_mean &gt; 2.5)\nCreate or recode variables:\ndata |&gt;\n  mutate(\n    sel_total_z = scale(sel_total_mean),\n    grade_cat = if_else(grade &lt;= 2, \"lower\", \"upper\")\n  )\nSummarize data:\ndata |&gt;\n  summarise(\n    n = n(),\n    mean_sel = mean(sel_total_mean, na.rm = TRUE),\n    sd_sel = sd(sel_total_mean, na.rm = TRUE)\n  )\nGroup and summarize:\ndata |&gt;\n  group_by(grade) |&gt;\n  summarise(\n    n = n(),\n    mean_sel = mean(sel_total_mean, na.rm = TRUE)\n  )",
+    "title": "8  Data Wrangling with tidyverse",
+    "section": "8.3 Manipulating Data with dplyr",
+    "text": "8.3 Manipulating Data with dplyr\ndplyr provides a set of functions for common data manipulation tasks. These functions are designed to be used with the pipe operator |&gt;, which passes the output of one function as the input to the next:\nSelect columns:\ndata |&gt;\n  select(student_id, grade, sel_total_mean)\nFilter rows:\ndata |&gt;\n  filter(grade == 3)\n\ndata |&gt;\n  filter(grade &gt;= 3 & sel_total_mean &gt; 2.5)\nCreate or recode variables:\ndata |&gt;\n  mutate(\n    sel_total_z = scale(sel_total_mean),\n    grade_cat = if_else(grade &lt;= 2, \"lower\", \"upper\")\n  )\nSummarize data:\ndata |&gt;\n  summarise(\n    n = n(),\n    mean_sel = mean(sel_total_mean, na.rm = TRUE),\n    sd_sel = sd(sel_total_mean, na.rm = TRUE)\n  )\nGroup and summarize:\ndata |&gt;\n  group_by(grade) |&gt;\n  summarise(\n    n = n(),\n    mean_sel = mean(sel_total_mean, na.rm = TRUE)\n  )",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/tidyverse.html#handling-missing-data",
     "href": "chapters/workflows/r/tidyverse.html#handling-missing-data",
-    "title": "7  Data Wrangling with tidyverse",
-    "section": "7.4 Handling Missing Data",
-    "text": "7.4 Handling Missing Data\nBefore any analysis, recode CWER missing data codes to NA:\ndata &lt;- data |&gt;\n  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))\nAlways check for missing values after recoding:\ndata |&gt;\n  summarise(across(everything(), ~ sum(is.na(.)))) |&gt;\n  pivot_longer(everything(), names_to = \"variable\", values_to = \"n_missing\") |&gt;\n  filter(n_missing &gt; 0)\nFlag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.",
+    "title": "8  Data Wrangling with tidyverse",
+    "section": "8.4 Handling Missing Data",
+    "text": "8.4 Handling Missing Data\nBefore any analysis, recode CWER missing data codes to NA:\ndata &lt;- data |&gt;\n  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))\nAlways check for missing values after recoding:\ndata |&gt;\n  summarise(across(everything(), ~ sum(is.na(.)))) |&gt;\n  pivot_longer(everything(), names_to = \"variable\", values_to = \"n_missing\") |&gt;\n  filter(n_missing &gt; 0)\nFlag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/tidyverse.html#saving-data",
     "href": "chapters/workflows/r/tidyverse.html#saving-data",
-    "title": "7  Data Wrangling with tidyverse",
-    "section": "7.5 Saving Data",
-    "text": "7.5 Saving Data\nSave cleaned datasets to data/cleaned/ using write_csv() for cross-software compatibility, or saveRDS() to preserve R-specific attributes:\n# For sharing across software\nwrite_csv(data_cleaned, here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n# For use within R only (preserves factors, labels, etc.)\nsaveRDS(data_cleaned, here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\nUse write_csv() when the cleaned data will be read by Stata, SPSS, or Mplus. Use saveRDS() when the data will only be used in R — it is faster and preserves variable types exactly.",
+    "title": "8  Data Wrangling with tidyverse",
+    "section": "8.5 Saving Data",
+    "text": "8.5 Saving Data\nSave cleaned datasets to data/cleaned/ using write_csv() for cross-software compatibility, or saveRDS() to preserve R-specific attributes:\n# For sharing across software\nwrite_csv(data_cleaned, here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n# For use within R only (preserves factors, labels, etc.)\nsaveRDS(data_cleaned, here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\nUse write_csv() when the cleaned data will be read by Stata, SPSS, or Mplus. Use saveRDS() when the data will only be used in R — it is faster and preserves variable types exactly.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Data Wrangling with tidyverse</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/ggplot2.html",
     "href": "chapters/workflows/r/ggplot2.html",
-    "title": "8  Visualization with ggplot2",
+    "title": "9  Visualization with ggplot2",
     "section": "",
-    "text": "8.1 Basic Plot Structure\nggplot2 is R’s primary visualization package and one of the most widely used data visualization tools in data science. It builds plots layer by layer using a consistent grammar. Every ggplot starts with ggplot(), specifies which variables map to which visual properties using aes(), and then adds layers using geom_*() functions.\nLoad it as part of the tidyverse:\nEvery ggplot has three essential components:\nLayers are added with +. Each additional layer refines or adds to the plot.",
+    "text": "9.1 Basic Plot Structure\nggplot2 is R’s primary visualization package and one of the most widely used data visualization tools in data science. It builds plots layer by layer using a consistent grammar. Every ggplot starts with ggplot(), specifies which variables map to which visual properties using aes(), and then adds layers using geom_*() functions.\nLoad it as part of the tidyverse:\nEvery ggplot has three essential components:\nLayers are added with +. Each additional layer refines or adds to the plot.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/ggplot2.html#basic-plot-structure",
     "href": "chapters/workflows/r/ggplot2.html#basic-plot-structure",
-    "title": "8  Visualization with ggplot2",
+    "title": "9  Visualization with ggplot2",
     "section": "",
     "text": "Data — the dataframe you are plotting\nAesthetics (aes()) — which variables map to which visual properties (x axis, y axis, color, size, etc.)\nGeometry (geom_*()) — what type of plot to draw\n\nggplot(data, aes(x = grade, y = sel_total_mean)) +\n  geom_boxplot()",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/ggplot2.html#common-plot-types",
     "href": "chapters/workflows/r/ggplot2.html#common-plot-types",
-    "title": "8  Visualization with ggplot2",
-    "section": "8.2 Common Plot Types",
-    "text": "8.2 Common Plot Types\n\n8.2.1 Histogram\nUse for visualizing the distribution of a single continuous variable:\nggplot(data, aes(x = sel_total_mean)) +\n  geom_histogram(bins = 20) +\n  labs(\n    x = \"SEL Total Mean\",\n    y = \"Count\",\n    title = \"Distribution of SEL Scores\"\n  )\n\n\n8.2.2 Bar Chart\nUse for comparing means or counts across groups:\ndata |&gt;\n  group_by(grade) |&gt;\n  summarise(mean_sel = mean(sel_total_mean, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = factor(grade), y = mean_sel)) +\n  geom_col() +\n  labs(x = \"Grade\", y = \"Mean SEL Score\")\n\n\n8.2.3 Box Plot\nUse for showing distributions across groups:\nggplot(data, aes(x = factor(grade), y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\")\n\n\n8.2.4 Scatter Plot\nUse for examining the relationship between two continuous variables:\nggplot(data, aes(x = rdg_score, y = sel_total_mean)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Reading Score\", y = \"SEL Total Mean\")\nThe alpha argument controls point transparency (0 = invisible, 1 = solid), which helps when points overlap. geom_smooth(method = \"lm\") adds a linear regression line with a confidence interval.\n\n\n8.2.5 Line Plot\nUse for showing change over time or across waves:\ndata |&gt;\n  group_by(wave, grade) |&gt;\n  summarise(mean_sel = mean(sel_total_mean, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = wave, y = mean_sel, color = factor(grade), group = factor(grade))) +\n  geom_line() +\n  geom_point() +\n  labs(x = \"Wave\", y = \"Mean SEL Score\", color = \"Grade\")",
+    "title": "9  Visualization with ggplot2",
+    "section": "9.2 Common Plot Types",
+    "text": "9.2 Common Plot Types\n\n9.2.1 Histogram\nUse for visualizing the distribution of a single continuous variable:\nggplot(data, aes(x = sel_total_mean)) +\n  geom_histogram(bins = 20) +\n  labs(\n    x = \"SEL Total Mean\",\n    y = \"Count\",\n    title = \"Distribution of SEL Scores\"\n  )\n\n\n9.2.2 Bar Chart\nUse for comparing means or counts across groups:\ndata |&gt;\n  group_by(grade) |&gt;\n  summarise(mean_sel = mean(sel_total_mean, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = factor(grade), y = mean_sel)) +\n  geom_col() +\n  labs(x = \"Grade\", y = \"Mean SEL Score\")\n\n\n9.2.3 Box Plot\nUse for showing distributions across groups:\nggplot(data, aes(x = factor(grade), y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\")\n\n\n9.2.4 Scatter Plot\nUse for examining the relationship between two continuous variables:\nggplot(data, aes(x = rdg_score, y = sel_total_mean)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = \"lm\") +\n  labs(x = \"Reading Score\", y = \"SEL Total Mean\")\nThe alpha argument controls point transparency (0 = invisible, 1 = solid), which helps when points overlap. geom_smooth(method = \"lm\") adds a linear regression line with a confidence interval.\n\n\n9.2.5 Line Plot\nUse for showing change over time or across waves:\ndata |&gt;\n  group_by(wave, grade) |&gt;\n  summarise(mean_sel = mean(sel_total_mean, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = wave, y = mean_sel, color = factor(grade), group = factor(grade))) +\n  geom_line() +\n  geom_point() +\n  labs(x = \"Wave\", y = \"Mean SEL Score\", color = \"Grade\")",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/ggplot2.html#labels-and-titles",
     "href": "chapters/workflows/r/ggplot2.html#labels-and-titles",
-    "title": "8  Visualization with ggplot2",
-    "section": "8.3 Labels and Titles",
-    "text": "8.3 Labels and Titles\nAlways label your axes and add a title. Use labs():\nggplot(data, aes(x = grade, y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(\n    title = \"SEL Scores by Grade\",\n    subtitle = \"Wave 1 data, N = 342\",\n    x = \"Grade\",\n    y = \"SEL Total Mean Score\",\n    caption = \"Source: CWER Wave 1 Survey\"\n  )",
+    "title": "9  Visualization with ggplot2",
+    "section": "9.3 Labels and Titles",
+    "text": "9.3 Labels and Titles\nAlways label your axes and add a title. Use labs():\nggplot(data, aes(x = grade, y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(\n    title = \"SEL Scores by Grade\",\n    subtitle = \"Wave 1 data, N = 342\",\n    x = \"Grade\",\n    y = \"SEL Total Mean Score\",\n    caption = \"Source: CWER Wave 1 Survey\"\n  )",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/ggplot2.html#themes",
     "href": "chapters/workflows/r/ggplot2.html#themes",
-    "title": "8  Visualization with ggplot2",
-    "section": "8.4 Themes",
-    "text": "8.4 Themes\nThemes control the overall appearance of the plot. theme_minimal() is a clean, publication-friendly option:\nggplot(data, aes(x = grade, y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\") +\n  theme_minimal()\nOther useful themes: theme_classic(), theme_bw().",
+    "title": "9  Visualization with ggplot2",
+    "section": "9.4 Themes",
+    "text": "9.4 Themes\nThemes control the overall appearance of the plot. theme_minimal() is a clean, publication-friendly option:\nggplot(data, aes(x = grade, y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\") +\n  theme_minimal()\nOther useful themes: theme_classic(), theme_bw().",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/ggplot2.html#saving-figures",
     "href": "chapters/workflows/r/ggplot2.html#saving-figures",
-    "title": "8  Visualization with ggplot2",
-    "section": "8.5 Saving Figures",
-    "text": "8.5 Saving Figures\nSave figures to output/figures/ using ggsave(). Always assign your plot to an object first:\np &lt;- ggplot(data, aes(x = factor(grade), y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\") +\n  theme_minimal()\n\nggsave(\n  here(\"output\", \"figures\", \"sel_by_grade.png\"),\n  plot = p,\n  width = 6,\n  height = 4,\n  dpi = 300\n)\nUse dpi = 300 for publication-quality resolution. Standard figure widths are 6 inches for a single-column figure and 8 inches for a full-width figure.\nFor PDF output (preferred for manuscripts):\nggsave(\n  here(\"output\", \"figures\", \"sel_by_grade.pdf\"),\n  plot = p,\n  width = 6,\n  height = 4\n)",
+    "title": "9  Visualization with ggplot2",
+    "section": "9.5 Saving Figures",
+    "text": "9.5 Saving Figures\nSave figures to output/figures/ using ggsave(). Always assign your plot to an object first:\np &lt;- ggplot(data, aes(x = factor(grade), y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\") +\n  theme_minimal()\n\nggsave(\n  here(\"output\", \"figures\", \"sel_by_grade.png\"),\n  plot = p,\n  width = 6,\n  height = 4,\n  dpi = 300\n)\nUse dpi = 300 for publication-quality resolution. Standard figure widths are 6 inches for a single-column figure and 8 inches for a full-width figure.\nFor PDF output (preferred for manuscripts):\nggsave(\n  here(\"output\", \"figures\", \"sel_by_grade.pdf\"),\n  plot = p,\n  width = 6,\n  height = 4\n)",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visualization with ggplot2</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html",
     "href": "chapters/workflows/r/quarto.html",
-    "title": "9  Quarto for Reporting",
+    "title": "10  Quarto for Reporting",
     "section": "",
-    "text": "9.1 Document Structure\nQuarto documents (.qmd) are the standard format for analysis scripts and reports in CWER. A Quarto document weaves together R code, output, and written narrative in a single file. When you render a Quarto document, it runs all the code and produces a polished HTML or Word document with results embedded.\nThis means your analysis and your report are the same document — there is no copying and pasting results from R into Word, which eliminates a major source of reporting errors.\nA Quarto document has three parts:",
+    "text": "10.1 Document Structure\nQuarto documents (.qmd) are the standard format for analysis scripts and reports in CWER. A Quarto document weaves together R code, output, and written narrative in a single file. When you render a Quarto document, it runs all the code and produces a polished HTML or Word document with results embedded.\nThis means your analysis and your report are the same document — there is no copying and pasting results from R into Word, which eliminates a major source of reporting errors.\nA Quarto document has three parts:",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#document-structure",
     "href": "chapters/workflows/r/quarto.html#document-structure",
-    "title": "9  Quarto for Reporting",
+    "title": "10  Quarto for Reporting",
     "section": "",
-    "text": "9.1.1 1. YAML Header\nDocument metadata at the top, surrounded by ---:\n---\ntitle: \"Wave 1 Descriptive Analysis\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    code-fold: true\n    embed-resources: true\nstatus: development\n---\nKey options:\n\n\n\nOption\nEffect\n\n\n\n\ntoc: true\nAdds a table of contents\n\n\ncode-fold: true\nHides code by default but lets readers expand it\n\n\nembed-resources: true\nCreates a single self-contained HTML file\n\n\ndate: today\nAutomatically inserts today’s date when rendered\n\n\n\n\n\n9.1.2 2. Code Chunks\nR code surrounded by triple backticks with {r}. Here is an example setup chunk:\n#| label: quarto-example-setup\n#| message: false\n\nlibrary(tidyverse)\nlibrary(here)\n\ndata &lt;- read_csv(here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n\n9.1.3 3. Narrative Text\nWritten explanation using Markdown formatting between code chunks:\n## Results\n\nThe mean SEL score was 2.8 (SD = 0.4). Scores were higher in upper grades\ncompared to lower grades, as shown in @fig-sel-by-grade.",
+    "text": "10.1.1 1. YAML Header\nDocument metadata at the top, surrounded by ---:\n---\ntitle: \"Wave 1 Descriptive Analysis\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    code-fold: true\n    embed-resources: true\nstatus: development\n---\nKey options:\n\n\n\nOption\nEffect\n\n\n\n\ntoc: true\nAdds a table of contents\n\n\ncode-fold: true\nHides code by default but lets readers expand it\n\n\nembed-resources: true\nCreates a single self-contained HTML file\n\n\ndate: today\nAutomatically inserts today’s date when rendered\n\n\n\n\n\n10.1.2 2. Code Chunks\nR code surrounded by triple backticks with {r}. Here is an example setup chunk:\n#| label: quarto-example-setup\n#| message: false\n\nlibrary(tidyverse)\nlibrary(here)\n\ndata &lt;- read_csv(here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n\n10.1.3 3. Narrative Text\nWritten explanation using Markdown formatting between code chunks:\n## Results\n\nThe mean SEL score was 2.8 (SD = 0.4). Scores were higher in upper grades\ncompared to lower grades, as shown in @fig-sel-by-grade.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#code-chunk-options",
     "href": "chapters/workflows/r/quarto.html#code-chunk-options",
-    "title": "9  Quarto for Reporting",
-    "section": "9.2 Code Chunk Options",
-    "text": "9.2 Code Chunk Options\nControl how each chunk behaves using options prefixed with #|:\n#| label: quarto-example-options\n#| echo: false\n#| warning: false\n#| message: false\nCommon options:\n\n\n\nOption\nValues\nEffect\n\n\n\n\nlabel\nany text\nNames the chunk — required for figures\n\n\necho\ntrue/false\nShow or hide the code\n\n\nwarning\ntrue/false\nShow or hide warnings\n\n\nmessage\ntrue/false\nShow or hide messages\n\n\neval\ntrue/false\nRun or skip the chunk\n\n\ninclude\ntrue/false\nInclude or exclude chunk and all output\n\n\nfig-width\nnumber\nFigure width in inches\n\n\nfig-height\nnumber\nFigure height in inches\n\n\nfig-cap\ntext\nFigure caption",
+    "title": "10  Quarto for Reporting",
+    "section": "10.2 Code Chunk Options",
+    "text": "10.2 Code Chunk Options\nControl how each chunk behaves using options prefixed with #|:\n#| label: quarto-example-options\n#| echo: false\n#| warning: false\n#| message: false\nCommon options:\n\n\n\nOption\nValues\nEffect\n\n\n\n\nlabel\nany text\nNames the chunk — required for figures\n\n\necho\ntrue/false\nShow or hide the code\n\n\nwarning\ntrue/false\nShow or hide warnings\n\n\nmessage\ntrue/false\nShow or hide messages\n\n\neval\ntrue/false\nRun or skip the chunk\n\n\ninclude\ntrue/false\nInclude or exclude chunk and all output\n\n\nfig-width\nnumber\nFigure width in inches\n\n\nfig-height\nnumber\nFigure height in inches\n\n\nfig-cap\ntext\nFigure caption",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#the-setup-chunk",
     "href": "chapters/workflows/r/quarto.html#the-setup-chunk",
-    "title": "9  Quarto for Reporting",
-    "section": "9.3 The Setup Chunk",
-    "text": "9.3 The Setup Chunk\nEvery Quarto document should have a setup chunk as its first code chunk. This is where you load packages, set global options, and read in data. In your actual analysis scripts, label this chunk setup. Here is what it should look like:\n#| label: quarto-setup-template\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\nlibrary(here)\n\n# Read data\ndata &lt;- read_csv(here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n# Recode missing values\ndata &lt;- data |&gt;\n  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))",
+    "title": "10  Quarto for Reporting",
+    "section": "10.3 The Setup Chunk",
+    "text": "10.3 The Setup Chunk\nEvery Quarto document should have a setup chunk as its first code chunk. This is where you load packages, set global options, and read in data. In your actual analysis scripts, label this chunk setup. Here is what it should look like:\n#| label: quarto-setup-template\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\nlibrary(here)\n\n# Read data\ndata &lt;- read_csv(here(\"data\", \"cleaned\", \"wave1_cleaned.csv\"))\n\n# Recode missing values\ndata &lt;- data |&gt;\n  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#cross-references",
     "href": "chapters/workflows/r/quarto.html#cross-references",
-    "title": "9  Quarto for Reporting",
-    "section": "9.4 Cross-References",
-    "text": "9.4 Cross-References\nReference figures and tables in your narrative using @. First, label the chunk with a fig- prefix and add a caption:\n#| label: quarto-fig-example\n#| fig-cap: \"SEL scores by grade level\"\n#| echo: false\n\nggplot(data, aes(x = factor(grade), y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\") +\n  theme_minimal()\nThen reference it in text:\nSEL scores increased with grade level (see @fig-quarto-fig-example).\nQuarto automatically numbers figures and inserts the correct reference.",
+    "title": "10  Quarto for Reporting",
+    "section": "10.4 Cross-References",
+    "text": "10.4 Cross-References\nReference figures and tables in your narrative using @. First, label the chunk with a fig- prefix and add a caption:\n#| label: quarto-fig-example\n#| fig-cap: \"SEL scores by grade level\"\n#| echo: false\n\nggplot(data, aes(x = factor(grade), y = sel_total_mean)) +\n  geom_boxplot() +\n  labs(x = \"Grade\", y = \"SEL Total Mean\") +\n  theme_minimal()\nThen reference it in text:\nSEL scores increased with grade level (see @fig-quarto-fig-example).\nQuarto automatically numbers figures and inserts the correct reference.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#inline-code",
     "href": "chapters/workflows/r/quarto.html#inline-code",
-    "title": "9  Quarto for Reporting",
-    "section": "9.5 Inline Code",
-    "text": "9.5 Inline Code\nEmbed R results directly in narrative text using backtick-r:\nThe sample included `r nrow(data)` students across `r n_distinct(data$school_id)` schools.\nWhen rendered, this inserts the actual values. This eliminates manual updating of numbers in reports when data changes.",
+    "title": "10  Quarto for Reporting",
+    "section": "10.5 Inline Code",
+    "text": "10.5 Inline Code\nEmbed R results directly in narrative text using backtick-r:\nThe sample included `r nrow(data)` students across `r n_distinct(data$school_id)` schools.\nWhen rendered, this inserts the actual values. This eliminates manual updating of numbers in reports when data changes.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#rendering",
     "href": "chapters/workflows/r/quarto.html#rendering",
-    "title": "9  Quarto for Reporting",
-    "section": "9.6 Rendering",
-    "text": "9.6 Rendering\nRender a document from the Positron Terminal:\nquarto render code/02_descriptives.qmd\nOr click the Render button at the top of the file in Positron.\nTo produce a Word document instead of HTML:\nformat:\n  docx:\n    reference-doc: ../../docs/reference.docx\nA reference document lets you apply your own Word styles to the output. Store the reference document in docs/.",
+    "title": "10  Quarto for Reporting",
+    "section": "10.6 Rendering",
+    "text": "10.6 Rendering\nRender a document from the Positron Terminal:\nquarto render code/02_descriptives.qmd\nOr click the Render button at the top of the file in Positron.\nTo produce a Word document instead of HTML:\nformat:\n  docx:\n    reference-doc: ../../docs/reference.docx\nA reference document lets you apply your own Word styles to the output. Store the reference document in docs/.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#output-formats-for-cwer",
     "href": "chapters/workflows/r/quarto.html#output-formats-for-cwer",
-    "title": "9  Quarto for Reporting",
-    "section": "9.7 Output Formats for CWER",
-    "text": "9.7 Output Formats for CWER\n\n\n\nUse case\nRecommended format\n\n\n\n\nInternal analysis and review\nHTML with embed-resources: true\n\n\nSharing with partners or stakeholders\nWord (.docx)\n\n\nPublication supplementary materials\nHTML or PDF",
+    "title": "10  Quarto for Reporting",
+    "section": "10.7 Output Formats for CWER",
+    "text": "10.7 Output Formats for CWER\n\n\n\nUse case\nRecommended format\n\n\n\n\nInternal analysis and review\nHTML with embed-resources: true\n\n\nSharing with partners or stakeholders\nWord (.docx)\n\n\nPublication supplementary materials\nHTML or PDF",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/quarto.html#cwer-script-header-in-quarto",
     "href": "chapters/workflows/r/quarto.html#cwer-script-header-in-quarto",
-    "title": "9  Quarto for Reporting",
-    "section": "9.8 CWER Script Header in Quarto",
-    "text": "9.8 CWER Script Header in Quarto\nEvery Quarto analysis document should begin with a commented header block in the setup chunk:\n#| label: quarto-header-template\n#| include: false\n\n# ============================================================\n# Script:  02_descriptives.qmd\n# Author:  Your Name (your.email@yale.edu)\n# Created: 2025-10-01\n# Purpose: Descriptive statistics for Wave 1 survey data\n# Inputs:  data/cleaned/wave1_cleaned.csv\n# Outputs: output/tables/descriptives_table.docx\n# AI:      Code developed with Claude assistance\n# Review:  Reviewed by Michael Strambler, 2025-10-05\n# ============================================================\n\nlibrary(tidyverse)\nlibrary(here)",
+    "title": "10  Quarto for Reporting",
+    "section": "10.8 CWER Script Header in Quarto",
+    "text": "10.8 CWER Script Header in Quarto\nEvery Quarto analysis document should begin with a commented header block in the setup chunk:\n#| label: quarto-header-template\n#| include: false\n\n# ============================================================\n# Script:  02_descriptives.qmd\n# Author:  Your Name (your.email@yale.edu)\n# Created: 2025-10-01\n# Purpose: Descriptive statistics for Wave 1 survey data\n# Inputs:  data/cleaned/wave1_cleaned.csv\n# Outputs: output/tables/descriptives_table.docx\n# AI:      Code developed with Claude assistance\n# Review:  Reviewed by Michael Strambler, 2025-10-05\n# ============================================================\n\nlibrary(tidyverse)\nlibrary(here)",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Quarto for Reporting</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Quarto for Reporting</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html",
     "href": "chapters/workflows/r/lme4.html",
-    "title": "10  Multilevel Modeling with lme4",
+    "title": "11  Multilevel Modeling with lme4",
     "section": "",
-    "text": "10.1 When to Use Multilevel Modeling\nlme4 is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.\nInstall and load it:\nMultilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:\nIgnoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.",
+    "text": "11.1 When to Use Multilevel Modeling\nlme4 is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.\nInstall and load it:\nMultilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:\nIgnoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#when-to-use-multilevel-modeling",
     "href": "chapters/workflows/r/lme4.html#when-to-use-multilevel-modeling",
-    "title": "10  Multilevel Modeling with lme4",
+    "title": "11  Multilevel Modeling with lme4",
     "section": "",
     "text": "Students nested within classrooms or schools\nRepeated measures nested within individuals\nTeachers nested within schools",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#the-intraclass-correlation-coefficient",
     "href": "chapters/workflows/r/lme4.html#the-intraclass-correlation-coefficient",
-    "title": "10  Multilevel Modeling with lme4",
-    "section": "10.2 The Intraclass Correlation Coefficient",
-    "text": "10.2 The Intraclass Correlation Coefficient\nBefore fitting a full multilevel model, run an unconditional means model (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.\nmodel_null &lt;- lmer(sel_total_mean ~ 1 + (1 | school_id), data = data)\nsummary(model_null)\nCalculate the ICC using the performance package:\nlibrary(performance)\nicc(model_null)\nAn ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.",
+    "title": "11  Multilevel Modeling with lme4",
+    "section": "11.2 The Intraclass Correlation Coefficient",
+    "text": "11.2 The Intraclass Correlation Coefficient\nBefore fitting a full multilevel model, run an unconditional means model (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.\nmodel_null &lt;- lmer(sel_total_mean ~ 1 + (1 | school_id), data = data)\nsummary(model_null)\nCalculate the ICC using the performance package:\nlibrary(performance)\nicc(model_null)\nAn ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#model-syntax",
     "href": "chapters/workflows/r/lme4.html#model-syntax",
-    "title": "10  Multilevel Modeling with lme4",
-    "section": "10.3 Model Syntax",
-    "text": "10.3 Model Syntax\nlme4 uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:\noutcome ~ fixed_effects + (random_effects | grouping_variable)\nThe 1 inside the parentheses represents a random intercept — allowing the mean outcome to vary across groups.\n\n10.3.1 Adding Level-1 Predictors\nLevel-1 predictors are variables measured at the individual level (e.g., student-level variables):\nmodel_1 &lt;- lmer(sel_total_mean ~ grade + (1 | school_id), data = data)\nsummary(model_1)\n\n\n10.3.2 Adding Level-2 Predictors\nLevel-2 predictors are variables measured at the group level (e.g., school-level variables):\nmodel_2 &lt;- lmer(sel_total_mean ~ grade + school_size + (1 | school_id), data = data)\nsummary(model_2)\n\n\n10.3.3 Random Slope Model\nA random slope model allows the effect of a predictor to vary across groups:\nmodel_3 &lt;- lmer(sel_total_mean ~ grade + (1 + grade | school_id), data = data)\nsummary(model_3)\nThis estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).",
+    "title": "11  Multilevel Modeling with lme4",
+    "section": "11.3 Model Syntax",
+    "text": "11.3 Model Syntax\nlme4 uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:\noutcome ~ fixed_effects + (random_effects | grouping_variable)\nThe 1 inside the parentheses represents a random intercept — allowing the mean outcome to vary across groups.\n\n11.3.1 Adding Level-1 Predictors\nLevel-1 predictors are variables measured at the individual level (e.g., student-level variables):\nmodel_1 &lt;- lmer(sel_total_mean ~ grade + (1 | school_id), data = data)\nsummary(model_1)\n\n\n11.3.2 Adding Level-2 Predictors\nLevel-2 predictors are variables measured at the group level (e.g., school-level variables):\nmodel_2 &lt;- lmer(sel_total_mean ~ grade + school_size + (1 | school_id), data = data)\nsummary(model_2)\n\n\n11.3.3 Random Slope Model\nA random slope model allows the effect of a predictor to vary across groups:\nmodel_3 &lt;- lmer(sel_total_mean ~ grade + (1 + grade | school_id), data = data)\nsummary(model_3)\nThis estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#extracting-results",
     "href": "chapters/workflows/r/lme4.html#extracting-results",
-    "title": "10  Multilevel Modeling with lme4",
-    "section": "10.4 Extracting Results",
-    "text": "10.4 Extracting Results\nUse broom.mixed to extract fixed effect estimates in a tidy format:\nlibrary(broom.mixed)\n\ntidy(model_2, effects = \"fixed\", conf.int = TRUE)\nThis produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.",
+    "title": "11  Multilevel Modeling with lme4",
+    "section": "11.4 Extracting Results",
+    "text": "11.4 Extracting Results\nUse broom.mixed to extract fixed effect estimates in a tidy format:\nlibrary(broom.mixed)\n\ntidy(model_2, effects = \"fixed\", conf.int = TRUE)\nThis produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#comparing-models",
     "href": "chapters/workflows/r/lme4.html#comparing-models",
-    "title": "10  Multilevel Modeling with lme4",
-    "section": "10.5 Comparing Models",
-    "text": "10.5 Comparing Models\nUse anova() to compare nested models via likelihood ratio test:\nanova(model_1, model_2)\nThis tests whether adding school-level predictors significantly improves model fit. Note that lme4 uses REML estimation by default for variance components, but switches to ML for model comparisons — anova() handles this automatically.",
+    "title": "11  Multilevel Modeling with lme4",
+    "section": "11.5 Comparing Models",
+    "text": "11.5 Comparing Models\nUse anova() to compare nested models via likelihood ratio test:\nanova(model_1, model_2)\nThis tests whether adding school-level predictors significantly improves model fit. Note that lme4 uses REML estimation by default for variance components, but switches to ML for model comparisons — anova() handles this automatically.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#checking-assumptions",
     "href": "chapters/workflows/r/lme4.html#checking-assumptions",
-    "title": "10  Multilevel Modeling with lme4",
-    "section": "10.6 Checking Assumptions",
-    "text": "10.6 Checking Assumptions\nExamine residual plots to check model assumptions:\n# Residuals vs fitted\nplot(model_2)\n\n# QQ plot of residuals\nqqnorm(resid(model_2))\nqqline(resid(model_2))\n\n# Random effects distribution\ndotplot(ranef(model_2, condVar = TRUE))",
+    "title": "11  Multilevel Modeling with lme4",
+    "section": "11.6 Checking Assumptions",
+    "text": "11.6 Checking Assumptions\nExamine residual plots to check model assumptions:\n# Residuals vs fitted\nplot(model_2)\n\n# QQ plot of residuals\nqqnorm(resid(model_2))\nqqline(resid(model_2))\n\n# Random effects distribution\ndotplot(ranef(model_2, condVar = TRUE))",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/lme4.html#when-to-use-mplus-instead",
     "href": "chapters/workflows/r/lme4.html#when-to-use-mplus-instead",
-    "title": "10  Multilevel Modeling with lme4",
-    "section": "10.7 When to Use Mplus Instead",
-    "text": "10.7 When to Use Mplus Instead\nlme4 is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:\n\nYou need full information maximum likelihood (FIML) for missing data\nYour model involves latent variables or measurement models\nYou need multilevel SEM\nYou are estimating models with binary or ordinal outcomes in a multilevel framework\nYou need Monte Carlo simulation for power analysis\n\nSee the Mplus Workflows chapter for guidance on those cases.",
+    "title": "11  Multilevel Modeling with lme4",
+    "section": "11.7 When to Use Mplus Instead",
+    "text": "11.7 When to Use Mplus Instead\nlme4 is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:\n\nYou need full information maximum likelihood (FIML) for missing data\nYour model involves latent variables or measurement models\nYou need multilevel SEM\nYou are estimating models with binary or ordinal outcomes in a multilevel framework\nYou need Monte Carlo simulation for power analysis\n\nSee the Mplus Workflows chapter for guidance on those cases.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/mplus-automation.html",
     "href": "chapters/workflows/r/mplus-automation.html",
-    "title": "11  MplusAutomation",
+    "title": "12  MplusAutomation",
     "section": "",
-    "text": "11.1 Preparing Data for Mplus\nMplusAutomation is an R package that lets you run Mplus models from within R, keeping your entire workflow in one place — data preparation in R, model estimation in Mplus, results back in R for visualization and reporting. This eliminates the need to manually transfer data and results between software and makes your workflow more reproducible.\nInstall and load it:\nMplus must be installed on your computer for MplusAutomation to work. It calls Mplus in the background.\nprepareMplusData() writes an R dataframe to a Mplus-compatible .dat file and prints the variable list for your Mplus syntax:",
+    "text": "12.1 Preparing Data for Mplus\nMplusAutomation is an R package that lets you run Mplus models from within R, keeping your entire workflow in one place — data preparation in R, model estimation in Mplus, results back in R for visualization and reporting. This eliminates the need to manually transfer data and results between software and makes your workflow more reproducible.\nInstall and load it:\nMplus must be installed on your computer for MplusAutomation to work. It calls Mplus in the background.\nprepareMplusData() writes an R dataframe to a Mplus-compatible .dat file and prints the variable list for your Mplus syntax:",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MplusAutomation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MplusAutomation</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/mplus-automation.html#preparing-data-for-mplus",
     "href": "chapters/workflows/r/mplus-automation.html#preparing-data-for-mplus",
-    "title": "11  MplusAutomation",
+    "title": "12  MplusAutomation",
     "section": "",
-    "text": "prepareMplusData(\n  data,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n11.1.1 Handling Variable Name Length\nMplus has an 8-character limit on variable names. If any variable names in your dataframe exceed this limit, prepareMplusData() will warn you. Rename variables to short Mplus-compatible names before calling this function, and document the mapping in your script header.\nA practical approach is to create a renamed version of the data just for Mplus:\ndata_mplus &lt;- data |&gt;\n  rename(\n    selsm1   = sel_selfmgmt_1,\n    selsm2   = sel_selfmgmt_2,\n    selsa1   = sel_socaware_1,\n    rdgscr   = rdg_score,\n    schlid   = school_id\n  )\n\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\nDocument the full name-to-Mplus-name mapping in your script header so anyone reading the code can follow along.",
+    "text": "prepareMplusData(\n  data,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n12.1.1 Handling Variable Name Length\nMplus has an 8-character limit on variable names. If any variable names in your dataframe exceed this limit, prepareMplusData() will warn you. Rename variables to short Mplus-compatible names before calling this function, and document the mapping in your script header.\nA practical approach is to create a renamed version of the data just for Mplus:\ndata_mplus &lt;- data |&gt;\n  rename(\n    selsm1   = sel_selfmgmt_1,\n    selsm2   = sel_selfmgmt_2,\n    selsa1   = sel_socaware_1,\n    rdgscr   = rdg_score,\n    schlid   = school_id\n  )\n\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\nDocument the full name-to-Mplus-name mapping in your script header so anyone reading the code can follow along.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MplusAutomation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MplusAutomation</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/mplus-automation.html#running-a-mplus-model",
     "href": "chapters/workflows/r/mplus-automation.html#running-a-mplus-model",
-    "title": "11  MplusAutomation",
-    "section": "11.2 Running a Mplus Model",
-    "text": "11.2 Running a Mplus Model\nWrite your Mplus syntax as a .inp file (see the Mplus Workflows chapter), then run it from R:\nrunModels(here(\"code\", \"mplus\", \"cfa_model.inp\"))\nThis calls Mplus in the background, runs the model, and writes the output to a .out file in the same folder.\nTo run all .inp files in a folder:\nrunModels(here(\"code\", \"mplus\"))\nThis is useful for running multiple models at once — for example, a set of sensitivity analyses or the same model across multiple subgroups.",
+    "title": "12  MplusAutomation",
+    "section": "12.2 Running a Mplus Model",
+    "text": "12.2 Running a Mplus Model\nWrite your Mplus syntax as a .inp file (see the Mplus Workflows chapter), then run it from R:\nrunModels(here(\"code\", \"mplus\", \"cfa_model.inp\"))\nThis calls Mplus in the background, runs the model, and writes the output to a .out file in the same folder.\nTo run all .inp files in a folder:\nrunModels(here(\"code\", \"mplus\"))\nThis is useful for running multiple models at once — for example, a set of sensitivity analyses or the same model across multiple subgroups.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MplusAutomation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MplusAutomation</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/mplus-automation.html#reading-mplus-output",
     "href": "chapters/workflows/r/mplus-automation.html#reading-mplus-output",
-    "title": "11  MplusAutomation",
-    "section": "11.3 Reading Mplus Output",
-    "text": "11.3 Reading Mplus Output\nRead results back into R using readModels():\noutput &lt;- readModels(here(\"code\", \"mplus\", \"cfa_model.out\"))\nThe output object is a list with named elements. The most commonly used are:\n# Model fit indices\noutput$summaries\n\n# Unstandardized parameter estimates\noutput$parameters$unstandardized\n\n# Standardized parameter estimates\noutput$parameters$standardized\n\n# Factor loadings (for CFA models)\noutput$parameters$stdyx.standardized\nTo read all output files in a folder:\nall_output &lt;- readModels(here(\"code\", \"mplus\"), recursive = FALSE)\nResults are returned as a list of model objects, one per .out file. This is useful for comparing fit indices across models:\n# Extract fit indices from all models\nfit_table &lt;- lapply(all_output, function(m) m$summaries) |&gt;\n  bind_rows(.id = \"model\")\n\nfit_table |&gt;\n  select(model, CFI, TLI, RMSEA_Estimate, SRMR)",
+    "title": "12  MplusAutomation",
+    "section": "12.3 Reading Mplus Output",
+    "text": "12.3 Reading Mplus Output\nRead results back into R using readModels():\noutput &lt;- readModels(here(\"code\", \"mplus\", \"cfa_model.out\"))\nThe output object is a list with named elements. The most commonly used are:\n# Model fit indices\noutput$summaries\n\n# Unstandardized parameter estimates\noutput$parameters$unstandardized\n\n# Standardized parameter estimates\noutput$parameters$standardized\n\n# Factor loadings (for CFA models)\noutput$parameters$stdyx.standardized\nTo read all output files in a folder:\nall_output &lt;- readModels(here(\"code\", \"mplus\"), recursive = FALSE)\nResults are returned as a list of model objects, one per .out file. This is useful for comparing fit indices across models:\n# Extract fit indices from all models\nfit_table &lt;- lapply(all_output, function(m) m$summaries) |&gt;\n  bind_rows(.id = \"model\")\n\nfit_table |&gt;\n  select(model, CFI, TLI, RMSEA_Estimate, SRMR)",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MplusAutomation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MplusAutomation</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/mplus-automation.html#a-typical-mplusautomation-workflow",
     "href": "chapters/workflows/r/mplus-automation.html#a-typical-mplusautomation-workflow",
-    "title": "11  MplusAutomation",
-    "section": "11.4 A Typical MplusAutomation Workflow",
-    "text": "11.4 A Typical MplusAutomation Workflow\nA complete workflow from data preparation to results typically looks like this:\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load cleaned data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Rename variables to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    selsm1 = sel_selfmgmt_1,\n    selsm2 = sel_selfmgmt_2,\n    selsa1 = sel_socaware_1\n  )\n\n# 3. Write Mplus data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 4. Run model (assumes .inp file already written)\nrunModels(here(\"code\", \"mplus\", \"cfa_model.inp\"))\n\n# 5. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"cfa_model.out\"))\n\n# 6. Extract and save fit indices\nfit &lt;- output$summaries |&gt;\n  select(CFI, TLI, RMSEA_Estimate, SRMR)\n\nwrite_csv(fit, here(\"output\", \"tables\", \"cfa_fit_indices.csv\"))\n\n# 7. Extract and save factor loadings\nloadings &lt;- output$parameters$stdyx.standardized |&gt;\n  filter(paramHeader == \"F1.BY\")\n\nwrite_csv(loadings, here(\"output\", \"tables\", \"cfa_loadings.csv\"))",
+    "title": "12  MplusAutomation",
+    "section": "12.4 A Typical MplusAutomation Workflow",
+    "text": "12.4 A Typical MplusAutomation Workflow\nA complete workflow from data preparation to results typically looks like this:\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load cleaned data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Rename variables to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    selsm1 = sel_selfmgmt_1,\n    selsm2 = sel_selfmgmt_2,\n    selsa1 = sel_socaware_1\n  )\n\n# 3. Write Mplus data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 4. Run model (assumes .inp file already written)\nrunModels(here(\"code\", \"mplus\", \"cfa_model.inp\"))\n\n# 5. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"cfa_model.out\"))\n\n# 6. Extract and save fit indices\nfit &lt;- output$summaries |&gt;\n  select(CFI, TLI, RMSEA_Estimate, SRMR)\n\nwrite_csv(fit, here(\"output\", \"tables\", \"cfa_fit_indices.csv\"))\n\n# 7. Extract and save factor loadings\nloadings &lt;- output$parameters$stdyx.standardized |&gt;\n  filter(paramHeader == \"F1.BY\")\n\nwrite_csv(loadings, here(\"output\", \"tables\", \"cfa_loadings.csv\"))",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MplusAutomation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MplusAutomation</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/mplus-automation.html#tips",
     "href": "chapters/workflows/r/mplus-automation.html#tips",
-    "title": "11  MplusAutomation",
-    "section": "11.5 Tips",
-    "text": "11.5 Tips\n\nStore all Mplus .inp, .dat, and .out files in a dedicated code/mplus/ subfolder to keep them separate from R scripts\nCommit .inp files to GitHub — they are your analysis syntax and should be version controlled\nDo not commit .dat files if they contain sensitive participant data\nAlways document the variable name mapping between R and Mplus in the script header",
+    "title": "12  MplusAutomation",
+    "section": "12.5 Tips",
+    "text": "12.5 Tips\n\nStore all Mplus .inp, .dat, and .out files in a dedicated code/mplus/ subfolder to keep them separate from R scripts\nCommit .inp files to GitHub — they are your analysis syntax and should be version controlled\nDo not commit .dat files if they contain sensitive participant data\nAlways document the variable name mapping between R and Mplus in the script header",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MplusAutomation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MplusAutomation</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html",
     "href": "chapters/workflows/r/renv.html",
-    "title": "12  Managing Packages with renv",
+    "title": "13  Managing Packages with renv",
     "section": "",
-    "text": "12.1 Setting Up renv for a New Project\nrenv manages R package versions at the project level. Without it, R installs packages into a single system-wide library shared across all your projects. This means updating a package for one project can silently break another. renv solves this by giving each project its own isolated package library and recording the exact versions in a lockfile.\nFor CWER projects, this matters in two ways. First, it ensures that analyses are reproducible — anyone who clones a project and runs renv::restore() gets identical package versions. Second, it protects against analyses breaking when packages update, which is especially important for packages like metafor, MplusAutomation, and flextable where version differences can change results or output formatting.\nWith your project open in Positron, run in the R console:\nrenv scans your project for packages used in your scripts, installs them into a project-specific library, and creates two files:\nWhen renv is active, you will see this message at the start of every R session:",
+    "text": "13.1 Setting Up renv for a New Project\nrenv manages R package versions at the project level. Without it, R installs packages into a single system-wide library shared across all your projects. This means updating a package for one project can silently break another. renv solves this by giving each project its own isolated package library and recording the exact versions in a lockfile.\nFor CWER projects, this matters in two ways. First, it ensures that analyses are reproducible — anyone who clones a project and runs renv::restore() gets identical package versions. Second, it protects against analyses breaking when packages update, which is especially important for packages like metafor, MplusAutomation, and flextable where version differences can change results or output formatting.\nWith your project open in Positron, run in the R console:\nrenv scans your project for packages used in your scripts, installs them into a project-specific library, and creates two files:\nWhen renv is active, you will see this message at the start of every R session:",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#setting-up-renv-for-a-new-project",
     "href": "chapters/workflows/r/renv.html#setting-up-renv-for-a-new-project",
-    "title": "12  Managing Packages with renv",
+    "title": "13  Managing Packages with renv",
     "section": "",
     "text": "install.packages(\"renv\")\nrenv::init()\n\n\nrenv.lock — records the exact version of every package and its dependencies\n.Rprofile — automatically activates renv when R starts in this project\n\n\n- Project '~/Documents/GitHub/my-project' loaded. [renv 1.2.0]",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#installing-new-packages",
     "href": "chapters/workflows/r/renv.html#installing-new-packages",
-    "title": "12  Managing Packages with renv",
-    "section": "12.2 Installing New Packages",
-    "text": "12.2 Installing New Packages\nInstall packages as you normally would:\ninstall.packages(\"lme4\")\nThen snapshot to record the new package in the lockfile:\nrenv::snapshot()\nCommit renv.lock to GitHub after snapshotting so teammates get the updated package list.",
+    "title": "13  Managing Packages with renv",
+    "section": "13.2 Installing New Packages",
+    "text": "13.2 Installing New Packages\nInstall packages as you normally would:\ninstall.packages(\"lme4\")\nThen snapshot to record the new package in the lockfile:\nrenv::snapshot()\nCommit renv.lock to GitHub after snapshotting so teammates get the updated package list.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#restoring-packages",
     "href": "chapters/workflows/r/renv.html#restoring-packages",
-    "title": "12  Managing Packages with renv",
-    "section": "12.3 Restoring Packages",
-    "text": "12.3 Restoring Packages\nWhen a teammate clones the project and opens it for the first time, they restore all packages with:\nrenv::restore()\nThis installs exactly the versions recorded in renv.lock — no more, no less.",
+    "title": "13  Managing Packages with renv",
+    "section": "13.3 Restoring Packages",
+    "text": "13.3 Restoring Packages\nWhen a teammate clones the project and opens it for the first time, they restore all packages with:\nrenv::restore()\nThis installs exactly the versions recorded in renv.lock — no more, no less.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#checking-status",
     "href": "chapters/workflows/r/renv.html#checking-status",
-    "title": "12  Managing Packages with renv",
-    "section": "12.4 Checking Status",
-    "text": "12.4 Checking Status\nTo see whether your project library is in sync with the lockfile:\nrenv::status()\nIf packages have been installed but not snapshotted, or if the lockfile references packages not in the library, renv::status() will tell you. Run renv::snapshot() or renv::restore() to resolve the discrepancy.",
+    "title": "13  Managing Packages with renv",
+    "section": "13.4 Checking Status",
+    "text": "13.4 Checking Status\nTo see whether your project library is in sync with the lockfile:\nrenv::status()\nIf packages have been installed but not snapshotted, or if the lockfile references packages not in the library, renv::status() will tell you. Run renv::snapshot() or renv::restore() to resolve the discrepancy.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#updating-packages",
     "href": "chapters/workflows/r/renv.html#updating-packages",
-    "title": "12  Managing Packages with renv",
-    "section": "12.5 Updating Packages",
-    "text": "12.5 Updating Packages\nTo update a package to a newer version:\nrenv::update(\"lme4\")\nrenv::snapshot()\nAlways test your analysis after updating packages to make sure nothing broke. If something does break, you can revert to the previous lockfile state using Git.",
+    "title": "13  Managing Packages with renv",
+    "section": "13.5 Updating Packages",
+    "text": "13.5 Updating Packages\nTo update a package to a newer version:\nrenv::update(\"lme4\")\nrenv::snapshot()\nAlways test your analysis after updating packages to make sure nothing broke. If something does break, you can revert to the previous lockfile state using Git.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#what-gets-committed-to-github",
     "href": "chapters/workflows/r/renv.html#what-gets-committed-to-github",
-    "title": "12  Managing Packages with renv",
-    "section": "12.6 What Gets Committed to GitHub",
-    "text": "12.6 What Gets Committed to GitHub\n\n\n\n\n\n\n\n\nFile / Folder\nCommit?\nReason\n\n\n\n\nrenv.lock\nYes\nRecords package versions — essential for reproducibility\n\n\n.Rprofile\nYes\nActivates renv automatically\n\n\nrenv/\nNo\nThe package library itself — large and can be restored from lockfile\n\n\n\nMake sure renv/library/ is in your .gitignore:\nrenv/library/",
+    "title": "13  Managing Packages with renv",
+    "section": "13.6 What Gets Committed to GitHub",
+    "text": "13.6 What Gets Committed to GitHub\n\n\n\n\n\n\n\n\nFile / Folder\nCommit?\nReason\n\n\n\n\nrenv.lock\nYes\nRecords package versions — essential for reproducibility\n\n\n.Rprofile\nYes\nActivates renv automatically\n\n\nrenv/\nNo\nThe package library itself — large and can be restored from lockfile\n\n\n\nMake sure renv/library/ is in your .gitignore:\nrenv/library/",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/workflows/r/renv.html#common-issues",
     "href": "chapters/workflows/r/renv.html#common-issues",
-    "title": "12  Managing Packages with renv",
-    "section": "12.7 Common Issues",
-    "text": "12.7 Common Issues\nrenv not activating. If you do not see the renv activation message when R starts, check that .Rprofile exists in your project root and that you opened the project folder in Positron rather than just opening the script file directly.\nPackage not found after restore. Some packages require system dependencies (compiled libraries) that renv cannot install. If renv::restore() fails for a specific package, check the package documentation for system requirements and contact Mike or Joanna if you are unsure.\nLockfile conflicts. If two team members update renv.lock at the same time and push to GitHub, you may get a merge conflict on the lockfile. Resolve it by accepting one version and running renv::restore() to sync your library to the resolved lockfile.",
+    "title": "13  Managing Packages with renv",
+    "section": "13.7 Common Issues",
+    "text": "13.7 Common Issues\nrenv not activating. If you do not see the renv activation message when R starts, check that .Rprofile exists in your project root and that you opened the project folder in Positron rather than just opening the script file directly.\nPackage not found after restore. Some packages require system dependencies (compiled libraries) that renv cannot install. If renv::restore() fails for a specific package, check the package documentation for system requirements and contact Mike or Joanna if you are unsure.\nLockfile conflicts. If two team members update renv.lock at the same time and push to GitHub, you may get a merge conflict on the lockfile. Resolve it by accepting one version and running renv::restore() to sync your library to the resolved lockfile.",
     "crumbs": [
       "Tools & Setup",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Managing Packages with renv</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Managing Packages with renv</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html",
     "href": "chapters/data/project-organization.html",
-    "title": "13  Project Organization",
+    "title": "14  Project Organization",
     "section": "",
-    "text": "13.1 The Core Principle\nA well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.\nEvery project has two types of files, and keeping them separate is the foundation of everything else:\nWhen you know that everything in data/raw/ is an original, untouched input, you can always trust it as the ground truth for the project.",
+    "text": "14.1 The Core Principle\nA well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.\nEvery project has two types of files, and keeping them separate is the foundation of everything else:\nWhen you know that everything in data/raw/ is an original, untouched input, you can always trust it as the ground truth for the project.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-core-principle",
     "href": "chapters/data/project-organization.html#the-core-principle",
-    "title": "13  Project Organization",
+    "title": "14  Project Organization",
     "section": "",
     "text": "Input files are fixed. Data that comes from outside the project such as partner-provided files, downloaded datasets, or exported survey data, goes in data/raw/ and is never modified by your scripts. If you need a cleaned version, your script reads the original, transforms it, and saves the result to data/cleaned/.\nOutputs are reproducible. Everything your scripts produce such as figures, tables, and rendered reports goes in output/ and can always be regenerated by rerunning the script that created it. Because of this, they are not committed to GitHub.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#standard-project-structure",
     "href": "chapters/data/project-organization.html#standard-project-structure",
-    "title": "13  Project Organization",
-    "section": "13.2 Standard Project Structure",
-    "text": "13.2 Standard Project Structure\nA typical CWER project looks like this:\nmy-project/\n├── data/                   # All data files\n│   ├── raw/                # Original inputs — scripts never modify these\n│   ├── cleaned/            # Processed data produced by cleaning scripts\n│   └── README.md           # Documents where each raw file came from\n├── code/                   # Analysis scripts (.qmd, .do, .R, .inp)\n│   └── exploratory/        # One-off analyses and sanity checks\n├── output/                 # All generated outputs\n│   ├── tables/             # Tables (.docx, .xlsx, .csv)\n│   └── figures/            # Figures (.png, .pdf)\n├── docs/                   # Reports, presentations, manuscripts\n└── README.md               # Project overview\nNot every project needs every subfolder. Adapt as needed, but keep the core separation between data/raw/ and everything else intact.",
+    "title": "14  Project Organization",
+    "section": "14.2 Standard Project Structure",
+    "text": "14.2 Standard Project Structure\nA typical CWER project looks like this:\nmy-project/\n├── data/                   # All data files\n│   ├── raw/                # Original inputs — scripts never modify these\n│   ├── cleaned/            # Processed data produced by cleaning scripts\n│   └── README.md           # Documents where each raw file came from\n├── code/                   # Analysis scripts (.qmd, .do, .R, .inp)\n│   └── exploratory/        # One-off analyses and sanity checks\n├── output/                 # All generated outputs\n│   ├── tables/             # Tables (.docx, .xlsx, .csv)\n│   └── figures/            # Figures (.png, .pdf)\n├── docs/                   # Reports, presentations, manuscripts\n└── README.md               # Project overview\nNot every project needs every subfolder. Adapt as needed, but keep the core separation between data/raw/ and everything else intact.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-data-folder",
     "href": "chapters/data/project-organization.html#the-data-folder",
-    "title": "13  Project Organization",
-    "section": "13.3 The data/ Folder",
-    "text": "13.3 The data/ Folder\n\n13.3.1 data/raw/\nThe data/raw/ folder holds files that come from outside the project — things your scripts read but never modify. This includes:\n\nSurvey data exported from Qualtrics or a partner system\nData received from school districts or community partners\nPublicly available datasets downloaded from external sources\nCodebooks and metadata provided by partners\n\nTreat everything in data/raw/ as read-only. Scripts read from it but never write to it. If a raw file needs to be corrected, replace it and document the change in data/README.md. Do not silently overwrite it.\n\n\n13.3.2 data/cleaned/\nThe data/cleaned/ folder holds processed versions of raw data produced by your cleaning scripts. These are intermediate files that other scripts will use as inputs, such as merged datasets, recoded variables, reshaped files, and so on. Because cleaned files are generated by code, they can always be recreated by rerunning the cleaning script.\n\n\n13.3.3 data/README.md\nAlways include a data/README.md that documents where each raw file came from, when it was received, and any relevant notes. This takes two minutes to write and is invaluable six months later when you are trying to remember which version of a dataset came from which partner, or which Qualtrics export corresponds to which wave of data collection.\nExample data/README.md:\n# Data Sources\n\n## raw/care4kids_survey_wave1.csv\n- Source: CT Office of Early Childhood, received from Jane Smith via Yale OneDrive File Transfer\n- Received: 2025-09-15\n- Notes: Wave 1 only (fall 2025). N=342. Includes provider ID but no names.\n\n## raw/sel_codebook_v3.xlsx\n- Source: Internal; developed by CWER team\n- Last updated: 2025-08-01\n- Notes: Version 3 adds items from the revised teacher observation protocol",
+    "title": "14  Project Organization",
+    "section": "14.3 The data/ Folder",
+    "text": "14.3 The data/ Folder\n\n14.3.1 data/raw/\nThe data/raw/ folder holds files that come from outside the project — things your scripts read but never modify. This includes:\n\nSurvey data exported from Qualtrics or a partner system\nData received from school districts or community partners\nPublicly available datasets downloaded from external sources\nCodebooks and metadata provided by partners\n\nTreat everything in data/raw/ as read-only. Scripts read from it but never write to it. If a raw file needs to be corrected, replace it and document the change in data/README.md. Do not silently overwrite it.\n\n\n14.3.2 data/cleaned/\nThe data/cleaned/ folder holds processed versions of raw data produced by your cleaning scripts. These are intermediate files that other scripts will use as inputs, such as merged datasets, recoded variables, reshaped files, and so on. Because cleaned files are generated by code, they can always be recreated by rerunning the cleaning script.\n\n\n14.3.3 data/README.md\nAlways include a data/README.md that documents where each raw file came from, when it was received, and any relevant notes. This takes two minutes to write and is invaluable six months later when you are trying to remember which version of a dataset came from which partner, or which Qualtrics export corresponds to which wave of data collection.\nExample data/README.md:\n# Data Sources\n\n## raw/care4kids_survey_wave1.csv\n- Source: CT Office of Early Childhood, received from Jane Smith via Yale OneDrive File Transfer\n- Received: 2025-09-15\n- Notes: Wave 1 only (fall 2025). N=342. Includes provider ID but no names.\n\n## raw/sel_codebook_v3.xlsx\n- Source: Internal; developed by CWER team\n- Last updated: 2025-08-01\n- Notes: Version 3 adds items from the revised teacher observation protocol",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-code-folder",
     "href": "chapters/data/project-organization.html#the-code-folder",
-    "title": "13  Project Organization",
-    "section": "13.4 The code/ Folder",
-    "text": "13.4 The code/ Folder\nAnalysis scripts are numbered to reflect the order of the pipeline:\ncode/\n├── 01_data_cleaning.qmd\n├── 02_descriptives.qmd\n├── 03_mlm_analysis.qmd\n├── 04_tables_figures.qmd\n└── exploratory/\nThe two-digit prefix means scripts appear in pipeline order when you list the folder. Script 01 reads from data/raw/ and writes cleaned files to data/cleaned/. Script 02 reads from data/cleaned/ and produces descriptives. A new team member can look at the file list and understand the overall flow without reading any code.\nNumbers reflect logical order, not strict dependencies. Script 04 might read outputs from both scripts 01 and 03. The numbering just helps you understand the overall structure.\nWhen you add a new script, assign the next available number. If you retire a script, do not renumber the others. Leave gaps rather than creating confusion about which script a particular output came from.\n\n13.4.1 Script Headers\nEvery script should begin with a header block identifying the author, purpose, inputs, and outputs:\n# ============================================================\n# Script:  01_data_cleaning.qmd\n# Author:  Your Name (your.email@yale.edu)\n# Created: 2025-10-01\n# Purpose: Clean and merge Wave 1 survey data\n# Inputs:  data/raw/care4kids_survey_wave1.csv\n# Outputs: data/cleaned/wave1_cleaned.rds\n# AI:      Code developed with Claude assistance\n# Review:  Reviewed by Michael Strambler, 2025-10-05\n# ============================================================\nThe AI and Review lines reflect our commitments to transparency and quality control described in the Statistical Analysis chapter.\n\n\n13.4.2 Script Status\nAdd a status field to each script’s YAML header to signal where it is in its lifecycle:\n---\ntitle: \"Multilevel Model Analysis\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\n---\n\n\n\n\n\n\n\nStatus\nMeaning\n\n\n\n\ndevelopment\nIn active development; outputs may change\n\n\nfinalized\nOutputs are publication-ready; changes should be deliberate\n\n\ndeprecated\nSuperseded by a newer script; kept for reference\n\n\n\nWhen results are heading toward a report or publication, mark the relevant scripts finalized. This signals to collaborators that any changes should be intentional and that outputs should be re-verified if the script is rerun.\n\n\n13.4.3 Exploratory Scripts\nThink of the code/exploratory/ subfolder as a playground for for one-off analyses, sanity checks, and ideas you are testing. Exploratory scripts follow relaxed rules with no number prefixes required, and nothing else in the project depends on their outputs. This makes it safe to experiment without worrying about breaking the main pipeline. If an exploratory analysis turns out to be valuable, promote it to a numbered script in the main directory.",
+    "title": "14  Project Organization",
+    "section": "14.4 The code/ Folder",
+    "text": "14.4 The code/ Folder\nAnalysis scripts are numbered to reflect the order of the pipeline:\ncode/\n├── 01_data_cleaning.qmd\n├── 02_descriptives.qmd\n├── 03_mlm_analysis.qmd\n├── 04_tables_figures.qmd\n└── exploratory/\nThe two-digit prefix means scripts appear in pipeline order when you list the folder. Script 01 reads from data/raw/ and writes cleaned files to data/cleaned/. Script 02 reads from data/cleaned/ and produces descriptives. A new team member can look at the file list and understand the overall flow without reading any code.\nNumbers reflect logical order, not strict dependencies. Script 04 might read outputs from both scripts 01 and 03. The numbering just helps you understand the overall structure.\nWhen you add a new script, assign the next available number. If you retire a script, do not renumber the others. Leave gaps rather than creating confusion about which script a particular output came from.\n\n14.4.1 Script Headers\nEvery script should begin with a header block identifying the author, purpose, inputs, and outputs:\n# ============================================================\n# Script:  01_data_cleaning.qmd\n# Author:  Your Name (your.email@yale.edu)\n# Created: 2025-10-01\n# Purpose: Clean and merge Wave 1 survey data\n# Inputs:  data/raw/care4kids_survey_wave1.csv\n# Outputs: data/cleaned/wave1_cleaned.rds\n# AI:      Code developed with Claude assistance\n# Review:  Reviewed by Michael Strambler, 2025-10-05\n# ============================================================\nThe AI and Review lines reflect our commitments to transparency and quality control described in the Statistical Analysis chapter.\n\n\n14.4.2 Script Status\nAdd a status field to each script’s YAML header to signal where it is in its lifecycle:\n---\ntitle: \"Multilevel Model Analysis\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\n---\n\n\n\n\n\n\n\nStatus\nMeaning\n\n\n\n\ndevelopment\nIn active development; outputs may change\n\n\nfinalized\nOutputs are publication-ready; changes should be deliberate\n\n\ndeprecated\nSuperseded by a newer script; kept for reference\n\n\n\nWhen results are heading toward a report or publication, mark the relevant scripts finalized. This signals to collaborators that any changes should be intentional and that outputs should be re-verified if the script is rerun.\n\n\n14.4.3 Exploratory Scripts\nThink of the code/exploratory/ subfolder as a playground for for one-off analyses, sanity checks, and ideas you are testing. Exploratory scripts follow relaxed rules with no number prefixes required, and nothing else in the project depends on their outputs. This makes it safe to experiment without worrying about breaking the main pipeline. If an exploratory analysis turns out to be valuable, promote it to a numbered script in the main directory.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-output-folder",
     "href": "chapters/data/project-organization.html#the-output-folder",
-    "title": "13  Project Organization",
-    "section": "13.5 The output/ Folder",
-    "text": "13.5 The output/ Folder\nAll generated outputs go in output/, organized into two subfolders:\noutput/\n├── tables/\n│   ├── descriptives_table.docx\n│   └── mlm_results_table.docx\n└── figures/\n    ├── figure1_histogram.png\n    └── figure2_scatter.pdf\nKeep file names descriptive so their purpose is clear without opening them. Avoid generic names like table1.docx or figure_final.png.",
+    "title": "14  Project Organization",
+    "section": "14.5 The output/ Folder",
+    "text": "14.5 The output/ Folder\nAll generated outputs go in output/, organized into two subfolders:\noutput/\n├── tables/\n│   ├── descriptives_table.docx\n│   └── mlm_results_table.docx\n└── figures/\n    ├── figure1_histogram.png\n    └── figure2_scatter.pdf\nKeep file names descriptive so their purpose is clear without opening them. Avoid generic names like table1.docx or figure_final.png.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-docs-folder",
     "href": "chapters/data/project-organization.html#the-docs-folder",
-    "title": "13  Project Organization",
-    "section": "13.6 The docs/ Folder",
-    "text": "13.6 The docs/ Folder\nThe docs/ folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike output/, which holds raw generated files, docs/ holds polished, finalized deliverables.",
+    "title": "14  Project Organization",
+    "section": "14.6 The docs/ Folder",
+    "text": "14.6 The docs/ Folder\nThe docs/ folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike output/, which holds raw generated files, docs/ holds polished, finalized deliverables.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#file-naming-conventions",
     "href": "chapters/data/project-organization.html#file-naming-conventions",
-    "title": "13  Project Organization",
-    "section": "13.7 File Naming Conventions",
-    "text": "13.7 File Naming Conventions\n\nUse lowercase and underscores: wave1_cleaned.rds, not Wave1Cleaned.rds or wave1 cleaned.rds\nBe descriptive: wave1_provider_survey.csv, not data.csv\nAvoid spaces and special characters in all file and folder names\nDo not use date prefixes on individual files — let Git track versions instead",
+    "title": "14  Project Organization",
+    "section": "14.7 File Naming Conventions",
+    "text": "14.7 File Naming Conventions\n\nUse lowercase and underscores: wave1_cleaned.rds, not Wave1Cleaned.rds or wave1 cleaned.rds\nBe descriptive: wave1_provider_survey.csv, not data.csv\nAvoid spaces and special characters in all file and folder names\nDo not use date prefixes on individual files — let Git track versions instead",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#cross-software-data-format",
     "href": "chapters/data/project-organization.html#cross-software-data-format",
-    "title": "13  Project Organization",
-    "section": "13.8 Cross-Software Data Format",
-    "text": "13.8 Cross-Software Data Format\nWhen data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:\n\nCSV is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS\nExcel (.xlsx) is acceptable when the recipient is more comfortable with spreadsheets, but be aware that formatting and formulas can cause problems when read programmatically\nWhen saving from R for Mplus input, use MplusAutomation package functions to ensure the format is correct\n\nWithin a single software environment, use native formats where appropriate (.rds for R objects, .dta for Stata) to preserve data types and attributes.",
+    "title": "14  Project Organization",
+    "section": "14.8 Cross-Software Data Format",
+    "text": "14.8 Cross-Software Data Format\nWhen data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:\n\nCSV is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS\nExcel (.xlsx) is acceptable when the recipient is more comfortable with spreadsheets, but be aware that formatting and formulas can cause problems when read programmatically\nWhen saving from R for Mplus input, use MplusAutomation package functions to ensure the format is correct\n\nWithin a single software environment, use native formats where appropriate (.rds for R objects, .dta for Stata) to preserve data types and attributes.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/data-management.html",
     "href": "chapters/data/data-management.html",
-    "title": "14  Data Management",
+    "title": "15  Data Management",
     "section": "",
-    "text": "14.1 Codebooks\nGood data management is the foundation of reproducible research. When data are well-organized, clearly documented, and consistently formatted, analyses are easier to run, errors are easier to catch, and handing off work to a teammate is straightforward. This chapter describes CWER conventions for codebooks, variable naming, and missing data. These conventions apply across all projects and all software platforms.\nA codebook is the authoritative record of every variable in a dataset. It documents what each variable measures, how it was collected, what the response options mean, and how missing data are coded. Every CWER project that involves original data collection must have a codebook.",
+    "text": "15.1 Codebooks\nGood data management is the foundation of reproducible research. When data are well-organized, clearly documented, and consistently formatted, analyses are easier to run, errors are easier to catch, and handing off work to a teammate is straightforward. This chapter describes CWER conventions for codebooks, variable naming, and missing data. These conventions apply across all projects and all software platforms.\nA codebook is the authoritative record of every variable in a dataset. It documents what each variable measures, how it was collected, what the response options mean, and how missing data are coded. Every CWER project that involves original data collection must have a codebook.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Data Management</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Data Management</span>"
     ]
   },
   {
     "objectID": "chapters/data/data-management.html#codebooks",
     "href": "chapters/data/data-management.html#codebooks",
-    "title": "14  Data Management",
+    "title": "15  Data Management",
     "section": "",
-    "text": "14.1.1 Format\nCodebooks are maintained as Excel files (.xlsx) stored in the docs/ folder of the project. Use one sheet per instrument or data source. The file should be named descriptively, for example codebook_care4kids_wave1.xlsx.\n\n\n14.1.2 Required Columns\nEvery codebook must include the following columns:\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nvariable_name\nThe exact variable name as it appears in the dataset\n\n\nvariable_label\nA plain-language description of what the variable measures\n\n\nsource\nWhere the variable came from (e.g., survey item, administrative record, derived)\n\n\nitem_text\nThe exact question or item wording presented to respondents, if applicable\n\n\nresponse_values\nThe numeric values used to represent response categories\n\n\nresponse_labels\nThe text label for each numeric value\n\n\nmissing_codes\nAny special codes used to represent missing data for this variable\n\n\nnotes\nAny additional information relevant to using or interpreting this variable\n\n\n\n\n\n14.1.3 Example Row\n\n\n\n\n\n\n\n\n\n\n\n\n\nvariable_name\nvariable_label\nsource\nitem_text\nresponse_values\nresponse_labels\nmissing_codes\nnotes\n\n\n\n\nsel_selfmgmt_1\nSelf-management item 1\nTeacher survey\n“This student controls their emotions”\n1, 2, 3, 4\nNever, Sometimes, Often, Always\n-99, -98\nReverse coded for composite\n\n\n\n\n\n14.1.4 Keeping Codebooks Current\nA codebook is only useful if it is kept up to date. Update it whenever:\n\nA new variable is added to the dataset\nA variable is recoded or transformed\nA response category changes meaning across waves\nA missing data code changes\n\nTreat the codebook as part of the analysis, not an afterthought. Ideally, draft the codebook before data collection begins — this forces clarity about what you are measuring and how you will analyze it.",
+    "text": "15.1.1 Format\nCodebooks are maintained as Excel files (.xlsx) stored in the docs/ folder of the project. Use one sheet per instrument or data source. The file should be named descriptively, for example codebook_care4kids_wave1.xlsx.\n\n\n15.1.2 Required Columns\nEvery codebook must include the following columns:\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nvariable_name\nThe exact variable name as it appears in the dataset\n\n\nvariable_label\nA plain-language description of what the variable measures\n\n\nsource\nWhere the variable came from (e.g., survey item, administrative record, derived)\n\n\nitem_text\nThe exact question or item wording presented to respondents, if applicable\n\n\nresponse_values\nThe numeric values used to represent response categories\n\n\nresponse_labels\nThe text label for each numeric value\n\n\nmissing_codes\nAny special codes used to represent missing data for this variable\n\n\nnotes\nAny additional information relevant to using or interpreting this variable\n\n\n\n\n\n15.1.3 Example Row\n\n\n\n\n\n\n\n\n\n\n\n\n\nvariable_name\nvariable_label\nsource\nitem_text\nresponse_values\nresponse_labels\nmissing_codes\nnotes\n\n\n\n\nsel_selfmgmt_1\nSelf-management item 1\nTeacher survey\n“This student controls their emotions”\n1, 2, 3, 4\nNever, Sometimes, Often, Always\n-99, -98\nReverse coded for composite\n\n\n\n\n\n15.1.4 Keeping Codebooks Current\nA codebook is only useful if it is kept up to date. Update it whenever:\n\nA new variable is added to the dataset\nA variable is recoded or transformed\nA response category changes meaning across waves\nA missing data code changes\n\nTreat the codebook as part of the analysis, not an afterthought. Ideally, draft the codebook before data collection begins — this forces clarity about what you are measuring and how you will analyze it.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Data Management</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Data Management</span>"
     ]
   },
   {
     "objectID": "chapters/data/data-management.html#variable-naming-conventions",
     "href": "chapters/data/data-management.html#variable-naming-conventions",
-    "title": "14  Data Management",
-    "section": "14.2 Variable Naming Conventions",
-    "text": "14.2 Variable Naming Conventions\nConsistent variable names make datasets easier to work with across software platforms, reduce errors, and make analysis code more readable. The following conventions apply to all CWER datasets.\n\n14.2.1 Why Snake_case?\nCWER uses snake_case — lowercase letters with underscores between words — as the standard naming convention. For example: sel_selfmgmt_1, teacher_id, rdg_score_z.\nThis is a deliberate choice over alternatives like camelCase (SelSelfmgmt1) or PascalCase (SelSelfMgmt1) for several reasons:\n\nCross-software portability. Snake_case works cleanly across R, Stata, SPSS, and CSV files. Stata is case-sensitive, which means RaceEth and raceeth are treated as different variables — a common source of hard-to-find errors. Lowercase names eliminate this risk entirely.\nReadability. sel_selfmgmt_mean is easier to parse at a glance than SelSelfmgmtMean, especially for longer names with multiple components.\nIndustry standard. Snake_case is the dominant convention in data science — it is what R’s tidyverse, Python, and most database systems use. RAs with any quantitative background will already be familiar with it.\n\n\n\n14.2.2 General Rules\n\nUse lowercase letters only. sel_score, not SEL_Score or Sel_Score.\nUse underscores to separate words. teacher_rating, not teacherrating or teacher.rating.\nKeep names short but meaningful. Aim for 8 characters or fewer when possible for compatibility with older software, but never sacrifice clarity for brevity. A name like rdg_score is better than rs and better than reading_comprehension_total_score.\nAvoid spaces and special characters. No spaces, hyphens, slashes, parentheses, or symbols of any kind.\nNever start a variable name with a number. wave1_n is valid; 1_wave_n is not.\nAvoid reserved words. Do not use words that have special meaning in your analysis software, such as if, else, true, false, NA, null, mean, or sum.\n\n\n\n14.2.3 Naming Structure\nFor survey and scale items, use the following structure:\n[construct]_[subscale]_[item number]\nExamples: - sel_selfmgmt_1 — SEL scale, self-management subscale, item 1 - sel_selfmgmt_2 — SEL scale, self-management subscale, item 2 - sel_socaware_1 — SEL scale, social awareness subscale, item 1\nFor composite scores and derived variables:\n[construct]_[subscale]_[statistic or type]\nExamples: - sel_selfmgmt_mean — mean of self-management items - sel_total_mean — mean across all SEL items - rdg_pre_score — reading pre-test score - rdg_post_score — reading post-test score\nFor demographic and administrative variables, use clear, plain names:\n\nage_years — age in years\ngrade — grade level\ngender — gender\nrace_eth — race/ethnicity\nschool_id — school identifier\nteacher_id — teacher identifier\nstudent_id — student identifier\n\n\n\n14.2.4 ID Variables\nEvery dataset must include at least one ID variable that uniquely identifies each row. Follow these rules for ID variables:\n\nName ID variables with the unit of observation followed by _id: student_id, teacher_id, school_id, provider_id\nID values should be numeric where possible\nNever use names, initials, birthdates, or other personally identifiable information as ID values\nDocument the ID scheme in the codebook, including how IDs were assigned and whether they are consistent across waves or datasets\n\n\n\n14.2.5 Wave and Time Variables\nFor longitudinal projects, include a wave or time indicator:\n\nwave — numeric wave indicator (1, 2, 3)\ntime — numeric time point\nyear — academic or calendar year\nseason — fall, spring (use text labels)\n\nWhen variable names need to distinguish across waves, append the wave to the end:\n\nsel_total_mean_w1 — SEL total mean, Wave 1\nsel_total_mean_w2 — SEL total mean, Wave 2\n\n\n\n14.2.6 Recoded and Derived Variables\nWhen you recode or derive a variable from an existing one, create a new variable rather than overwriting the original. Append a suffix to indicate the transformation:\n\n\n\nSuffix\nMeaning\nExample\n\n\n\n\n_r\nReverse coded\nsel_item3_r\n\n\n_c\nCentered\nage_years_c\n\n\n_z\nStandardized (z-score)\nrdg_score_z\n\n\n_log\nLog transformed\nincome_log\n\n\n_cat\nCategorical version of a continuous variable\nage_cat\n\n\n_imp\nImputed\nrdg_score_imp\n\n\n\nNever overwrite raw variables. Always create a new variable and document it in the codebook.\n\n\n14.2.7 Variable Names in Mplus\nMplus imposes an 8-character limit on variable names, which creates a tension with snake_case. An underscore uses one of those 8 characters, leaving only 7 for meaningful content. For example, sel_sm_1 hits the limit exactly, while longer names like sel_selfmgmt_1 (14 characters) are simply not valid in Mplus syntax.\nThe recommended approach is to maintain full snake_case names in your master datasets and remap to short Mplus-compatible names only when preparing Mplus input files. The MplusAutomation package in R makes this straightforward — you can keep descriptive names in R, write a short name mapping when exporting to Mplus, and map results back to full names when importing output. This way your master data and R code stay readable, and your Mplus syntax stays within the character limit.\nWhen constructing short Mplus names, follow these guidelines:\n\nDrop underscores and abbreviate: sel_selfmgmt_1 becomes selsm1\nKeep names as interpretable as possible within the limit\nDocument the mapping between full names and Mplus names in your codebook or script header",
+    "title": "15  Data Management",
+    "section": "15.2 Variable Naming Conventions",
+    "text": "15.2 Variable Naming Conventions\nConsistent variable names make datasets easier to work with across software platforms, reduce errors, and make analysis code more readable. The following conventions apply to all CWER datasets.\n\n15.2.1 Why Snake_case?\nCWER uses snake_case — lowercase letters with underscores between words — as the standard naming convention. For example: sel_selfmgmt_1, teacher_id, rdg_score_z.\nThis is a deliberate choice over alternatives like camelCase (SelSelfmgmt1) or PascalCase (SelSelfMgmt1) for several reasons:\n\nCross-software portability. Snake_case works cleanly across R, Stata, SPSS, and CSV files. Stata is case-sensitive, which means RaceEth and raceeth are treated as different variables — a common source of hard-to-find errors. Lowercase names eliminate this risk entirely.\nReadability. sel_selfmgmt_mean is easier to parse at a glance than SelSelfmgmtMean, especially for longer names with multiple components.\nIndustry standard. Snake_case is the dominant convention in data science — it is what R’s tidyverse, Python, and most database systems use. RAs with any quantitative background will already be familiar with it.\n\n\n\n15.2.2 General Rules\n\nUse lowercase letters only. sel_score, not SEL_Score or Sel_Score.\nUse underscores to separate words. teacher_rating, not teacherrating or teacher.rating.\nKeep names short but meaningful. Aim for 8 characters or fewer when possible for compatibility with older software, but never sacrifice clarity for brevity. A name like rdg_score is better than rs and better than reading_comprehension_total_score.\nAvoid spaces and special characters. No spaces, hyphens, slashes, parentheses, or symbols of any kind.\nNever start a variable name with a number. wave1_n is valid; 1_wave_n is not.\nAvoid reserved words. Do not use words that have special meaning in your analysis software, such as if, else, true, false, NA, null, mean, or sum.\n\n\n\n15.2.3 Naming Structure\nFor survey and scale items, use the following structure:\n[construct]_[subscale]_[item number]\nExamples: - sel_selfmgmt_1 — SEL scale, self-management subscale, item 1 - sel_selfmgmt_2 — SEL scale, self-management subscale, item 2 - sel_socaware_1 — SEL scale, social awareness subscale, item 1\nFor composite scores and derived variables:\n[construct]_[subscale]_[statistic or type]\nExamples: - sel_selfmgmt_mean — mean of self-management items - sel_total_mean — mean across all SEL items - rdg_pre_score — reading pre-test score - rdg_post_score — reading post-test score\nFor demographic and administrative variables, use clear, plain names:\n\nage_years — age in years\ngrade — grade level\ngender — gender\nrace_eth — race/ethnicity\nschool_id — school identifier\nteacher_id — teacher identifier\nstudent_id — student identifier\n\n\n\n15.2.4 ID Variables\nEvery dataset must include at least one ID variable that uniquely identifies each row. Follow these rules for ID variables:\n\nName ID variables with the unit of observation followed by _id: student_id, teacher_id, school_id, provider_id\nID values should be numeric where possible\nNever use names, initials, birthdates, or other personally identifiable information as ID values\nDocument the ID scheme in the codebook, including how IDs were assigned and whether they are consistent across waves or datasets\n\n\n\n15.2.5 Wave and Time Variables\nFor longitudinal projects, include a wave or time indicator:\n\nwave — numeric wave indicator (1, 2, 3)\ntime — numeric time point\nyear — academic or calendar year\nseason — fall, spring (use text labels)\n\nWhen variable names need to distinguish across waves, append the wave to the end:\n\nsel_total_mean_w1 — SEL total mean, Wave 1\nsel_total_mean_w2 — SEL total mean, Wave 2\n\n\n\n15.2.6 Recoded and Derived Variables\nWhen you recode or derive a variable from an existing one, create a new variable rather than overwriting the original. Append a suffix to indicate the transformation:\n\n\n\nSuffix\nMeaning\nExample\n\n\n\n\n_r\nReverse coded\nsel_item3_r\n\n\n_c\nCentered\nage_years_c\n\n\n_z\nStandardized (z-score)\nrdg_score_z\n\n\n_log\nLog transformed\nincome_log\n\n\n_cat\nCategorical version of a continuous variable\nage_cat\n\n\n_imp\nImputed\nrdg_score_imp\n\n\n\nNever overwrite raw variables. Always create a new variable and document it in the codebook.\n\n\n15.2.7 Variable Names in Mplus\nMplus imposes an 8-character limit on variable names, which creates a tension with snake_case. An underscore uses one of those 8 characters, leaving only 7 for meaningful content. For example, sel_sm_1 hits the limit exactly, while longer names like sel_selfmgmt_1 (14 characters) are simply not valid in Mplus syntax.\nThe recommended approach is to maintain full snake_case names in your master datasets and remap to short Mplus-compatible names only when preparing Mplus input files. The MplusAutomation package in R makes this straightforward — you can keep descriptive names in R, write a short name mapping when exporting to Mplus, and map results back to full names when importing output. This way your master data and R code stay readable, and your Mplus syntax stays within the character limit.\nWhen constructing short Mplus names, follow these guidelines:\n\nDrop underscores and abbreviate: sel_selfmgmt_1 becomes selsm1\nKeep names as interpretable as possible within the limit\nDocument the mapping between full names and Mplus names in your codebook or script header",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Data Management</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Data Management</span>"
     ]
   },
   {
     "objectID": "chapters/data/data-management.html#missing-data-codes",
     "href": "chapters/data/data-management.html#missing-data-codes",
-    "title": "14  Data Management",
-    "section": "14.3 Missing Data Codes",
-    "text": "14.3 Missing Data Codes\nMissing data arise for different reasons, and distinguishing between them is important for accurate analysis. CWER uses the following numeric codes for missing data across all projects and software platforms:\n\n\n\n\n\n\n\nCode\nMeaning\n\n\n\n\n-99\nItem not answered / respondent skipped\n\n\n-98\nNot applicable (item did not apply to this respondent)\n\n\n-97\nData not available (data exist but were not collected or could not be obtained)\n\n\n-96\nRemoved during data cleaning (e.g., identified as invalid response)\n\n\n\n\n14.3.1 Rules for Missing Data Codes\n\nApply missing codes consistently within a project. Document which codes are used for each variable in the codebook.\nNever use 0 to represent missing data unless 0 is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.\nWhen importing data into analysis software, recode these values to the software’s native missing data format before running any analyses:\n\nR: recode to NA\nStata: recode to . (or named missings .a, .b for different types)\nMplus: declare missing values in the MISSING statement\nSPSS: declare as user-missing values\n\n\nFailing to recode missing data codes before analysis is one of the most common sources of errors in quantitative research. A -99 included in a mean calculation will silently produce a wrong answer. Always check for missing values before running analyses.\n\n\n14.3.2 Documenting Missingness\nFor every dataset, produce a missing data summary as part of your cleaning script. At minimum, report the number and percentage of missing values for each variable. Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.",
+    "title": "15  Data Management",
+    "section": "15.3 Missing Data Codes",
+    "text": "15.3 Missing Data Codes\nMissing data arise for different reasons, and distinguishing between them is important for accurate analysis. CWER uses the following numeric codes for missing data across all projects and software platforms:\n\n\n\n\n\n\n\nCode\nMeaning\n\n\n\n\n-99\nItem not answered / respondent skipped\n\n\n-98\nNot applicable (item did not apply to this respondent)\n\n\n-97\nData not available (data exist but were not collected or could not be obtained)\n\n\n-96\nRemoved during data cleaning (e.g., identified as invalid response)\n\n\n\n\n15.3.1 Rules for Missing Data Codes\n\nApply missing codes consistently within a project. Document which codes are used for each variable in the codebook.\nNever use 0 to represent missing data unless 0 is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.\nWhen importing data into analysis software, recode these values to the software’s native missing data format before running any analyses:\n\nR: recode to NA\nStata: recode to . (or named missings .a, .b for different types)\nMplus: declare missing values in the MISSING statement\nSPSS: declare as user-missing values\n\n\nFailing to recode missing data codes before analysis is one of the most common sources of errors in quantitative research. A -99 included in a mean calculation will silently produce a wrong answer. Always check for missing values before running analyses.\n\n\n15.3.2 Documenting Missingness\nFor every dataset, produce a missing data summary as part of your cleaning script. At minimum, report the number and percentage of missing values for each variable. Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Data Management</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Data Management</span>"
     ]
   },
   {
     "objectID": "chapters/data/data-management.html#data-cleaning-standards",
     "href": "chapters/data/data-management.html#data-cleaning-standards",
-    "title": "14  Data Management",
-    "section": "14.4 Data Cleaning Standards",
-    "text": "14.4 Data Cleaning Standards\nData cleaning scripts (code/01_data_cleaning.qmd or equivalent) should follow these standards:\n\nNever modify raw data. Read from data/raw/, write cleaned files to data/cleaned/.\nDocument every decision. When you recode, drop, or transform data, add a comment in the code explaining why.\nCheck merges carefully. After any merge, verify that the row count and key variables look as expected. Document the check in the script header.\nProduce a cleaning log. At the end of the cleaning script, output a summary of what was done: original N, final N, variables added, variables recoded, missing data summary.\nHave your cleaning code reviewed. Follow the quality control process described in the Statistical Analysis chapter.",
+    "title": "15  Data Management",
+    "section": "15.4 Data Cleaning Standards",
+    "text": "15.4 Data Cleaning Standards\nData cleaning scripts (code/01_data_cleaning.qmd or equivalent) should follow these standards:\n\nNever modify raw data. Read from data/raw/, write cleaned files to data/cleaned/.\nDocument every decision. When you recode, drop, or transform data, add a comment in the code explaining why.\nCheck merges carefully. After any merge, verify that the row count and key variables look as expected. Document the check in the script header.\nProduce a cleaning log. At the end of the cleaning script, output a summary of what was done: original N, final N, variables added, variables recoded, missing data summary.\nHave your cleaning code reviewed. Follow the quality control process described in the Statistical Analysis chapter.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Data Management</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Data Management</span>"
     ]
   },
   {
     "objectID": "chapters/data/data-management.html#a-note-on-sensitive-data",
     "href": "chapters/data/data-management.html#a-note-on-sensitive-data",
-    "title": "14  Data Management",
-    "section": "14.5 A Note on Sensitive Data",
-    "text": "14.5 A Note on Sensitive Data\nVariables that could identify participants — names, addresses, birthdates, school names in small samples, teacher names — require special handling. See the Being a Team Member chapter for data security requirements. As a general rule:\n\nStrip identifying variables from analysis datasets as early as possible in the cleaning process\nKeep a separate, secure crosswalk file linking IDs to identifying information if re-identification is ever needed\nStore crosswalk files in Yale OneDrive or Storage @ Yale, never in the project GitHub repository",
+    "title": "15  Data Management",
+    "section": "15.5 A Note on Sensitive Data",
+    "text": "15.5 A Note on Sensitive Data\nVariables that could identify participants — names, addresses, birthdates, school names in small samples, teacher names — require special handling. See the Being a Team Member chapter for data security requirements. As a general rule:\n\nStrip identifying variables from analysis datasets as early as possible in the cleaning process\nKeep a separate, secure crosswalk file linking IDs to identifying information if re-identification is ever needed\nStore crosswalk files in Yale OneDrive or Storage @ Yale, never in the project GitHub repository",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Data Management</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Data Management</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html",
     "href": "chapters/analysis/statistical-analysis.html",
-    "title": "15  Statistical Analysis",
+    "title": "16  Statistical Analysis",
     "section": "",
-    "text": "15.1 Statistical Software",
+    "text": "16.1 Statistical Software",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#statistical-software",
     "href": "chapters/analysis/statistical-analysis.html#statistical-software",
-    "title": "15  Statistical Analysis",
+    "title": "16  Statistical Analysis",
     "section": "",
     "text": "Excel: Whenever possible, data should be stored in Excel or CSV format, as these are the most accessible formats for sharing across software platforms.\nR: R has the most flexibility of all our stats software and is very powerful. It also comes with a steep learning curve. However, AI developments have made R dramatically more accessible, so using R is highly encouraged. See the R Workflows section for lab-specific guidance.\nMplus: We use Mplus heavily — mostly for analyses including Monte Carlo simulations for assessing statistical power, path analysis, structural equation modeling (SEM), multilevel modeling (MLM), mixture modeling, and approaches that blend these techniques (e.g., multilevel SEM). This is an especially useful package for examining psychometrics. See the Mplus Workflows section for templates and conventions.\nStata: A very flexible and comprehensive stats package. See the Stata Workflows section for lab-specific guidance.\nSPSS: We have mostly used SPSS for data processing and management, data exploration, and basic analyses such as descriptive statistics and OLS regression.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#using-ai-for-data-analysis",
     "href": "chapters/analysis/statistical-analysis.html#using-ai-for-data-analysis",
-    "title": "15  Statistical Analysis",
-    "section": "15.2 Using AI for Data Analysis",
-    "text": "15.2 Using AI for Data Analysis\nAI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:\n\nNever share identifiable participant data with AI tools. Paste only anonymized or synthetic examples when asking for help with data-related code.\nAlways review and understand the code AI produces before running it. Do not run code you cannot explain.\nAI output should be treated like a first draft: check it, test it, and own it.\nNote AI contributions in your code header as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).\n\n\n15.2.1 IDEs\nAn IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is Positron, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.\nCursor is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.\n\n\n15.2.2 Claude Code\nClaude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.",
+    "title": "16  Statistical Analysis",
+    "section": "16.2 Using AI for Data Analysis",
+    "text": "16.2 Using AI for Data Analysis\nAI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:\n\nNever share identifiable participant data with AI tools. Paste only anonymized or synthetic examples when asking for help with data-related code.\nAlways review and understand the code AI produces before running it. Do not run code you cannot explain.\nAI output should be treated like a first draft: check it, test it, and own it.\nNote AI contributions in your code header as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).\n\n\n16.2.1 IDEs\nAn IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is Positron, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.\nCursor is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.\n\n\n16.2.2 Claude Code\nClaude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#quality-control-for-analyses",
     "href": "chapters/analysis/statistical-analysis.html#quality-control-for-analyses",
-    "title": "15  Statistical Analysis",
-    "section": "15.3 Quality Control for Analyses",
-    "text": "15.3 Quality Control for Analyses\nIt is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:\n\nAt the beginning of all code, indicate the code author(s) and contact information.\nAdd a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.\nHave another team member check your code. Suggested reviewers by software:\n\nSPSS: Mike, Joanna\nMplus: Mike\nStata: Mike\nR: Mike\n\nWhen the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).\nAfter summarizing findings in narrative and/or table format, use AI to check for any misreporting.",
+    "title": "16  Statistical Analysis",
+    "section": "16.3 Quality Control for Analyses",
+    "text": "16.3 Quality Control for Analyses\nIt is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:\n\nAt the beginning of all code, indicate the code author(s) and contact information.\nAdd a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.\nHave another team member check your code. Suggested reviewers by software:\n\nSPSS: Mike, Joanna\nMplus: Mike\nStata: Mike\nR: Mike\n\nWhen the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).\nAfter summarizing findings in narrative and/or table format, use AI to check for any misreporting.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#statistical-language",
     "href": "chapters/analysis/statistical-analysis.html#statistical-language",
-    "title": "15  Statistical Analysis",
-    "section": "15.4 Statistical Language",
-    "text": "15.4 Statistical Language\nSee the Data Analysis Primer for descriptions of common statistics we use. A few things are worth emphasizing here.\n\n15.4.1 Statistical Significance\nStatistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a statistical effect or a statistical difference. For example:\n\nThe two groups were statistically different.\nWe interpreted a p-value of &lt;.05 as a statistical effect.\n\n\n\n15.4.2 Effect Sizes\nThe real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).",
+    "title": "16  Statistical Analysis",
+    "section": "16.4 Statistical Language",
+    "text": "16.4 Statistical Language\nSee the Data Analysis Primer for descriptions of common statistics we use. A few things are worth emphasizing here.\n\n16.4.1 Statistical Significance\nStatistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a statistical effect or a statistical difference. For example:\n\nThe two groups were statistically different.\nWe interpreted a p-value of &lt;.05 as a statistical effect.\n\n\n\n16.4.2 Effect Sizes\nThe real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   }
 ]
