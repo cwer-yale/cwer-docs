@@ -34,8 +34,6 @@ book:
       chapters:
         - chapters/analysis/statistical-analysis.qmd
 
-bibliography: references.bib
-
 format:
   html:
     theme: cosmo
