@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Tools Overview – Child Wellbeing and Education Research</title>
+<title>7&nbsp; Working with AI – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/tools/github.html" rel="next">
-<link href="../../chapters/about/team-member.html" rel="prev">
+<link href="../../chapters/workflows/r/r-basics.html" rel="next">
+<link href="../../chapters/tools/ides.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span></a>
   </div>
 </li>
@@ -177,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></span></a>
   </div>
 </li>
@@ -275,20 +275,34 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ms-teams" id="toc-ms-teams" class="nav-link active" data-scroll-target="#ms-teams"><span class="header-section-number">4.1</span> MS Teams</a></li>
-  <li><a href="#storage-yale" id="toc-storage-yale" class="nav-link" data-scroll-target="#storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</a></li>
-  <li><a href="#google-shared-drive" id="toc-google-shared-drive" class="nav-link" data-scroll-target="#google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</a></li>
-  <li><a href="#open-science-framework-osf" id="toc-open-science-framework-osf" class="nav-link" data-scroll-target="#open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">4.5</span> GitHub</a></li>
+  <li><a href="#about-our-ai-tools" id="toc-about-our-ai-tools" class="nav-link active" data-scroll-target="#about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</a></li>
+  <li><a href="#data-security-and-ai" id="toc-data-security-and-ai" class="nav-link" data-scroll-target="#data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</a></li>
+  <li><a href="#general-prompting-principles" id="toc-general-prompting-principles" class="nav-link" data-scroll-target="#general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</a></li>
+  <li><a href="#idea-generation" id="toc-idea-generation" class="nav-link" data-scroll-target="#idea-generation"><span class="header-section-number">7.4</span> Idea Generation</a>
+  <ul class="collapse">
+  <li><a href="#effect-size-interpretation" id="toc-effect-size-interpretation" class="nav-link" data-scroll-target="#effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</a></li>
+  <li><a href="#measurement-development" id="toc-measurement-development" class="nav-link" data-scroll-target="#measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</a></li>
+  </ul></li>
+  <li><a href="#reviewing-editing" id="toc-reviewing-editing" class="nav-link" data-scroll-target="#reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</a></li>
+  <li><a href="#data-management-analysis" id="toc-data-management-analysis" class="nav-link" data-scroll-target="#data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</a>
+  <ul class="collapse">
+  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles"><span class="header-section-number">7.6.1</span> General Principles</a></li>
+  <li><a href="#data-cleaning-and-wrangling" id="toc-data-cleaning-and-wrangling" class="nav-link" data-scroll-target="#data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</a></li>
+  <li><a href="#multilevel-modeling" id="toc-multilevel-modeling" class="nav-link" data-scroll-target="#multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</a></li>
+  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</a></li>
+  <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</a></li>
+  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</a></li>
+  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></h1>
 </div>
 
 
@@ -305,30 +319,282 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All CWER members should set up accounts with OSF, Google Drive, and GitHub, and should be added to the group’s MS Teams workspace. The sections below describe each tool and how we use it.</p>
-<section id="ms-teams" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ms-teams"><span class="header-section-number">4.1</span> MS Teams</h2>
-<p>MS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at <a href="https://teams.microsoft.com">teams.microsoft.com</a> or via the desktop app.</p>
+<p>This chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.</p>
+<section id="about-our-ai-tools" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</h2>
+<p>CWER uses <strong>Claude</strong> (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. <strong>Gemini</strong> (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale’s Clarity platform (see below).</p>
+<p>We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.</p>
 </section>
-<section id="storage-yale" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</h2>
-<p>Storage @ Yale is what we use as a shared server for storing project files. You will need to be granted access to the folders for the specific projects you are working on. Contact Mike or Joanna to request access.</p>
+<section id="data-security-and-ai" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</h2>
+<p><strong>Yale’s Clarity platform</strong> (<a href="https://ai-chat.yale.edu/">clarity.yale.edu</a>) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.</p>
+<p>When using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.</p>
 </section>
-<section id="google-shared-drive" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</h2>
-<p>We use <a href="https://support.google.com/a/users/answer/9310351#!/">Google Shared Drive</a> primarily for taking notes during meetings.</p>
-<p><strong>Setup</strong>: Users who do not already have an Eli Apps account should contact ITS to request a “no-mail Eli Apps account” associated with their NetID. Users who have an Eli Apps account should send a request to <a href="mailto:research.computing@yale.edu">research.computing@yale.edu</a> to ask that they enable Team Drive for their Eli Apps account. See <a href="https://docs.ycrc.yale.edu/data/google-drive/">https://docs.ycrc.yale.edu/data/google-drive/</a> for more information.</p>
+<section id="general-prompting-principles" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</h2>
+<p>Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:</p>
+<p><strong>Give context first.</strong> AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.</p>
+<p><strong>Be specific about what you want.</strong> “Help me clean this data” is too vague. “I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse.” gives the AI something concrete to work with.</p>
+<p><strong>Treat output as a first draft.</strong> Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.</p>
+<p><strong>Use AI as a thought partner, not an oracle.</strong> Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.</p>
+<p><strong>Note AI contributions.</strong> Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the <a href="../../chapters/about/team-member.html">Being a Team Member</a> chapter.</p>
 </section>
-<section id="open-science-framework-osf" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</h2>
-<p>We use <a href="https://osf.io/">OSF</a> to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the <a href="https://www.youtube.com/watch?v=dLEIhJESIQA&amp;feature=youtu.be">OSF 101 video</a> is a good starting point.</p>
+<section id="idea-generation" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="idea-generation"><span class="header-section-number">7.4</span> Idea Generation</h2>
+<p>AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.</p>
+<section id="effect-size-interpretation" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</h3>
+<p>When evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen’s conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft’s adjusted benchmarks are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Small</td>
+<td>&lt; 0.05 SD</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>0.05–0.19 SD</td>
+</tr>
+<tr class="odd">
+<td>Large</td>
+<td>≥ 0.20 SD</td>
+</tr>
+</tbody>
+</table>
+<p>The median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.</p>
+<p>When asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen’s conventions.</p>
+<p><strong>System prompt for effect size work</strong> (use in a Claude Project or paste at the start of a conversation):</p>
+<pre><code>When evaluating education-related research involving effect sizes, 
+use Kraft (2019) benchmarks rather than Cohen's conventions: 
+small &lt; 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median 
+effect size across education RCTs is 0.10 SD. Note the following 
+when contextualizing effects: (1) whether the design is causal or 
+correlational, (2) whether the outcome is proximal or distal to the 
+intervention, (3) design features that may inflate effect sizes 
+(small/targeted samples, researcher-designed measures, TOT vs. ITT), 
+and (4) cost and scalability considerations.</code></pre>
+<p><strong>Interpreting an effect size:</strong></p>
+<pre><code>I am reviewing a study of an SEL intervention that reports a 
+Cohen's d of 0.18 on a teacher-reported SEL measure administered 
+immediately post-intervention. The study used a randomized design 
+with N=280 students in grades 3-5. Using Kraft (2019) benchmarks, 
+how should I interpret this effect size? What contextual factors 
+are relevant?</code></pre>
+<p><strong>Exploring a literature:</strong></p>
+<pre><code>I am designing a study on [topic]. Before I finalize the design, 
+what are the key bodies of empirical literature I should be 
+familiar with? What are the main debates or unresolved questions 
+in this area? Please be specific about subfields and landmark 
+papers where possible — I will verify and read the primary sources.</code></pre>
+<p><strong>Stress-testing a research design:</strong></p>
+<pre><code>Here is my proposed research design: [describe design]. Before 
+I finalize it, what are the strongest methodological objections 
+someone could raise? What threats to validity am I most exposed 
+to? What would a skeptical reviewer say about this approach?</code></pre>
 </section>
-<section id="github" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
-<p>We use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the <a href="https://github.com/cwer-yale">cwer-yale</a> organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other’s work, and maintain a complete history of analytical decisions.</p>
-<p>New team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git &amp; GitHub chapter of this guide for a walkthrough (coming soon).</p>
+<section id="measurement-development" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</h3>
+<p>For measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.</p>
+<p><strong>The reference document</strong> is <code>scale_best_practices.docx</code>, which lives in the lab’s shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick &amp; Presser (2010), Preston &amp; Colman (2000), Saris et al.&nbsp;(2010), Schaeffer &amp; Dykema (2020), Ward &amp; Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI’s general impressions of measurement best practices.</p>
+<p>This is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.</p>
+<p><strong>System prompt for the Claude Project:</strong></p>
+<pre><code>This involves measurement issues related to other research projects. 
+Take the role of an expert in measurement development. Use the 
+document on best practices to guide but feel free to go beyond this.</code></pre>
+<p>Attach <code>scale_best_practices.docx</code> to the project before beginning.</p>
+<p><strong>Designing a new scale:</strong></p>
+<pre><code>I am developing a teacher-report measure of student self-management 
+for use in grades K-3. The construct includes behavioral regulation, 
+emotional control, and goal-directed persistence. I plan to use a 
+5-point response scale. Based on the best practices document, what 
+response format and label set would you recommend? Are there any 
+considerations specific to teacher-report measures I should be 
+aware of?</code></pre>
+<p><strong>Reviewing existing items:</strong></p>
+<pre><code>Here are 8 draft items for a social awareness subscale. Please 
+review them against the best practices document and flag any 
+concerns about item wording, response format match, potential 
+acquiescence bias, or cognitive burden. Suggest revisions where 
+needed.
+
+[paste items here]</code></pre>
+<p><strong>Using AI as a thought partner on scale design:</strong></p>
+<pre><code>I have made the following decisions about my scale design: 
+[describe decisions]. Before I finalize, what considerations or 
+tradeoffs might I be overlooking? Are there bodies of psychometric 
+literature I should consult that the best practices document does 
+not cover?</code></pre>
+</section>
+</section>
+<section id="reviewing-editing" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</h2>
+<p>When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.</p>
+<p><strong>System prompt for reviewing research writing:</strong></p>
+<pre><code>Content in here concerns research projects.
+
+When I ask you to review something I've written, check to make 
+sure of the following:
+1. Text is in APA format unless requested otherwise.
+2. The writing is clear, as free of jargon as possible, and concise.
+3. Logical arguments are sound.
+4. There are no statements that are weakly argued or lack 
+   justification. Arguments should not overstate or understate 
+   the evidence.
+5. If I'm critiquing someone's work, make sure I'm doing so 
+   charitably and accurately.
+
+Do not flatter me when reviewing my work. Be constructively 
+critical and put yourself in the role of a reviewer at a 
+scientific journal who is aiming to improve the work through 
+strong critique.</code></pre>
+<p><strong>Reviewing a manuscript section:</strong></p>
+<pre><code>Please review the following [methods / results / discussion] 
+section using the criteria in your instructions. Identify the 
+most important issues first, then secondary issues. Be specific 
+about what to fix and why.
+
+[paste text here]</code></pre>
+<p><strong>Verifying a reference:</strong></p>
+<pre><code>Please verify that the following reference is real and provide 
+a correctly formatted APA 7th edition citation and a sample 
+parenthetical in-text citation I can use directly in a manuscript.
+
+[paste reference here]</code></pre>
+<p><strong>Checking for misreporting:</strong></p>
+<pre><code>Here are my analysis results and the corresponding text from my 
+results section. Please check for any discrepancies between the 
+numbers in the text and the numbers in the output — wrong values, 
+rounding errors, or results described in the wrong direction.
+
+Results output: [paste output]
+Results text: [paste text]</code></pre>
+<p><strong>Drafting a methods section:</strong></p>
+<pre><code>I ran a multilevel model in R using lme4. Here are the details: 
+[describe model]. Write a methods section paragraph describing 
+the analytic approach in APA style, appropriate for a journal 
+manuscript. Do not invent any details — only use what I have 
+provided.</code></pre>
+</section>
+<section id="data-management-analysis" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</h2>
+<section id="general-principles" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="general-principles"><span class="header-section-number">7.6.1</span> General Principles</h3>
+<p>Review every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter for the full quality control process.</p>
+</section>
+<section id="data-cleaning-and-wrangling" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</h3>
+<p><strong>Recoding missing values:</strong></p>
+<pre><code>I am working in R using tidyverse. My dataset has variables coded 
+-99 (skipped), -98 (not applicable), and -97 (data not available). 
+I want to recode all three to NA before analysis. The data are in 
+a dataframe called `data`. Write code to do this and then produce 
+a summary showing how many NAs each variable has.</code></pre>
+<p><strong>Merging datasets:</strong></p>
+<pre><code>I have two dataframes in R: `student_data` with one row per student 
+(N=342, key variable: student_id) and `school_data` with one row 
+per school (N=18, key variable: school_id). Each student has a 
+school_id variable. I want to merge school-level variables into 
+the student dataframe. Write tidyverse code to do this and include 
+checks to verify the merge worked correctly — row counts before 
+and after, and a check for any unmatched IDs.</code></pre>
+<p><strong>Reverse scoring:</strong></p>
+<pre><code>I have a scale in R with 10 items (sel_1 through sel_10). Items 
+3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
+code to reverse score these items and create new variables named 
+with the _r suffix, then compute a mean composite score across 
+all 10 items (using the reversed versions where applicable) 
+excluding cases with more than 20% missing data.</code></pre>
+</section>
+<section id="multilevel-modeling" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</h3>
+<p><strong>Setting up a multilevel model in R:</strong></p>
+<pre><code>I am running a multilevel model in R using lme4. My data have 
+students nested within schools (N=342 students, N=18 schools). 
+The outcome is sel_total_mean (continuous). Level-1 predictors 
+are grade and gender. The level-2 predictor is school_size. 
+Write code to: (1) run a null model and calculate the ICC, 
+(2) add level-1 predictors, (3) add the level-2 predictor, 
+and (4) compare models. Use broom.mixed to extract results.</code></pre>
+<p><strong>Interpreting output:</strong></p>
+<pre><code>Here is the summary output from an lme4 model. Please help me 
+interpret the fixed effects, random effects, and variance 
+components. Flag anything that looks unusual or worth 
+investigating further.
+
+[paste output here]</code></pre>
+</section>
+<section id="meta-analysis" class="level3" data-number="7.6.4">
+<h3 data-number="7.6.4" class="anchored" data-anchor-id="meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</h3>
+<p><strong>Setting up a meta-analysis in R:</strong></p>
+<pre><code>I am running a meta-analysis in R using metafor with robust 
+variance estimation (RVE) via the clubSandwich package. I have 
+effect sizes in a dataframe called `meta_data` with columns: 
+study_id, effect_id, yi (effect size), vi (variance), and 
+moderator variables [list them]. Write code to fit a multilevel 
+random effects model with RVE, produce a forest plot, and test 
+for publication bias using Egger's test.</code></pre>
+</section>
+<section id="table-and-figure-production" class="level3" data-number="7.6.5">
+<h3 data-number="7.6.5" class="anchored" data-anchor-id="table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</h3>
+<p><strong>Producing a results table in Word:</strong></p>
+<pre><code>I have model results stored in a dataframe called `results` in R 
+with columns: term, estimate, std.error, conf.low, conf.high, 
+p.value. Write code using flextable and officer to produce an 
+APA-style results table and save it as a Word document at 
+output/tables/model_results.docx. Use Times New Roman 12pt, 
+include a table title, and format p-values to three decimal places.</code></pre>
+<p><strong>Saving a ggplot figure:</strong></p>
+<pre><code>I have a ggplot object called `p` in R. Write code to save it 
+as both a PNG (300 dpi, 6x4 inches) and a PDF to 
+output/figures/figure1. Use the here package for the file path.</code></pre>
+</section>
+<section id="debugging-code" class="level3" data-number="7.6.6">
+<h3 data-number="7.6.6" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</h3>
+<p><strong>Debugging an error:</strong></p>
+<pre><code>I am running the following R code and getting this error. 
+Please explain what is causing the error and provide corrected code.
+
+Code:
+[paste code]
+
+Error message:
+[paste error]
+
+Here is a sample of my data structure:
+[paste head(data) or glimpse(data) output]</code></pre>
+<p><strong>Code review:</strong></p>
+<pre><code>Please review the following R code for correctness, efficiency, 
+and adherence to tidyverse style conventions. Flag any potential 
+errors, inefficiencies, or places where the code could be 
+clearer. Do not rewrite the whole thing — just identify issues 
+and suggest targeted improvements.
+
+[paste code]</code></pre>
+</section>
+<section id="mplus-syntax" class="level3" data-number="7.6.7">
+<h3 data-number="7.6.7" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</h3>
+<p><strong>Writing a CFA model:</strong></p>
+<pre><code>Write Mplus syntax for a confirmatory factor analysis with the 
+following structure: one factor with 6 indicators, continuous 
+outcomes, WLSMV estimator, and FIML for missing data. The data 
+file is wave1_data.dat and the variables are [list them]. 
+Include MODEL FIT and STANDARDIZED output.</code></pre>
+<p><strong>Troubleshooting non-convergence:</strong></p>
+<pre><code>My Mplus model is not converging. Here is the output file. 
+Please identify the likely cause of the non-convergence and 
+suggest modifications to the syntax or starting values to 
+address it.
+
+[paste relevant sections of .out file]</code></pre>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -734,13 +1000,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/about/team-member.html" class="pagination-link" aria-label="Being a Team Member">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span>
+      <a href="../../chapters/tools/ides.html" class="pagination-link" aria-label="IDEs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IDEs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/tools/github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/workflows/r/r-basics.html" class="pagination-link" aria-label="R Basics">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R Basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

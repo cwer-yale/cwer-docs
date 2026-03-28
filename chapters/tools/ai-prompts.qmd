@@ -1,0 +1,341 @@
+# Working with AI
+
+This chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.
+
+## About Our AI Tools
+
+CWER uses **Claude** (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic's serious attention to the ethical development of AI. **Gemini** (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale's Clarity platform (see below).
+
+We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.
+
+## Data Security and AI
+
+**Yale's Clarity platform** ([clarity.yale.edu](https://ai-chat.yale.edu/)) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.
+
+When using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.
+
+## General Prompting Principles
+
+Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:
+
+**Give context first.** AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.
+
+**Be specific about what you want.** "Help me clean this data" is too vague. "I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse." gives the AI something concrete to work with.
+
+**Treat output as a first draft.** Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.
+
+**Use AI as a thought partner, not an oracle.** Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.
+
+**Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter.
+
+## Idea Generation
+
+AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.
+
+### Effect Size Interpretation
+
+When evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen's conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft's adjusted benchmarks are:
+
+| Category | Threshold |
+|---|---|
+| Small | < 0.05 SD |
+| Medium | 0.05–0.19 SD |
+| Large | ≥ 0.20 SD |
+
+The median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.
+
+When asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen's conventions.
+
+**System prompt for effect size work** (use in a Claude Project or paste at the start of a conversation):
+```
+When evaluating education-related research involving effect sizes, 
+use Kraft (2019) benchmarks rather than Cohen's conventions: 
+small < 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median 
+effect size across education RCTs is 0.10 SD. Note the following 
+when contextualizing effects: (1) whether the design is causal or 
+correlational, (2) whether the outcome is proximal or distal to the 
+intervention, (3) design features that may inflate effect sizes 
+(small/targeted samples, researcher-designed measures, TOT vs. ITT), 
+and (4) cost and scalability considerations.
+```
+
+**Interpreting an effect size:**
+```
+I am reviewing a study of an SEL intervention that reports a 
+Cohen's d of 0.18 on a teacher-reported SEL measure administered 
+immediately post-intervention. The study used a randomized design 
+with N=280 students in grades 3-5. Using Kraft (2019) benchmarks, 
+how should I interpret this effect size? What contextual factors 
+are relevant?
+```
+
+**Exploring a literature:**
+```
+I am designing a study on [topic]. Before I finalize the design, 
+what are the key bodies of empirical literature I should be 
+familiar with? What are the main debates or unresolved questions 
+in this area? Please be specific about subfields and landmark 
+papers where possible — I will verify and read the primary sources.
+```
+
+**Stress-testing a research design:**
+```
+Here is my proposed research design: [describe design]. Before 
+I finalize it, what are the strongest methodological objections 
+someone could raise? What threats to validity am I most exposed 
+to? What would a skeptical reviewer say about this approach?
+```
+
+### Measurement Development
+
+For measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.
+
+**The reference document** is `scale_best_practices.docx`, which lives in the lab's shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick & Presser (2010), Preston & Colman (2000), Saris et al. (2010), Schaeffer & Dykema (2020), Ward & Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI's general impressions of measurement best practices.
+
+This is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.
+
+**System prompt for the Claude Project:**
+```
+This involves measurement issues related to other research projects. 
+Take the role of an expert in measurement development. Use the 
+document on best practices to guide but feel free to go beyond this.
+```
+
+Attach `scale_best_practices.docx` to the project before beginning.
+
+**Designing a new scale:**
+```
+I am developing a teacher-report measure of student self-management 
+for use in grades K-3. The construct includes behavioral regulation, 
+emotional control, and goal-directed persistence. I plan to use a 
+5-point response scale. Based on the best practices document, what 
+response format and label set would you recommend? Are there any 
+considerations specific to teacher-report measures I should be 
+aware of?
+```
+
+**Reviewing existing items:**
+```
+Here are 8 draft items for a social awareness subscale. Please 
+review them against the best practices document and flag any 
+concerns about item wording, response format match, potential 
+acquiescence bias, or cognitive burden. Suggest revisions where 
+needed.
+
+[paste items here]
+```
+
+**Using AI as a thought partner on scale design:**
+```
+I have made the following decisions about my scale design: 
+[describe decisions]. Before I finalize, what considerations or 
+tradeoffs might I be overlooking? Are there bodies of psychometric 
+literature I should consult that the best practices document does 
+not cover?
+```
+
+## Reviewing & Editing
+
+When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.
+
+**System prompt for reviewing research writing:**
+```
+Content in here concerns research projects.
+
+When I ask you to review something I've written, check to make 
+sure of the following:
+1. Text is in APA format unless requested otherwise.
+2. The writing is clear, as free of jargon as possible, and concise.
+3. Logical arguments are sound.
+4. There are no statements that are weakly argued or lack 
+   justification. Arguments should not overstate or understate 
+   the evidence.
+5. If I'm critiquing someone's work, make sure I'm doing so 
+   charitably and accurately.
+
+Do not flatter me when reviewing my work. Be constructively 
+critical and put yourself in the role of a reviewer at a 
+scientific journal who is aiming to improve the work through 
+strong critique.
+```
+
+**Reviewing a manuscript section:**
+```
+Please review the following [methods / results / discussion] 
+section using the criteria in your instructions. Identify the 
+most important issues first, then secondary issues. Be specific 
+about what to fix and why.
+
+[paste text here]
+```
+
+**Verifying a reference:**
+```
+Please verify that the following reference is real and provide 
+a correctly formatted APA 7th edition citation and a sample 
+parenthetical in-text citation I can use directly in a manuscript.
+
+[paste reference here]
+```
+
+**Checking for misreporting:**
+```
+Here are my analysis results and the corresponding text from my 
+results section. Please check for any discrepancies between the 
+numbers in the text and the numbers in the output — wrong values, 
+rounding errors, or results described in the wrong direction.
+
+Results output: [paste output]
+Results text: [paste text]
+```
+
+**Drafting a methods section:**
+```
+I ran a multilevel model in R using lme4. Here are the details: 
+[describe model]. Write a methods section paragraph describing 
+the analytic approach in APA style, appropriate for a journal 
+manuscript. Do not invent any details — only use what I have 
+provided.
+```
+
+## Data Management & Analysis
+
+### General Principles
+
+Review every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the [Statistical Analysis](../analysis/statistical-analysis.qmd) chapter for the full quality control process.
+
+### Data Cleaning and Wrangling
+
+**Recoding missing values:**
+```
+I am working in R using tidyverse. My dataset has variables coded 
+-99 (skipped), -98 (not applicable), and -97 (data not available). 
+I want to recode all three to NA before analysis. The data are in 
+a dataframe called `data`. Write code to do this and then produce 
+a summary showing how many NAs each variable has.
+```
+
+**Merging datasets:**
+```
+I have two dataframes in R: `student_data` with one row per student 
+(N=342, key variable: student_id) and `school_data` with one row 
+per school (N=18, key variable: school_id). Each student has a 
+school_id variable. I want to merge school-level variables into 
+the student dataframe. Write tidyverse code to do this and include 
+checks to verify the merge worked correctly — row counts before 
+and after, and a check for any unmatched IDs.
+```
+
+**Reverse scoring:**
+```
+I have a scale in R with 10 items (sel_1 through sel_10). Items 
+3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
+code to reverse score these items and create new variables named 
+with the _r suffix, then compute a mean composite score across 
+all 10 items (using the reversed versions where applicable) 
+excluding cases with more than 20% missing data.
+```
+
+### Multilevel Modeling
+
+**Setting up a multilevel model in R:**
+```
+I am running a multilevel model in R using lme4. My data have 
+students nested within schools (N=342 students, N=18 schools). 
+The outcome is sel_total_mean (continuous). Level-1 predictors 
+are grade and gender. The level-2 predictor is school_size. 
+Write code to: (1) run a null model and calculate the ICC, 
+(2) add level-1 predictors, (3) add the level-2 predictor, 
+and (4) compare models. Use broom.mixed to extract results.
+```
+
+**Interpreting output:**
+```
+Here is the summary output from an lme4 model. Please help me 
+interpret the fixed effects, random effects, and variance 
+components. Flag anything that looks unusual or worth 
+investigating further.
+
+[paste output here]
+```
+
+### Meta-Analysis
+
+**Setting up a meta-analysis in R:**
+```
+I am running a meta-analysis in R using metafor with robust 
+variance estimation (RVE) via the clubSandwich package. I have 
+effect sizes in a dataframe called `meta_data` with columns: 
+study_id, effect_id, yi (effect size), vi (variance), and 
+moderator variables [list them]. Write code to fit a multilevel 
+random effects model with RVE, produce a forest plot, and test 
+for publication bias using Egger's test.
+```
+
+### Table and Figure Production
+
+**Producing a results table in Word:**
+```
+I have model results stored in a dataframe called `results` in R 
+with columns: term, estimate, std.error, conf.low, conf.high, 
+p.value. Write code using flextable and officer to produce an 
+APA-style results table and save it as a Word document at 
+output/tables/model_results.docx. Use Times New Roman 12pt, 
+include a table title, and format p-values to three decimal places.
+```
+
+**Saving a ggplot figure:**
+```
+I have a ggplot object called `p` in R. Write code to save it 
+as both a PNG (300 dpi, 6x4 inches) and a PDF to 
+output/figures/figure1. Use the here package for the file path.
+```
+
+### Debugging Code
+
+**Debugging an error:**
+```
+I am running the following R code and getting this error. 
+Please explain what is causing the error and provide corrected code.
+
+Code:
+[paste code]
+
+Error message:
+[paste error]
+
+Here is a sample of my data structure:
+[paste head(data) or glimpse(data) output]
+```
+
+**Code review:**
+```
+Please review the following R code for correctness, efficiency, 
+and adherence to tidyverse style conventions. Flag any potential 
+errors, inefficiencies, or places where the code could be 
+clearer. Do not rewrite the whole thing — just identify issues 
+and suggest targeted improvements.
+
+[paste code]
+```
+
+### Mplus Syntax
+
+**Writing a CFA model:**
+```
+Write Mplus syntax for a confirmatory factor analysis with the 
+following structure: one factor with 6 indicators, continuous 
+outcomes, WLSMV estimator, and FIML for missing data. The data 
+file is wave1_data.dat and the variables are [list them]. 
+Include MODEL FIT and STANDARDIZED output.
+```
+
+**Troubleshooting non-convergence:**
+```
+My Mplus model is not converging. Here is the output file. 
+Please identify the likely cause of the non-convergence and 
+suggest modifications to the syntax or starting values to 
+address it.
+
+[paste relevant sections of .out file]
+```

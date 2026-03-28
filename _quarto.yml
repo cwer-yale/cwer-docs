@@ -19,6 +19,8 @@ book:
       chapters:
         - chapters/tools/tools-overview.qmd
         - chapters/tools/github.qmd
+        - chapters/tools/ides.qmd
+        - chapters/tools/ai-prompts.qmd
         - chapters/workflows/r/r-basics.qmd
         - chapters/workflows/r/tidyverse.qmd
         - chapters/workflows/r/ggplot2.qmd
