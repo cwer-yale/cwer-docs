@@ -394,58 +394,124 @@
     ]
   },
   {
+    "objectID": "chapters/data/data-management.html",
+    "href": "chapters/data/data-management.html",
+    "title": "7  Data Management",
+    "section": "",
+    "text": "7.1 Codebooks\nGood data management is the foundation of reproducible research. When data are well-organized, clearly documented, and consistently formatted, analyses are easier to run, errors are easier to catch, and handing off work to a teammate is straightforward. This chapter describes CWER conventions for codebooks, variable naming, and missing data. These conventions apply across all projects and all software platforms.\nA codebook is the authoritative record of every variable in a dataset. It documents what each variable measures, how it was collected, what the response options mean, and how missing data are coded. Every CWER project that involves original data collection must have a codebook.",
+    "crumbs": [
+      "Data Management",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Management</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/data/data-management.html#codebooks",
+    "href": "chapters/data/data-management.html#codebooks",
+    "title": "7  Data Management",
+    "section": "",
+    "text": "7.1.1 Format\nCodebooks are maintained as Excel files (.xlsx) stored in the docs/ folder of the project. Use one sheet per instrument or data source. The file should be named descriptively, for example codebook_care4kids_wave1.xlsx.\n\n\n7.1.2 Required Columns\nEvery codebook must include the following columns:\n\n\n\n\n\n\n\nColumn\nDescription\n\n\n\n\nvariable_name\nThe exact variable name as it appears in the dataset\n\n\nvariable_label\nA plain-language description of what the variable measures\n\n\nsource\nWhere the variable came from (e.g., survey item, administrative record, derived)\n\n\nitem_text\nThe exact question or item wording presented to respondents, if applicable\n\n\nresponse_values\nThe numeric values used to represent response categories\n\n\nresponse_labels\nThe text label for each numeric value\n\n\nmissing_codes\nAny special codes used to represent missing data for this variable\n\n\nnotes\nAny additional information relevant to using or interpreting this variable\n\n\n\n\n\n7.1.3 Example Row\n\n\n\n\n\n\n\n\n\n\n\n\n\nvariable_name\nvariable_label\nsource\nitem_text\nresponse_values\nresponse_labels\nmissing_codes\nnotes\n\n\n\n\nsel_selfmgmt_1\nSelf-management item 1\nTeacher survey\n“This student controls their emotions”\n1, 2, 3, 4\nNever, Sometimes, Often, Always\n-99, -98\nReverse coded for composite\n\n\n\n\n\n7.1.4 Keeping Codebooks Current\nA codebook is only useful if it is kept up to date. Update it whenever:\n\nA new variable is added to the dataset\nA variable is recoded or transformed\nA response category changes meaning across waves\nA missing data code changes\n\nTreat the codebook as part of the analysis, not an afterthought. Ideally, draft the codebook before data collection begins — this forces clarity about what you are measuring and how you will analyze it.",
+    "crumbs": [
+      "Data Management",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Management</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/data/data-management.html#variable-naming-conventions",
+    "href": "chapters/data/data-management.html#variable-naming-conventions",
+    "title": "7  Data Management",
+    "section": "7.2 Variable Naming Conventions",
+    "text": "7.2 Variable Naming Conventions\nConsistent variable names make datasets easier to work with across software platforms, reduce errors, and make analysis code more readable. The following conventions apply to all CWER datasets.\n\n7.2.1 Why Snake_case?\nCWER uses snake_case — lowercase letters with underscores between words — as the standard naming convention. For example: sel_selfmgmt_1, teacher_id, rdg_score_z.\nThis is a deliberate choice over alternatives like camelCase (SelSelfmgmt1) or PascalCase (SelSelfMgmt1) for several reasons:\n\nCross-software portability. Snake_case works cleanly across R, Stata, SPSS, and CSV files. Stata is case-sensitive, which means RaceEth and raceeth are treated as different variables — a common source of hard-to-find errors. Lowercase names eliminate this risk entirely.\nReadability. sel_selfmgmt_mean is easier to parse at a glance than SelSelfmgmtMean, especially for longer names with multiple components.\nIndustry standard. Snake_case is the dominant convention in data science — it is what R’s tidyverse, Python, and most database systems use. RAs with any quantitative background will already be familiar with it.\n\n\n\n7.2.2 General Rules\n\nUse lowercase letters only. sel_score, not SEL_Score or Sel_Score.\nUse underscores to separate words. teacher_rating, not teacherrating or teacher.rating.\nKeep names short but meaningful. Aim for 8 characters or fewer when possible for compatibility with older software, but never sacrifice clarity for brevity. A name like rdg_score is better than rs and better than reading_comprehension_total_score.\nAvoid spaces and special characters. No spaces, hyphens, slashes, parentheses, or symbols of any kind.\nNever start a variable name with a number. wave1_n is valid; 1_wave_n is not.\nAvoid reserved words. Do not use words that have special meaning in your analysis software, such as if, else, true, false, NA, null, mean, or sum.\n\n\n\n7.2.3 Naming Structure\nFor survey and scale items, use the following structure:\n[construct]_[subscale]_[item number]\nExamples: - sel_selfmgmt_1 — SEL scale, self-management subscale, item 1 - sel_selfmgmt_2 — SEL scale, self-management subscale, item 2 - sel_socaware_1 — SEL scale, social awareness subscale, item 1\nFor composite scores and derived variables:\n[construct]_[subscale]_[statistic or type]\nExamples: - sel_selfmgmt_mean — mean of self-management items - sel_total_mean — mean across all SEL items - rdg_pre_score — reading pre-test score - rdg_post_score — reading post-test score\nFor demographic and administrative variables, use clear, plain names:\n\nage_years — age in years\ngrade — grade level\ngender — gender\nrace_eth — race/ethnicity\nschool_id — school identifier\nteacher_id — teacher identifier\nstudent_id — student identifier\n\n\n\n7.2.4 ID Variables\nEvery dataset must include at least one ID variable that uniquely identifies each row. Follow these rules for ID variables:\n\nName ID variables with the unit of observation followed by _id: student_id, teacher_id, school_id, provider_id\nID values should be numeric where possible\nNever use names, initials, birthdates, or other personally identifiable information as ID values\nDocument the ID scheme in the codebook, including how IDs were assigned and whether they are consistent across waves or datasets\n\n\n\n7.2.5 Wave and Time Variables\nFor longitudinal projects, include a wave or time indicator:\n\nwave — numeric wave indicator (1, 2, 3)\ntime — numeric time point\nyear — academic or calendar year\nseason — fall, spring (use text labels)\n\nWhen variable names need to distinguish across waves, append the wave to the end:\n\nsel_total_mean_w1 — SEL total mean, Wave 1\nsel_total_mean_w2 — SEL total mean, Wave 2\n\n\n\n7.2.6 Recoded and Derived Variables\nWhen you recode or derive a variable from an existing one, create a new variable rather than overwriting the original. Append a suffix to indicate the transformation:\n\n\n\nSuffix\nMeaning\nExample\n\n\n\n\n_r\nReverse coded\nsel_item3_r\n\n\n_c\nCentered\nage_years_c\n\n\n_z\nStandardized (z-score)\nrdg_score_z\n\n\n_log\nLog transformed\nincome_log\n\n\n_cat\nCategorical version of a continuous variable\nage_cat\n\n\n_imp\nImputed\nrdg_score_imp\n\n\n\nNever overwrite raw variables. Always create a new variable and document it in the codebook.\n\n\n7.2.7 Variable Names in Mplus\nMplus imposes an 8-character limit on variable names, which creates a tension with snake_case. An underscore uses one of those 8 characters, leaving only 7 for meaningful content. For example, sel_sm_1 hits the limit exactly, while longer names like sel_selfmgmt_1 (14 characters) are simply not valid in Mplus syntax.\nThe recommended approach is to maintain full snake_case names in your master datasets and remap to short Mplus-compatible names only when preparing Mplus input files. The MplusAutomation package in R makes this straightforward — you can keep descriptive names in R, write a short name mapping when exporting to Mplus, and map results back to full names when importing output. This way your master data and R code stay readable, and your Mplus syntax stays within the character limit.\nWhen constructing short Mplus names, follow these guidelines:\n\nDrop underscores and abbreviate: sel_selfmgmt_1 becomes selsm1\nKeep names as interpretable as possible within the limit\nDocument the mapping between full names and Mplus names in your codebook or script header",
+    "crumbs": [
+      "Data Management",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Management</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/data/data-management.html#missing-data-codes",
+    "href": "chapters/data/data-management.html#missing-data-codes",
+    "title": "7  Data Management",
+    "section": "7.3 Missing Data Codes",
+    "text": "7.3 Missing Data Codes\nMissing data arise for different reasons, and distinguishing between them is important for accurate analysis. CWER uses the following numeric codes for missing data across all projects and software platforms:\n\n\n\n\n\n\n\nCode\nMeaning\n\n\n\n\n-99\nItem not answered / respondent skipped\n\n\n-98\nNot applicable (item did not apply to this respondent)\n\n\n-97\nData not available (data exist but were not collected or could not be obtained)\n\n\n-96\nRemoved during data cleaning (e.g., identified as invalid response)\n\n\n\n\n7.3.1 Rules for Missing Data Codes\n\nApply missing codes consistently within a project. Document which codes are used for each variable in the codebook.\nNever use 0 to represent missing data unless 0 is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.\nWhen importing data into analysis software, recode these values to the software’s native missing data format before running any analyses:\n\nR: recode to NA\nStata: recode to . (or named missings .a, .b for different types)\nMplus: declare missing values in the MISSING statement\nSPSS: declare as user-missing values\n\n\nFailing to recode missing data codes before analysis is one of the most common sources of errors in quantitative research. A -99 included in a mean calculation will silently produce a wrong answer. Always check for missing values before running analyses.\n\n\n7.3.2 Documenting Missingness\nFor every dataset, produce a missing data summary as part of your cleaning script. At minimum, report the number and percentage of missing values for each variable. Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.",
+    "crumbs": [
+      "Data Management",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Management</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/data/data-management.html#data-cleaning-standards",
+    "href": "chapters/data/data-management.html#data-cleaning-standards",
+    "title": "7  Data Management",
+    "section": "7.4 Data Cleaning Standards",
+    "text": "7.4 Data Cleaning Standards\nData cleaning scripts (code/01_data_cleaning.qmd or equivalent) should follow these standards:\n\nNever modify raw data. Read from data/raw/, write cleaned files to data/cleaned/.\nDocument every decision. When you recode, drop, or transform data, add a comment in the code explaining why.\nCheck merges carefully. After any merge, verify that the row count and key variables look as expected. Document the check in the script header.\nProduce a cleaning log. At the end of the cleaning script, output a summary of what was done: original N, final N, variables added, variables recoded, missing data summary.\nHave your cleaning code reviewed. Follow the quality control process described in the Statistical Analysis chapter.",
+    "crumbs": [
+      "Data Management",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Management</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/data/data-management.html#a-note-on-sensitive-data",
+    "href": "chapters/data/data-management.html#a-note-on-sensitive-data",
+    "title": "7  Data Management",
+    "section": "7.5 A Note on Sensitive Data",
+    "text": "7.5 A Note on Sensitive Data\nVariables that could identify participants — names, addresses, birthdates, school names in small samples, teacher names — require special handling. See the Being a Team Member chapter for data security requirements. As a general rule:\n\nStrip identifying variables from analysis datasets as early as possible in the cleaning process\nKeep a separate, secure crosswalk file linking IDs to identifying information if re-identification is ever needed\nStore crosswalk files in Yale OneDrive or Storage @ Yale, never in the project GitHub repository",
+    "crumbs": [
+      "Data Management",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Data Management</span>"
+    ]
+  },
+  {
     "objectID": "chapters/analysis/statistical-analysis.html",
     "href": "chapters/analysis/statistical-analysis.html",
-    "title": "7  Statistical Analysis",
+    "title": "8  Statistical Analysis",
     "section": "",
-    "text": "7.1 Statistical Software",
+    "text": "8.1 Statistical Software",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#statistical-software",
     "href": "chapters/analysis/statistical-analysis.html#statistical-software",
-    "title": "7  Statistical Analysis",
+    "title": "8  Statistical Analysis",
     "section": "",
     "text": "Excel: Whenever possible, data should be stored in Excel or CSV format, as these are the most accessible formats for sharing across software platforms.\nR: R has the most flexibility of all our stats software and is very powerful. It also comes with a steep learning curve. However, AI developments have made R dramatically more accessible, so using R is highly encouraged. See the R Workflows section for lab-specific guidance.\nMplus: We use Mplus heavily — mostly for analyses including Monte Carlo simulations for assessing statistical power, path analysis, structural equation modeling (SEM), multilevel modeling (MLM), mixture modeling, and approaches that blend these techniques (e.g., multilevel SEM). This is an especially useful package for examining psychometrics. See the Mplus Workflows section for templates and conventions.\nStata: A very flexible and comprehensive stats package. See the Stata Workflows section for lab-specific guidance.\nSPSS: We have mostly used SPSS for data processing and management, data exploration, and basic analyses such as descriptive statistics and OLS regression.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#using-ai-for-data-analysis",
     "href": "chapters/analysis/statistical-analysis.html#using-ai-for-data-analysis",
-    "title": "7  Statistical Analysis",
-    "section": "7.2 Using AI for Data Analysis",
-    "text": "7.2 Using AI for Data Analysis\nAI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:\n\nNever share identifiable participant data with AI tools. Paste only anonymized or synthetic examples when asking for help with data-related code.\nAlways review and understand the code AI produces before running it. Do not run code you cannot explain.\nAI output should be treated like a first draft: check it, test it, and own it.\nNote AI contributions in your code header as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).\n\n\n7.2.1 IDEs\nAn IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is Positron, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.\nCursor is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.\n\n\n7.2.2 Claude Code\nClaude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.",
+    "title": "8  Statistical Analysis",
+    "section": "8.2 Using AI for Data Analysis",
+    "text": "8.2 Using AI for Data Analysis\nAI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:\n\nNever share identifiable participant data with AI tools. Paste only anonymized or synthetic examples when asking for help with data-related code.\nAlways review and understand the code AI produces before running it. Do not run code you cannot explain.\nAI output should be treated like a first draft: check it, test it, and own it.\nNote AI contributions in your code header as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).\n\n\n8.2.1 IDEs\nAn IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is Positron, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.\nCursor is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.\n\n\n8.2.2 Claude Code\nClaude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#quality-control-for-analyses",
     "href": "chapters/analysis/statistical-analysis.html#quality-control-for-analyses",
-    "title": "7  Statistical Analysis",
-    "section": "7.3 Quality Control for Analyses",
-    "text": "7.3 Quality Control for Analyses\nIt is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:\n\nAt the beginning of all code, indicate the code author(s) and contact information.\nAdd a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.\nHave another team member check your code. Suggested reviewers by software:\n\nSPSS: Mike, Joanna\nMplus: Mike\nStata: Mike\nR: Mike\n\nWhen the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).\nAfter summarizing findings in narrative and/or table format, use AI to check for any misreporting.",
+    "title": "8  Statistical Analysis",
+    "section": "8.3 Quality Control for Analyses",
+    "text": "8.3 Quality Control for Analyses\nIt is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:\n\nAt the beginning of all code, indicate the code author(s) and contact information.\nAdd a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.\nHave another team member check your code. Suggested reviewers by software:\n\nSPSS: Mike, Joanna\nMplus: Mike\nStata: Mike\nR: Mike\n\nWhen the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).\nAfter summarizing findings in narrative and/or table format, use AI to check for any misreporting.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#statistical-language",
     "href": "chapters/analysis/statistical-analysis.html#statistical-language",
-    "title": "7  Statistical Analysis",
-    "section": "7.4 Statistical Language",
-    "text": "7.4 Statistical Language\nSee the Data Analysis Primer for descriptions of common statistics we use. A few things are worth emphasizing here.\n\n7.4.1 Statistical Significance\nStatistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a statistical effect or a statistical difference. For example:\n\nThe two groups were statistically different.\nWe interpreted a p-value of &lt;.05 as a statistical effect.\n\n\n\n7.4.2 Effect Sizes\nThe real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).",
+    "title": "8  Statistical Analysis",
+    "section": "8.4 Statistical Language",
+    "text": "8.4 Statistical Language\nSee the Data Analysis Primer for descriptions of common statistics we use. A few things are worth emphasizing here.\n\n8.4.1 Statistical Significance\nStatistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a statistical effect or a statistical difference. For example:\n\nThe two groups were statistically different.\nWe interpreted a p-value of &lt;.05 as a statistical effect.\n\n\n\n8.4.2 Effect Sizes\nThe real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   }
 ]

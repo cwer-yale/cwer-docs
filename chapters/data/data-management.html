@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Roles &amp; Responsibilities – Child Wellbeing and Education Research</title>
+<title>7&nbsp; Data Management – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/about/team-member.html" rel="next">
-<link href="../../chapters/about/mission.html" rel="prev">
+<link href="../../chapters/analysis/statistical-analysis.html" rel="next">
+<link href="../../chapters/data/project-organization.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/about/mission.html">About CWER</a></li><li class="breadcrumb-item"><a href="../../chapters/about/roles.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Roles &amp; Responsibilities</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data/project-organization.html">Data Management</a></li><li class="breadcrumb-item"><a href="../../chapters/data/data-management.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Management</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/about/roles.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/about/roles.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Roles &amp; Responsibilities</span></span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data/data-management.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/data/data-management.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Management</span></span></a>
   </div>
 </li>
@@ -221,20 +221,39 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#director" id="toc-director" class="nav-link active" data-scroll-target="#director"><span class="header-section-number">2.1</span> Director</a></li>
-  <li><a href="#assistant-director" id="toc-assistant-director" class="nav-link" data-scroll-target="#assistant-director"><span class="header-section-number">2.2</span> Assistant Director</a></li>
-  <li><a href="#research-associate" id="toc-research-associate" class="nav-link" data-scroll-target="#research-associate"><span class="header-section-number">2.3</span> Research Associate</a></li>
-  <li><a href="#postdoctoral-fellows-and-associates" id="toc-postdoctoral-fellows-and-associates" class="nav-link" data-scroll-target="#postdoctoral-fellows-and-associates"><span class="header-section-number">2.4</span> Postdoctoral Fellows and Associates</a></li>
-  <li><a href="#research-assistants" id="toc-research-assistants" class="nav-link" data-scroll-target="#research-assistants"><span class="header-section-number">2.5</span> Research Assistants</a></li>
+  <li><a href="#codebooks" id="toc-codebooks" class="nav-link active" data-scroll-target="#codebooks"><span class="header-section-number">7.1</span> Codebooks</a>
+  <ul class="collapse">
+  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format"><span class="header-section-number">7.1.1</span> Format</a></li>
+  <li><a href="#required-columns" id="toc-required-columns" class="nav-link" data-scroll-target="#required-columns"><span class="header-section-number">7.1.2</span> Required Columns</a></li>
+  <li><a href="#example-row" id="toc-example-row" class="nav-link" data-scroll-target="#example-row"><span class="header-section-number">7.1.3</span> Example Row</a></li>
+  <li><a href="#keeping-codebooks-current" id="toc-keeping-codebooks-current" class="nav-link" data-scroll-target="#keeping-codebooks-current"><span class="header-section-number">7.1.4</span> Keeping Codebooks Current</a></li>
+  </ul></li>
+  <li><a href="#variable-naming-conventions" id="toc-variable-naming-conventions" class="nav-link" data-scroll-target="#variable-naming-conventions"><span class="header-section-number">7.2</span> Variable Naming Conventions</a>
+  <ul class="collapse">
+  <li><a href="#why-snake_case" id="toc-why-snake_case" class="nav-link" data-scroll-target="#why-snake_case"><span class="header-section-number">7.2.1</span> Why Snake_case?</a></li>
+  <li><a href="#general-rules" id="toc-general-rules" class="nav-link" data-scroll-target="#general-rules"><span class="header-section-number">7.2.2</span> General Rules</a></li>
+  <li><a href="#naming-structure" id="toc-naming-structure" class="nav-link" data-scroll-target="#naming-structure"><span class="header-section-number">7.2.3</span> Naming Structure</a></li>
+  <li><a href="#id-variables" id="toc-id-variables" class="nav-link" data-scroll-target="#id-variables"><span class="header-section-number">7.2.4</span> ID Variables</a></li>
+  <li><a href="#wave-and-time-variables" id="toc-wave-and-time-variables" class="nav-link" data-scroll-target="#wave-and-time-variables"><span class="header-section-number">7.2.5</span> Wave and Time Variables</a></li>
+  <li><a href="#recoded-and-derived-variables" id="toc-recoded-and-derived-variables" class="nav-link" data-scroll-target="#recoded-and-derived-variables"><span class="header-section-number">7.2.6</span> Recoded and Derived Variables</a></li>
+  <li><a href="#variable-names-in-mplus" id="toc-variable-names-in-mplus" class="nav-link" data-scroll-target="#variable-names-in-mplus"><span class="header-section-number">7.2.7</span> Variable Names in Mplus</a></li>
+  </ul></li>
+  <li><a href="#missing-data-codes" id="toc-missing-data-codes" class="nav-link" data-scroll-target="#missing-data-codes"><span class="header-section-number">7.3</span> Missing Data Codes</a>
+  <ul class="collapse">
+  <li><a href="#rules-for-missing-data-codes" id="toc-rules-for-missing-data-codes" class="nav-link" data-scroll-target="#rules-for-missing-data-codes"><span class="header-section-number">7.3.1</span> Rules for Missing Data Codes</a></li>
+  <li><a href="#documenting-missingness" id="toc-documenting-missingness" class="nav-link" data-scroll-target="#documenting-missingness"><span class="header-section-number">7.3.2</span> Documenting Missingness</a></li>
+  </ul></li>
+  <li><a href="#data-cleaning-standards" id="toc-data-cleaning-standards" class="nav-link" data-scroll-target="#data-cleaning-standards"><span class="header-section-number">7.4</span> Data Cleaning Standards</a></li>
+  <li><a href="#a-note-on-sensitive-data" id="toc-a-note-on-sensitive-data" class="nav-link" data-scroll-target="#a-note-on-sensitive-data"><span class="header-section-number">7.5</span> A Note on Sensitive Data</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/about/mission.html">About CWER</a></li><li class="breadcrumb-item"><a href="../../chapters/about/roles.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Roles &amp; Responsibilities</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data/project-organization.html">Data Management</a></li><li class="breadcrumb-item"><a href="../../chapters/data/data-management.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Management</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Roles &amp; Responsibilities</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Management</span></h1>
 </div>
 
 
@@ -251,26 +270,313 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="director" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="director"><span class="header-section-number">2.1</span> Director</h2>
-<p><em>Michael J. Strambler, Ph.D.</em></p>
-<p>One of the main responsibilities of the director is to ensure the team has the appropriate funding, personnel, procedures, and physical and social resources to function well. This requires playing an active role in establishing and supervising research projects and acquiring the funding to support them. The director is also responsible for supervising and supporting the professional development of the assistant/associate director, postdoctoral associates/fellows, and research associates. Finally, the director is responsible for ensuring that the team maintains high ethical standards, including the ethical treatment of participants, the protection of sensitive data, and a respectful, open, and professional team culture. When problems arise in team culture, ethics, or research design, the director is responsible for addressing them and getting the team back on track.</p>
+<p>Good data management is the foundation of reproducible research. When data are well-organized, clearly documented, and consistently formatted, analyses are easier to run, errors are easier to catch, and handing off work to a teammate is straightforward. This chapter describes CWER conventions for codebooks, variable naming, and missing data. These conventions apply across all projects and all software platforms.</p>
+<section id="codebooks" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="codebooks"><span class="header-section-number">7.1</span> Codebooks</h2>
+<p>A codebook is the authoritative record of every variable in a dataset. It documents what each variable measures, how it was collected, what the response options mean, and how missing data are coded. Every CWER project that involves original data collection must have a codebook.</p>
+<section id="format" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="format"><span class="header-section-number">7.1.1</span> Format</h3>
+<p>Codebooks are maintained as Excel files (<code>.xlsx</code>) stored in the <code>docs/</code> folder of the project. Use one sheet per instrument or data source. The file should be named descriptively, for example <code>codebook_care4kids_wave1.xlsx</code>.</p>
 </section>
-<section id="assistant-director" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="assistant-director"><span class="header-section-number">2.2</span> Assistant Director</h2>
-<p>A distinguishing characteristic of the Assistant Director is that they are a key thought partner on the team’s mission and focus. The Assistant Director is expected to make substantive contributions to planning around the types of projects we take on, ensuring that they are consistent with our mission and philosophy. Another key responsibility involves co-directing and managing projects with the Director. This includes developing work plans for projects, pressing the team regarding progress and deadlines, establishing and maintaining IRB protocols, and planning for grant proposals. Supervisory responsibilities include hiring and supervising research assistants for the team.</p>
+<section id="required-columns" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="required-columns"><span class="header-section-number">7.1.2</span> Required Columns</h3>
+<p>Every codebook must include the following columns:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>variable_name</code></td>
+<td>The exact variable name as it appears in the dataset</td>
+</tr>
+<tr class="even">
+<td><code>variable_label</code></td>
+<td>A plain-language description of what the variable measures</td>
+</tr>
+<tr class="odd">
+<td><code>source</code></td>
+<td>Where the variable came from (e.g., survey item, administrative record, derived)</td>
+</tr>
+<tr class="even">
+<td><code>item_text</code></td>
+<td>The exact question or item wording presented to respondents, if applicable</td>
+</tr>
+<tr class="odd">
+<td><code>response_values</code></td>
+<td>The numeric values used to represent response categories</td>
+</tr>
+<tr class="even">
+<td><code>response_labels</code></td>
+<td>The text label for each numeric value</td>
+</tr>
+<tr class="odd">
+<td><code>missing_codes</code></td>
+<td>Any special codes used to represent missing data for this variable</td>
+</tr>
+<tr class="even">
+<td><code>notes</code></td>
+<td>Any additional information relevant to using or interpreting this variable</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="research-associate" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="research-associate"><span class="header-section-number">2.3</span> Research Associate</h2>
-<p>Research Associates have advanced research, data analytic, evaluation, and/or project management skills. The Research Associate applies these skills to specific projects in collaboration with the Director or Assistant Director. The responsibilities of the Research Associate are project-specific, but may involve data analysis, measurement development, report writing, project management, and research design. Research Associates are expected to stay current on new developments in their skill set.</p>
+<section id="example-row" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="example-row"><span class="header-section-number">7.1.3</span> Example Row</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>variable_name</th>
+<th>variable_label</th>
+<th>source</th>
+<th>item_text</th>
+<th>response_values</th>
+<th>response_labels</th>
+<th>missing_codes</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sel_selfmgmt_1</code></td>
+<td>Self-management item 1</td>
+<td>Teacher survey</td>
+<td>“This student controls their emotions”</td>
+<td>1, 2, 3, 4</td>
+<td>Never, Sometimes, Often, Always</td>
+<td>-99, -98</td>
+<td>Reverse coded for composite</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="postdoctoral-fellows-and-associates" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="postdoctoral-fellows-and-associates"><span class="header-section-number">2.4</span> Postdoctoral Fellows and Associates</h2>
-<p>Although postdocs are trainees, they are also considered key colleagues of the CWER team. Postdocs have two main responsibilities: (1) to clarify and move towards their training goals with the support of the director, and (2) to contribute to assigned research projects. For the first responsibility, postdocs should take active steps to seek advice and professional experiences from the director and other appropriate mentors. They should also participate in relevant training seminars in grant writing, professional development, and research methods. Regarding project contributions, postdocs are expected to bring new skills to the team that will help improve the work. The director will assist postdocs in finding a balance between working on CWER projects and establishing their professional independence.</p>
+<section id="keeping-codebooks-current" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="keeping-codebooks-current"><span class="header-section-number">7.1.4</span> Keeping Codebooks Current</h3>
+<p>A codebook is only useful if it is kept up to date. Update it whenever:</p>
+<ul>
+<li>A new variable is added to the dataset</li>
+<li>A variable is recoded or transformed</li>
+<li>A response category changes meaning across waves</li>
+<li>A missing data code changes</li>
+</ul>
+<p>Treat the codebook as part of the analysis, not an afterthought. Ideally, draft the codebook before data collection begins — this forces clarity about what you are measuring and how you will analyze it.</p>
 </section>
-<section id="research-assistants" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="research-assistants"><span class="header-section-number">2.5</span> Research Assistants</h2>
-<p>Research assistants (RAs) can be paid or volunteer team members who are brought on to support the research of specific projects. RA responsibilities are project-specific and can include data management and processing, data collection, data analysis (usually less advanced techniques), literature searches and reviews, documentation, meeting facilitation, focus groups, interviews, and report writing.</p>
+</section>
+<section id="variable-naming-conventions" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="variable-naming-conventions"><span class="header-section-number">7.2</span> Variable Naming Conventions</h2>
+<p>Consistent variable names make datasets easier to work with across software platforms, reduce errors, and make analysis code more readable. The following conventions apply to all CWER datasets.</p>
+<section id="why-snake_case" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="why-snake_case"><span class="header-section-number">7.2.1</span> Why Snake_case?</h3>
+<p>CWER uses <strong>snake_case</strong> — lowercase letters with underscores between words — as the standard naming convention. For example: <code>sel_selfmgmt_1</code>, <code>teacher_id</code>, <code>rdg_score_z</code>.</p>
+<p>This is a deliberate choice over alternatives like camelCase (<code>SelSelfmgmt1</code>) or PascalCase (<code>SelSelfMgmt1</code>) for several reasons:</p>
+<ul>
+<li><strong>Cross-software portability.</strong> Snake_case works cleanly across R, Stata, SPSS, and CSV files. Stata is case-sensitive, which means <code>RaceEth</code> and <code>raceeth</code> are treated as different variables — a common source of hard-to-find errors. Lowercase names eliminate this risk entirely.</li>
+<li><strong>Readability.</strong> <code>sel_selfmgmt_mean</code> is easier to parse at a glance than <code>SelSelfmgmtMean</code>, especially for longer names with multiple components.</li>
+<li><strong>Industry standard.</strong> Snake_case is the dominant convention in data science — it is what R’s tidyverse, Python, and most database systems use. RAs with any quantitative background will already be familiar with it.</li>
+</ul>
+</section>
+<section id="general-rules" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="general-rules"><span class="header-section-number">7.2.2</span> General Rules</h3>
+<ul>
+<li><strong>Use lowercase letters only.</strong> <code>sel_score</code>, not <code>SEL_Score</code> or <code>Sel_Score</code>.</li>
+<li><strong>Use underscores to separate words.</strong> <code>teacher_rating</code>, not <code>teacherrating</code> or <code>teacher.rating</code>.</li>
+<li><strong>Keep names short but meaningful.</strong> Aim for 8 characters or fewer when possible for compatibility with older software, but never sacrifice clarity for brevity. A name like <code>rdg_score</code> is better than <code>rs</code> and better than <code>reading_comprehension_total_score</code>.</li>
+<li><strong>Avoid spaces and special characters.</strong> No spaces, hyphens, slashes, parentheses, or symbols of any kind.</li>
+<li><strong>Never start a variable name with a number.</strong> <code>wave1_n</code> is valid; <code>1_wave_n</code> is not.</li>
+<li><strong>Avoid reserved words.</strong> Do not use words that have special meaning in your analysis software, such as <code>if</code>, <code>else</code>, <code>true</code>, <code>false</code>, <code>NA</code>, <code>null</code>, <code>mean</code>, or <code>sum</code>.</li>
+</ul>
+</section>
+<section id="naming-structure" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="naming-structure"><span class="header-section-number">7.2.3</span> Naming Structure</h3>
+<p>For survey and scale items, use the following structure:</p>
+<pre><code>[construct]_[subscale]_[item number]</code></pre>
+<p>Examples: - <code>sel_selfmgmt_1</code> — SEL scale, self-management subscale, item 1 - <code>sel_selfmgmt_2</code> — SEL scale, self-management subscale, item 2 - <code>sel_socaware_1</code> — SEL scale, social awareness subscale, item 1</p>
+<p>For composite scores and derived variables:</p>
+<pre><code>[construct]_[subscale]_[statistic or type]</code></pre>
+<p>Examples: - <code>sel_selfmgmt_mean</code> — mean of self-management items - <code>sel_total_mean</code> — mean across all SEL items - <code>rdg_pre_score</code> — reading pre-test score - <code>rdg_post_score</code> — reading post-test score</p>
+<p>For demographic and administrative variables, use clear, plain names:</p>
+<ul>
+<li><code>age_years</code> — age in years</li>
+<li><code>grade</code> — grade level</li>
+<li><code>gender</code> — gender</li>
+<li><code>race_eth</code> — race/ethnicity</li>
+<li><code>school_id</code> — school identifier</li>
+<li><code>teacher_id</code> — teacher identifier</li>
+<li><code>student_id</code> — student identifier</li>
+</ul>
+</section>
+<section id="id-variables" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="id-variables"><span class="header-section-number">7.2.4</span> ID Variables</h3>
+<p>Every dataset must include at least one ID variable that uniquely identifies each row. Follow these rules for ID variables:</p>
+<ul>
+<li>Name ID variables with the unit of observation followed by <code>_id</code>: <code>student_id</code>, <code>teacher_id</code>, <code>school_id</code>, <code>provider_id</code></li>
+<li>ID values should be numeric where possible</li>
+<li>Never use names, initials, birthdates, or other personally identifiable information as ID values</li>
+<li>Document the ID scheme in the codebook, including how IDs were assigned and whether they are consistent across waves or datasets</li>
+</ul>
+</section>
+<section id="wave-and-time-variables" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="wave-and-time-variables"><span class="header-section-number">7.2.5</span> Wave and Time Variables</h3>
+<p>For longitudinal projects, include a wave or time indicator:</p>
+<ul>
+<li><code>wave</code> — numeric wave indicator (1, 2, 3)</li>
+<li><code>time</code> — numeric time point</li>
+<li><code>year</code> — academic or calendar year</li>
+<li><code>season</code> — fall, spring (use text labels)</li>
+</ul>
+<p>When variable names need to distinguish across waves, append the wave to the end:</p>
+<ul>
+<li><code>sel_total_mean_w1</code> — SEL total mean, Wave 1</li>
+<li><code>sel_total_mean_w2</code> — SEL total mean, Wave 2</li>
+</ul>
+</section>
+<section id="recoded-and-derived-variables" class="level3" data-number="7.2.6">
+<h3 data-number="7.2.6" class="anchored" data-anchor-id="recoded-and-derived-variables"><span class="header-section-number">7.2.6</span> Recoded and Derived Variables</h3>
+<p>When you recode or derive a variable from an existing one, create a new variable rather than overwriting the original. Append a suffix to indicate the transformation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Suffix</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_r</code></td>
+<td>Reverse coded</td>
+<td><code>sel_item3_r</code></td>
+</tr>
+<tr class="even">
+<td><code>_c</code></td>
+<td>Centered</td>
+<td><code>age_years_c</code></td>
+</tr>
+<tr class="odd">
+<td><code>_z</code></td>
+<td>Standardized (z-score)</td>
+<td><code>rdg_score_z</code></td>
+</tr>
+<tr class="even">
+<td><code>_log</code></td>
+<td>Log transformed</td>
+<td><code>income_log</code></td>
+</tr>
+<tr class="odd">
+<td><code>_cat</code></td>
+<td>Categorical version of a continuous variable</td>
+<td><code>age_cat</code></td>
+</tr>
+<tr class="even">
+<td><code>_imp</code></td>
+<td>Imputed</td>
+<td><code>rdg_score_imp</code></td>
+</tr>
+</tbody>
+</table>
+<p>Never overwrite raw variables. Always create a new variable and document it in the codebook.</p>
+</section>
+<section id="variable-names-in-mplus" class="level3" data-number="7.2.7">
+<h3 data-number="7.2.7" class="anchored" data-anchor-id="variable-names-in-mplus"><span class="header-section-number">7.2.7</span> Variable Names in Mplus</h3>
+<p>Mplus imposes an 8-character limit on variable names, which creates a tension with snake_case. An underscore uses one of those 8 characters, leaving only 7 for meaningful content. For example, <code>sel_sm_1</code> hits the limit exactly, while longer names like <code>sel_selfmgmt_1</code> (14 characters) are simply not valid in Mplus syntax.</p>
+<p>The recommended approach is to maintain full snake_case names in your master datasets and remap to short Mplus-compatible names only when preparing Mplus input files. The <code>MplusAutomation</code> package in R makes this straightforward — you can keep descriptive names in R, write a short name mapping when exporting to Mplus, and map results back to full names when importing output. This way your master data and R code stay readable, and your Mplus syntax stays within the character limit.</p>
+<p>When constructing short Mplus names, follow these guidelines:</p>
+<ul>
+<li>Drop underscores and abbreviate: <code>sel_selfmgmt_1</code> becomes <code>selsm1</code></li>
+<li>Keep names as interpretable as possible within the limit</li>
+<li>Document the mapping between full names and Mplus names in your codebook or script header</li>
+</ul>
+</section>
+</section>
+<section id="missing-data-codes" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="missing-data-codes"><span class="header-section-number">7.3</span> Missing Data Codes</h2>
+<p>Missing data arise for different reasons, and distinguishing between them is important for accurate analysis. CWER uses the following numeric codes for missing data across all projects and software platforms:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-99</code></td>
+<td>Item not answered / respondent skipped</td>
+</tr>
+<tr class="even">
+<td><code>-98</code></td>
+<td>Not applicable (item did not apply to this respondent)</td>
+</tr>
+<tr class="odd">
+<td><code>-97</code></td>
+<td>Data not available (data exist but were not collected or could not be obtained)</td>
+</tr>
+<tr class="even">
+<td><code>-96</code></td>
+<td>Removed during data cleaning (e.g., identified as invalid response)</td>
+</tr>
+</tbody>
+</table>
+<section id="rules-for-missing-data-codes" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="rules-for-missing-data-codes"><span class="header-section-number">7.3.1</span> Rules for Missing Data Codes</h3>
+<ul>
+<li>Apply missing codes consistently within a project. Document which codes are used for each variable in the codebook.</li>
+<li>Never use <code>0</code> to represent missing data unless <code>0</code> is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.</li>
+<li>When importing data into analysis software, recode these values to the software’s native missing data format before running any analyses:
+<ul>
+<li><strong>R</strong>: recode to <code>NA</code></li>
+<li><strong>Stata</strong>: recode to <code>.</code> (or named missings <code>.a</code>, <code>.b</code> for different types)</li>
+<li><strong>Mplus</strong>: declare missing values in the <code>MISSING</code> statement</li>
+<li><strong>SPSS</strong>: declare as user-missing values</li>
+</ul></li>
+</ul>
+<p>Failing to recode missing data codes before analysis is one of the most common sources of errors in quantitative research. A <code>-99</code> included in a mean calculation will silently produce a wrong answer. Always check for missing values before running analyses.</p>
+</section>
+<section id="documenting-missingness" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="documenting-missingness"><span class="header-section-number">7.3.2</span> Documenting Missingness</h3>
+<p>For every dataset, produce a missing data summary as part of your cleaning script. At minimum, report the number and percentage of missing values for each variable. Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.</p>
+</section>
+</section>
+<section id="data-cleaning-standards" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="data-cleaning-standards"><span class="header-section-number">7.4</span> Data Cleaning Standards</h2>
+<p>Data cleaning scripts (<code>code/01_data_cleaning.qmd</code> or equivalent) should follow these standards:</p>
+<ol type="1">
+<li><strong>Never modify raw data.</strong> Read from <code>data/raw/</code>, write cleaned files to <code>data/cleaned/</code>.</li>
+<li><strong>Document every decision.</strong> When you recode, drop, or transform data, add a comment in the code explaining why.</li>
+<li><strong>Check merges carefully.</strong> After any merge, verify that the row count and key variables look as expected. Document the check in the script header.</li>
+<li><strong>Produce a cleaning log.</strong> At the end of the cleaning script, output a summary of what was done: original N, final N, variables added, variables recoded, missing data summary.</li>
+<li><strong>Have your cleaning code reviewed.</strong> Follow the quality control process described in the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter.</li>
+</ol>
+</section>
+<section id="a-note-on-sensitive-data" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="a-note-on-sensitive-data"><span class="header-section-number">7.5</span> A Note on Sensitive Data</h2>
+<p>Variables that could identify participants — names, addresses, birthdates, school names in small samples, teacher names — require special handling. See the <a href="../../chapters/about/team-member.html">Being a Team Member</a> chapter for data security requirements. As a general rule:</p>
+<ul>
+<li>Strip identifying variables from analysis datasets as early as possible in the cleaning process</li>
+<li>Keep a separate, secure crosswalk file linking IDs to identifying information if re-identification is ever needed</li>
+<li>Store crosswalk files in Yale OneDrive or Storage @ Yale, never in the project GitHub repository</li>
+</ul>
 
 
 </section>
@@ -678,13 +984,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/about/mission.html" class="pagination-link" aria-label="Mission &amp; Philosophy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mission &amp; Philosophy</span></span>
+      <a href="../../chapters/data/project-organization.html" class="pagination-link" aria-label="Project Organization">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project Organization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/about/team-member.html" class="pagination-link" aria-label="Being a Team Member">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/statistical-analysis.html" class="pagination-link" aria-label="Statistical Analysis">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
