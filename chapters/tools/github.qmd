@@ -218,6 +218,6 @@ If you have been working for a few hours and have not committed, that is probabl
 
 - All analysis project repositories live in **cwer-yale**, not personal accounts
 - Include a `README.md` in every repository with a brief description of the project
-- Follow the project folder structure described in the [Project Organization](project-organization.qmd) chapter — `data/`, `code/`, `output/`, `docs/`
+- Follow the project folder structure described in the [Project Organization](../data/project-organization.qmd) chapter — `data/`, `code/`, `output/`, `docs/`
 - Do not commit raw data with participant information to GitHub — keep sensitive data in Yale Secure Box or Storage @ Yale
 - Note AI contributions in commit messages when relevant (e.g., `Add MLM script (developed with Claude assistance)`)
