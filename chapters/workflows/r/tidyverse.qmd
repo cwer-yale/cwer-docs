@@ -1,0 +1,133 @@
+# Data Wrangling with tidyverse
+
+The **tidyverse** is a collection of R packages designed for data science that share a common philosophy and syntax. Rather than learning many unrelated packages, the tidyverse gives you a coherent set of tools that work well together. Load it with:
+```r
+library(tidyverse)
+```
+
+This loads several packages at once, including `dplyr` for data manipulation and `ggplot2` for visualization.
+
+## Reading Data
+
+Use `read_csv()` to read a CSV file into R:
+```r
+library(tidyverse)
+library(here)
+
+data <- read_csv(here("data", "cleaned", "wave1_cleaned.csv"))
+```
+
+The `here()` function constructs file paths relative to the project root, so your code works regardless of where the project is stored on someone's computer. Always use `here()` rather than hardcoded paths.
+
+For Excel files, use the `readxl` package:
+```r
+library(readxl)
+
+data <- read_excel(here("data", "raw", "survey_data.xlsx"))
+```
+
+For Stata files, use the `haven` package:
+```r
+library(haven)
+
+data <- read_dta(here("data", "raw", "survey_data.dta"))
+```
+
+## Viewing Data
+
+After loading data, get a quick overview:
+```r
+# Print the first few rows
+head(data)
+
+# See dimensions (rows and columns)
+dim(data)
+
+# See variable names
+names(data)
+
+# See variable types and a preview
+glimpse(data)
+
+# Summary statistics for all variables
+summary(data)
+```
+
+## Manipulating Data with dplyr
+
+`dplyr` provides a set of functions for common data manipulation tasks. These functions are designed to be used with the **pipe operator** `|>`, which passes the output of one function as the input to the next:
+
+**Select columns:**
+```r
+data |>
+  select(student_id, grade, sel_total_mean)
+```
+
+**Filter rows:**
+```r
+data |>
+  filter(grade == 3)
+
+data |>
+  filter(grade >= 3 & sel_total_mean > 2.5)
+```
+
+**Create or recode variables:**
+```r
+data |>
+  mutate(
+    sel_total_z = scale(sel_total_mean),
+    grade_cat = if_else(grade <= 2, "lower", "upper")
+  )
+```
+
+**Summarize data:**
+```r
+data |>
+  summarise(
+    n = n(),
+    mean_sel = mean(sel_total_mean, na.rm = TRUE),
+    sd_sel = sd(sel_total_mean, na.rm = TRUE)
+  )
+```
+
+**Group and summarize:**
+```r
+data |>
+  group_by(grade) |>
+  summarise(
+    n = n(),
+    mean_sel = mean(sel_total_mean, na.rm = TRUE)
+  )
+```
+
+## Handling Missing Data
+
+Before any analysis, recode CWER missing data codes to `NA`:
+```r
+data <- data |>
+  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))
+```
+
+Always check for missing values after recoding:
+```r
+data |>
+  summarise(across(everything(), ~ sum(is.na(.)))) |>
+  pivot_longer(everything(), names_to = "variable", values_to = "n_missing") |>
+  filter(n_missing > 0)
+```
+
+Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.
+
+## Saving Data
+
+Save cleaned datasets to `data/cleaned/` using `write_csv()` for cross-software compatibility, or `saveRDS()` to preserve R-specific attributes:
+```r
+# For sharing across software
+write_csv(data_cleaned, here("data", "cleaned", "wave1_cleaned.csv"))
+
+# For use within R only (preserves factors, labels, etc.)
+saveRDS(data_cleaned, here("data", "cleaned", "wave1_cleaned.rds"))
+```
+
+Use `write_csv()` when the cleaned data will be read by Stata, SPSS, or Mplus. Use `saveRDS()` when the data will only be used in R — it is faster and preserves variable types exactly.

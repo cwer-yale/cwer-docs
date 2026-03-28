@@ -1,0 +1,148 @@
+# MplusAutomation
+
+`MplusAutomation` is an R package that lets you run Mplus models from within R, keeping your entire workflow in one place — data preparation in R, model estimation in Mplus, results back in R for visualization and reporting. This eliminates the need to manually transfer data and results between software and makes your workflow more reproducible.
+
+Install and load it:
+```r
+install.packages("MplusAutomation")
+library(MplusAutomation)
+```
+
+Mplus must be installed on your computer for `MplusAutomation` to work. It calls Mplus in the background.
+
+## Preparing Data for Mplus
+
+`prepareMplusData()` writes an R dataframe to a Mplus-compatible `.dat` file and prints the variable list for your Mplus syntax:
+```r
+prepareMplusData(
+  data,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+```
+
+### Handling Variable Name Length
+
+Mplus has an 8-character limit on variable names. If any variable names in your dataframe exceed this limit, `prepareMplusData()` will warn you. Rename variables to short Mplus-compatible names before calling this function, and document the mapping in your script header.
+
+A practical approach is to create a renamed version of the data just for Mplus:
+```r
+data_mplus <- data |>
+  rename(
+    selsm1   = sel_selfmgmt_1,
+    selsm2   = sel_selfmgmt_2,
+    selsa1   = sel_socaware_1,
+    rdgscr   = rdg_score,
+    schlid   = school_id
+  )
+
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+```
+
+Document the full name-to-Mplus-name mapping in your script header so anyone reading the code can follow along.
+
+## Running a Mplus Model
+
+Write your Mplus syntax as a `.inp` file (see the [Mplus Workflows](../../workflows/mplus/mplus-workflows.qmd) chapter), then run it from R:
+```r
+runModels(here("code", "mplus", "cfa_model.inp"))
+```
+
+This calls Mplus in the background, runs the model, and writes the output to a `.out` file in the same folder.
+
+To run all `.inp` files in a folder:
+```r
+runModels(here("code", "mplus"))
+```
+
+This is useful for running multiple models at once — for example, a set of sensitivity analyses or the same model across multiple subgroups.
+
+## Reading Mplus Output
+
+Read results back into R using `readModels()`:
+```r
+output <- readModels(here("code", "mplus", "cfa_model.out"))
+```
+
+The output object is a list with named elements. The most commonly used are:
+```r
+# Model fit indices
+output$summaries
+
+# Unstandardized parameter estimates
+output$parameters$unstandardized
+
+# Standardized parameter estimates
+output$parameters$standardized
+
+# Factor loadings (for CFA models)
+output$parameters$stdyx.standardized
+```
+
+To read all output files in a folder:
+```r
+all_output <- readModels(here("code", "mplus"), recursive = FALSE)
+```
+
+Results are returned as a list of model objects, one per `.out` file. This is useful for comparing fit indices across models:
+```r
+# Extract fit indices from all models
+fit_table <- lapply(all_output, function(m) m$summaries) |>
+  bind_rows(.id = "model")
+
+fit_table |>
+  select(model, CFI, TLI, RMSEA_Estimate, SRMR)
+```
+
+## A Typical MplusAutomation Workflow
+
+A complete workflow from data preparation to results typically looks like this:
+```r
+library(tidyverse)
+library(here)
+library(MplusAutomation)
+
+# 1. Load cleaned data
+data <- readRDS(here("data", "cleaned", "wave1_cleaned.rds"))
+
+# 2. Rename variables to Mplus-compatible names
+data_mplus <- data |>
+  rename(
+    selsm1 = sel_selfmgmt_1,
+    selsm2 = sel_selfmgmt_2,
+    selsa1 = sel_socaware_1
+  )
+
+# 3. Write Mplus data file
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+
+# 4. Run model (assumes .inp file already written)
+runModels(here("code", "mplus", "cfa_model.inp"))
+
+# 5. Read results
+output <- readModels(here("code", "mplus", "cfa_model.out"))
+
+# 6. Extract and save fit indices
+fit <- output$summaries |>
+  select(CFI, TLI, RMSEA_Estimate, SRMR)
+
+write_csv(fit, here("output", "tables", "cfa_fit_indices.csv"))
+
+# 7. Extract and save factor loadings
+loadings <- output$parameters$stdyx.standardized |>
+  filter(paramHeader == "F1.BY")
+
+write_csv(loadings, here("output", "tables", "cfa_loadings.csv"))
+```
+
+## Tips
+
+- Store all Mplus `.inp`, `.dat`, and `.out` files in a dedicated `code/mplus/` subfolder to keep them separate from R scripts
+- Commit `.inp` files to GitHub — they are your analysis syntax and should be version controlled
+- Do not commit `.dat` files if they contain sensitive participant data
+- Always document the variable name mapping between R and Mplus in the script header

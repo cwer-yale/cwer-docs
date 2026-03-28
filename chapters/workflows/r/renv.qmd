@@ -1,0 +1,86 @@
+# Managing Packages with renv
+
+`renv` manages R package versions at the project level. Without it, R installs packages into a single system-wide library shared across all your projects. This means updating a package for one project can silently break another. `renv` solves this by giving each project its own isolated package library and recording the exact versions in a lockfile.
+
+For CWER projects, this matters in two ways. First, it ensures that analyses are reproducible — anyone who clones a project and runs `renv::restore()` gets identical package versions. Second, it protects against analyses breaking when packages update, which is especially important for packages like `metafor`, `MplusAutomation`, and `flextable` where version differences can change results or output formatting.
+
+## Setting Up renv for a New Project
+
+With your project open in Positron, run in the R console:
+```r
+install.packages("renv")
+renv::init()
+```
+
+`renv` scans your project for packages used in your scripts, installs them into a project-specific library, and creates two files:
+
+- `renv.lock` — records the exact version of every package and its dependencies
+- `.Rprofile` — automatically activates renv when R starts in this project
+
+When renv is active, you will see this message at the start of every R session:
+```
+- Project '~/Documents/GitHub/my-project' loaded. [renv 1.2.0]
+```
+
+## Installing New Packages
+
+Install packages as you normally would:
+```r
+install.packages("lme4")
+```
+
+Then snapshot to record the new package in the lockfile:
+```r
+renv::snapshot()
+```
+
+Commit `renv.lock` to GitHub after snapshotting so teammates get the updated package list.
+
+## Restoring Packages
+
+When a teammate clones the project and opens it for the first time, they restore all packages with:
+```r
+renv::restore()
+```
+
+This installs exactly the versions recorded in `renv.lock` — no more, no less.
+
+## Checking Status
+
+To see whether your project library is in sync with the lockfile:
+```r
+renv::status()
+```
+
+If packages have been installed but not snapshotted, or if the lockfile references packages not in the library, `renv::status()` will tell you. Run `renv::snapshot()` or `renv::restore()` to resolve the discrepancy.
+
+## Updating Packages
+
+To update a package to a newer version:
+```r
+renv::update("lme4")
+renv::snapshot()
+```
+
+Always test your analysis after updating packages to make sure nothing broke. If something does break, you can revert to the previous lockfile state using Git.
+
+## What Gets Committed to GitHub
+
+| File / Folder | Commit? | Reason |
+|---|---|---|
+| `renv.lock` | Yes | Records package versions — essential for reproducibility |
+| `.Rprofile` | Yes | Activates renv automatically |
+| `renv/` | No | The package library itself — large and can be restored from lockfile |
+
+Make sure `renv/library/` is in your `.gitignore`:
+```
+renv/library/
+```
+
+## Common Issues
+
+**renv not activating.** If you do not see the renv activation message when R starts, check that `.Rprofile` exists in your project root and that you opened the project folder in Positron rather than just opening the script file directly.
+
+**Package not found after restore.** Some packages require system dependencies (compiled libraries) that renv cannot install. If `renv::restore()` fails for a specific package, check the package documentation for system requirements and contact Mike or Joanna if you are unsure.
+
+**Lockfile conflicts.** If two team members update `renv.lock` at the same time and push to GitHub, you may get a merge conflict on the lockfile. Resolve it by accepting one version and running `renv::restore()` to sync your library to the resolved lockfile.

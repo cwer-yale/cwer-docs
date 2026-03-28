@@ -1,0 +1,140 @@
+# Visualization with ggplot2
+
+`ggplot2` is R's primary visualization package and one of the most widely used data visualization tools in data science. It builds plots layer by layer using a consistent grammar. Every ggplot starts with `ggplot()`, specifies which variables map to which visual properties using `aes()`, and then adds layers using `geom_*()` functions.
+
+Load it as part of the tidyverse:
+```r
+library(tidyverse)
+```
+
+## Basic Plot Structure
+
+Every ggplot has three essential components:
+
+1. **Data** — the dataframe you are plotting
+2. **Aesthetics** (`aes()`) — which variables map to which visual properties (x axis, y axis, color, size, etc.)
+3. **Geometry** (`geom_*()`) — what type of plot to draw
+```r
+ggplot(data, aes(x = grade, y = sel_total_mean)) +
+  geom_boxplot()
+```
+
+Layers are added with `+`. Each additional layer refines or adds to the plot.
+
+## Common Plot Types
+
+### Histogram
+
+Use for visualizing the distribution of a single continuous variable:
+```r
+ggplot(data, aes(x = sel_total_mean)) +
+  geom_histogram(bins = 20) +
+  labs(
+    x = "SEL Total Mean",
+    y = "Count",
+    title = "Distribution of SEL Scores"
+  )
+```
+
+### Bar Chart
+
+Use for comparing means or counts across groups:
+```r
+data |>
+  group_by(grade) |>
+  summarise(mean_sel = mean(sel_total_mean, na.rm = TRUE)) |>
+  ggplot(aes(x = factor(grade), y = mean_sel)) +
+  geom_col() +
+  labs(x = "Grade", y = "Mean SEL Score")
+```
+
+### Box Plot
+
+Use for showing distributions across groups:
+```r
+ggplot(data, aes(x = factor(grade), y = sel_total_mean)) +
+  geom_boxplot() +
+  labs(x = "Grade", y = "SEL Total Mean")
+```
+
+### Scatter Plot
+
+Use for examining the relationship between two continuous variables:
+```r
+ggplot(data, aes(x = rdg_score, y = sel_total_mean)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  labs(x = "Reading Score", y = "SEL Total Mean")
+```
+
+The `alpha` argument controls point transparency (0 = invisible, 1 = solid), which helps when points overlap. `geom_smooth(method = "lm")` adds a linear regression line with a confidence interval.
+
+### Line Plot
+
+Use for showing change over time or across waves:
+```r
+data |>
+  group_by(wave, grade) |>
+  summarise(mean_sel = mean(sel_total_mean, na.rm = TRUE)) |>
+  ggplot(aes(x = wave, y = mean_sel, color = factor(grade), group = factor(grade))) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Wave", y = "Mean SEL Score", color = "Grade")
+```
+
+## Labels and Titles
+
+Always label your axes and add a title. Use `labs()`:
+```r
+ggplot(data, aes(x = grade, y = sel_total_mean)) +
+  geom_boxplot() +
+  labs(
+    title = "SEL Scores by Grade",
+    subtitle = "Wave 1 data, N = 342",
+    x = "Grade",
+    y = "SEL Total Mean Score",
+    caption = "Source: CWER Wave 1 Survey"
+  )
+```
+
+## Themes
+
+Themes control the overall appearance of the plot. `theme_minimal()` is a clean, publication-friendly option:
+```r
+ggplot(data, aes(x = grade, y = sel_total_mean)) +
+  geom_boxplot() +
+  labs(x = "Grade", y = "SEL Total Mean") +
+  theme_minimal()
+```
+
+Other useful themes: `theme_classic()`, `theme_bw()`.
+
+## Saving Figures
+
+Save figures to `output/figures/` using `ggsave()`. Always assign your plot to an object first:
+```r
+p <- ggplot(data, aes(x = factor(grade), y = sel_total_mean)) +
+  geom_boxplot() +
+  labs(x = "Grade", y = "SEL Total Mean") +
+  theme_minimal()
+
+ggsave(
+  here("output", "figures", "sel_by_grade.png"),
+  plot = p,
+  width = 6,
+  height = 4,
+  dpi = 300
+)
+```
+
+Use `dpi = 300` for publication-quality resolution. Standard figure widths are 6 inches for a single-column figure and 8 inches for a full-width figure.
+
+For PDF output (preferred for manuscripts):
+```r
+ggsave(
+  here("output", "figures", "sel_by_grade.pdf"),
+  plot = p,
+  width = 6,
+  height = 4
+)
+```

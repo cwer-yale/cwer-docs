@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michael Strambler">
-<meta name="dcterms.date" content="2026-03-27">
 
-<title>Child Wellbeing and Education Research</title>
+<title>11&nbsp; MplusAutomation – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,27 +23,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/about/mission.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../chapters/workflows/r/renv.html" rel="next">
+<link href="../../../chapters/workflows/r/lme4.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/r/mplus-automation.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MplusAutomation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Child Wellbeing and Education Research</a> 
+      <a href="../../../">Child Wellbeing and Education Research</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/cwer-yale/cwer-docs" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -116,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -131,19 +165,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/about/mission.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/about/mission.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mission &amp; Philosophy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/about/roles.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/about/roles.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Roles &amp; Responsibilities</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/about/team-member.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/about/team-member.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span></a>
   </div>
 </li>
@@ -160,55 +194,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/tools/github.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/tools/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/r-basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/r-basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Wrangling with tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/ggplot2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualization with ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quarto for Reporting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/lme4.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/lme4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/mplus-automation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/mplus-automation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MplusAutomation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/renv.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/renv.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></span></a>
   </div>
 </li>
@@ -225,13 +259,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/data/project-organization.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/data/project-organization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/data/data-management.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/data/data-management.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Management</span></span></a>
   </div>
 </li>
@@ -248,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span></a>
   </div>
 </li>
@@ -264,39 +298,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
+  <li><a href="#preparing-data-for-mplus" id="toc-preparing-data-for-mplus" class="nav-link active" data-scroll-target="#preparing-data-for-mplus"><span class="header-section-number">11.1</span> Preparing Data for Mplus</a>
   <ul class="collapse">
-  <li><a href="#how-to-use-this-guide" id="toc-how-to-use-this-guide" class="nav-link" data-scroll-target="#how-to-use-this-guide">How to Use This Guide</a></li>
+  <li><a href="#handling-variable-name-length" id="toc-handling-variable-name-length" class="nav-link" data-scroll-target="#handling-variable-name-length"><span class="header-section-number">11.1.1</span> Handling Variable Name Length</a></li>
   </ul></li>
+  <li><a href="#running-a-mplus-model" id="toc-running-a-mplus-model" class="nav-link" data-scroll-target="#running-a-mplus-model"><span class="header-section-number">11.2</span> Running a Mplus Model</a></li>
+  <li><a href="#reading-mplus-output" id="toc-reading-mplus-output" class="nav-link" data-scroll-target="#reading-mplus-output"><span class="header-section-number">11.3</span> Reading Mplus Output</a></li>
+  <li><a href="#a-typical-mplusautomation-workflow" id="toc-a-typical-mplusautomation-workflow" class="nav-link" data-scroll-target="#a-typical-mplusautomation-workflow"><span class="header-section-number">11.4</span> A Typical MplusAutomation Workflow</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">11.5</span> Tips</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/r/mplus-automation.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MplusAutomation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Child Wellbeing and Education Research</h1>
-<p class="subtitle lead">Team Guide</p>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MplusAutomation</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Michael Strambler </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 27, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -306,18 +331,125 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>This guide is the primary reference for Child Wellbeing and Education Research (CWER) team members. It covers the team’s mission and philosophy, member roles and responsibilities, tools and setup, data management standards, and statistical workflows.</p>
-<p>Whether you are a new research assistant getting oriented or a returning team member looking up a convention, this is the place to start.</p>
-<section id="how-to-use-this-guide" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-guide">How to Use This Guide</h2>
-<p><strong>New team members</strong> should work through Part I (About CWER) and Part II (Tools &amp; Setup) in order during their first week. These chapters cover what the team does, how it operates, and how to get your accounts and software configured.</p>
-<p><strong>Returning members</strong> can use the sidebar navigation to jump directly to the section they need. The workflows chapters are intended as ongoing reference material.</p>
-<p>This guide is a living document. It is reviewed and updated at least once per year each June. If you notice something that is out of date or missing, contact Mike or Joanna.</p>
-
-
+<p><code>MplusAutomation</code> is an R package that lets you run Mplus models from within R, keeping your entire workflow in one place — data preparation in R, model estimation in Mplus, results back in R for visualization and reporting. This eliminates the need to manually transfer data and results between software and makes your workflow more reproducible.</p>
+<p>Install and load it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"MplusAutomation"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mplus must be installed on your computer for <code>MplusAutomation</code> to work. It calls Mplus in the background.</p>
+<section id="preparing-data-for-mplus" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="preparing-data-for-mplus"><span class="header-section-number">11.1</span> Preparing Data for Mplus</h2>
+<p><code>prepareMplusData()</code> writes an R dataframe to a Mplus-compatible <code>.dat</code> file and prints the variable list for your Mplus syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="handling-variable-name-length" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="handling-variable-name-length"><span class="header-section-number">11.1.1</span> Handling Variable Name Length</h3>
+<p>Mplus has an 8-character limit on variable names. If any variable names in your dataframe exceed this limit, <code>prepareMplusData()</code> will warn you. Rename variables to short Mplus-compatible names before calling this function, and document the mapping in your script header.</p>
+<p>A practical approach is to create a renamed version of the data just for Mplus:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm1   =</span> sel_selfmgmt_1,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm2   =</span> sel_selfmgmt_2,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa1   =</span> sel_socaware_1,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rdgscr   =</span> rdg_score,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">schlid   =</span> school_id</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Document the full name-to-Mplus-name mapping in your script header so anyone reading the code can follow along.</p>
 </section>
+</section>
+<section id="running-a-mplus-model" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="running-a-mplus-model"><span class="header-section-number">11.2</span> Running a Mplus Model</h2>
+<p>Write your Mplus syntax as a <code>.inp</code> file (see the <a href="../../workflows/mplus/mplus-workflows.qmd">Mplus Workflows</a> chapter), then run it from R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.inp"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This calls Mplus in the background, runs the model, and writes the output to a <code>.out</code> file in the same folder.</p>
+<p>To run all <code>.inp</code> files in a folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is useful for running multiple models at once — for example, a set of sensitivity analyses or the same model across multiple subgroups.</p>
+</section>
+<section id="reading-mplus-output" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="reading-mplus-output"><span class="header-section-number">11.3</span> Reading Mplus Output</h2>
+<p>Read results back into R using <code>readModels()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.out"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output object is a list with named elements. The most commonly used are:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fit indices</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>summaries</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Unstandardized parameter estimates</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>parameters<span class="sc">$</span>unstandardized</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized parameter estimates</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>parameters<span class="sc">$</span>standardized</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor loadings (for CFA models)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To read all output files in a folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>all_output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>), <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Results are returned as a list of model objects, one per <code>.out</code> file. This is useful for comparing fit indices across models:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract fit indices from all models</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fit_table <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_output, <span class="cf">function</span>(m) m<span class="sc">$</span>summaries) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fit_table <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(model, CFI, TLI, RMSEA_Estimate, SRMR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="a-typical-mplusautomation-workflow" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="a-typical-mplusautomation-workflow"><span class="header-section-number">11.4</span> A Typical MplusAutomation Workflow</h2>
+<p>A complete workflow from data preparation to results typically looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load cleaned data</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Rename variables to Mplus-compatible names</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm1 =</span> sel_selfmgmt_1,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm2 =</span> sel_selfmgmt_2,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa1 =</span> sel_socaware_1</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Write Mplus data file</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Run model (assumes .inp file already written)</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.inp"</span>))</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Read results</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.out"</span>))</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Extract and save fit indices</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> output<span class="sc">$</span>summaries <span class="sc">|&gt;</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CFI, TLI, RMSEA_Estimate, SRMR)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(fit, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_fit_indices.csv"</span>))</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract and save factor loadings</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized <span class="sc">|&gt;</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(paramHeader <span class="sc">==</span> <span class="st">"F1.BY"</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(loadings, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_loadings.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="tips" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="tips"><span class="header-section-number">11.5</span> Tips</h2>
+<ul>
+<li>Store all Mplus <code>.inp</code>, <code>.dat</code>, and <code>.out</code> files in a dedicated <code>code/mplus/</code> subfolder to keep them separate from R scripts</li>
+<li>Commit <code>.inp</code> files to GitHub — they are your analysis syntax and should be version controlled</li>
+<li>Do not commit <code>.dat</code> files if they contain sensitive participant data</li>
+<li>Always document the variable name mapping between R and Mplus in the script header</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -723,10 +855,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../chapters/workflows/r/lme4.html" class="pagination-link" aria-label="Multilevel Modeling with lme4">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/about/mission.html" class="pagination-link" aria-label="Mission &amp; Philosophy">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mission &amp; Philosophy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../chapters/workflows/r/renv.html" class="pagination-link" aria-label="Managing Packages with renv">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

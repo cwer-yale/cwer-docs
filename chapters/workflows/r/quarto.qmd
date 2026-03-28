@@ -1,0 +1,179 @@
+# Quarto for Reporting
+
+Quarto documents (`.qmd`) are the standard format for analysis scripts and reports in CWER. A Quarto document weaves together R code, output, and written narrative in a single file. When you **render** a Quarto document, it runs all the code and produces a polished HTML or Word document with results embedded.
+
+This means your analysis and your report are the same document — there is no copying and pasting results from R into Word, which eliminates a major source of reporting errors.
+
+## Document Structure
+
+A Quarto document has three parts:
+
+### 1. YAML Header
+
+Document metadata at the top, surrounded by `---`:
+```yaml
+---
+title: "Wave 1 Descriptive Analysis"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+status: development
+---
+```
+
+Key options:
+
+| Option | Effect |
+|---|---|
+| `toc: true` | Adds a table of contents |
+| `code-fold: true` | Hides code by default but lets readers expand it |
+| `embed-resources: true` | Creates a single self-contained HTML file |
+| `date: today` | Automatically inserts today's date when rendered |
+
+### 2. Code Chunks
+
+R code surrounded by triple backticks with `{r}`. Here is an example setup chunk:
+```r
+#| label: quarto-example-setup
+#| message: false
+
+library(tidyverse)
+library(here)
+
+data <- read_csv(here("data", "cleaned", "wave1_cleaned.csv"))
+```
+
+### 3. Narrative Text
+
+Written explanation using Markdown formatting between code chunks:
+```markdown
+## Results
+
+The mean SEL score was 2.8 (SD = 0.4). Scores were higher in upper grades
+compared to lower grades, as shown in @fig-sel-by-grade.
+```
+
+## Code Chunk Options
+
+Control how each chunk behaves using options prefixed with `#|`:
+```r
+#| label: quarto-example-options
+#| echo: false
+#| warning: false
+#| message: false
+```
+
+Common options:
+
+| Option | Values | Effect |
+|---|---|---|
+| `label` | any text | Names the chunk — required for figures |
+| `echo` | `true`/`false` | Show or hide the code |
+| `warning` | `true`/`false` | Show or hide warnings |
+| `message` | `true`/`false` | Show or hide messages |
+| `eval` | `true`/`false` | Run or skip the chunk |
+| `include` | `true`/`false` | Include or exclude chunk and all output |
+| `fig-width` | number | Figure width in inches |
+| `fig-height` | number | Figure height in inches |
+| `fig-cap` | text | Figure caption |
+
+## The Setup Chunk
+
+Every Quarto document should have a setup chunk as its first code chunk. This is where you load packages, set global options, and read in data. In your actual analysis scripts, label this chunk `setup`. Here is what it should look like:
+```r
+#| label: quarto-setup-template
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(here)
+
+# Read data
+data <- read_csv(here("data", "cleaned", "wave1_cleaned.csv"))
+
+# Recode missing values
+data <- data |>
+  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))
+```
+
+## Cross-References
+
+Reference figures and tables in your narrative using `@`. First, label the chunk with a `fig-` prefix and add a caption:
+```r
+#| label: quarto-fig-example
+#| fig-cap: "SEL scores by grade level"
+#| echo: false
+
+ggplot(data, aes(x = factor(grade), y = sel_total_mean)) +
+  geom_boxplot() +
+  labs(x = "Grade", y = "SEL Total Mean") +
+  theme_minimal()
+```
+
+Then reference it in text:
+```markdown
+SEL scores increased with grade level (see @fig-quarto-fig-example).
+```
+
+Quarto automatically numbers figures and inserts the correct reference.
+
+## Inline Code
+
+Embed R results directly in narrative text using backtick-r:
+```markdown
+The sample included `r nrow(data)` students across `r n_distinct(data$school_id)` schools.
+```
+
+When rendered, this inserts the actual values. This eliminates manual updating of numbers in reports when data changes.
+
+## Rendering
+
+Render a document from the Positron Terminal:
+```bash
+quarto render code/02_descriptives.qmd
+```
+
+Or click the **Render** button at the top of the file in Positron.
+
+To produce a Word document instead of HTML:
+```yaml
+format:
+  docx:
+    reference-doc: ../../docs/reference.docx
+```
+
+A reference document lets you apply your own Word styles to the output. Store the reference document in `docs/`.
+
+## Output Formats for CWER
+
+| Use case | Recommended format |
+|---|---|
+| Internal analysis and review | HTML with `embed-resources: true` |
+| Sharing with partners or stakeholders | Word (`.docx`) |
+| Publication supplementary materials | HTML or PDF |
+
+## CWER Script Header in Quarto
+
+Every Quarto analysis document should begin with a commented header block in the setup chunk:
+```r
+#| label: quarto-header-template
+#| include: false
+
+# ============================================================
+# Script:  02_descriptives.qmd
+# Author:  Your Name (your.email@yale.edu)
+# Created: 2025-10-01
+# Purpose: Descriptive statistics for Wave 1 survey data
+# Inputs:  data/cleaned/wave1_cleaned.csv
+# Outputs: output/tables/descriptives_table.docx
+# AI:      Code developed with Claude assistance
+# Review:  Reviewed by Michael Strambler, 2025-10-05
+# ============================================================
+
+library(tidyverse)
+library(here)
+```

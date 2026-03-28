@@ -1,0 +1,117 @@
+# Multilevel Modeling with lme4
+
+`lme4` is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.
+
+Install and load it:
+```r
+install.packages("lme4")
+library(lme4)
+```
+
+## When to Use Multilevel Modeling
+
+Multilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:
+
+- Students nested within classrooms or schools
+- Repeated measures nested within individuals
+- Teachers nested within schools
+
+Ignoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.
+
+## The Intraclass Correlation Coefficient
+
+Before fitting a full multilevel model, run an **unconditional means model** (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.
+```r
+model_null <- lmer(sel_total_mean ~ 1 + (1 | school_id), data = data)
+summary(model_null)
+```
+
+Calculate the ICC using the `performance` package:
+```r
+library(performance)
+icc(model_null)
+```
+
+An ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.
+
+## Model Syntax
+
+`lme4` uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:
+```
+outcome ~ fixed_effects + (random_effects | grouping_variable)
+```
+
+The `1` inside the parentheses represents a random intercept — allowing the mean outcome to vary across groups.
+
+### Adding Level-1 Predictors
+
+Level-1 predictors are variables measured at the individual level (e.g., student-level variables):
+```r
+model_1 <- lmer(sel_total_mean ~ grade + (1 | school_id), data = data)
+summary(model_1)
+```
+
+### Adding Level-2 Predictors
+
+Level-2 predictors are variables measured at the group level (e.g., school-level variables):
+```r
+model_2 <- lmer(sel_total_mean ~ grade + school_size + (1 | school_id), data = data)
+summary(model_2)
+```
+
+### Random Slope Model
+
+A random slope model allows the effect of a predictor to vary across groups:
+```r
+model_3 <- lmer(sel_total_mean ~ grade + (1 + grade | school_id), data = data)
+summary(model_3)
+```
+
+This estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).
+
+## Extracting Results
+
+Use `broom.mixed` to extract fixed effect estimates in a tidy format:
+```r
+library(broom.mixed)
+
+tidy(model_2, effects = "fixed", conf.int = TRUE)
+```
+
+This produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.
+
+## Comparing Models
+
+Use `anova()` to compare nested models via likelihood ratio test:
+```r
+anova(model_1, model_2)
+```
+
+This tests whether adding school-level predictors significantly improves model fit. Note that `lme4` uses REML estimation by default for variance components, but switches to ML for model comparisons — `anova()` handles this automatically.
+
+## Checking Assumptions
+
+Examine residual plots to check model assumptions:
+```r
+# Residuals vs fitted
+plot(model_2)
+
+# QQ plot of residuals
+qqnorm(resid(model_2))
+qqline(resid(model_2))
+
+# Random effects distribution
+dotplot(ranef(model_2, condVar = TRUE))
+```
+
+## When to Use Mplus Instead
+
+`lme4` is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:
+
+- You need full information maximum likelihood (FIML) for missing data
+- Your model involves latent variables or measurement models
+- You need multilevel SEM
+- You are estimating models with binary or ordinal outcomes in a multilevel framework
+- You need Monte Carlo simulation for power analysis
+
+See the [Mplus Workflows](../../workflows/mplus/mplus-workflows.qmd) chapter for guidance on those cases.

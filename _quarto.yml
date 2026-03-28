@@ -19,6 +19,13 @@ book:
       chapters:
         - chapters/tools/tools-overview.qmd
         - chapters/tools/github.qmd
+        - chapters/workflows/r/r-basics.qmd
+        - chapters/workflows/r/tidyverse.qmd
+        - chapters/workflows/r/ggplot2.qmd
+        - chapters/workflows/r/quarto.qmd
+        - chapters/workflows/r/lme4.qmd
+        - chapters/workflows/r/mplus-automation.qmd
+        - chapters/workflows/r/renv.qmd
     - part: "Data Management"
       chapters:
         - chapters/data/project-organization.qmd

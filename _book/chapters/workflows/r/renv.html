@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michael Strambler">
-<meta name="dcterms.date" content="2026-03-27">
 
-<title>Child Wellbeing and Education Research</title>
+<title>12&nbsp; Managing Packages with renv – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,27 +23,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/about/mission.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../chapters/data/project-organization.html" rel="next">
+<link href="../../../chapters/workflows/r/mplus-automation.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/r/renv.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -101,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Child Wellbeing and Education Research</a> 
+      <a href="../../../">Child Wellbeing and Education Research</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/cwer-yale/cwer-docs" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -116,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -131,19 +165,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/about/mission.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/about/mission.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mission &amp; Philosophy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/about/roles.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/about/roles.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Roles &amp; Responsibilities</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/about/team-member.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/about/team-member.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span></a>
   </div>
 </li>
@@ -160,55 +194,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/tools/github.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/tools/github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/r-basics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/r-basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/tidyverse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Wrangling with tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/ggplot2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualization with ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quarto for Reporting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/lme4.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/lme4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/mplus-automation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/mplus-automation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MplusAutomation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/workflows/r/renv.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/r/renv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></span></a>
   </div>
 </li>
@@ -225,13 +259,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/data/project-organization.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/data/project-organization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/data/data-management.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/data/data-management.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Data Management</span></span></a>
   </div>
 </li>
@@ -248,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span></a>
   </div>
 </li>
@@ -264,39 +298,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
-  <ul class="collapse">
-  <li><a href="#how-to-use-this-guide" id="toc-how-to-use-this-guide" class="nav-link" data-scroll-target="#how-to-use-this-guide">How to Use This Guide</a></li>
-  </ul></li>
+  <li><a href="#setting-up-renv-for-a-new-project" id="toc-setting-up-renv-for-a-new-project" class="nav-link active" data-scroll-target="#setting-up-renv-for-a-new-project"><span class="header-section-number">12.1</span> Setting Up renv for a New Project</a></li>
+  <li><a href="#installing-new-packages" id="toc-installing-new-packages" class="nav-link" data-scroll-target="#installing-new-packages"><span class="header-section-number">12.2</span> Installing New Packages</a></li>
+  <li><a href="#restoring-packages" id="toc-restoring-packages" class="nav-link" data-scroll-target="#restoring-packages"><span class="header-section-number">12.3</span> Restoring Packages</a></li>
+  <li><a href="#checking-status" id="toc-checking-status" class="nav-link" data-scroll-target="#checking-status"><span class="header-section-number">12.4</span> Checking Status</a></li>
+  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages"><span class="header-section-number">12.5</span> Updating Packages</a></li>
+  <li><a href="#what-gets-committed-to-github" id="toc-what-gets-committed-to-github" class="nav-link" data-scroll-target="#what-gets-committed-to-github"><span class="header-section-number">12.6</span> What Gets Committed to GitHub</a></li>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">12.7</span> Common Issues</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/r/renv.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Child Wellbeing and Education Research</h1>
-<p class="subtitle lead">Team Guide</p>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Michael Strambler </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 27, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -306,18 +330,91 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>This guide is the primary reference for Child Wellbeing and Education Research (CWER) team members. It covers the team’s mission and philosophy, member roles and responsibilities, tools and setup, data management standards, and statistical workflows.</p>
-<p>Whether you are a new research assistant getting oriented or a returning team member looking up a convention, this is the place to start.</p>
-<section id="how-to-use-this-guide" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-guide">How to Use This Guide</h2>
-<p><strong>New team members</strong> should work through Part I (About CWER) and Part II (Tools &amp; Setup) in order during their first week. These chapters cover what the team does, how it operates, and how to get your accounts and software configured.</p>
-<p><strong>Returning members</strong> can use the sidebar navigation to jump directly to the section they need. The workflows chapters are intended as ongoing reference material.</p>
-<p>This guide is a living document. It is reviewed and updated at least once per year each June. If you notice something that is out of date or missing, contact Mike or Joanna.</p>
-
-
+<p><code>renv</code> manages R package versions at the project level. Without it, R installs packages into a single system-wide library shared across all your projects. This means updating a package for one project can silently break another. <code>renv</code> solves this by giving each project its own isolated package library and recording the exact versions in a lockfile.</p>
+<p>For CWER projects, this matters in two ways. First, it ensures that analyses are reproducible — anyone who clones a project and runs <code>renv::restore()</code> gets identical package versions. Second, it protects against analyses breaking when packages update, which is especially important for packages like <code>metafor</code>, <code>MplusAutomation</code>, and <code>flextable</code> where version differences can change results or output formatting.</p>
+<section id="setting-up-renv-for-a-new-project" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="setting-up-renv-for-a-new-project"><span class="header-section-number">12.1</span> Setting Up renv for a New Project</h2>
+<p>With your project open in Positron, run in the R console:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>renv</code> scans your project for packages used in your scripts, installs them into a project-specific library, and creates two files:</p>
+<ul>
+<li><code>renv.lock</code> — records the exact version of every package and its dependencies</li>
+<li><code>.Rprofile</code> — automatically activates renv when R starts in this project</li>
+</ul>
+<p>When renv is active, you will see this message at the start of every R session:</p>
+<pre><code>- Project '~/Documents/GitHub/my-project' loaded. [renv 1.2.0]</code></pre>
 </section>
+<section id="installing-new-packages" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="installing-new-packages"><span class="header-section-number">12.2</span> Installing New Packages</h2>
+<p>Install packages as you normally would:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lme4"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then snapshot to record the new package in the lockfile:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Commit <code>renv.lock</code> to GitHub after snapshotting so teammates get the updated package list.</p>
+</section>
+<section id="restoring-packages" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="restoring-packages"><span class="header-section-number">12.3</span> Restoring Packages</h2>
+<p>When a teammate clones the project and opens it for the first time, they restore all packages with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This installs exactly the versions recorded in <code>renv.lock</code> — no more, no less.</p>
+</section>
+<section id="checking-status" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="checking-status"><span class="header-section-number">12.4</span> Checking Status</h2>
+<p>To see whether your project library is in sync with the lockfile:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If packages have been installed but not snapshotted, or if the lockfile references packages not in the library, <code>renv::status()</code> will tell you. Run <code>renv::snapshot()</code> or <code>renv::restore()</code> to resolve the discrepancy.</p>
+</section>
+<section id="updating-packages" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="updating-packages"><span class="header-section-number">12.5</span> Updating Packages</h2>
+<p>To update a package to a newer version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Always test your analysis after updating packages to make sure nothing broke. If something does break, you can revert to the previous lockfile state using Git.</p>
+</section>
+<section id="what-gets-committed-to-github" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="what-gets-committed-to-github"><span class="header-section-number">12.6</span> What Gets Committed to GitHub</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File / Folder</th>
+<th>Commit?</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>renv.lock</code></td>
+<td>Yes</td>
+<td>Records package versions — essential for reproducibility</td>
+</tr>
+<tr class="even">
+<td><code>.Rprofile</code></td>
+<td>Yes</td>
+<td>Activates renv automatically</td>
+</tr>
+<tr class="odd">
+<td><code>renv/</code></td>
+<td>No</td>
+<td>The package library itself — large and can be restored from lockfile</td>
+</tr>
+</tbody>
+</table>
+<p>Make sure <code>renv/library/</code> is in your <code>.gitignore</code>:</p>
+<pre><code>renv/library/</code></pre>
+</section>
+<section id="common-issues" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">12.7</span> Common Issues</h2>
+<p><strong>renv not activating.</strong> If you do not see the renv activation message when R starts, check that <code>.Rprofile</code> exists in your project root and that you opened the project folder in Positron rather than just opening the script file directly.</p>
+<p><strong>Package not found after restore.</strong> Some packages require system dependencies (compiled libraries) that renv cannot install. If <code>renv::restore()</code> fails for a specific package, check the package documentation for system requirements and contact Mike or Joanna if you are unsure.</p>
+<p><strong>Lockfile conflicts.</strong> If two team members update <code>renv.lock</code> at the same time and push to GitHub, you may get a merge conflict on the lockfile. Resolve it by accepting one version and running <code>renv::restore()</code> to sync your library to the resolved lockfile.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -723,10 +820,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../chapters/workflows/r/mplus-automation.html" class="pagination-link" aria-label="MplusAutomation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MplusAutomation</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/about/mission.html" class="pagination-link" aria-label="Mission &amp; Philosophy">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Mission &amp; Philosophy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../chapters/data/project-organization.html" class="pagination-link" aria-label="Project Organization">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Project Organization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

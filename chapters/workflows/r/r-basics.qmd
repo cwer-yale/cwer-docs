@@ -1,0 +1,82 @@
+# R Basics
+
+R is a free, open-source programming language designed for statistical computing and data analysis. Unlike point-and-click software like SPSS, R requires you to write code — instructions that tell the software exactly what to do with your data. This has a steeper learning curve at first, but pays off quickly: R code is reproducible, shareable, and far more flexible than menu-driven software.
+
+R works through **packages** — collections of functions written by the research community that extend what R can do. Base R comes with a set of built-in functions, and packages add specialized capabilities on top of that.
+
+## Installing R and Positron
+
+Download and install R from [cran.r-project.org](https://cran.r-project.org). Download and install Positron from [positron.posit.co](https://positron.posit.co).
+
+Positron is the IDE (Integrated Development Environment) we use for writing and running R code. Think of it as the application you work in, while R is the engine running underneath.
+
+## The Console and Scripts
+
+When you open a project in Positron, you will see a **Console** panel at the bottom. This is where R runs. You can type commands directly into the console and press Enter to run them:
+```r
+2 + 2
+```
+
+However, for any real analysis you should write code in a **script file** rather than typing directly into the console. Script files save your work so you can run it again later. In CWER we use **Quarto documents** (`.qmd`) as our script files — these combine R code and written explanation in a single document. See the [Quarto for Reporting](quarto.qmd) chapter for more.
+
+## Objects and Assignment
+
+R stores information in **objects**. You create an object by assigning a value to a name using `<-`:
+```r
+my_number <- 42
+my_name <- "Michael"
+```
+
+Once created, you can use the object by name:
+```r
+my_number * 2
+```
+
+Object names should follow the same snake_case conventions described in the [Data Management](../../data/data-management.qmd) chapter.
+
+## Functions
+
+R does things through **functions**. A function takes inputs (called **arguments**), does something with them, and returns an output:
+```r
+mean(c(1, 2, 3, 4, 5))
+```
+
+Here `mean()` is the function and `c(1, 2, 3, 4, 5)` is the argument — a vector of five numbers. The function returns their mean: `3`.
+
+You will spend most of your time in R calling functions from packages. The pattern is always the same: `function_name(argument1, argument2, ...)`.
+
+## Getting Help
+
+To see the documentation for any function, type `?` followed by the function name:
+```r
+?mean
+```
+
+This opens the help page for that function, which describes what it does, what arguments it takes, and includes examples.
+
+## Installing and Loading Packages
+
+Install a package once using `install.packages()`:
+```r
+install.packages("tidyverse")
+```
+
+Load a package at the start of each session using `library()`:
+```r
+library(tidyverse)
+```
+
+You only need to install a package once, but you need to load it with `library()` every time you start a new R session.
+
+In CWER projects that use `renv`, package installation is managed automatically — see the [Managing Packages with renv](renv.qmd) chapter.
+
+## CWER R Conventions
+
+A few conventions that apply across all R work in CWER:
+
+- Use snake_case for all object and variable names
+- Always use `here()` for file paths — never hardcode absolute paths like `/Users/yourname/Documents/...`
+- Load all packages at the top of each script in the setup chunk
+- Recode CWER missing data codes (`-99`, `-98`, `-97`, `-96`) to `NA` before any analysis
+- Never overwrite raw data — read from `data/raw/`, write to `data/cleaned/`
+- Include a script header with author, purpose, inputs, outputs, AI use, and review status
