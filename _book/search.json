@@ -145,7 +145,7 @@
     "href": "chapters/tools/tools-overview.html",
     "title": "4  Tools Overview",
     "section": "",
-    "text": "4.1 MS Teams\nAll CWER members should set up accounts with Yale Secure Box, OSF, Google Drive, and GitHub, and should be added to the lab’s MS Teams workspace. The sections below describe each tool and how we use it.\nMS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at teams.microsoft.com or via the desktop app.",
+    "text": "4.1 MS Teams\nAll CWER members should set up accounts with OSF, Google Drive, and GitHub, and should be added to the group’s MS Teams workspace. The sections below describe each tool and how we use it.\nMS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at teams.microsoft.com or via the desktop app.",
     "crumbs": [
       "Tools & Setup",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Tools Overview</span>"
@@ -163,22 +163,11 @@
     ]
   },
   {
-    "objectID": "chapters/tools/tools-overview.html#yale-secure-box",
-    "href": "chapters/tools/tools-overview.html#yale-secure-box",
-    "title": "4  Tools Overview",
-    "section": "4.3 Yale Secure Box",
-    "text": "4.3 Yale Secure Box\nYale Secure Box is a cloud-based system used for storing and internally sharing documents and data. Make sure you are using Secure Box, not regular Yale Box — they are different services with different security levels. Secure Box is appropriate for moderate and high-risk data.",
-    "crumbs": [
-      "Tools & Setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Tools Overview</span>"
-    ]
-  },
-  {
     "objectID": "chapters/tools/tools-overview.html#google-shared-drive",
     "href": "chapters/tools/tools-overview.html#google-shared-drive",
     "title": "4  Tools Overview",
-    "section": "4.4 Google Shared Drive",
-    "text": "4.4 Google Shared Drive\nWe use Google Shared Drive primarily for taking notes during meetings.\nSetup: Users who do not already have an Eli Apps account should contact ITS to request a “no-mail Eli Apps account” associated with their NetID. Users who have an Eli Apps account should send a request to research.computing@yale.edu to ask that they enable Team Drive for their Eli Apps account. See https://docs.ycrc.yale.edu/data/google-drive/ for more information.",
+    "section": "4.3 Google Shared Drive",
+    "text": "4.3 Google Shared Drive\nWe use Google Shared Drive primarily for taking notes during meetings.\nSetup: Users who do not already have an Eli Apps account should contact ITS to request a “no-mail Eli Apps account” associated with their NetID. Users who have an Eli Apps account should send a request to research.computing@yale.edu to ask that they enable Team Drive for their Eli Apps account. See https://docs.ycrc.yale.edu/data/google-drive/ for more information.",
     "crumbs": [
       "Tools & Setup",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Tools Overview</span>"
@@ -188,8 +177,8 @@
     "objectID": "chapters/tools/tools-overview.html#open-science-framework-osf",
     "href": "chapters/tools/tools-overview.html#open-science-framework-osf",
     "title": "4  Tools Overview",
-    "section": "4.5 Open Science Framework (OSF)",
-    "text": "4.5 Open Science Framework (OSF)\nWe use OSF to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the OSF 101 video is a good starting point.",
+    "section": "4.4 Open Science Framework (OSF)",
+    "text": "4.4 Open Science Framework (OSF)\nWe use OSF to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the OSF 101 video is a good starting point.",
     "crumbs": [
       "Tools & Setup",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Tools Overview</span>"
@@ -199,165 +188,264 @@
     "objectID": "chapters/tools/tools-overview.html#github",
     "href": "chapters/tools/tools-overview.html#github",
     "title": "4  Tools Overview",
-    "section": "4.6 GitHub",
-    "text": "4.6 GitHub\nWe use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the cwer-yale organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other’s work, and maintain a complete history of analytical decisions.\nNew team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git & GitHub chapter of this guide for a walkthrough.",
+    "section": "4.5 GitHub",
+    "text": "4.5 GitHub\nWe use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the cwer-yale organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other’s work, and maintain a complete history of analytical decisions.\nNew team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git & GitHub chapter of this guide for a walkthrough (coming soon).",
     "crumbs": [
       "Tools & Setup",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Tools Overview</span>"
     ]
   },
   {
+    "objectID": "chapters/tools/github.html",
+    "href": "chapters/tools/github.html",
+    "title": "5  Git & GitHub",
+    "section": "",
+    "text": "5.1 What Are Git and GitHub?\nGit is version control software that tracks changes to files over time. Every time you save a snapshot of your work (called a commit), Git records what changed, when, and who made the change. This means you can always go back to an earlier version of your code, see exactly what changed between two versions, and understand the full history of an analysis.\nGitHub is a website that hosts Git repositories in the cloud. Where Git runs on your computer, GitHub is the remote backup and collaboration hub. When you push your work to GitHub, it is saved online and accessible to your teammates.\nThink of it this way: Git is the system that tracks your changes locally, and GitHub is where those changes get backed up and shared.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#why-we-use-it",
+    "href": "chapters/tools/github.html#why-we-use-it",
+    "title": "5  Git & GitHub",
+    "section": "5.2 Why We Use It",
+    "text": "5.2 Why We Use It\nFor CWER projects, Git and GitHub serve three purposes:\n\nBackup. Code and analysis scripts are backed up to GitHub automatically every time you push. You will never lose work to a crashed hard drive or an accidentally deleted file.\nHistory. Every commit is a record of what changed and why. When you return to a project after six months, or when a new team member inherits your work, the commit history explains the evolution of the analysis.\nCollaboration. Multiple people can work on the same project without overwriting each other’s work. GitHub keeps everything organized under the cwer-yale organization so that lab projects belong to the lab, not to any individual’s personal account.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#the-cwer-yale-organization",
+    "href": "chapters/tools/github.html#the-cwer-yale-organization",
+    "title": "5  Git & GitHub",
+    "section": "5.3 The cwer-yale Organization",
+    "text": "5.3 The cwer-yale Organization\nAll CWER analysis projects live under the cwer-yale GitHub organization, not under personal accounts. This ensures continuity — if a team member leaves, the project stays accessible to the lab. When you start a new analysis project, create the repository in cwer-yale, not in your personal GitHub account.\nTo get access to cwer-yale, contact Mike or Joanna with your GitHub username and they will add you.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#getting-set-up",
+    "href": "chapters/tools/github.html#getting-set-up",
+    "title": "5  Git & GitHub",
+    "section": "5.4 Getting Set Up",
+    "text": "5.4 Getting Set Up\nThere are two ways to interact with Git and GitHub: the terminal and GitHub Desktop. This guide covers the terminal approach, which is more flexible and what you will see referenced throughout this guide. However, GitHub Desktop is a visual application that lets you manage commits, pushes, and pulls through a point-and-click interface rather than typed commands — some people find it easier when starting out.\nYou can download GitHub Desktop at desktop.github.com. Both approaches work fine for CWER projects, and you can switch between them freely — they interact with the same underlying Git repository. If you are comfortable in the terminal, stick with that. If the command line feels intimidating at first, GitHub Desktop is a perfectly reasonable starting point.\n\n5.4.1 1. Create a GitHub Account\nGo to github.com and create a free account. Use a professional username — this account will be visible to collaborators and potentially to future employers. Your Yale email is a reasonable choice for the account email but not manadatory.\n\n\n5.4.2 2. Install Git\nGit may be pre-installed. Check whether you have it by running this in the Positron Terminal:\ngit --version\nIf you see a version number, you are good. If not, install it by running:\nxcode-select --install\n\n\n5.4.3 3. Configure Git with Your Identity\nGit records your name and email with every commit. Set these once and they apply to all your projects:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"your.email@yale.edu\"\nUse the same email address associated with your GitHub account.\n\n\n5.4.4 4. Install the GitHub CLI\nThe GitHub CLI (gh) is the easiest way to authenticate with GitHub and create repositories from the terminal. Install it with Homebrew:\nbrew install gh\nIf you do not have Homebrew installed, first run:\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nThen authenticate with GitHub:\ngh auth login\nFollow the prompts — choose GitHub.com, HTTPS, and authenticate via browser. You will only need to do this once.\n\n\n5.4.5 5. Request Access to cwer-yale\nOnce your GitHub account is set up, contact Mike or Joanna with your GitHub username to be added to the cwer-yale organization.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#your-daily-workflow",
+    "href": "chapters/tools/github.html#your-daily-workflow",
+    "title": "5  Git & GitHub",
+    "section": "5.5 Your Daily Workflow",
+    "text": "5.5 Your Daily Workflow\nOnce a project is set up, your day-to-day interaction with Git follows a simple cycle: edit your files, stage the changes you want to save, commit them with a message, and push to GitHub.\n\n5.5.1 Cloning a Repository\nWhen you need to work on an existing project for the first time, clone it to your computer. This downloads the full repository, including all files and history.\nTerminal:\ncd ~/Documents/GitHub\ngh repo clone cwer-yale/project-name\nGitHub Desktop:\nClick File → Clone Repository, select the cwer-yale organization, choose the repository, and select where to save it on your computer.\n\n\n5.5.2 The Edit → Stage → Commit → Push Cycle\nTerminal:\n\nEdit your files as you normally would in Positron.\nCheck what has changed:\n\ngit status\n\nStage the changes you want to include in this commit:\n\ngit add filename.qmd\nOr to stage all changed files at once:\ngit add .\n\nCommit with a descriptive message:\n\ngit commit -m \"Add descriptive statistics for Wave 1 data\"\n\nPush to GitHub:\n\ngit push\nGitHub Desktop:\n\nEdit your files as you normally would in Positron.\nOpen GitHub Desktop — changed files will appear automatically in the left panel.\nCheck the boxes next to the files you want to include in this commit.\nWrite a commit message in the box at the bottom left.\nClick Commit to main.\nClick Push origin in the top bar to send your changes to GitHub.\n\n\n\n5.5.3 Pulling Changes from Teammates\nIf a teammate has pushed changes to the repository, you need to pull them before you start working.\nTerminal:\ngit pull\nGitHub Desktop:\nClick Fetch origin in the top bar, then Pull origin if changes are available.\nMake this a habit — pull at the start of every work session to make sure you have the latest version of the project.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#writing-good-commit-messages",
+    "href": "chapters/tools/github.html#writing-good-commit-messages",
+    "title": "5  Git & GitHub",
+    "section": "5.6 Writing Good Commit Messages",
+    "text": "5.6 Writing Good Commit Messages\nA commit message should complete the sentence: “This commit will…”\nGood messages: - Add multilevel model for teacher outcome - Fix merge error in Wave 2 cleaning script - Update descriptives table with revised N\nPoor messages: - updates - fixed stuff - wip - asdfgh\nGood commit messages make the project history readable. When you or a teammate needs to understand what changed three months ago, a clear commit history saves significant time.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#what-belongs-in-.gitignore",
+    "href": "chapters/tools/github.html#what-belongs-in-.gitignore",
+    "title": "5  Git & GitHub",
+    "section": "5.7 What Belongs in .gitignore",
+    "text": "5.7 What Belongs in .gitignore\nNot everything should be committed to GitHub. A .gitignore file tells Git which files to ignore. For CWER projects, this typically includes:\n\ndata/raw/ — raw data files, especially anything with participant information, should not be committed to GitHub. Store these in Yale Secure Box or Storage @ Yale instead.\ndata/cleaned/ — cleaned data files can often be regenerated from scripts and may contain sensitive information\noutput/ — generated outputs can be regenerated from code\nrenv/library/ — R package libraries are large and can be restored from renv.lock\n.DS_Store — Mac system files\n\nA standard .gitignore for CWER projects:\n# Data\ndata/raw/\ndata/cleaned/\n\n# Generated outputs\noutput/\n\n# R\nrenv/library/\n.Rhistory\n.RData\n\n# Quarto\n_book/\n.quarto/\n*_files/\n\n# Mac\n.DS_Store\nNote that renv.lock should be committed — it records the exact package versions for the project and is essential for reproducibility.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#when-to-commit",
+    "href": "chapters/tools/github.html#when-to-commit",
+    "title": "5  Git & GitHub",
+    "section": "5.8 When to Commit",
+    "text": "5.8 When to Commit\nCommit after each meaningful unit of work — not after every single line change, and not just at the end of the day. Good triggers for a commit include:\n\nFinishing a data cleaning step\nGetting an analysis to run correctly\nAdding a new table or figure\nFixing a bug\nCompleting a section of a script\n\nIf you have been working for a few hours and have not committed, that is probably a sign you should commit now.",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tools/github.html#cwer-conventions",
+    "href": "chapters/tools/github.html#cwer-conventions",
+    "title": "5  Git & GitHub",
+    "section": "5.9 CWER Conventions",
+    "text": "5.9 CWER Conventions\n\nAll analysis project repositories live in cwer-yale, not personal accounts\nInclude a README.md in every repository with a brief description of the project\nFollow the project folder structure described in the Project Organization chapter — data/, code/, output/, docs/\nDo not commit raw data with participant information to GitHub — keep sensitive data in Yale Secure Box or Storage @ Yale\nNote AI contributions in commit messages when relevant (e.g., Add MLM script (developed with Claude assistance))",
+    "crumbs": [
+      "Tools & Setup",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
     "objectID": "chapters/data/project-organization.html",
     "href": "chapters/data/project-organization.html",
-    "title": "5  Project Organization",
+    "title": "6  Project Organization",
     "section": "",
-    "text": "5.1 The Core Principle\nA well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.\nEvery project has two types of files, and keeping them separate is the foundation of everything else:\nWhen you know that everything in data/raw/ is an original, untouched input, you can always trust it as the ground truth for the project.",
+    "text": "6.1 The Core Principle\nA well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.\nEvery project has two types of files, and keeping them separate is the foundation of everything else:\nWhen you know that everything in data/raw/ is an original, untouched input, you can always trust it as the ground truth for the project.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-core-principle",
     "href": "chapters/data/project-organization.html#the-core-principle",
-    "title": "5  Project Organization",
+    "title": "6  Project Organization",
     "section": "",
     "text": "Input files are fixed. Data that comes from outside the project such as partner-provided files, downloaded datasets, or exported survey data, goes in data/raw/ and is never modified by your scripts. If you need a cleaned version, your script reads the original, transforms it, and saves the result to data/cleaned/.\nOutputs are reproducible. Everything your scripts produce such as figures, tables, and rendered reports goes in output/ and can always be regenerated by rerunning the script that created it. Because of this, they are not committed to GitHub.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#standard-project-structure",
     "href": "chapters/data/project-organization.html#standard-project-structure",
-    "title": "5  Project Organization",
-    "section": "5.2 Standard Project Structure",
-    "text": "5.2 Standard Project Structure\nA typical CWER project looks like this:\nmy-project/\n├── data/                   # All data files\n│   ├── raw/                # Original inputs — scripts never modify these\n│   ├── cleaned/            # Processed data produced by cleaning scripts\n│   └── README.md           # Documents where each raw file came from\n├── code/                   # Analysis scripts (.qmd, .do, .R, .inp)\n│   └── exploratory/        # One-off analyses and sanity checks\n├── output/                 # All generated outputs\n│   ├── tables/             # Tables (.docx, .xlsx, .csv)\n│   └── figures/            # Figures (.png, .pdf)\n├── docs/                   # Reports, presentations, manuscripts\n└── README.md               # Project overview\nNot every project needs every subfolder. Adapt as needed, but keep the core separation between data/raw/ and everything else intact.",
+    "title": "6  Project Organization",
+    "section": "6.2 Standard Project Structure",
+    "text": "6.2 Standard Project Structure\nA typical CWER project looks like this:\nmy-project/\n├── data/                   # All data files\n│   ├── raw/                # Original inputs — scripts never modify these\n│   ├── cleaned/            # Processed data produced by cleaning scripts\n│   └── README.md           # Documents where each raw file came from\n├── code/                   # Analysis scripts (.qmd, .do, .R, .inp)\n│   └── exploratory/        # One-off analyses and sanity checks\n├── output/                 # All generated outputs\n│   ├── tables/             # Tables (.docx, .xlsx, .csv)\n│   └── figures/            # Figures (.png, .pdf)\n├── docs/                   # Reports, presentations, manuscripts\n└── README.md               # Project overview\nNot every project needs every subfolder. Adapt as needed, but keep the core separation between data/raw/ and everything else intact.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-data-folder",
     "href": "chapters/data/project-organization.html#the-data-folder",
-    "title": "5  Project Organization",
-    "section": "5.3 The data/ Folder",
-    "text": "5.3 The data/ Folder\n\n5.3.1 data/raw/\nThe data/raw/ folder holds files that come from outside the project — things your scripts read but never modify. This includes:\n\nSurvey data exported from Qualtrics or a partner system\nData received from school districts or community partners\nPublicly available datasets downloaded from external sources\nCodebooks and metadata provided by partners\n\nTreat everything in data/raw/ as read-only. Scripts read from it but never write to it. If a raw file needs to be corrected, replace it and document the change in data/README.md. Do not silently overwrite it.\n\n\n5.3.2 data/cleaned/\nThe data/cleaned/ folder holds processed versions of raw data produced by your cleaning scripts. These are intermediate files that other scripts will use as inputs, such as merged datasets, recoded variables, reshaped files, and so on. Because cleaned files are generated by code, they can always be recreated by rerunning the cleaning script.\n\n\n5.3.3 data/README.md\nAlways include a data/README.md that documents where each raw file came from, when it was received, and any relevant notes. This takes two minutes to write and is invaluable six months later when you are trying to remember which version of a dataset came from which partner, or which Qualtrics export corresponds to which wave of data collection.\nExample data/README.md:\n# Data Sources\n\n## raw/care4kids_survey_wave1.csv\n- Source: CT Office of Early Childhood, received from Jane Smith via Yale OneDrive File Transfer\n- Received: 2025-09-15\n- Notes: Wave 1 only (fall 2025). N=342. Includes provider ID but no names.\n\n## raw/sel_codebook_v3.xlsx\n- Source: Internal; developed by CWER team\n- Last updated: 2025-08-01\n- Notes: Version 3 adds items from the revised teacher observation protocol",
+    "title": "6  Project Organization",
+    "section": "6.3 The data/ Folder",
+    "text": "6.3 The data/ Folder\n\n6.3.1 data/raw/\nThe data/raw/ folder holds files that come from outside the project — things your scripts read but never modify. This includes:\n\nSurvey data exported from Qualtrics or a partner system\nData received from school districts or community partners\nPublicly available datasets downloaded from external sources\nCodebooks and metadata provided by partners\n\nTreat everything in data/raw/ as read-only. Scripts read from it but never write to it. If a raw file needs to be corrected, replace it and document the change in data/README.md. Do not silently overwrite it.\n\n\n6.3.2 data/cleaned/\nThe data/cleaned/ folder holds processed versions of raw data produced by your cleaning scripts. These are intermediate files that other scripts will use as inputs, such as merged datasets, recoded variables, reshaped files, and so on. Because cleaned files are generated by code, they can always be recreated by rerunning the cleaning script.\n\n\n6.3.3 data/README.md\nAlways include a data/README.md that documents where each raw file came from, when it was received, and any relevant notes. This takes two minutes to write and is invaluable six months later when you are trying to remember which version of a dataset came from which partner, or which Qualtrics export corresponds to which wave of data collection.\nExample data/README.md:\n# Data Sources\n\n## raw/care4kids_survey_wave1.csv\n- Source: CT Office of Early Childhood, received from Jane Smith via Yale OneDrive File Transfer\n- Received: 2025-09-15\n- Notes: Wave 1 only (fall 2025). N=342. Includes provider ID but no names.\n\n## raw/sel_codebook_v3.xlsx\n- Source: Internal; developed by CWER team\n- Last updated: 2025-08-01\n- Notes: Version 3 adds items from the revised teacher observation protocol",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-code-folder",
     "href": "chapters/data/project-organization.html#the-code-folder",
-    "title": "5  Project Organization",
-    "section": "5.4 The code/ Folder",
-    "text": "5.4 The code/ Folder\nAnalysis scripts are numbered to reflect the order of the pipeline:\ncode/\n├── 01_data_cleaning.qmd\n├── 02_descriptives.qmd\n├── 03_mlm_analysis.qmd\n├── 04_tables_figures.qmd\n└── exploratory/\nThe two-digit prefix means scripts appear in pipeline order when you list the folder. Script 01 reads from data/raw/ and writes cleaned files to data/cleaned/. Script 02 reads from data/cleaned/ and produces descriptives. A new team member can look at the file list and understand the overall flow without reading any code.\nNumbers reflect logical order, not strict dependencies. Script 04 might read outputs from both scripts 01 and 03. The numbering just helps you understand the overall structure.\nWhen you add a new script, assign the next available number. If you retire a script, do not renumber the others. Leave gaps rather than creating confusion about which script a particular output came from.\n\n5.4.1 Script Headers\nEvery script should begin with a header block identifying the author, purpose, inputs, and outputs:\n# ============================================================\n# Script:  01_data_cleaning.qmd\n# Author:  Your Name (your.email@yale.edu)\n# Created: 2025-10-01\n# Purpose: Clean and merge Wave 1 survey data\n# Inputs:  data/raw/care4kids_survey_wave1.csv\n# Outputs: data/cleaned/wave1_cleaned.rds\n# AI:      Code developed with Claude assistance\n# Review:  Reviewed by Michael Strambler, 2025-10-05\n# ============================================================\nThe AI and Review lines reflect our commitments to transparency and quality control described in the Statistical Analysis chapter.\n\n\n5.4.2 Script Status\nAdd a status field to each script’s YAML header to signal where it is in its lifecycle:\n---\ntitle: \"Multilevel Model Analysis\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\n---\n\n\n\n\n\n\n\nStatus\nMeaning\n\n\n\n\ndevelopment\nIn active development; outputs may change\n\n\nfinalized\nOutputs are publication-ready; changes should be deliberate\n\n\ndeprecated\nSuperseded by a newer script; kept for reference\n\n\n\nWhen results are heading toward a report or publication, mark the relevant scripts finalized. This signals to collaborators that any changes should be intentional and that outputs should be re-verified if the script is rerun.\n\n\n5.4.3 Exploratory Scripts\nThink of the code/exploratory/ subfolder as a playground for for one-off analyses, sanity checks, and ideas you are testing. Exploratory scripts follow relaxed rules with no number prefixes required, and nothing else in the project depends on their outputs. This makes it safe to experiment without worrying about breaking the main pipeline. If an exploratory analysis turns out to be valuable, promote it to a numbered script in the main directory.",
+    "title": "6  Project Organization",
+    "section": "6.4 The code/ Folder",
+    "text": "6.4 The code/ Folder\nAnalysis scripts are numbered to reflect the order of the pipeline:\ncode/\n├── 01_data_cleaning.qmd\n├── 02_descriptives.qmd\n├── 03_mlm_analysis.qmd\n├── 04_tables_figures.qmd\n└── exploratory/\nThe two-digit prefix means scripts appear in pipeline order when you list the folder. Script 01 reads from data/raw/ and writes cleaned files to data/cleaned/. Script 02 reads from data/cleaned/ and produces descriptives. A new team member can look at the file list and understand the overall flow without reading any code.\nNumbers reflect logical order, not strict dependencies. Script 04 might read outputs from both scripts 01 and 03. The numbering just helps you understand the overall structure.\nWhen you add a new script, assign the next available number. If you retire a script, do not renumber the others. Leave gaps rather than creating confusion about which script a particular output came from.\n\n6.4.1 Script Headers\nEvery script should begin with a header block identifying the author, purpose, inputs, and outputs:\n# ============================================================\n# Script:  01_data_cleaning.qmd\n# Author:  Your Name (your.email@yale.edu)\n# Created: 2025-10-01\n# Purpose: Clean and merge Wave 1 survey data\n# Inputs:  data/raw/care4kids_survey_wave1.csv\n# Outputs: data/cleaned/wave1_cleaned.rds\n# AI:      Code developed with Claude assistance\n# Review:  Reviewed by Michael Strambler, 2025-10-05\n# ============================================================\nThe AI and Review lines reflect our commitments to transparency and quality control described in the Statistical Analysis chapter.\n\n\n6.4.2 Script Status\nAdd a status field to each script’s YAML header to signal where it is in its lifecycle:\n---\ntitle: \"Multilevel Model Analysis\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\n---\n\n\n\n\n\n\n\nStatus\nMeaning\n\n\n\n\ndevelopment\nIn active development; outputs may change\n\n\nfinalized\nOutputs are publication-ready; changes should be deliberate\n\n\ndeprecated\nSuperseded by a newer script; kept for reference\n\n\n\nWhen results are heading toward a report or publication, mark the relevant scripts finalized. This signals to collaborators that any changes should be intentional and that outputs should be re-verified if the script is rerun.\n\n\n6.4.3 Exploratory Scripts\nThink of the code/exploratory/ subfolder as a playground for for one-off analyses, sanity checks, and ideas you are testing. Exploratory scripts follow relaxed rules with no number prefixes required, and nothing else in the project depends on their outputs. This makes it safe to experiment without worrying about breaking the main pipeline. If an exploratory analysis turns out to be valuable, promote it to a numbered script in the main directory.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-output-folder",
     "href": "chapters/data/project-organization.html#the-output-folder",
-    "title": "5  Project Organization",
-    "section": "5.5 The output/ Folder",
-    "text": "5.5 The output/ Folder\nAll generated outputs go in output/, organized into two subfolders:\noutput/\n├── tables/\n│   ├── descriptives_table.docx\n│   └── mlm_results_table.docx\n└── figures/\n    ├── figure1_histogram.png\n    └── figure2_scatter.pdf\nKeep file names descriptive so their purpose is clear without opening them. Avoid generic names like table1.docx or figure_final.png.",
+    "title": "6  Project Organization",
+    "section": "6.5 The output/ Folder",
+    "text": "6.5 The output/ Folder\nAll generated outputs go in output/, organized into two subfolders:\noutput/\n├── tables/\n│   ├── descriptives_table.docx\n│   └── mlm_results_table.docx\n└── figures/\n    ├── figure1_histogram.png\n    └── figure2_scatter.pdf\nKeep file names descriptive so their purpose is clear without opening them. Avoid generic names like table1.docx or figure_final.png.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#the-docs-folder",
     "href": "chapters/data/project-organization.html#the-docs-folder",
-    "title": "5  Project Organization",
-    "section": "5.6 The docs/ Folder",
-    "text": "5.6 The docs/ Folder\nThe docs/ folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike output/, which holds raw generated files, docs/ holds polished, finalized deliverables.",
+    "title": "6  Project Organization",
+    "section": "6.6 The docs/ Folder",
+    "text": "6.6 The docs/ Folder\nThe docs/ folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike output/, which holds raw generated files, docs/ holds polished, finalized deliverables.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#file-naming-conventions",
     "href": "chapters/data/project-organization.html#file-naming-conventions",
-    "title": "5  Project Organization",
-    "section": "5.7 File Naming Conventions",
-    "text": "5.7 File Naming Conventions\n\nUse lowercase and underscores: wave1_cleaned.rds, not Wave1Cleaned.rds or wave1 cleaned.rds\nBe descriptive: wave1_provider_survey.csv, not data.csv\nAvoid spaces and special characters in all file and folder names\nDo not use date prefixes on individual files — let Git track versions instead",
+    "title": "6  Project Organization",
+    "section": "6.7 File Naming Conventions",
+    "text": "6.7 File Naming Conventions\n\nUse lowercase and underscores: wave1_cleaned.rds, not Wave1Cleaned.rds or wave1 cleaned.rds\nBe descriptive: wave1_provider_survey.csv, not data.csv\nAvoid spaces and special characters in all file and folder names\nDo not use date prefixes on individual files — let Git track versions instead",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/data/project-organization.html#cross-software-data-format",
     "href": "chapters/data/project-organization.html#cross-software-data-format",
-    "title": "5  Project Organization",
-    "section": "5.8 Cross-Software Data Format",
-    "text": "5.8 Cross-Software Data Format\nWhen data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:\n\nCSV is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS\nExcel (.xlsx) is acceptable when the recipient is more comfortable with spreadsheets, but be aware that formatting and formulas can cause problems when read programmatically\nWhen saving from R for Mplus input, use MplusAutomation package functions to ensure the format is correct\n\nWithin a single software environment, use native formats where appropriate (.rds for R objects, .dta for Stata) to preserve data types and attributes.",
+    "title": "6  Project Organization",
+    "section": "6.8 Cross-Software Data Format",
+    "text": "6.8 Cross-Software Data Format\nWhen data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:\n\nCSV is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS\nExcel (.xlsx) is acceptable when the recipient is more comfortable with spreadsheets, but be aware that formatting and formulas can cause problems when read programmatically\nWhen saving from R for Mplus input, use MplusAutomation package functions to ensure the format is correct\n\nWithin a single software environment, use native formats where appropriate (.rds for R objects, .dta for Stata) to preserve data types and attributes.",
     "crumbs": [
       "Data Management",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html",
     "href": "chapters/analysis/statistical-analysis.html",
-    "title": "6  Statistical Analysis",
+    "title": "7  Statistical Analysis",
     "section": "",
-    "text": "6.1 Statistical Software",
+    "text": "7.1 Statistical Software",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#statistical-software",
     "href": "chapters/analysis/statistical-analysis.html#statistical-software",
-    "title": "6  Statistical Analysis",
+    "title": "7  Statistical Analysis",
     "section": "",
     "text": "Excel: Whenever possible, data should be stored in Excel or CSV format, as these are the most accessible formats for sharing across software platforms.\nR: R has the most flexibility of all our stats software and is very powerful. It also comes with a steep learning curve. However, AI developments have made R dramatically more accessible, so using R is highly encouraged. See the R Workflows section for lab-specific guidance.\nMplus: We use Mplus heavily — mostly for analyses including Monte Carlo simulations for assessing statistical power, path analysis, structural equation modeling (SEM), multilevel modeling (MLM), mixture modeling, and approaches that blend these techniques (e.g., multilevel SEM). This is an especially useful package for examining psychometrics. See the Mplus Workflows section for templates and conventions.\nStata: A very flexible and comprehensive stats package. See the Stata Workflows section for lab-specific guidance.\nSPSS: We have mostly used SPSS for data processing and management, data exploration, and basic analyses such as descriptive statistics and OLS regression.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#using-ai-for-data-analysis",
     "href": "chapters/analysis/statistical-analysis.html#using-ai-for-data-analysis",
-    "title": "6  Statistical Analysis",
-    "section": "6.2 Using AI for Data Analysis",
-    "text": "6.2 Using AI for Data Analysis\nAI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:\n\nNever share identifiable participant data with AI tools. Paste only anonymized or synthetic examples when asking for help with data-related code.\nAlways review and understand the code AI produces before running it. Do not run code you cannot explain.\nAI output should be treated like a first draft: check it, test it, and own it.\nNote AI contributions in your code header as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).\n\n\n6.2.1 IDEs\nAn IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is Positron, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.\nCursor is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.\n\n\n6.2.2 Claude Code\nClaude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.",
+    "title": "7  Statistical Analysis",
+    "section": "7.2 Using AI for Data Analysis",
+    "text": "7.2 Using AI for Data Analysis\nAI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:\n\nNever share identifiable participant data with AI tools. Paste only anonymized or synthetic examples when asking for help with data-related code.\nAlways review and understand the code AI produces before running it. Do not run code you cannot explain.\nAI output should be treated like a first draft: check it, test it, and own it.\nNote AI contributions in your code header as you would note any collaborator’s contribution (e.g., “Analysis code developed with Claude assistance”).\n\n\n7.2.1 IDEs\nAn IDE (Integrated Development Environment) is the software application you use to write and run code. The lab’s recommended IDE is Positron, developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.\nCursor is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.\n\n\n7.2.2 Claude Code\nClaude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#quality-control-for-analyses",
     "href": "chapters/analysis/statistical-analysis.html#quality-control-for-analyses",
-    "title": "6  Statistical Analysis",
-    "section": "6.3 Quality Control for Analyses",
-    "text": "6.3 Quality Control for Analyses\nIt is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:\n\nAt the beginning of all code, indicate the code author(s) and contact information.\nAdd a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.\nHave another team member check your code. Suggested reviewers by software:\n\nSPSS: Mike, Joanna\nMplus: Mike\nStata: Mike\nR: Mike\n\nWhen the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).\nAfter summarizing findings in narrative and/or table format, use AI to check for any misreporting.",
+    "title": "7  Statistical Analysis",
+    "section": "7.3 Quality Control for Analyses",
+    "text": "7.3 Quality Control for Analyses\nIt is inevitable that at some point we will make mistakes in coding and running analyses, especially when there are many steps involved in producing output. Here is our process for managing quality control:\n\nAt the beginning of all code, indicate the code author(s) and contact information.\nAdd a note in the analysis indicating whether and how you checked that the code worked properly. For example, when using merge code, indicate that you checked N and descriptives and that everything lined up.\nHave another team member check your code. Suggested reviewers by software:\n\nSPSS: Mike, Joanna\nMplus: Mike\nStata: Mike\nR: Mike\n\nWhen the reviewer checks the code, indicate so in the code header (e.g., “Code reviewed by Michael Strambler”).\nAfter summarizing findings in narrative and/or table format, use AI to check for any misreporting.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/statistical-analysis.html#statistical-language",
     "href": "chapters/analysis/statistical-analysis.html#statistical-language",
-    "title": "6  Statistical Analysis",
-    "section": "6.4 Statistical Language",
-    "text": "6.4 Statistical Language\nSee the Data Analysis Primer for descriptions of common statistics we use. A few things are worth emphasizing here.\n\n6.4.1 Statistical Significance\nStatistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a statistical effect or a statistical difference. For example:\n\nThe two groups were statistically different.\nWe interpreted a p-value of &lt;.05 as a statistical effect.\n\n\n\n6.4.2 Effect Sizes\nThe real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).",
+    "title": "7  Statistical Analysis",
+    "section": "7.4 Statistical Language",
+    "text": "7.4 Statistical Language\nSee the Data Analysis Primer for descriptions of common statistics we use. A few things are worth emphasizing here.\n\n7.4.1 Statistical Significance\nStatistical significance is a concept that is often misinterpreted — especially by a lay audience, but also by researchers — as an effect or difference being meaningful. A statistical effect and a meaningful or practical effect can be entirely different things, especially when effects are small. It is better to refer to statistical significance for what it really means: a statistical effect or a statistical difference. For example:\n\nThe two groups were statistically different.\nWe interpreted a p-value of &lt;.05 as a statistical effect.\n\n\n\n7.4.2 Effect Sizes\nThe real meaning of an effect is expressed through an effect size and its interpretation. An effect size is a statistic that indicates the strength of an effect. This can be a regression coefficient (b or B), mean difference, Cohen’s d, or any other measure that captures an effect’s magnitude. In terms of judging whether an effect size is “big” or “small,” it is best to place it in the context of other research — compare your effect to effects from similar findings (e.g., “The Cohen’s d of .30 is comparable to the findings of Smith (2019) who found effect sizes ranging between .27 and .35”).",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Statistical Analysis</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Statistical Analysis</span>"
     ]
   }
 ]

@@ -18,6 +18,7 @@ book:
     - part: "Tools & Setup"
       chapters:
         - chapters/tools/tools-overview.qmd
+        - chapters/tools/github.qmd
     - part: "Data Management"
       chapters:
         - chapters/data/project-organization.qmd
