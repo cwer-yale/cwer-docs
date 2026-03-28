@@ -1,0 +1,27 @@
+# Tools Overview
+
+All CWER members should set up accounts with OSF, Google Drive, and GitHub, and should be added to the group's MS Teams workspace. The sections below describe each tool and how we use it.
+
+## MS Teams
+
+MS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at [teams.microsoft.com](https://teams.microsoft.com) or via the desktop app.
+
+## Storage @ Yale
+
+Storage @ Yale is what we use as a shared server for storing project files. You will need to be granted access to the folders for the specific projects you are working on. Contact Mike or Joanna to request access.
+
+## Google Shared Drive
+
+We use [Google Shared Drive](https://support.google.com/a/users/answer/9310351#!/) primarily for taking notes during meetings.
+
+**Setup**: Users who do not already have an Eli Apps account should contact ITS to request a "no-mail Eli Apps account" associated with their NetID. Users who have an Eli Apps account should send a request to [research.computing@yale.edu](mailto:research.computing@yale.edu) to ask that they enable Team Drive for their Eli Apps account. See [https://docs.ycrc.yale.edu/data/google-drive/](https://docs.ycrc.yale.edu/data/google-drive/) for more information.
+
+## Open Science Framework (OSF)
+
+We use [OSF](https://osf.io/) to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the [OSF 101 video](https://www.youtube.com/watch?v=dLEIhJESIQA&feature=youtu.be) is a good starting point.
+
+## GitHub
+
+We use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the [cwer-yale](https://github.com/cwer-yale) organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other's work, and maintain a complete history of analytical decisions.
+
+New team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git & GitHub chapter of this guide for a walkthrough (coming soon).

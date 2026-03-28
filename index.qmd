@@ -1,5 +1,13 @@
-# Preface {.unnumbered}
+# Welcome {.unnumbered}
 
-This is a Quarto book.
+This guide is the primary reference for Child Wellbeing and Education Research (CWER) team members. It covers the team's mission and philosophy, member roles and responsibilities, tools and setup, data management standards, and statistical workflows.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Whether you are a new research assistant getting oriented or a returning team member looking up a convention, this is the place to start.
+
+## How to Use This Guide
+
+**New team members** should work through Part I (About CWER) and Part II (Tools & Setup) in order during their first week. These chapters cover what the team does, how it operates, and how to get your accounts and software configured.
+
+**Returning members** can use the sidebar navigation to jump directly to the section they need. The workflows chapters are intended as ongoing reference material.
+
+This guide is a living document. It is reviewed and updated at least once per year each June. If you notice something that is out of date or missing, contact Mike or Joanna.

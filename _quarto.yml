@@ -1,25 +1,33 @@
 project:
   type: book
+  output-dir: _book
 
 book:
   title: "Child Wellbeing and Education Research"
-  author: "Norah Jones"
-  date: "3/27/2026"
+  subtitle: "Team Guide"
+  author: "Michael Strambler"
+  date: today
+  repo-url: https://github.com/cwer-yale/cwer-docs
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - part: "About CWER"
+      chapters:
+        - chapters/about/mission.qmd
+        - chapters/about/roles.qmd
+        - chapters/about/team-member.qmd
+    - part: "Tools & Setup"
+      chapters:
+        - chapters/tools/tools-overview.qmd
+    - part: "Data Management"
+      chapters:
+        - chapters/data/project-organization.qmd
+    - part: "Statistical Analysis"
+      chapters:
+        - chapters/analysis/statistical-analysis.qmd
 
 bibliography: references.bib
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-  pdf:
-    documentclass: scrreprt
-
-
-
+    theme: cosmo
+    toc: true

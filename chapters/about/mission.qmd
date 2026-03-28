@@ -1,0 +1,42 @@
+# Mission & Philosophy
+
+## Mission
+
+We conduct applied research on factors that are linked to outcomes concerned with the academic, social, behavioral, and psychological wellbeing of children and youth. We primarily draw on research theory and methods from the fields of psychology, education, and interdisciplinary areas such as human development, evaluation, implementation science, and translational science.
+
+What we mean by *applied* is that our work focuses on addressing practical problems and producing evidence that addresses practical questions. Further, we aim to make research useable and actionable. Applied research differs from *basic* research, which focuses more on advancing scientific knowledge in areas that researchers are curious about. While in theory these types of research are distinct, in practice they sometimes overlap, which is the case with our work. Although we have a strong lean towards the applied end of research, we believe that basic research is essential for addressing gaps in our scientific knowledge, and we aim to produce work that bridges the goals of applied and basic research.
+
+Areas of research and evaluation we engage in include:
+
+- Early childhood education
+- Social and emotional competencies
+- Psychosocial contributors to achievement gaps
+- Academic engagement (behavioral and psychological)
+- Parental engagement
+- School and home interventions and programs
+
+## Philosophy
+
+> *The first principle is that you must not fool yourself — and you are the easiest person to fool.*
+>
+> — Richard Feynman
+
+The guiding principles of our team are to conduct research that is **truthful, rigorous, and collaborative**.
+
+### Truthfulness
+
+Doing truthful research means engaging in an honest search for answers to questions and allowing for our conclusions to be driven by evidence rather than our individual opinions and desires. This does not mean one needs to approach the work free of values. To the contrary, we care a great deal about solving social problems, but to do so, we believe that an accurate understanding of the nature of such problems and effective means of addressing them is key.
+
+Sometimes we will encounter research findings that run counter to what we initially thought. We must be open to revising our thinking in light of such findings rather than seeking ways to fit the findings into our preexisting conceptual models. In other words, we should never set out to "prove" anything. We should aim to produce the best evidence possible for answering our research questions and see where the evidence takes us.
+
+### Rigor
+
+What we mean by *rigorous* is using the best practices in research methodology and statistics to address research questions given the feasibility constraints of the project. These approaches can range from descriptive research to randomized controlled trials. Doing this requires staying on top of rapidly developing methodological and statistical techniques and sometimes consulting with others who have more expertise in these areas.
+
+We place a strong emphasis on measurement for a couple of reasons. First, the nature of our work often involves complex concepts that are challenging to capture, such as social-emotional competencies, academic engagement, and achievement. To capture these concepts well, we need sound theory and statistics (psychometrics). Second, the quality of research results is largely dependent upon the quality of measurement. If measurement is poor, everything to follow will also be poor. As the saying goes, garbage in, garbage out.
+
+### Collaboration
+
+Due to the applied nature of our work, collaboration is regularly an important aspect of producing research that is accurate and useful. Partners often bring critical insights and expertise regarding the contextual factors associated with research questions, as well as valuable information about constraints of the research setting that may limit the type of research or interventions that can be implemented. In addition to helping make research more useable, collaboration adds to our scientific knowledge by advancing our understanding of the contextual factors associated with the outcomes our team focuses on.
+
+The degree to which we collaborate ranges from minimal engagement — such as in certain evaluation contexts where we operate at arm's length — to high engagement where collaboration is central to the nature of the work, such as our early childhood research-practice partnership, the [Partnership for Early Education Research (PEER)](https://medicine.yale.edu/psychiatry/peer/), and the [Bridgeport Social and Emotional Learning Initiative](https://osf.io/nwzrs/). In most cases, it is important for us to maintain scientific independence while remaining genuinely responsive to the practical needs and insights of our partners. This balance is what makes our work both rigorous and useful.
