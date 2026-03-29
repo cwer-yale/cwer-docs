@@ -6,19 +6,19 @@
 
 - **R**: R has the most flexibility of all our stats software and is very powerful. It also comes with a steep learning curve. However, AI developments have made R dramatically more accessible, so using R is highly encouraged. See the R Workflows section for lab-specific guidance.
 
-- **Mplus**: We use Mplus heavily — mostly for analyses including Monte Carlo simulations for assessing statistical power, path analysis, structural equation modeling (SEM), multilevel modeling (MLM), mixture modeling, and approaches that blend these techniques (e.g., multilevel SEM). This is an especially useful package for examining psychometrics. See the Mplus Workflows section for templates and conventions.
+- **Mplus**: We use Mplus regularly — mostly for analyses including Monte Carlo simulations for assessing statistical power, path analysis, structural equation modeling (SEM), multilevel modeling (MLM), mixture modeling, and approaches that blend these techniques (e.g., multilevel SEM). This is an especially useful package for examining psychometrics. See the Mplus Workflows section for templates and conventions.
 
-- **Stata**: A very flexible and comprehensive stats package. See the Stata Workflows section for lab-specific guidance.
+- **Stata**: A very flexible and comprehensive stats package. Its power is in its balance of the range of analyses it can conducted and it's accessibility. On the latter point, it has a GUI interface that allows for point-and-click, and its code language is relatively simple and easy to execute. See the Stata Workflows section for lab-specific guidance.
 
-- **SPSS**: We have mostly used SPSS for data processing and management, data exploration, and basic analyses such as descriptive statistics and OLS regression.
+- **SPSS**: In the past, we used SPSS much more than we do now. Since SPSS does not keep as current with statistical advances as the other software mentioned, we have limited this use. We now mostly use SPSS for data processing and management, data exploration, and basic analyses such as descriptive statistics.
 
 ## Using AI for Data Analysis
 
 AI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:
 
-1. **Never share identifiable participant data with AI tools.** Paste only anonymized or synthetic examples when asking for help with data-related code.
-2. **Always review and understand the code AI produces before running it.** Do not run code you cannot explain.
-3. **AI output should be treated like a first draft**: check it, test it, and own it.
+1. **Never share identifiable participant data with AI tools.** You can share non-ePHI data in Yale's Clarity only. Otherwise, paste only anonymized or synthetic examples when asking for help with data-related code. You can create such examples in Clarity if it's helpful.
+2. **Always review and understand the code AI produces before running it.** Do not run code you cannot explain. You can always use AI to help you understand the code by asking it to explain it. 
+3. **AI output should be treated like a first draft**: Check it, test it, and own it.
 4. **Note AI contributions in your code header** as you would note any collaborator's contribution (e.g., "Analysis code developed with Claude assistance").
 
 ### IDEs
@@ -26,10 +26,6 @@ AI tools like Claude can dramatically accelerate data analysis work, especially 
 An IDE (Integrated Development Environment) is the software application you use to write and run code. The lab's recommended IDE is [Positron](https://positron.posit.co/), developed by Posit (the makers of RStudio). Positron works well with R, supports Quarto documents, and integrates cleanly with GitHub. It is the successor to RStudio and is what new team members should install. See the Getting Started chapter for installation instructions.
 
 [Cursor](https://www.cursor.com/) is an alternative IDE with deeper AI integration that some team members use for more AI-assisted coding workflows.
-
-### Claude Code
-
-Claude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.
 
 ## Quality Control for Analyses
 

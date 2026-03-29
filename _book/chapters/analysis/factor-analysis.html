@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Tools Overview – Child Wellbeing and Education Research</title>
+<title>15&nbsp; Mplus: CFA &amp; EFA – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/tools/github.html" rel="next">
-<link href="../../chapters/about/team-member.html" rel="prev">
+<link href="../../chapters/analysis/lme4.html" rel="next">
+<link href="../../chapters/analysis/ggplot2.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/factor-analysis.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span></a>
   </div>
 </li>
@@ -247,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></span></a>
   </div>
 </li>
@@ -287,20 +322,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ms-teams" id="toc-ms-teams" class="nav-link active" data-scroll-target="#ms-teams"><span class="header-section-number">4.1</span> MS Teams</a></li>
-  <li><a href="#storage-yale" id="toc-storage-yale" class="nav-link" data-scroll-target="#storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</a></li>
-  <li><a href="#google-shared-drive" id="toc-google-shared-drive" class="nav-link" data-scroll-target="#google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</a></li>
-  <li><a href="#open-science-framework-osf" id="toc-open-science-framework-osf" class="nav-link" data-scroll-target="#open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">4.5</span> GitHub</a></li>
+  <li><a href="#confirmatory-factor-analysis-cfa" id="toc-confirmatory-factor-analysis-cfa" class="nav-link active" data-scroll-target="#confirmatory-factor-analysis-cfa"><span class="header-section-number">15.1</span> Confirmatory Factor Analysis (CFA)</a>
+  <ul class="collapse">
+  <li><a href="#basic-cfa-syntax" id="toc-basic-cfa-syntax" class="nav-link" data-scroll-target="#basic-cfa-syntax"><span class="header-section-number">15.1.1</span> Basic CFA Syntax</a></li>
+  <li><a href="#key-syntax-elements" id="toc-key-syntax-elements" class="nav-link" data-scroll-target="#key-syntax-elements"><span class="header-section-number">15.1.2</span> Key Syntax Elements</a></li>
+  <li><a href="#interpreting-cfa-output" id="toc-interpreting-cfa-output" class="nav-link" data-scroll-target="#interpreting-cfa-output"><span class="header-section-number">15.1.3</span> Interpreting CFA Output</a></li>
+  <li><a href="#higher-order-cfa" id="toc-higher-order-cfa" class="nav-link" data-scroll-target="#higher-order-cfa"><span class="header-section-number">15.1.4</span> Higher-Order CFA</a></li>
+  <li><a href="#bifactor-cfa" id="toc-bifactor-cfa" class="nav-link" data-scroll-target="#bifactor-cfa"><span class="header-section-number">15.1.5</span> Bifactor CFA</a></li>
+  </ul></li>
+  <li><a href="#exploratory-factor-analysis-efa" id="toc-exploratory-factor-analysis-efa" class="nav-link" data-scroll-target="#exploratory-factor-analysis-efa"><span class="header-section-number">15.2</span> Exploratory Factor Analysis (EFA)</a>
+  <ul class="collapse">
+  <li><a href="#basic-efa-syntax" id="toc-basic-efa-syntax" class="nav-link" data-scroll-target="#basic-efa-syntax"><span class="header-section-number">15.2.1</span> Basic EFA Syntax</a></li>
+  <li><a href="#deciding-on-the-number-of-factors" id="toc-deciding-on-the-number-of-factors" class="nav-link" data-scroll-target="#deciding-on-the-number-of-factors"><span class="header-section-number">15.2.2</span> Deciding on the Number of Factors</a></li>
+  <li><a href="#esem" id="toc-esem" class="nav-link" data-scroll-target="#esem"><span class="header-section-number">15.2.3</span> ESEM</a></li>
+  </ul></li>
+  <li><a href="#running-cfaefa-via-mplusautomation" id="toc-running-cfaefa-via-mplusautomation" class="nav-link" data-scroll-target="#running-cfaefa-via-mplusautomation"><span class="header-section-number">15.3</span> Running CFA/EFA via MplusAutomation</a></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison"><span class="header-section-number">15.4</span> Model Comparison</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/factor-analysis.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></h1>
 </div>
 
 
@@ -317,28 +363,219 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All CWER members should set up accounts with OSF, Google Drive, and GitHub, and should be added to the group’s MS Teams workspace. The sections below describe each tool and how we use it.</p>
-<section id="ms-teams" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ms-teams"><span class="header-section-number">4.1</span> MS Teams</h2>
-<p>MS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at <a href="https://teams.microsoft.com">teams.microsoft.com</a> or via the desktop app.</p>
+<p>Confirmatory Factor Analysis (CFA) and Exploratory Factor Analysis (EFA) are among the most common analyses in CWER’s psychometric work. CFA tests whether a hypothesized factor structure fits the data. EFA explores the factor structure when the structure is unknown or uncertain. This chapter covers both, with syntax examples and the MplusAutomation workflow for running them from R.</p>
+<section id="confirmatory-factor-analysis-cfa" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="confirmatory-factor-analysis-cfa"><span class="header-section-number">15.1</span> Confirmatory Factor Analysis (CFA)</h2>
+<p>CFA is used when you have a theoretically motivated factor structure and want to test how well it fits your data. For example, you might hypothesize that 12 SEL items measure three latent factors (self-management, social awareness, relationship skills) and use CFA to test whether this structure is supported.</p>
+<section id="basic-cfa-syntax" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="basic-cfa-syntax"><span class="header-section-number">15.1.1</span> Basic CFA Syntax</h3>
+<pre><code>TITLE:    CFA - SEL three-factor model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid schlid selsm1 selsm2 selsm3 selsm4
+          selsa1 selsa2 selsa3 selrs1 selrs2 selrs3;
+  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = WLSMV;
+
+MODEL:
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+
+OUTPUT:
+  SAMPSTAT;
+  STDYX;
+  MODINDICES(10);
+  FIT;</code></pre>
 </section>
-<section id="storage-yale" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</h2>
-<p>Storage @ Yale is what we use as a shared server for storing project files. You will need to be granted access to the folders for the specific projects you are working on. Contact Mike or Joanna to request access.</p>
+<section id="key-syntax-elements" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="key-syntax-elements"><span class="header-section-number">15.1.2</span> Key Syntax Elements</h3>
+<p><strong>CLUSTER</strong> — specifies the clustering variable (e.g., school ID) when data are nested. Used with <code>TYPE = COMPLEX</code> to produce corrected standard errors.</p>
+<p><strong>TYPE = COMPLEX</strong> — accounts for non-independence due to clustering. Use whenever students are nested in classrooms or schools.</p>
+<p><strong>ESTIMATOR = WLSMV</strong> — recommended for ordinal (Likert) outcomes. Use <code>MLR</code> for continuous outcomes.</p>
+<p><strong>BY</strong> — defines the factor structure. <code>selfmgmt BY selsm1 selsm2 selsm3 selsm4</code> means the factor <code>selfmgmt</code> is measured by those four indicators.</p>
+<p><strong>STDYX</strong> — requests fully standardized output, including standardized factor loadings.</p>
+<p><strong>MODINDICES(10)</strong> — requests modification indices greater than 10, which can help identify sources of misfit.</p>
 </section>
-<section id="google-shared-drive" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</h2>
-<p>We use <a href="https://support.google.com/a/users/answer/9310351#!/">Google Shared Drive</a> primarily for taking notes during meetings.</p>
-<p><strong>Setup</strong>: Users who do not already have an Eli Apps account should contact ITS to request a “no-mail Eli Apps account” associated with their NetID. Users who have an Eli Apps account should send a request to <a href="mailto:research.computing@yale.edu">research.computing@yale.edu</a> to ask that they enable Team Drive for their Eli Apps account. See <a href="https://docs.ycrc.yale.edu/data/google-drive/">https://docs.ycrc.yale.edu/data/google-drive/</a> for more information.</p>
+<section id="interpreting-cfa-output" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="interpreting-cfa-output"><span class="header-section-number">15.1.3</span> Interpreting CFA Output</h3>
+<p>After running the model, check the following in order:</p>
+<ol type="1">
+<li><strong>Model fit</strong> — CFI, TLI, RMSEA, SRMR (see fit guidelines in the <a href="mplus-overview.qmd">Mplus Overview</a> chapter)</li>
+<li><strong>Factor loadings</strong> — standardized loadings (STDYX) should generally be .40 or higher</li>
+<li><strong>Modification indices</strong> — large MIs suggest areas of misfit; consider theoretically motivated modifications</li>
+<li><strong>Factor correlations</strong> — very high correlations (&gt; .85) between factors may indicate discriminant validity problems</li>
+</ol>
 </section>
-<section id="open-science-framework-osf" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</h2>
-<p>We use <a href="https://osf.io/">OSF</a> to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the <a href="https://www.youtube.com/watch?v=dLEIhJESIQA&amp;feature=youtu.be">OSF 101 video</a> is a good starting point.</p>
+<section id="higher-order-cfa" class="level3" data-number="15.1.4">
+<h3 data-number="15.1.4" class="anchored" data-anchor-id="higher-order-cfa"><span class="header-section-number">15.1.4</span> Higher-Order CFA</h3>
+<p>To specify a second-order factor (e.g., a general SEL factor underlying the three subscales):</p>
+<pre><code>MODEL:
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+  sel BY selfmgmt socaware relskill;</code></pre>
 </section>
-<section id="github" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
-<p>We use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the <a href="https://github.com/cwer-yale">cwer-yale</a> organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other’s work, and maintain a complete history of analytical decisions.</p>
-<p>New team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git &amp; GitHub chapter of this guide for a walkthrough (coming soon).</p>
+<section id="bifactor-cfa" class="level3" data-number="15.1.5">
+<h3 data-number="15.1.5" class="anchored" data-anchor-id="bifactor-cfa"><span class="header-section-number">15.1.5</span> Bifactor CFA</h3>
+<p>To specify a bifactor model (general factor + specific factors):</p>
+<pre><code>MODEL:
+  sel BY selsm1 selsm2 selsm3 selsm4
+         selsa1 selsa2 selsa3
+         selrs1 selrs2 selrs3;
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+
+  sel WITH selfmgmt@0;
+  sel WITH socaware@0;
+  sel WITH relskill@0;
+  selfmgmt WITH socaware@0;
+  selfmgmt WITH relskill@0;
+  socaware WITH relskill@0;</code></pre>
+<p>The <code>@0</code> fixes the correlation between factors to zero, which is required for a bifactor model.</p>
+</section>
+</section>
+<section id="exploratory-factor-analysis-efa" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="exploratory-factor-analysis-efa"><span class="header-section-number">15.2</span> Exploratory Factor Analysis (EFA)</h2>
+<p>EFA is used when the factor structure is unknown or you want to explore how many factors underlie a set of items. Unlike CFA, EFA does not fix items to specific factors — it allows all items to load on all factors.</p>
+<section id="basic-efa-syntax" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="basic-efa-syntax"><span class="header-section-number">15.2.1</span> Basic EFA Syntax</h3>
+<pre><code>TITLE:    EFA - SEL items
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = selsm1 selsm2 selsm3 selsm4
+          selsa1 selsa2 selsa3
+          selrs1 selrs2 selrs3;
+  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  TYPE = EFA 1 4;
+  ESTIMATOR = WLSMV;
+  ROTATION = GEOMIN;
+
+OUTPUT:
+  STDYX;</code></pre>
+<p><code>TYPE = EFA 1 4</code> tells Mplus to extract and compare solutions from 1 to 4 factors. Review the fit indices and interpretability of each solution to determine the best number of factors.</p>
+<p><strong>ROTATION = GEOMIN</strong> — an oblique rotation that allows factors to correlate. Preferred over orthogonal rotations (like varimax) for most psychological constructs, which are rarely truly independent.</p>
+</section>
+<section id="deciding-on-the-number-of-factors" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="deciding-on-the-number-of-factors"><span class="header-section-number">15.2.2</span> Deciding on the Number of Factors</h3>
+<p>Use multiple criteria:</p>
+<ul>
+<li><strong>Fit indices</strong> — look for acceptable CFI, TLI, RMSEA across solutions</li>
+<li><strong>Eigenvalues</strong> — factors with eigenvalues &gt; 1 are traditionally retained, though this rule alone is insufficient</li>
+<li><strong>Interpretability</strong> — the factor solution should make theoretical sense</li>
+<li><strong>Parsimony</strong> — prefer fewer factors when fit is similar across solutions</li>
+</ul>
+</section>
+<section id="esem" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="esem"><span class="header-section-number">15.2.3</span> ESEM</h3>
+<p>Exploratory Structural Equation Modeling (ESEM) combines CFA and EFA — items are primarily associated with one factor but allowed to have small cross-loadings on other factors. This is often more realistic than pure CFA and produces better fit in psychological data:</p>
+<pre><code>ANALYSIS:
+  TYPE = EFA 3 3;
+  ESTIMATOR = WLSMV;
+  ROTATION = TARGET;
+
+MODEL:
+  ! Target rotation specifying expected primary loadings
+  f1 BY selsm1~1 selsm2~1 selsm3~1 selsm4~1
+        selsa1~0 selsa2~0 selsa3~0
+        selrs1~0 selrs2~0 selrs3~0;
+  f2 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0
+        selsa1~1 selsa2~1 selsa3~1
+        selrs1~0 selrs2~0 selrs3~0;
+  f3 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0
+        selsa1~0 selsa2~0 selsa3~0
+        selrs1~1 selrs2~1 selrs3~1;</code></pre>
+<p><code>~1</code> indicates a target loading of 1 (item primarily loads on this factor) and <code>~0</code> indicates a target of 0 (item expected to have near-zero loading on this factor).</p>
+</section>
+</section>
+<section id="running-cfaefa-via-mplusautomation" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="running-cfaefa-via-mplusautomation"><span class="header-section-number">15.3</span> Running CFA/EFA via MplusAutomation</h2>
+<p>The full R workflow for running CFA from R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load cleaned data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Rename to Mplus-compatible names</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm1 =</span> sel_selfmgmt_1,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm2 =</span> sel_selfmgmt_2,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm3 =</span> sel_selfmgmt_3,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm4 =</span> sel_selfmgmt_4,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa1 =</span> sel_socaware_1,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa2 =</span> sel_socaware_2,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa3 =</span> sel_socaware_3,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">selrs1 =</span> sel_relskill_1,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">selrs2 =</span> sel_relskill_2,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">selrs3 =</span> sel_relskill_3,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">schlid =</span> school_id,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">stuid  =</span> student_id</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Write Mplus data file</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Run model (assumes cfa_model.inp is already written)</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.inp"</span>))</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Read results</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.out"</span>))</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Extract fit indices</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> output<span class="sc">$</span>summaries <span class="sc">|&gt;</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB, SRMR)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract standardized loadings</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized <span class="sc">|&gt;</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"BY"</span>, paramHeader))</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Save results</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(fit, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_fit.csv"</span>))</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(loadings, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_loadings.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="model-comparison" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="model-comparison"><span class="header-section-number">15.4</span> Model Comparison</h2>
+<p>To compare nested models (e.g., one-factor vs.&nbsp;three-factor), use the DIFFTEST procedure with WLSMV:</p>
+<p>In the baseline model input, add:</p>
+<pre><code>SAVEDATA:
+  DIFFTEST = baseline.dat;</code></pre>
+<p>In the comparison model input, add:</p>
+<pre><code>ANALYSIS:
+  DIFFTEST = baseline.dat;</code></pre>
+<p>With MplusAutomation, run both models and compare fit indices:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run both models</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all output</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>all_output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>), <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare fit</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>fit_comparison <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_output, <span class="cf">function</span>(m) m<span class="sc">$</span>summaries) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(model, CFI, TLI, RMSEA_Estimate, SRMR)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_comparison)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -746,13 +983,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/about/team-member.html" class="pagination-link" aria-label="Being a Team Member">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span>
+      <a href="../../chapters/analysis/ggplot2.html" class="pagination-link" aria-label="Visualization with ggplot2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Visualization with ggplot2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/tools/github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/lme4.html" class="pagination-link" aria-label="Multilevel Modeling with lme4">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

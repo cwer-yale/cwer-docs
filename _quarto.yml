@@ -23,26 +23,24 @@ book:
         - chapters/tools/tools-overview.qmd
         - chapters/tools/github.qmd
         - chapters/tools/ides.qmd
+        - chapters/tools/claude-code.qmd
         - chapters/tools/ai-prompts.qmd
-        - chapters/workflows/r/r-basics.qmd
-        - chapters/workflows/r/tidyverse.qmd
-        - chapters/workflows/r/ggplot2.qmd
-        - chapters/workflows/r/quarto.qmd
-        - chapters/workflows/r/lme4.qmd
-        - chapters/workflows/r/mplus-automation.qmd
-        - chapters/workflows/r/renv.qmd
-        - chapters/workflows/mplus/mplus-overview.qmd
-        - chapters/workflows/mplus/mplus-cfa-efa.qmd
-        - chapters/workflows/mplus/mplus-path.qmd
-        - chapters/workflows/mplus/mplus-montecarlo.qmd
-        - chapters/workflows/mplus/mplus-irt.qmd
+        - chapters/workflows/r/r.qmd
+        - chapters/workflows/mplus/mplus.qmd
     - part: "Data Management"
       chapters:
         - chapters/data/project-organization.qmd
         - chapters/data/data-management.qmd
+        - chapters/data/data-wrangling.qmd
     - part: "Statistical Analysis"
       chapters:
         - chapters/analysis/statistical-analysis.qmd
+        - chapters/analysis/ggplot2.qmd
+        - chapters/analysis/factor-analysis.qmd
+        - chapters/analysis/lme4.qmd
+        - chapters/analysis/path-analysis.qmd
+        - chapters/analysis/irt.qmd
+        - chapters/analysis/power-analysis.qmd
 
 format:
   html:

@@ -1,0 +1,236 @@
+# R
+
+R is a free, open-source programming language designed for statistical computing and data analysis. Unlike point-and-click software like SPSS, R requires you to write code — instructions that tell the software exactly what to do with your data. This has a steeper learning curve at first, but pays off quickly: R code is reproducible, shareable, and far more flexible than menu-driven software.
+
+R works through **packages** — collections of functions written by the research community that extend what R can do. Base R comes with a set of built-in functions, and packages add specialized capabilities on top of that.
+
+## Installing R
+
+Download and install R from [cran.r-project.org](https://cran.r-project.org). For the IDE to write and run R code, see the [IDEs](../tools/ides.qmd) chapter.
+
+## R Basics
+
+### The Console and Scripts
+
+When you open a project in Positron, you will see a **Console** panel at the bottom. This is where R runs. You can type commands directly into the console and press Enter to run them:
+```r
+2 + 2
+```
+
+However, for any real analysis you should write code in a **script file** rather than typing directly into the console. In CWER we use **Quarto documents** (`.qmd`) as our script files — these combine R code and written explanation in a single document. See the Quarto section below for more.
+
+### Objects and Assignment
+
+R stores information in **objects**. You create an object by assigning a value to a name using `<-`:
+```r
+my_number <- 42
+my_name <- "Michael"
+```
+
+Once created, you can use the object by name:
+```r
+my_number * 2
+```
+
+Object names should follow the same snake_case conventions described in the [Data Management](../../data/data-management.qmd) chapter.
+
+### Functions
+
+R does things through **functions**. A function takes inputs (called **arguments**), does something with them, and returns an output:
+```r
+mean(c(1, 2, 3, 4, 5))
+```
+
+Here `mean()` is the function and `c(1, 2, 3, 4, 5)` is the argument — a vector of five numbers. The function returns their mean: `3`.
+
+You will spend most of your time in R calling functions from packages. The pattern is always the same: `function_name(argument1, argument2, ...)`.
+
+### Getting Help
+
+To see the documentation for any function, type `?` followed by the function name:
+```r
+?mean
+```
+
+### Installing and Loading Packages
+
+Install a package once using `install.packages()`:
+```r
+install.packages("tidyverse")
+```
+
+Load a package at the start of each session using `library()`:
+```r
+library(tidyverse)
+```
+
+You only need to install a package once, but you need to load it with `library()` every time you start a new R session. In CWER projects that use `renv`, package installation is managed automatically — see the renv section below.
+
+## Quarto for Reporting
+
+Quarto documents (`.qmd`) are the standard format for analysis scripts and reports in CWER. A Quarto document weaves together R code, output, and written narrative in a single file. When you **render** a Quarto document, it runs all the code and produces a polished HTML or Word document with results embedded.
+
+This means your analysis and your report are the same document — there is no copying and pasting results from R into Word, which eliminates a major source of reporting errors.
+
+### Document Structure
+
+A Quarto document has three parts:
+
+**1. YAML header** — document metadata at the top, surrounded by `---`:
+```yaml
+---
+title: "Wave 1 Descriptive Analysis"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+status: development
+---
+```
+
+**2. Code chunks** — R code with chunk options prefixed by `#|`:
+```r
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(here)
+
+data <- read_csv(here("data", "cleaned", "wave1_cleaned.csv"))
+```
+
+**3. Narrative text** — written explanation using Markdown formatting between code chunks.
+
+### Code Chunk Options
+
+| Option | Values | Effect |
+|---|---|---|
+| `label` | any text | Names the chunk — required for figures |
+| `echo` | `true`/`false` | Show or hide the code |
+| `warning` | `true`/`false` | Show or hide warnings |
+| `message` | `true`/`false` | Show or hide messages |
+| `eval` | `true`/`false` | Run or skip the chunk |
+| `fig-width` | number | Figure width in inches |
+| `fig-height` | number | Figure height in inches |
+| `fig-cap` | text | Figure caption |
+
+### The Setup Chunk
+
+Every Quarto document should begin with a setup chunk that loads packages, reads data, and recodes missing values:
+```r
+#| label: setup
+#| message: false
+#| warning: false
+
+# ============================================================
+# Script:  02_descriptives.qmd
+# Author:  Your Name (your.email@yale.edu)
+# Created: 2025-10-01
+# Purpose: Descriptive statistics for Wave 1 survey data
+# Inputs:  data/cleaned/wave1_cleaned.csv
+# Outputs: output/tables/descriptives_table.docx
+# AI:      Code developed with Claude assistance
+# Review:  Reviewed by Michael Strambler, 2025-10-05
+# ============================================================
+
+library(tidyverse)
+library(here)
+
+data <- read_csv(here("data", "cleaned", "wave1_cleaned.csv"))
+
+data <- data |>
+  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))
+```
+
+### Inline Code
+
+Embed R results directly in narrative text:
+```markdown
+The sample included `r nrow(data)` students across 
+`r n_distinct(data$school_id)` schools.
+```
+
+When rendered, this inserts the actual values — eliminating manual updating of numbers when data changes.
+
+### Rendering
+
+Render from the Positron Terminal:
+```bash
+quarto render code/02_descriptives.qmd
+```
+
+Or click the **Render** button at the top of the file in Positron.
+
+### Output Formats for CWER
+
+| Use case | Recommended format |
+|---|---|
+| Internal analysis and review | HTML with `embed-resources: true` |
+| Sharing with partners or stakeholders | Word (`.docx`) |
+| Publication supplementary materials | HTML or PDF |
+
+## Managing Packages with renv
+
+`renv` manages R package versions at the project level. Without it, R installs packages into a single system-wide library shared across all your projects — meaning updating a package for one project can silently break another. `renv` gives each project its own isolated package library and records exact versions in a lockfile.
+
+### Setting Up renv
+
+With your project open in Positron, run in the R console:
+```r
+install.packages("renv")
+renv::init()
+```
+
+`renv` scans your project for packages, installs them into a project-specific library, and creates:
+
+- `renv.lock` — records the exact version of every package
+- `.Rprofile` — automatically activates renv when R starts in this project
+
+When renv is active, you will see this message at the start of every R session:
+```
+- Project '~/Documents/GitHub/my-project' loaded. [renv 1.2.0]
+```
+
+### Installing New Packages
+```r
+install.packages("lme4")
+renv::snapshot()
+```
+
+Always snapshot after installing new packages, then commit `renv.lock` to GitHub.
+
+### Restoring Packages
+
+When a teammate clones the project:
+```r
+renv::restore()
+```
+
+This installs exactly the versions recorded in `renv.lock`.
+
+### Checking Status
+```r
+renv::status()
+```
+
+### What Gets Committed to GitHub
+
+| File / Folder | Commit? |
+|---|---|
+| `renv.lock` | Yes — essential for reproducibility |
+| `.Rprofile` | Yes — activates renv automatically |
+| `renv/library/` | No — large, can be restored from lockfile |
+
+## CWER R Conventions
+
+- Use snake_case for all object and variable names
+- Always use `here()` for file paths — never hardcode absolute paths
+- Load all packages at the top of each script in the setup chunk
+- Recode CWER missing data codes (`-99`, `-98`, `-97`, `-96`) to `NA` before any analysis
+- Never overwrite raw data — read from `data/raw/`, write to `data/cleaned/`
+- Use `renv` for all projects and commit `renv.lock` to GitHub
+- Include a script header with author, purpose, inputs, outputs, AI use, and review status

@@ -1,0 +1,182 @@
+# Mplus
+
+Mplus is a statistical software package designed for latent variable modeling. It handles a wide range of analyses that are difficult or impossible in general-purpose software like R or Stata — confirmatory factor analysis, structural equation modeling, multilevel modeling with latent variables, mixture modeling, and more. CWER uses Mplus primarily for psychometric work (CFA, EFA, IRT) and for analyses that involve latent variables, missing data via FIML, or complex model structures.
+
+## How Mplus Works
+
+Mplus is syntax-driven — you write a plain text input file (`.inp`) that specifies your data, variables, model, and output options. Mplus reads this file, runs the analysis, and writes results to an output file (`.out`). There is no point-and-click interface.
+
+A Mplus input file has a standard structure with named sections:
+```
+TITLE:    A description of the analysis
+DATA:     Where the data file is
+VARIABLE: Variable names and analysis options
+ANALYSIS: Estimator and model options
+MODEL:    The model specification
+OUTPUT:   What output to request
+```
+
+Each section ends when the next one begins. Always follow this order.
+
+## The CWER Workflow: Mplus via MplusAutomation
+
+Rather than running Mplus directly and manually transferring results, CWER uses **MplusAutomation** — an R package that lets you prepare data, run Mplus models, and read results back into R without leaving your analysis environment. This keeps the entire workflow reproducible and within a single script.
+
+The general workflow is:
+
+1. **Prepare data in R** — clean, recode, and rename variables to Mplus-compatible names (8 characters or fewer)
+2. **Write the `.dat` file** — use `prepareMplusData()` to export data in Mplus format
+3. **Write the `.inp` file** — write your Mplus syntax stored in `code/mplus/`
+4. **Run the model** — use `runModels()` to call Mplus from R
+5. **Read results** — use `readModels()` to import output back into R
+6. **Report** — extract fit indices, parameter estimates, and other results for tables and figures
+
+### Installing MplusAutomation
+```r
+install.packages("MplusAutomation")
+library(MplusAutomation)
+```
+
+Mplus must be installed on your computer for MplusAutomation to work. It calls Mplus in the background.
+
+### Preparing Data
+
+`prepareMplusData()` writes an R dataframe to a Mplus-compatible `.dat` file:
+```r
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+```
+
+### Variable Names in Mplus
+
+Mplus enforces an 8-character limit on variable names. Rename your full snake_case variable names to short Mplus-compatible names before calling `prepareMplusData()` and document the mapping in your script header:
+```r
+data_mplus <- data |>
+  rename(
+    selsm1 = sel_selfmgmt_1,
+    selsm2 = sel_selfmgmt_2,
+    selsa1 = sel_socaware_1,
+    schlid = school_id,
+    stuid  = student_id
+  )
+```
+
+### Running Models
+```r
+# Run a single model
+runModels(here("code", "mplus", "cfa_model.inp"))
+
+# Run all models in a folder
+runModels(here("code", "mplus"))
+```
+
+### Reading Results
+```r
+# Read a single output file
+output <- readModels(here("code", "mplus", "cfa_model.out"))
+
+# Read all output files in a folder
+all_output <- readModels(here("code", "mplus"), recursive = FALSE)
+
+# Key elements of the output object
+output$summaries                        # Fit indices
+output$parameters$unstandardized        # Unstandardized estimates
+output$parameters$stdyx.standardized    # Standardized estimates
+output$parameters$indirect              # Indirect effects
+```
+
+### A Complete MplusAutomation Workflow
+```r
+library(tidyverse)
+library(here)
+library(MplusAutomation)
+
+# 1. Load cleaned data
+data <- readRDS(here("data", "cleaned", "wave1_cleaned.rds"))
+
+# 2. Rename variables to Mplus-compatible names
+# Mapping: sel_selfmgmt_1 -> selsm1, school_id -> schlid
+data_mplus <- data |>
+  rename(
+    selsm1 = sel_selfmgmt_1,
+    selsm2 = sel_selfmgmt_2,
+    selsm3 = sel_selfmgmt_3,
+    selsa1 = sel_socaware_1,
+    selsa2 = sel_socaware_2,
+    schlid = school_id,
+    stuid  = student_id
+  )
+
+# 3. Write Mplus data file
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+
+# 4. Run model
+runModels(here("code", "mplus", "cfa_model.inp"))
+
+# 5. Read results
+output <- readModels(here("code", "mplus", "cfa_model.out"))
+
+# 6. Extract and save fit indices
+fit <- output$summaries |>
+  select(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB, SRMR)
+
+write_csv(fit, here("output", "tables", "cfa_fit.csv"))
+
+# 7. Extract and save standardized loadings
+loadings <- output$parameters$stdyx.standardized |>
+  filter(grepl("BY", paramHeader))
+
+write_csv(loadings, here("output", "tables", "cfa_loadings.csv"))
+```
+
+## File Organization
+
+Store all Mplus-related files in a dedicated `code/mplus/` subfolder:
+```
+code/
+├── 02_cfa_analysis.qmd        # R script using MplusAutomation
+└── mplus/
+    ├── wave1_data.dat         # Data file written by prepareMplusData()
+    ├── cfa_model.inp          # Mplus input syntax
+    ├── cfa_model.out          # Mplus output (generated automatically)
+    └── cfa_model.gh5          # Mplus graph file (generated automatically)
+```
+
+Commit `.inp` files to GitHub — they are your analysis syntax and should be version controlled. Do not commit `.dat` files if they contain sensitive participant data.
+
+## Missing Data
+
+Declare your missing data codes in the VARIABLE section:
+```
+VARIABLE:
+  MISSING = ALL(-99 -98 -97 -96);
+```
+
+Mplus handles missing data via **Full Information Maximum Likelihood (FIML)** by default when using the ML estimator. FIML uses all available data to estimate parameters without imputation, which is generally preferred over listwise deletion.
+
+## Estimators
+
+| Outcome Type | Recommended Estimator |
+|---|---|
+| Continuous, normally distributed | ML |
+| Continuous, non-normal | MLR (robust ML) |
+| Ordered categorical (Likert) | WLSMV |
+| Binary | WLSMV |
+
+MLR is a good default for most CWER work with continuous outcomes. WLSMV is the standard choice for ordinal data such as Likert-scale items.
+
+## Fit Index Guidelines
+
+| Index | Acceptable | Good |
+|---|---|---|
+| CFI | ≥ .90 | ≥ .95 |
+| TLI | ≥ .90 | ≥ .95 |
+| RMSEA | ≤ .08 | ≤ .06 |
+| SRMR | ≤ .10 | ≤ .08 |
+
+These are guidelines, not hard cutoffs. Always interpret fit indices in context and report multiple indices.

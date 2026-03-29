@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Tools Overview – Child Wellbeing and Education Research</title>
+<title>19&nbsp; Mplus: Monte Carlo Power Analysis – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/tools/github.html" rel="next">
-<link href="../../chapters/about/team-member.html" rel="prev">
+<link href="../../chapters/analysis/irt.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/power-analysis.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span></a>
   </div>
 </li>
@@ -271,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/power-analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/analysis/power-analysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span></a>
   </div>
 </li>
@@ -287,20 +321,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ms-teams" id="toc-ms-teams" class="nav-link active" data-scroll-target="#ms-teams"><span class="header-section-number">4.1</span> MS Teams</a></li>
-  <li><a href="#storage-yale" id="toc-storage-yale" class="nav-link" data-scroll-target="#storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</a></li>
-  <li><a href="#google-shared-drive" id="toc-google-shared-drive" class="nav-link" data-scroll-target="#google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</a></li>
-  <li><a href="#open-science-framework-osf" id="toc-open-science-framework-osf" class="nav-link" data-scroll-target="#open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">4.5</span> GitHub</a></li>
+  <li><a href="#what-is-monte-carlo-simulation" id="toc-what-is-monte-carlo-simulation" class="nav-link active" data-scroll-target="#what-is-monte-carlo-simulation"><span class="header-section-number">19.1</span> What is Monte Carlo Simulation?</a></li>
+  <li><a href="#basic-monte-carlo-syntax" id="toc-basic-monte-carlo-syntax" class="nav-link" data-scroll-target="#basic-monte-carlo-syntax"><span class="header-section-number">19.2</span> Basic Monte Carlo Syntax</a>
+  <ul class="collapse">
+  <li><a href="#key-syntax-elements" id="toc-key-syntax-elements" class="nav-link" data-scroll-target="#key-syntax-elements"><span class="header-section-number">19.2.1</span> Key Syntax Elements</a></li>
+  </ul></li>
+  <li><a href="#specifying-population-parameter-values" id="toc-specifying-population-parameter-values" class="nav-link" data-scroll-target="#specifying-population-parameter-values"><span class="header-section-number">19.3</span> Specifying Population Parameter Values</a></li>
+  <li><a href="#power-analysis-for-regression-and-path-models" id="toc-power-analysis-for-regression-and-path-models" class="nav-link" data-scroll-target="#power-analysis-for-regression-and-path-models"><span class="header-section-number">19.4</span> Power Analysis for Regression and Path Models</a></li>
+  <li><a href="#power-analysis-for-indirect-effects" id="toc-power-analysis-for-indirect-effects" class="nav-link" data-scroll-target="#power-analysis-for-indirect-effects"><span class="header-section-number">19.5</span> Power Analysis for Indirect Effects</a></li>
+  <li><a href="#accounting-for-missing-data" id="toc-accounting-for-missing-data" class="nav-link" data-scroll-target="#accounting-for-missing-data"><span class="header-section-number">19.6</span> Accounting for Missing Data</a></li>
+  <li><a href="#running-monte-carlo-via-mplusautomation" id="toc-running-monte-carlo-via-mplusautomation" class="nav-link" data-scroll-target="#running-monte-carlo-via-mplusautomation"><span class="header-section-number">19.7</span> Running Monte Carlo via MplusAutomation</a></li>
+  <li><a href="#finding-the-required-sample-size" id="toc-finding-the-required-sample-size" class="nav-link" data-scroll-target="#finding-the-required-sample-size"><span class="header-section-number">19.8</span> Finding the Required Sample Size</a></li>
+  <li><a href="#reporting-monte-carlo-results" id="toc-reporting-monte-carlo-results" class="nav-link" data-scroll-target="#reporting-monte-carlo-results"><span class="header-section-number">19.9</span> Reporting Monte Carlo Results</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/power-analysis.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></h1>
 </div>
 
 
@@ -317,28 +358,198 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All CWER members should set up accounts with OSF, Google Drive, and GitHub, and should be added to the group’s MS Teams workspace. The sections below describe each tool and how we use it.</p>
-<section id="ms-teams" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ms-teams"><span class="header-section-number">4.1</span> MS Teams</h2>
-<p>MS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at <a href="https://teams.microsoft.com">teams.microsoft.com</a> or via the desktop app.</p>
+<p>Monte Carlo simulation in Mplus is used to determine the sample size needed to detect effects of a specified magnitude with adequate statistical power. Rather than relying on simple formulas (which assume simple designs), Monte Carlo simulation accounts for the complexity of your actual model — including latent variables, missing data, clustering, and multiple outcomes. CWER uses Monte Carlo simulation for grant proposals and study design decisions.</p>
+<section id="what-is-monte-carlo-simulation" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="what-is-monte-carlo-simulation"><span class="header-section-number">19.1</span> What is Monte Carlo Simulation?</h2>
+<p>Monte Carlo simulation works by:</p>
+<ol type="1">
+<li>Specifying the population model — the “true” parameter values you expect based on theory or prior research</li>
+<li>Generating a large number of datasets (typically 1000–10000) from that population model at a given sample size</li>
+<li>Fitting the model to each dataset and recording whether parameters are statistically significant</li>
+<li>Calculating power as the proportion of datasets in which the parameter of interest is significant</li>
+</ol>
+<p>This gives you a direct, empirical estimate of power for your specific model and design.</p>
 </section>
-<section id="storage-yale" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</h2>
-<p>Storage @ Yale is what we use as a shared server for storing project files. You will need to be granted access to the folders for the specific projects you are working on. Contact Mike or Joanna to request access.</p>
+<section id="basic-monte-carlo-syntax" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="basic-monte-carlo-syntax"><span class="header-section-number">19.2</span> Basic Monte Carlo Syntax</h2>
+<p>The following example estimates power for a CFA model with one factor and six indicators:</p>
+<pre><code>TITLE:    Monte Carlo - CFA power analysis
+
+MONTECARLO:
+  NAMES = y1 y2 y3 y4 y5 y6;
+  NOBS = 200;
+  NREP = 1000;
+  SEED = 12345;
+
+MODEL POPULATION:
+  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;
+  f@1;
+  y1-y6*0.51;
+
+MODEL:
+  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;
+  f@1;
+  y1-y6*0.51;
+
+OUTPUT:
+  TECH9;</code></pre>
+<section id="key-syntax-elements" class="level3" data-number="19.2.1">
+<h3 data-number="19.2.1" class="anchored" data-anchor-id="key-syntax-elements"><span class="header-section-number">19.2.1</span> Key Syntax Elements</h3>
+<p><strong>MONTECARLO</strong> — replaces the DATA section; specifies simulation parameters instead of a data file.</p>
+<p><strong>NOBS</strong> — sample size to simulate. Run multiple analyses at different sample sizes to find where power reaches .80.</p>
+<p><strong>NREP</strong> — number of replications. 1000 is a reasonable starting point; 10000 gives more stable estimates.</p>
+<p><strong>SEED</strong> — random seed for reproducibility. Always set a seed so results can be replicated.</p>
+<p><strong>MODEL POPULATION</strong> — the “true” population model used to generate data. Specify parameter values based on theory, prior research, or pilot data.</p>
+<p><strong>MODEL</strong> — the analysis model fit to each generated dataset. Usually matches MODEL POPULATION, but can differ to test robustness.</p>
+<p><strong>TECH9</strong> — requests information about any convergence failures across replications.</p>
 </section>
-<section id="google-shared-drive" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</h2>
-<p>We use <a href="https://support.google.com/a/users/answer/9310351#!/">Google Shared Drive</a> primarily for taking notes during meetings.</p>
-<p><strong>Setup</strong>: Users who do not already have an Eli Apps account should contact ITS to request a “no-mail Eli Apps account” associated with their NetID. Users who have an Eli Apps account should send a request to <a href="mailto:research.computing@yale.edu">research.computing@yale.edu</a> to ask that they enable Team Drive for their Eli Apps account. See <a href="https://docs.ycrc.yale.edu/data/google-drive/">https://docs.ycrc.yale.edu/data/google-drive/</a> for more information.</p>
 </section>
-<section id="open-science-framework-osf" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</h2>
-<p>We use <a href="https://osf.io/">OSF</a> to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the <a href="https://www.youtube.com/watch?v=dLEIhJESIQA&amp;feature=youtu.be">OSF 101 video</a> is a good starting point.</p>
+<section id="specifying-population-parameter-values" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="specifying-population-parameter-values"><span class="header-section-number">19.3</span> Specifying Population Parameter Values</h2>
+<p>The quality of a Monte Carlo analysis depends entirely on how well your population parameter values reflect reality. Sources for these values:</p>
+<ul>
+<li><strong>Prior research</strong> — meta-analyses or studies on similar constructs and populations</li>
+<li><strong>Pilot data</strong> — if you have preliminary data, use it to estimate parameters</li>
+<li><strong>Theory</strong> — for completely novel studies, use theory to set plausible bounds and run sensitivity analyses across a range of values</li>
+</ul>
+<p>For CFA, the key parameters are factor loadings and residual variances. If you specify a standardized loading of .70, the residual variance for that indicator is 1 - .70² = .51.</p>
 </section>
-<section id="github" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
-<p>We use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the <a href="https://github.com/cwer-yale">cwer-yale</a> organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other’s work, and maintain a complete history of analytical decisions.</p>
-<p>New team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git &amp; GitHub chapter of this guide for a walkthrough (coming soon).</p>
+<section id="power-analysis-for-regression-and-path-models" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="power-analysis-for-regression-and-path-models"><span class="header-section-number">19.4</span> Power Analysis for Regression and Path Models</h2>
+<p>For a path model testing whether professional development predicts teacher SEL practices:</p>
+<pre><code>TITLE:    Monte Carlo - Path model power analysis
+
+MONTECARLO:
+  NAMES = pd tchsel stusel;
+  NOBS = 150;
+  NREP = 1000;
+  SEED = 54321;
+
+MODEL POPULATION:
+  tchsel ON pd*0.30;
+  stusel ON tchsel*0.35 pd*0.10;
+  pd*1.00;
+  tchsel*0.91;
+  stusel*0.87;
+
+MODEL:
+  tchsel ON pd;
+  stusel ON tchsel pd;
+
+OUTPUT:
+  TECH9;</code></pre>
+<p>The asterisked values are population parameters. Here <code>tchsel ON pd*0.30</code> specifies that the path from PD to teacher SEL has a population value of 0.30 (standardized).</p>
+</section>
+<section id="power-analysis-for-indirect-effects" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="power-analysis-for-indirect-effects"><span class="header-section-number">19.5</span> Power Analysis for Indirect Effects</h2>
+<p>To estimate power for a mediated (indirect) effect:</p>
+<pre><code>TITLE:    Monte Carlo - Mediation power analysis
+
+MONTECARLO:
+  NAMES = x m y;
+  NOBS = 200;
+  NREP = 1000;
+  SEED = 99999;
+
+MODEL POPULATION:
+  m ON x*0.40;
+  y ON m*0.35 x*0.15;
+  x*1.00;
+  m*0.84;
+  y*0.84;
+
+MODEL:
+  m ON x (a);
+  y ON m (b);
+  y ON x;
+
+MODEL CONSTRAINT:
+  NEW(indirect);
+  indirect = a*b;
+
+OUTPUT:
+  TECH9;</code></pre>
+<p>The power for the indirect effect is reported in the output as the proportion of replications in which <code>indirect</code> is significant.</p>
+</section>
+<section id="accounting-for-missing-data" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="accounting-for-missing-data"><span class="header-section-number">19.6</span> Accounting for Missing Data</h2>
+<p>To simulate power under planned missing data designs (e.g., a three-form design) or anticipated attrition:</p>
+<pre><code>MONTECARLO:
+  NAMES = y1 y2 y3 y4 y5 y6;
+  NOBS = 250;
+  NREP = 1000;
+  SEED = 12345;
+  PATMISS = y1(0.10) y2(0.10) y3(0.20) y4(0.20);
+  PATPROB = 1.0;</code></pre>
+<p><code>PATMISS</code> specifies the proportion of missing data for each variable. This allows you to estimate power under realistic attrition scenarios.</p>
+</section>
+<section id="running-monte-carlo-via-mplusautomation" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="running-monte-carlo-via-mplusautomation"><span class="header-section-number">19.7</span> Running Monte Carlo via MplusAutomation</h2>
+<p>Monte Carlo analyses can be run from R using the same <code>runModels()</code> and <code>readModels()</code> workflow:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the Monte Carlo simulation</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"montecarlo_cfa.inp"</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read results</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mc_output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"montecarlo_cfa.out"</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract power estimates</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Power is in the parameters section - look for the "Sig" column</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>power <span class="ot">&lt;-</span> mc_output<span class="sc">$</span>parameters<span class="sc">$</span>unstandardized <span class="sc">|&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(paramHeader, param, pct_sig_coef)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(power)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>pct_sig_coef</code> column gives the proportion of replications in which each parameter was statistically significant — this is your power estimate.</p>
+</section>
+<section id="finding-the-required-sample-size" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="finding-the-required-sample-size"><span class="header-section-number">19.8</span> Finding the Required Sample Size</h2>
+<p>Run the same model at multiple sample sizes and plot power as a function of N:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define sample sizes to test</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sample_sizes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">250</span>, <span class="dv">300</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run models at each N</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (assumes you have separate .inp files for each N, or modify programmatically)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(sample_sizes, <span class="cf">function</span>(n) {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the output for this N</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="fu">paste0</span>(<span class="st">"mc_n"</span>, n, <span class="st">".out"</span>)))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract power for the parameter of interest</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  power <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>unstandardized <span class="sc">|&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(param <span class="sc">==</span> <span class="st">"TCHSEL"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(pct_sig_coef)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">n =</span> n, <span class="at">power =</span> power)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> power)) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.80</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sample Size"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Power"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Power as a Function of Sample Size"</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"figures"</span>, <span class="st">"power_curve.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reporting-monte-carlo-results" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="reporting-monte-carlo-results"><span class="header-section-number">19.9</span> Reporting Monte Carlo Results</h2>
+<p>A complete report of Monte Carlo power analysis should include:</p>
+<ul>
+<li>The model tested and rationale for parameter values</li>
+<li>Sources for population parameter estimates (prior research, pilot data)</li>
+<li>Number of replications and random seed</li>
+<li>Power estimates for all key parameters at the chosen sample size</li>
+<li>A power curve showing how power varies with sample size</li>
+<li>Any convergence issues (from TECH9 output)</li>
+<li>Sensitivity analyses if parameter estimates are uncertain</li>
+</ul>
 
 
 </section>
@@ -746,14 +957,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/about/team-member.html" class="pagination-link" aria-label="Being a Team Member">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span>
+      <a href="../../chapters/analysis/irt.html" class="pagination-link" aria-label="Mplus: IRT">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/tools/github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

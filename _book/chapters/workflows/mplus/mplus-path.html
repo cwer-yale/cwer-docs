@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; MplusAutomation – Child Wellbeing and Education Research</title>
+<title>17&nbsp; Mplus: Path Analysis – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../chapters/workflows/r/renv.html" rel="next">
-<link href="../../../chapters/workflows/r/lme4.html" rel="prev">
+<link href="../../../chapters/workflows/mplus/mplus-montecarlo.html" rel="next">
+<link href="../../../chapters/workflows/mplus/mplus-cfa-efa.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/r/mplus-automation.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">MplusAutomation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/mplus/mplus-path.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../chapters/workflows/r/mplus-automation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../chapters/workflows/r/mplus-automation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">MplusAutomation</span></span></a>
   </div>
 </li>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../chapters/workflows/mplus/mplus-path.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../chapters/workflows/mplus/mplus-path.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span></a>
   </div>
 </li>
@@ -340,23 +340,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preparing-data-for-mplus" id="toc-preparing-data-for-mplus" class="nav-link active" data-scroll-target="#preparing-data-for-mplus"><span class="header-section-number">13.1</span> Preparing Data for Mplus</a>
-  <ul class="collapse">
-  <li><a href="#handling-variable-name-length" id="toc-handling-variable-name-length" class="nav-link" data-scroll-target="#handling-variable-name-length"><span class="header-section-number">13.1.1</span> Handling Variable Name Length</a></li>
-  </ul></li>
-  <li><a href="#running-a-mplus-model" id="toc-running-a-mplus-model" class="nav-link" data-scroll-target="#running-a-mplus-model"><span class="header-section-number">13.2</span> Running a Mplus Model</a></li>
-  <li><a href="#reading-mplus-output" id="toc-reading-mplus-output" class="nav-link" data-scroll-target="#reading-mplus-output"><span class="header-section-number">13.3</span> Reading Mplus Output</a></li>
-  <li><a href="#a-typical-mplusautomation-workflow" id="toc-a-typical-mplusautomation-workflow" class="nav-link" data-scroll-target="#a-typical-mplusautomation-workflow"><span class="header-section-number">13.4</span> A Typical MplusAutomation Workflow</a></li>
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">13.5</span> Tips</a></li>
+  <li><a href="#what-is-path-analysis" id="toc-what-is-path-analysis" class="nav-link active" data-scroll-target="#what-is-path-analysis"><span class="header-section-number">17.1</span> What is Path Analysis?</a></li>
+  <li><a href="#basic-path-analysis-syntax" id="toc-basic-path-analysis-syntax" class="nav-link" data-scroll-target="#basic-path-analysis-syntax"><span class="header-section-number">17.2</span> Basic Path Analysis Syntax</a></li>
+  <li><a href="#mediation-analysis" id="toc-mediation-analysis" class="nav-link" data-scroll-target="#mediation-analysis"><span class="header-section-number">17.3</span> Mediation Analysis</a></li>
+  <li><a href="#multiple-mediators" id="toc-multiple-mediators" class="nav-link" data-scroll-target="#multiple-mediators"><span class="header-section-number">17.4</span> Multiple Mediators</a></li>
+  <li><a href="#moderation-interaction-effects" id="toc-moderation-interaction-effects" class="nav-link" data-scroll-target="#moderation-interaction-effects"><span class="header-section-number">17.5</span> Moderation (Interaction Effects)</a></li>
+  <li><a href="#running-path-analysis-via-mplusautomation" id="toc-running-path-analysis-via-mplusautomation" class="nav-link" data-scroll-target="#running-path-analysis-via-mplusautomation"><span class="header-section-number">17.6</span> Running Path Analysis via MplusAutomation</a></li>
+  <li><a href="#model-fit-for-path-models" id="toc-model-fit-for-path-models" class="nav-link" data-scroll-target="#model-fit-for-path-models"><span class="header-section-number">17.7</span> Model Fit for Path Models</a></li>
+  <li><a href="#reporting-path-analysis-results" id="toc-reporting-path-analysis-results" class="nav-link" data-scroll-target="#reporting-path-analysis-results"><span class="header-section-number">17.8</span> Reporting Path Analysis Results</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/r/mplus-automation.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">MplusAutomation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../../chapters/workflows/mplus/mplus-path.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">MplusAutomation</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></h1>
 </div>
 
 
@@ -373,122 +373,171 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><code>MplusAutomation</code> is an R package that lets you run Mplus models from within R, keeping your entire workflow in one place — data preparation in R, model estimation in Mplus, results back in R for visualization and reporting. This eliminates the need to manually transfer data and results between software and makes your workflow more reproducible.</p>
-<p>Install and load it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"MplusAutomation"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Mplus must be installed on your computer for <code>MplusAutomation</code> to work. It calls Mplus in the background.</p>
-<section id="preparing-data-for-mplus" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="preparing-data-for-mplus"><span class="header-section-number">13.1</span> Preparing Data for Mplus</h2>
-<p><code>prepareMplusData()</code> writes an R dataframe to a Mplus-compatible <code>.dat</code> file and prints the variable list for your Mplus syntax:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="handling-variable-name-length" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="handling-variable-name-length"><span class="header-section-number">13.1.1</span> Handling Variable Name Length</h3>
-<p>Mplus has an 8-character limit on variable names. If any variable names in your dataframe exceed this limit, <code>prepareMplusData()</code> will warn you. Rename variables to short Mplus-compatible names before calling this function, and document the mapping in your script header.</p>
-<p>A practical approach is to create a renamed version of the data just for Mplus:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm1   =</span> sel_selfmgmt_1,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm2   =</span> sel_selfmgmt_2,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa1   =</span> sel_socaware_1,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rdgscr   =</span> rdg_score,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">schlid   =</span> school_id</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Document the full name-to-Mplus-name mapping in your script header so anyone reading the code can follow along.</p>
+<p>Path analysis is used to test hypothesized relationships among a set of observed variables. Unlike simple regression, path analysis allows you to model multiple outcomes simultaneously, include mediating variables, and test complex causal chains in a single model. CWER uses path analysis to examine how school, classroom, and student-level variables relate to academic and social-emotional outcomes.</p>
+<section id="what-is-path-analysis" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="what-is-path-analysis"><span class="header-section-number">17.1</span> What is Path Analysis?</h2>
+<p>A path model specifies directional relationships (paths) among observed variables. Each path is essentially a regression coefficient. The advantage over running separate regressions is that path analysis accounts for the correlations among predictors and outcomes simultaneously, providing a more accurate picture of the relationships in the data.</p>
+<p>For example, you might hypothesize that professional development predicts teacher SEL practices, which in turn predicts student SEL outcomes — a mediation model. Path analysis tests this entire chain in one model.</p>
 </section>
+<section id="basic-path-analysis-syntax" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="basic-path-analysis-syntax"><span class="header-section-number">17.2</span> Basic Path Analysis Syntax</h2>
+<pre><code>TITLE:    Path analysis - PD to teacher practices to student outcomes
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = schlid tchrid stuid pd_hrs tch_sel stu_sel grd;
+  USEVARIABLES = pd_hrs tch_sel stu_sel grd;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = MLR;
+
+MODEL:
+  ! Teacher SEL practices predicted by PD hours
+  tch_sel ON pd_hrs;
+
+  ! Student SEL predicted by teacher practices and grade
+  stu_sel ON tch_sel grd;
+
+OUTPUT:
+  STDYX;
+  CINTERVAL;</code></pre>
+<p>The <code>ON</code> statement specifies regression paths. <code>stu_sel ON tch_sel grd</code> means student SEL is regressed on teacher SEL practices and grade.</p>
 </section>
-<section id="running-a-mplus-model" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="running-a-mplus-model"><span class="header-section-number">13.2</span> Running a Mplus Model</h2>
-<p>Write your Mplus syntax as a <code>.inp</code> file (see the <a href="../../workflows/mplus/mplus-workflows.qmd">Mplus Workflows</a> chapter), then run it from R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.inp"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This calls Mplus in the background, runs the model, and writes the output to a <code>.out</code> file in the same folder.</p>
-<p>To run all <code>.inp</code> files in a folder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This is useful for running multiple models at once — for example, a set of sensitivity analyses or the same model across multiple subgroups.</p>
+<section id="mediation-analysis" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="mediation-analysis"><span class="header-section-number">17.3</span> Mediation Analysis</h2>
+<p>To test mediation (whether the effect of X on Y operates through M), define the indirect effect using MODEL INDIRECT or MODEL CONSTRAINT:</p>
+<pre><code>TITLE:    Mediation - PD -&gt; teacher SEL -&gt; student SEL
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = schlid pd_hrs tch_sel stu_sel;
+  USEVARIABLES = pd_hrs tch_sel stu_sel;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = MLR;
+  BOOTSTRAP = 1000;
+
+MODEL:
+  tch_sel ON pd_hrs (a);
+  stu_sel ON tch_sel (b);
+  stu_sel ON pd_hrs (c);
+
+MODEL CONSTRAINT:
+  NEW(indirect direct total);
+  indirect = a*b;
+  direct = c;
+  total = a*b + c;
+
+OUTPUT:
+  STDYX;
+  CINTERVAL(BCBOOTSTRAP);</code></pre>
+<p><strong>BOOTSTRAP = 1000</strong> — requests 1000 bootstrap samples for confidence intervals. Required for bias-corrected bootstrap CIs on indirect effects.</p>
+<p><strong>MODEL CONSTRAINT</strong> — defines new parameters (here: indirect, direct, and total effects) as functions of labeled parameters.</p>
+<p><strong>CINTERVAL(BCBOOTSTRAP)</strong> — requests bias-corrected bootstrap confidence intervals, which are preferred over the Sobel test for testing mediation.</p>
 </section>
-<section id="reading-mplus-output" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="reading-mplus-output"><span class="header-section-number">13.3</span> Reading Mplus Output</h2>
-<p>Read results back into R using <code>readModels()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.out"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The output object is a list with named elements. The most commonly used are:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fit indices</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>summaries</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Unstandardized parameter estimates</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>parameters<span class="sc">$</span>unstandardized</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized parameter estimates</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>parameters<span class="sc">$</span>standardized</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor loadings (for CFA models)</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To read all output files in a folder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>all_output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>), <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Results are returned as a list of model objects, one per <code>.out</code> file. This is useful for comparing fit indices across models:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract fit indices from all models</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fit_table <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_output, <span class="cf">function</span>(m) m<span class="sc">$</span>summaries) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fit_table <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(model, CFI, TLI, RMSEA_Estimate, SRMR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="multiple-mediators" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="multiple-mediators"><span class="header-section-number">17.4</span> Multiple Mediators</h2>
+<p>For parallel mediation (multiple mediators operating simultaneously):</p>
+<pre><code>MODEL:
+  med1 ON x (a1);
+  med2 ON x (a2);
+  y ON med1 (b1);
+  y ON med2 (b2);
+  y ON x (c);
+
+MODEL CONSTRAINT:
+  NEW(ind1 ind2 total_ind total);
+  ind1 = a1*b1;
+  ind2 = a2*b2;
+  total_ind = a1*b1 + a2*b2;
+  total = a1*b1 + a2*b2 + c;</code></pre>
 </section>
-<section id="a-typical-mplusautomation-workflow" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="a-typical-mplusautomation-workflow"><span class="header-section-number">13.4</span> A Typical MplusAutomation Workflow</h2>
-<p>A complete workflow from data preparation to results typically looks like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load cleaned data</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Rename variables to Mplus-compatible names</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm1 =</span> sel_selfmgmt_1,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm2 =</span> sel_selfmgmt_2,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa1 =</span> sel_socaware_1</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Write Mplus data file</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Run model (assumes .inp file already written)</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.inp"</span>))</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Read results</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.out"</span>))</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Extract and save fit indices</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> output<span class="sc">$</span>summaries <span class="sc">|&gt;</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CFI, TLI, RMSEA_Estimate, SRMR)</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(fit, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_fit_indices.csv"</span>))</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract and save factor loadings</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized <span class="sc">|&gt;</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(paramHeader <span class="sc">==</span> <span class="st">"F1.BY"</span>)</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(loadings, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_loadings.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="moderation-interaction-effects" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="moderation-interaction-effects"><span class="header-section-number">17.5</span> Moderation (Interaction Effects)</h2>
+<p>To test whether the effect of X on Y differs by a moderator W, create an interaction term in R before running the model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data_mplus <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">xw =</span> x_var <span class="sc">*</span> w_var)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then include the interaction term in the Mplus syntax:</p>
+<pre><code>MODEL:
+  y ON x w xw;</code></pre>
+<p>The coefficient for <code>xw</code> is the interaction effect. If significant, the effect of X on Y depends on the value of W.</p>
 </section>
-<section id="tips" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="tips"><span class="header-section-number">13.5</span> Tips</h2>
+<section id="running-path-analysis-via-mplusautomation" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="running-path-analysis-via-mplusautomation"><span class="header-section-number">17.6</span> Running Path Analysis via MplusAutomation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Create interaction term if needed</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pd_sel_int =</span> pd_hrs <span class="sc">*</span> tch_sel_baseline)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Rename to Mplus-compatible names</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">schlid  =</span> school_id,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">tchrid  =</span> teacher_id,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pdhrs   =</span> pd_hrs,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">tchsel  =</span> tch_sel,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">stusel  =</span> stu_sel_mean,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">grd     =</span> grade</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Write data file</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Run model</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"path_model.inp"</span>))</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Read results</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"path_model.out"</span>))</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract fit indices</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> output<span class="sc">$</span>summaries <span class="sc">|&gt;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CFI, TLI, RMSEA_Estimate, SRMR)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Extract path coefficients</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 9. Extract indirect effects</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>indirect <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>indirect</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 10. Save</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(fit, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"path_fit.csv"</span>))</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(paths, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"path_coefficients.csv"</span>))</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(indirect, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"indirect_effects.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="model-fit-for-path-models" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="model-fit-for-path-models"><span class="header-section-number">17.7</span> Model Fit for Path Models</h2>
+<p>Path models are evaluated using the same fit indices as CFA (see the <a href="../../../chapters/workflows/mplus/mplus-overview.html">Mplus Overview</a> chapter). A just-identified model (where the number of estimated parameters equals the number of knowns) will always fit perfectly — you need at least one degree of freedom for fit to be meaningful.</p>
+<p>When a path model fits poorly, examine the modification indices to identify which paths might improve fit. Add paths only if they are theoretically justified — do not add paths purely to improve fit statistics.</p>
+</section>
+<section id="reporting-path-analysis-results" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="reporting-path-analysis-results"><span class="header-section-number">17.8</span> Reporting Path Analysis Results</h2>
+<p>A complete report of path analysis results should include:</p>
 <ul>
-<li>Store all Mplus <code>.inp</code>, <code>.dat</code>, and <code>.out</code> files in a dedicated <code>code/mplus/</code> subfolder to keep them separate from R scripts</li>
-<li>Commit <code>.inp</code> files to GitHub — they are your analysis syntax and should be version controlled</li>
-<li>Do not commit <code>.dat</code> files if they contain sensitive participant data</li>
-<li>Always document the variable name mapping between R and Mplus in the script header</li>
+<li>Sample size and missing data handling approach</li>
+<li>Estimator used and justification</li>
+<li>Model fit indices (CFI, TLI, RMSEA, SRMR) with confidence intervals for RMSEA</li>
+<li>Table of path coefficients (unstandardized and standardized) with standard errors and p-values</li>
+<li>For mediation: indirect effects with bootstrap confidence intervals</li>
+<li>A path diagram if the model is complex enough to benefit from visual representation</li>
 </ul>
 
 
@@ -897,13 +946,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../chapters/workflows/r/lme4.html" class="pagination-link" aria-label="Multilevel Modeling with lme4">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span>
+      <a href="../../../chapters/workflows/mplus/mplus-cfa-efa.html" class="pagination-link" aria-label="Mplus: CFA &amp; EFA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../chapters/workflows/r/renv.html" class="pagination-link" aria-label="Managing Packages with renv">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Managing Packages with renv</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../chapters/workflows/mplus/mplus-montecarlo.html" class="pagination-link" aria-label="Mplus: Monte Carlo Power Analysis">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

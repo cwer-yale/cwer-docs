@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Tools Overview – Child Wellbeing and Education Research</title>
+<title>18&nbsp; Mplus: IRT – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/tools/github.html" rel="next">
-<link href="../../chapters/about/team-member.html" rel="prev">
+<link href="../../chapters/analysis/power-analysis.html" rel="next">
+<link href="../../chapters/analysis/path-analysis.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/tools-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></span></a>
   </div>
 </li>
@@ -265,7 +300,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span></a>
   </div>
 </li>
@@ -287,20 +322,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ms-teams" id="toc-ms-teams" class="nav-link active" data-scroll-target="#ms-teams"><span class="header-section-number">4.1</span> MS Teams</a></li>
-  <li><a href="#storage-yale" id="toc-storage-yale" class="nav-link" data-scroll-target="#storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</a></li>
-  <li><a href="#google-shared-drive" id="toc-google-shared-drive" class="nav-link" data-scroll-target="#google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</a></li>
-  <li><a href="#open-science-framework-osf" id="toc-open-science-framework-osf" class="nav-link" data-scroll-target="#open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">4.5</span> GitHub</a></li>
+  <li><a href="#key-irt-concepts" id="toc-key-irt-concepts" class="nav-link active" data-scroll-target="#key-irt-concepts"><span class="header-section-number">18.1</span> Key IRT Concepts</a></li>
+  <li><a href="#irt-models" id="toc-irt-models" class="nav-link" data-scroll-target="#irt-models"><span class="header-section-number">18.2</span> IRT Models</a></li>
+  <li><a href="#binary-irt-2pl-model" id="toc-binary-irt-2pl-model" class="nav-link" data-scroll-target="#binary-irt-2pl-model"><span class="header-section-number">18.3</span> Binary IRT: 2PL Model</a></li>
+  <li><a href="#polytomous-irt-graded-response-model" id="toc-polytomous-irt-graded-response-model" class="nav-link" data-scroll-target="#polytomous-irt-graded-response-model"><span class="header-section-number">18.4</span> Polytomous IRT: Graded Response Model</a></li>
+  <li><a href="#interpreting-irt-output-with-parameterization-theta" id="toc-interpreting-irt-output-with-parameterization-theta" class="nav-link" data-scroll-target="#interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">18.5</span> Interpreting IRT Output with PARAMETERIZATION = THETA</a></li>
+  <li><a href="#differential-item-functioning-dif" id="toc-differential-item-functioning-dif" class="nav-link" data-scroll-target="#differential-item-functioning-dif"><span class="header-section-number">18.6</span> Differential Item Functioning (DIF)</a></li>
+  <li><a href="#test-information-function" id="toc-test-information-function" class="nav-link" data-scroll-target="#test-information-function"><span class="header-section-number">18.7</span> Test Information Function</a></li>
+  <li><a href="#running-irt-via-mplusautomation" id="toc-running-irt-via-mplusautomation" class="nav-link" data-scroll-target="#running-irt-via-mplusautomation"><span class="header-section-number">18.8</span> Running IRT via MplusAutomation</a></li>
+  <li><a href="#reporting-irt-results" id="toc-reporting-irt-results" class="nav-link" data-scroll-target="#reporting-irt-results"><span class="header-section-number">18.9</span> Reporting IRT Results</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tools Overview</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></h1>
 </div>
 
 
@@ -317,28 +356,239 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All CWER members should set up accounts with OSF, Google Drive, and GitHub, and should be added to the group’s MS Teams workspace. The sections below describe each tool and how we use it.</p>
-<section id="ms-teams" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ms-teams"><span class="header-section-number">4.1</span> MS Teams</h2>
-<p>MS Teams is our primary channel for day-to-day communication about projects. It is where you will find project-specific channels, announcements, and quick questions that do not warrant an email. New team members will be added to the CWER Teams workspace by Mike or Joanna during onboarding — you do not need to set this up yourself. Access Teams through your Yale account at <a href="https://teams.microsoft.com">teams.microsoft.com</a> or via the desktop app.</p>
+<p>Item Response Theory (IRT) models the relationship between a latent trait (e.g., reading ability, SEL competence) and the probability of a particular response to each item. Unlike classical test theory, which focuses on scale-level statistics, IRT models item-level characteristics — how difficult each item is, how well it discriminates between respondents at different trait levels, and whether items function differently across groups. CWER uses IRT primarily for psychometric evaluation of scales and instruments.</p>
+<section id="key-irt-concepts" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="key-irt-concepts"><span class="header-section-number">18.1</span> Key IRT Concepts</h2>
+<p><strong>Latent trait (θ)</strong> — the underlying construct being measured, expressed on a standardized scale (typically mean = 0, SD = 1).</p>
+<p><strong>Item difficulty (b)</strong> — the point on the latent trait scale where a respondent has a 50% probability of endorsing the item (for binary items) or a particular response (for polytomous items). Higher values indicate harder or less frequently endorsed items.</p>
+<p><strong>Item discrimination (a)</strong> — how sharply an item distinguishes between respondents above and below the difficulty threshold. Higher discrimination means the item is more sensitive to differences in the latent trait.</p>
+<p><strong>Item characteristic curve (ICC)</strong> — a plot showing the probability of endorsing an item as a function of the latent trait. A well-discriminating item has a steep ICC.</p>
 </section>
-<section id="storage-yale" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="storage-yale"><span class="header-section-number">4.2</span> Storage @ Yale</h2>
-<p>Storage @ Yale is what we use as a shared server for storing project files. You will need to be granted access to the folders for the specific projects you are working on. Contact Mike or Joanna to request access.</p>
+<section id="irt-models" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="irt-models"><span class="header-section-number">18.2</span> IRT Models</h2>
+<p>The appropriate IRT model depends on your item format:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item Format</th>
+<th>Common Models</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binary (yes/no, correct/incorrect)</td>
+<td>1PL (Rasch), 2PL, 3PL</td>
+</tr>
+<tr class="even">
+<td>Ordinal (Likert)</td>
+<td>Graded Response Model (GRM), Partial Credit Model (PCM)</td>
+</tr>
+<tr class="odd">
+<td>Nominal (unordered categories)</td>
+<td>Nominal Response Model</td>
+</tr>
+</tbody>
+</table>
+<p>For most CWER work with Likert-scale items, the <strong>Graded Response Model (GRM)</strong> is appropriate. For binary items, the <strong>2PL model</strong> is the standard choice. The 1PL (Rasch) model constrains all discriminations to be equal — use it when parsimony is a priority and the equal-discrimination assumption can be justified.</p>
 </section>
-<section id="google-shared-drive" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="google-shared-drive"><span class="header-section-number">4.3</span> Google Shared Drive</h2>
-<p>We use <a href="https://support.google.com/a/users/answer/9310351#!/">Google Shared Drive</a> primarily for taking notes during meetings.</p>
-<p><strong>Setup</strong>: Users who do not already have an Eli Apps account should contact ITS to request a “no-mail Eli Apps account” associated with their NetID. Users who have an Eli Apps account should send a request to <a href="mailto:research.computing@yale.edu">research.computing@yale.edu</a> to ask that they enable Team Drive for their Eli Apps account. See <a href="https://docs.ycrc.yale.edu/data/google-drive/">https://docs.ycrc.yale.edu/data/google-drive/</a> for more information.</p>
+<section id="binary-irt-2pl-model" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="binary-irt-2pl-model"><span class="header-section-number">18.3</span> Binary IRT: 2PL Model</h2>
+<pre><code>TITLE:    2PL IRT model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  TYPE = EFA 1 1;
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+OUTPUT:
+  STDYX;
+  TECH1;
+  TECH4;</code></pre>
+<p><strong>CATEGORICAL</strong> — tells Mplus the items are categorical (binary or ordinal). Required for IRT models.</p>
+<p><strong>PARAMETERIZATION = THETA</strong> — uses the IRT parameterization, which produces item discrimination (a) and difficulty (b) parameters directly. Without this, Mplus uses the default factor analytic parameterization.</p>
+<p><strong>TYPE = EFA 1 1</strong> — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.</p>
 </section>
-<section id="open-science-framework-osf" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="open-science-framework-osf"><span class="header-section-number">4.4</span> Open Science Framework (OSF)</h2>
-<p>We use <a href="https://osf.io/">OSF</a> to publicly share information about our work and occasionally for project management. OSF is where we post study materials, preregistrations, and other publicly shareable content in line with our open science commitments. If you are new to OSF, the <a href="https://www.youtube.com/watch?v=dLEIhJESIQA&amp;feature=youtu.be">OSF 101 video</a> is a good starting point.</p>
+<section id="polytomous-irt-graded-response-model" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="polytomous-irt-graded-response-model"><span class="header-section-number">18.4</span> Polytomous IRT: Graded Response Model</h2>
+<p>For Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):</p>
+<pre><code>TITLE:    Graded Response Model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+OUTPUT:
+  STDYX;
+  TECH1;</code></pre>
+<p>The output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).</p>
 </section>
-<section id="github" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
-<p>We use GitHub for version control and collaboration on analysis code. All analysis projects should have a GitHub repository stored under the <a href="https://github.com/cwer-yale">cwer-yale</a> organization. GitHub allows us to track changes to code over time, collaborate without overwriting each other’s work, and maintain a complete history of analytical decisions.</p>
-<p>New team members should request access to the cwer-yale GitHub organization from Mike or Joanna. If you are new to Git and GitHub, see the Git &amp; GitHub chapter of this guide for a walkthrough (coming soon).</p>
+<section id="interpreting-irt-output-with-parameterization-theta" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">18.5</span> Interpreting IRT Output with PARAMETERIZATION = THETA</h2>
+<p>With <code>PARAMETERIZATION = THETA</code>, the Mplus output provides:</p>
+<ul>
+<li><strong>Factor loadings</strong> in the MODEL RESULTS section correspond to item discriminations (a parameters). Higher values indicate better-discriminating items.</li>
+<li><strong>Thresholds</strong> correspond to item difficulty parameters (b parameters). For a 5-point Likert item, there are 4 thresholds representing the boundaries between response categories.</li>
+<li><strong>STDYX standardized loadings</strong> give the discrimination in a standardized metric comparable across items.</li>
+</ul>
+<p>General guidelines for interpreting discrimination parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Discrimination</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 0.50</td>
+<td>Poor — item provides little information</td>
+</tr>
+<tr class="even">
+<td>0.50–1.00</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>1.00–2.00</td>
+<td>Good</td>
+</tr>
+<tr class="even">
+<td>&gt; 2.00</td>
+<td>Very high</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="differential-item-functioning-dif" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="differential-item-functioning-dif"><span class="header-section-number">18.6</span> Differential Item Functioning (DIF)</h2>
+<p>DIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.</p>
+<p>To test DIF in Mplus, use multiple-group CFA with measurement invariance tests — a constrained baseline model where item parameters are equal across groups is compared to a model where parameters are freed:</p>
+<pre><code>TITLE:    DIF analysis - gender
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid gender item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  GROUPING = gender (0=male 1=female);
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+MODEL female:
+  [item1$1 item1$2 item1$3 item1$4];
+
+OUTPUT:
+  STDYX;
+  MODINDICES(10);</code></pre>
+<p>The <code>MODEL female:</code> section frees the thresholds for <code>item1</code> in the female group, testing whether that item’s difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.</p>
+</section>
+<section id="test-information-function" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="test-information-function"><span class="header-section-number">18.7</span> Test Information Function</h2>
+<p>The Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.</p>
+<p>To obtain the TIF, request <code>PLOT2</code> in the OUTPUT section and use Mplus’s graphical output. With MplusAutomation, you can extract and plot item information curves in R using the <code>mirt</code> package, which provides more flexible IRT visualization than Mplus.</p>
+</section>
+<section id="running-irt-via-mplusautomation" class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="running-irt-via-mplusautomation"><span class="header-section-number">18.8</span> Running IRT via MplusAutomation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Rename to Mplus-compatible names</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stuid  =</span> student_id,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">item1  =</span> sel_item_1,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">item2  =</span> sel_item_2,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">item3  =</span> sel_item_3,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">item4  =</span> sel_item_4,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">item5  =</span> sel_item_5,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">item6  =</span> sel_item_6,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">item7  =</span> sel_item_7,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">item8  =</span> sel_item_8,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">item9  =</span> sel_item_9,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">item10 =</span> sel_item_10</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Write data file</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Run model</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"irt_grm.inp"</span>))</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Read results</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"irt_grm.out"</span>))</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Extract discrimination parameters (factor loadings)</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>discriminations <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized <span class="sc">|&gt;</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"BY"</span>, paramHeader)) <span class="sc">|&gt;</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(param, est, se, est_se, pval)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract threshold parameters (difficulty)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>unstandardized <span class="sc">|&gt;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>, paramHeader)) <span class="sc">|&gt;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(paramHeader, param, est, se)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Save</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(discriminations, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"irt_discriminations.csv"</span>))</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(thresholds, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"irt_thresholds.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reporting-irt-results" class="level2" data-number="18.9">
+<h2 data-number="18.9" class="anchored" data-anchor-id="reporting-irt-results"><span class="header-section-number">18.9</span> Reporting IRT Results</h2>
+<p>A complete report of IRT analysis should include:</p>
+<ul>
+<li>The IRT model used and justification</li>
+<li>Estimator and software</li>
+<li>Item discrimination parameters with standard errors for all items</li>
+<li>Item difficulty (threshold) parameters for all items</li>
+<li>Model fit indices</li>
+<li>Test or scale information function</li>
+<li>Any items flagged for poor fit, low discrimination, or DIF</li>
+<li>Decision about item retention or revision based on IRT results</li>
+</ul>
 
 
 </section>
@@ -746,13 +996,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/about/team-member.html" class="pagination-link" aria-label="Being a Team Member">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Being a Team Member</span></span>
+      <a href="../../chapters/analysis/path-analysis.html" class="pagination-link" aria-label="Mplus: Path Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/tools/github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/power-analysis.html" class="pagination-link" aria-label="Mplus: Monte Carlo Power Analysis">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
