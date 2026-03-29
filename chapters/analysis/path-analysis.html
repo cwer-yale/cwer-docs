@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Working with AI – Child Wellbeing and Education Research</title>
+<title>17&nbsp; Mplus: Path Analysis – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/workflows/r/r.html" rel="next">
-<link href="../../chapters/tools/ides.html" rel="prev">
+<link href="../../chapters/analysis/irt.html" rel="next">
+<link href="../../chapters/analysis/lme4.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/path-analysis.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></span></a>
   </div>
 </li>
@@ -259,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/path-analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/analysis/path-analysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span></a>
   </div>
 </li>
@@ -287,34 +322,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-our-ai-tools" id="toc-about-our-ai-tools" class="nav-link active" data-scroll-target="#about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</a></li>
-  <li><a href="#data-security-and-ai" id="toc-data-security-and-ai" class="nav-link" data-scroll-target="#data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</a></li>
-  <li><a href="#general-prompting-principles" id="toc-general-prompting-principles" class="nav-link" data-scroll-target="#general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</a></li>
-  <li><a href="#idea-generation" id="toc-idea-generation" class="nav-link" data-scroll-target="#idea-generation"><span class="header-section-number">7.4</span> Idea Generation</a>
-  <ul class="collapse">
-  <li><a href="#effect-size-interpretation" id="toc-effect-size-interpretation" class="nav-link" data-scroll-target="#effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</a></li>
-  <li><a href="#measurement-development" id="toc-measurement-development" class="nav-link" data-scroll-target="#measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</a></li>
-  </ul></li>
-  <li><a href="#reviewing-editing" id="toc-reviewing-editing" class="nav-link" data-scroll-target="#reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</a></li>
-  <li><a href="#data-management-analysis" id="toc-data-management-analysis" class="nav-link" data-scroll-target="#data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</a>
-  <ul class="collapse">
-  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles"><span class="header-section-number">7.6.1</span> General Principles</a></li>
-  <li><a href="#data-cleaning-and-wrangling" id="toc-data-cleaning-and-wrangling" class="nav-link" data-scroll-target="#data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</a></li>
-  <li><a href="#multilevel-modeling" id="toc-multilevel-modeling" class="nav-link" data-scroll-target="#multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</a></li>
-  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</a></li>
-  <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</a></li>
-  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</a></li>
-  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</a></li>
-  </ul></li>
+  <li><a href="#what-is-path-analysis" id="toc-what-is-path-analysis" class="nav-link active" data-scroll-target="#what-is-path-analysis"><span class="header-section-number">17.1</span> What is Path Analysis?</a></li>
+  <li><a href="#basic-path-analysis-syntax" id="toc-basic-path-analysis-syntax" class="nav-link" data-scroll-target="#basic-path-analysis-syntax"><span class="header-section-number">17.2</span> Basic Path Analysis Syntax</a></li>
+  <li><a href="#mediation-analysis" id="toc-mediation-analysis" class="nav-link" data-scroll-target="#mediation-analysis"><span class="header-section-number">17.3</span> Mediation Analysis</a></li>
+  <li><a href="#multiple-mediators" id="toc-multiple-mediators" class="nav-link" data-scroll-target="#multiple-mediators"><span class="header-section-number">17.4</span> Multiple Mediators</a></li>
+  <li><a href="#moderation-interaction-effects" id="toc-moderation-interaction-effects" class="nav-link" data-scroll-target="#moderation-interaction-effects"><span class="header-section-number">17.5</span> Moderation (Interaction Effects)</a></li>
+  <li><a href="#running-path-analysis-via-mplusautomation" id="toc-running-path-analysis-via-mplusautomation" class="nav-link" data-scroll-target="#running-path-analysis-via-mplusautomation"><span class="header-section-number">17.6</span> Running Path Analysis via MplusAutomation</a></li>
+  <li><a href="#model-fit-for-path-models" id="toc-model-fit-for-path-models" class="nav-link" data-scroll-target="#model-fit-for-path-models"><span class="header-section-number">17.7</span> Model Fit for Path Models</a></li>
+  <li><a href="#reporting-path-analysis-results" id="toc-reporting-path-analysis-results" class="nav-link" data-scroll-target="#reporting-path-analysis-results"><span class="header-section-number">17.8</span> Reporting Path Analysis Results</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/path-analysis.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></h1>
 </div>
 
 
@@ -331,282 +355,174 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.</p>
-<section id="about-our-ai-tools" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</h2>
-<p>CWER uses <strong>Claude</strong> (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. <strong>Gemini</strong> (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale’s Clarity platform (see below).</p>
-<p>We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.</p>
+<p>Path analysis is used to test hypothesized relationships among a set of observed variables. Unlike simple regression, path analysis allows you to model multiple outcomes simultaneously, include mediating variables, and test complex causal chains in a single model. CWER uses path analysis to examine how school, classroom, and student-level variables relate to academic and social-emotional outcomes.</p>
+<section id="what-is-path-analysis" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="what-is-path-analysis"><span class="header-section-number">17.1</span> What is Path Analysis?</h2>
+<p>A path model specifies directional relationships (paths) among observed variables. Each path is essentially a regression coefficient. The advantage over running separate regressions is that path analysis accounts for the correlations among predictors and outcomes simultaneously, providing a more accurate picture of the relationships in the data.</p>
+<p>For example, you might hypothesize that professional development predicts teacher SEL practices, which in turn predicts student SEL outcomes — a mediation model. Path analysis tests this entire chain in one model.</p>
 </section>
-<section id="data-security-and-ai" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</h2>
-<p><strong>Yale’s Clarity platform</strong> (<a href="https://ai-chat.yale.edu/">clarity.yale.edu</a>) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.</p>
-<p>When using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.</p>
-</section>
-<section id="general-prompting-principles" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</h2>
-<p>Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:</p>
-<p><strong>Give context first.</strong> AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.</p>
-<p><strong>Be specific about what you want.</strong> “Help me clean this data” is too vague. “I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse.” gives the AI something concrete to work with.</p>
-<p><strong>Treat output as a first draft.</strong> Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.</p>
-<p><strong>Use AI as a thought partner, not an oracle.</strong> Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.</p>
-<p><strong>Note AI contributions.</strong> Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the <a href="../../chapters/about/team-member.html">Being a Team Member</a> chapter.</p>
-</section>
-<section id="idea-generation" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="idea-generation"><span class="header-section-number">7.4</span> Idea Generation</h2>
-<p>AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.</p>
-<section id="effect-size-interpretation" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</h3>
-<p>When evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen’s conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft’s adjusted benchmarks are:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Category</th>
-<th>Threshold</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Small</td>
-<td>&lt; 0.05 SD</td>
-</tr>
-<tr class="even">
-<td>Medium</td>
-<td>0.05–0.19 SD</td>
-</tr>
-<tr class="odd">
-<td>Large</td>
-<td>≥ 0.20 SD</td>
-</tr>
-</tbody>
-</table>
-<p>The median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.</p>
-<p>When asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen’s conventions.</p>
-<p><strong>System prompt for effect size work</strong> (use in a Claude Project or paste at the start of a conversation):</p>
-<pre><code>When evaluating education-related research involving effect sizes, 
-use Kraft (2019) benchmarks rather than Cohen's conventions: 
-small &lt; 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median 
-effect size across education RCTs is 0.10 SD. Note the following 
-when contextualizing effects: (1) whether the design is causal or 
-correlational, (2) whether the outcome is proximal or distal to the 
-intervention, (3) design features that may inflate effect sizes 
-(small/targeted samples, researcher-designed measures, TOT vs. ITT), 
-and (4) cost and scalability considerations.</code></pre>
-<p><strong>Interpreting an effect size:</strong></p>
-<pre><code>I am reviewing a study of an SEL intervention that reports a 
-Cohen's d of 0.18 on a teacher-reported SEL measure administered 
-immediately post-intervention. The study used a randomized design 
-with N=280 students in grades 3-5. Using Kraft (2019) benchmarks, 
-how should I interpret this effect size? What contextual factors 
-are relevant?</code></pre>
-<p><strong>Exploring a literature:</strong></p>
-<pre><code>I am designing a study on [topic]. Before I finalize the design, 
-what are the key bodies of empirical literature I should be 
-familiar with? What are the main debates or unresolved questions 
-in this area? Please be specific about subfields and landmark 
-papers where possible — I will verify and read the primary sources.</code></pre>
-<p><strong>Stress-testing a research design:</strong></p>
-<pre><code>Here is my proposed research design: [describe design]. Before 
-I finalize it, what are the strongest methodological objections 
-someone could raise? What threats to validity am I most exposed 
-to? What would a skeptical reviewer say about this approach?</code></pre>
-</section>
-<section id="measurement-development" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</h3>
-<p>For measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.</p>
-<p><strong>The reference document</strong> is <code>scale_best_practices.docx</code>, which lives in the lab’s shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick &amp; Presser (2010), Preston &amp; Colman (2000), Saris et al.&nbsp;(2010), Schaeffer &amp; Dykema (2020), Ward &amp; Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI’s general impressions of measurement best practices.</p>
-<p>This is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.</p>
-<p><strong>System prompt for the Claude Project:</strong></p>
-<pre><code>This involves measurement issues related to other research projects. 
-Take the role of an expert in measurement development. Use the 
-document on best practices to guide but feel free to go beyond this.</code></pre>
-<p>Attach <code>scale_best_practices.docx</code> to the project before beginning.</p>
-<p><strong>Designing a new scale:</strong></p>
-<pre><code>I am developing a teacher-report measure of student self-management 
-for use in grades K-3. The construct includes behavioral regulation, 
-emotional control, and goal-directed persistence. I plan to use a 
-5-point response scale. Based on the best practices document, what 
-response format and label set would you recommend? Are there any 
-considerations specific to teacher-report measures I should be 
-aware of?</code></pre>
-<p><strong>Reviewing existing items:</strong></p>
-<pre><code>Here are 8 draft items for a social awareness subscale. Please 
-review them against the best practices document and flag any 
-concerns about item wording, response format match, potential 
-acquiescence bias, or cognitive burden. Suggest revisions where 
-needed.
+<section id="basic-path-analysis-syntax" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="basic-path-analysis-syntax"><span class="header-section-number">17.2</span> Basic Path Analysis Syntax</h2>
+<pre><code>TITLE:    Path analysis - PD to teacher practices to student outcomes
 
-[paste items here]</code></pre>
-<p><strong>Using AI as a thought partner on scale design:</strong></p>
-<pre><code>I have made the following decisions about my scale design: 
-[describe decisions]. Before I finalize, what considerations or 
-tradeoffs might I be overlooking? Are there bodies of psychometric 
-literature I should consult that the best practices document does 
-not cover?</code></pre>
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = schlid tchrid stuid pd_hrs tch_sel stu_sel grd;
+  USEVARIABLES = pd_hrs tch_sel stu_sel grd;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = MLR;
+
+MODEL:
+  ! Teacher SEL practices predicted by PD hours
+  tch_sel ON pd_hrs;
+
+  ! Student SEL predicted by teacher practices and grade
+  stu_sel ON tch_sel grd;
+
+OUTPUT:
+  STDYX;
+  CINTERVAL;</code></pre>
+<p>The <code>ON</code> statement specifies regression paths. <code>stu_sel ON tch_sel grd</code> means student SEL is regressed on teacher SEL practices and grade.</p>
 </section>
+<section id="mediation-analysis" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="mediation-analysis"><span class="header-section-number">17.3</span> Mediation Analysis</h2>
+<p>To test mediation (whether the effect of X on Y operates through M), define the indirect effect using MODEL INDIRECT or MODEL CONSTRAINT:</p>
+<pre><code>TITLE:    Mediation - PD -&gt; teacher SEL -&gt; student SEL
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = schlid pd_hrs tch_sel stu_sel;
+  USEVARIABLES = pd_hrs tch_sel stu_sel;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = MLR;
+  BOOTSTRAP = 1000;
+
+MODEL:
+  tch_sel ON pd_hrs (a);
+  stu_sel ON tch_sel (b);
+  stu_sel ON pd_hrs (c);
+
+MODEL CONSTRAINT:
+  NEW(indirect direct total);
+  indirect = a*b;
+  direct = c;
+  total = a*b + c;
+
+OUTPUT:
+  STDYX;
+  CINTERVAL(BCBOOTSTRAP);</code></pre>
+<p><strong>BOOTSTRAP = 1000</strong> — requests 1000 bootstrap samples for confidence intervals. Required for bias-corrected bootstrap CIs on indirect effects.</p>
+<p><strong>MODEL CONSTRAINT</strong> — defines new parameters (here: indirect, direct, and total effects) as functions of labeled parameters.</p>
+<p><strong>CINTERVAL(BCBOOTSTRAP)</strong> — requests bias-corrected bootstrap confidence intervals, which are preferred over the Sobel test for testing mediation.</p>
 </section>
-<section id="reviewing-editing" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</h2>
-<p>When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.</p>
-<p><strong>System prompt for reviewing research writing:</strong></p>
-<pre><code>Content in here concerns research projects.
+<section id="multiple-mediators" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="multiple-mediators"><span class="header-section-number">17.4</span> Multiple Mediators</h2>
+<p>For parallel mediation (multiple mediators operating simultaneously):</p>
+<pre><code>MODEL:
+  med1 ON x (a1);
+  med2 ON x (a2);
+  y ON med1 (b1);
+  y ON med2 (b2);
+  y ON x (c);
 
-When I ask you to review something I've written, check to make 
-sure of the following:
-1. Text is in APA format unless requested otherwise.
-2. The writing is clear, as free of jargon as possible, and concise.
-3. Logical arguments are sound.
-4. There are no statements that are weakly argued or lack 
-   justification. Arguments should not overstate or understate 
-   the evidence.
-5. If I'm critiquing someone's work, make sure I'm doing so 
-   charitably and accurately.
-
-Do not flatter me when reviewing my work. Be constructively 
-critical and put yourself in the role of a reviewer at a 
-scientific journal who is aiming to improve the work through 
-strong critique.</code></pre>
-<p><strong>Reviewing a manuscript section:</strong></p>
-<pre><code>Please review the following [methods / results / discussion] 
-section using the criteria in your instructions. Identify the 
-most important issues first, then secondary issues. Be specific 
-about what to fix and why.
-
-[paste text here]</code></pre>
-<p><strong>Verifying a reference:</strong></p>
-<pre><code>Please verify that the following reference is real and provide 
-a correctly formatted APA 7th edition citation and a sample 
-parenthetical in-text citation I can use directly in a manuscript.
-
-[paste reference here]</code></pre>
-<p><strong>Checking for misreporting:</strong></p>
-<pre><code>Here are my analysis results and the corresponding text from my 
-results section. Please check for any discrepancies between the 
-numbers in the text and the numbers in the output — wrong values, 
-rounding errors, or results described in the wrong direction.
-
-Results output: [paste output]
-Results text: [paste text]</code></pre>
-<p><strong>Drafting a methods section:</strong></p>
-<pre><code>I ran a multilevel model in R using lme4. Here are the details: 
-[describe model]. Write a methods section paragraph describing 
-the analytic approach in APA style, appropriate for a journal 
-manuscript. Do not invent any details — only use what I have 
-provided.</code></pre>
+MODEL CONSTRAINT:
+  NEW(ind1 ind2 total_ind total);
+  ind1 = a1*b1;
+  ind2 = a2*b2;
+  total_ind = a1*b1 + a2*b2;
+  total = a1*b1 + a2*b2 + c;</code></pre>
 </section>
-<section id="data-management-analysis" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</h2>
-<section id="general-principles" class="level3" data-number="7.6.1">
-<h3 data-number="7.6.1" class="anchored" data-anchor-id="general-principles"><span class="header-section-number">7.6.1</span> General Principles</h3>
-<p>Review every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter for the full quality control process.</p>
+<section id="moderation-interaction-effects" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="moderation-interaction-effects"><span class="header-section-number">17.5</span> Moderation (Interaction Effects)</h2>
+<p>To test whether the effect of X on Y differs by a moderator W, create an interaction term in R before running the model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data_mplus <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">xw =</span> x_var <span class="sc">*</span> w_var)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then include the interaction term in the Mplus syntax:</p>
+<pre><code>MODEL:
+  y ON x w xw;</code></pre>
+<p>The coefficient for <code>xw</code> is the interaction effect. If significant, the effect of X on Y depends on the value of W.</p>
 </section>
-<section id="data-cleaning-and-wrangling" class="level3" data-number="7.6.2">
-<h3 data-number="7.6.2" class="anchored" data-anchor-id="data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</h3>
-<p><strong>Recoding missing values:</strong></p>
-<pre><code>I am working in R using tidyverse. My dataset has variables coded 
--99 (skipped), -98 (not applicable), and -97 (data not available). 
-I want to recode all three to NA before analysis. The data are in 
-a dataframe called `data`. Write code to do this and then produce 
-a summary showing how many NAs each variable has.</code></pre>
-<p><strong>Merging datasets:</strong></p>
-<pre><code>I have two dataframes in R: `student_data` with one row per student 
-(N=342, key variable: student_id) and `school_data` with one row 
-per school (N=18, key variable: school_id). Each student has a 
-school_id variable. I want to merge school-level variables into 
-the student dataframe. Write tidyverse code to do this and include 
-checks to verify the merge worked correctly — row counts before 
-and after, and a check for any unmatched IDs.</code></pre>
-<p><strong>Reverse scoring:</strong></p>
-<pre><code>I have a scale in R with 10 items (sel_1 through sel_10). Items 
-3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
-code to reverse score these items and create new variables named 
-with the _r suffix, then compute a mean composite score across 
-all 10 items (using the reversed versions where applicable) 
-excluding cases with more than 20% missing data.</code></pre>
+<section id="running-path-analysis-via-mplusautomation" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="running-path-analysis-via-mplusautomation"><span class="header-section-number">17.6</span> Running Path Analysis via MplusAutomation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Create interaction term if needed</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pd_sel_int =</span> pd_hrs <span class="sc">*</span> tch_sel_baseline)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Rename to Mplus-compatible names</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">schlid  =</span> school_id,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">tchrid  =</span> teacher_id,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pdhrs   =</span> pd_hrs,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">tchsel  =</span> tch_sel,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">stusel  =</span> stu_sel_mean,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">grd     =</span> grade</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Write data file</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Run model</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"path_model.inp"</span>))</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Read results</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"path_model.out"</span>))</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract fit indices</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> output<span class="sc">$</span>summaries <span class="sc">|&gt;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CFI, TLI, RMSEA_Estimate, SRMR)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Extract path coefficients</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 9. Extract indirect effects</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>indirect <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>indirect</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 10. Save</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(fit, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"path_fit.csv"</span>))</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(paths, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"path_coefficients.csv"</span>))</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(indirect, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"indirect_effects.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="multilevel-modeling" class="level3" data-number="7.6.3">
-<h3 data-number="7.6.3" class="anchored" data-anchor-id="multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</h3>
-<p><strong>Setting up a multilevel model in R:</strong></p>
-<pre><code>I am running a multilevel model in R using lme4. My data have 
-students nested within schools (N=342 students, N=18 schools). 
-The outcome is sel_total_mean (continuous). Level-1 predictors 
-are grade and gender. The level-2 predictor is school_size. 
-Write code to: (1) run a null model and calculate the ICC, 
-(2) add level-1 predictors, (3) add the level-2 predictor, 
-and (4) compare models. Use broom.mixed to extract results.</code></pre>
-<p><strong>Interpreting output:</strong></p>
-<pre><code>Here is the summary output from an lme4 model. Please help me 
-interpret the fixed effects, random effects, and variance 
-components. Flag anything that looks unusual or worth 
-investigating further.
-
-[paste output here]</code></pre>
+<section id="model-fit-for-path-models" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="model-fit-for-path-models"><span class="header-section-number">17.7</span> Model Fit for Path Models</h2>
+<p>Path models are evaluated using the same fit indices as CFA (see the <a href="mplus-overview.qmd">Mplus Overview</a> chapter). A just-identified model (where the number of estimated parameters equals the number of knowns) will always fit perfectly — you need at least one degree of freedom for fit to be meaningful.</p>
+<p>When a path model fits poorly, examine the modification indices to identify which paths might improve fit. Add paths only if they are theoretically justified — do not add paths purely to improve fit statistics.</p>
 </section>
-<section id="meta-analysis" class="level3" data-number="7.6.4">
-<h3 data-number="7.6.4" class="anchored" data-anchor-id="meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</h3>
-<p><strong>Setting up a meta-analysis in R:</strong></p>
-<pre><code>I am running a meta-analysis in R using metafor with robust 
-variance estimation (RVE) via the clubSandwich package. I have 
-effect sizes in a dataframe called `meta_data` with columns: 
-study_id, effect_id, yi (effect size), vi (variance), and 
-moderator variables [list them]. Write code to fit a multilevel 
-random effects model with RVE, produce a forest plot, and test 
-for publication bias using Egger's test.</code></pre>
-</section>
-<section id="table-and-figure-production" class="level3" data-number="7.6.5">
-<h3 data-number="7.6.5" class="anchored" data-anchor-id="table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</h3>
-<p><strong>Producing a results table in Word:</strong></p>
-<pre><code>I have model results stored in a dataframe called `results` in R 
-with columns: term, estimate, std.error, conf.low, conf.high, 
-p.value. Write code using flextable and officer to produce an 
-APA-style results table and save it as a Word document at 
-output/tables/model_results.docx. Use Times New Roman 12pt, 
-include a table title, and format p-values to three decimal places.</code></pre>
-<p><strong>Saving a ggplot figure:</strong></p>
-<pre><code>I have a ggplot object called `p` in R. Write code to save it 
-as both a PNG (300 dpi, 6x4 inches) and a PDF to 
-output/figures/figure1. Use the here package for the file path.</code></pre>
-</section>
-<section id="debugging-code" class="level3" data-number="7.6.6">
-<h3 data-number="7.6.6" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</h3>
-<p><strong>Debugging an error:</strong></p>
-<pre><code>I am running the following R code and getting this error. 
-Please explain what is causing the error and provide corrected code.
-
-Code:
-[paste code]
-
-Error message:
-[paste error]
-
-Here is a sample of my data structure:
-[paste head(data) or glimpse(data) output]</code></pre>
-<p><strong>Code review:</strong></p>
-<pre><code>Please review the following R code for correctness, efficiency, 
-and adherence to tidyverse style conventions. Flag any potential 
-errors, inefficiencies, or places where the code could be 
-clearer. Do not rewrite the whole thing — just identify issues 
-and suggest targeted improvements.
-
-[paste code]</code></pre>
-</section>
-<section id="mplus-syntax" class="level3" data-number="7.6.7">
-<h3 data-number="7.6.7" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</h3>
-<p><strong>Writing a CFA model:</strong></p>
-<pre><code>Write Mplus syntax for a confirmatory factor analysis with the 
-following structure: one factor with 6 indicators, continuous 
-outcomes, WLSMV estimator, and FIML for missing data. The data 
-file is wave1_data.dat and the variables are [list them]. 
-Include MODEL FIT and STANDARDIZED output.</code></pre>
-<p><strong>Troubleshooting non-convergence:</strong></p>
-<pre><code>My Mplus model is not converging. Here is the output file. 
-Please identify the likely cause of the non-convergence and 
-suggest modifications to the syntax or starting values to 
-address it.
-
-[paste relevant sections of .out file]</code></pre>
+<section id="reporting-path-analysis-results" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="reporting-path-analysis-results"><span class="header-section-number">17.8</span> Reporting Path Analysis Results</h2>
+<p>A complete report of path analysis results should include:</p>
+<ul>
+<li>Sample size and missing data handling approach</li>
+<li>Estimator used and justification</li>
+<li>Model fit indices (CFI, TLI, RMSEA, SRMR) with confidence intervals for RMSEA</li>
+<li>Table of path coefficients (unstandardized and standardized) with standard errors and p-values</li>
+<li>For mediation: indirect effects with bootstrap confidence intervals</li>
+<li>A path diagram if the model is complex enough to benefit from visual representation</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1012,13 +928,13 @@ address it.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/tools/ides.html" class="pagination-link" aria-label="IDEs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IDEs</span></span>
+      <a href="../../chapters/analysis/lme4.html" class="pagination-link" aria-label="Multilevel Modeling with lme4">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/workflows/r/r.html" class="pagination-link" aria-label="R">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/irt.html" class="pagination-link" aria-label="Mplus: IRT">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

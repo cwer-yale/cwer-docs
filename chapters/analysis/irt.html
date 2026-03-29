@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Working with AI – Child Wellbeing and Education Research</title>
+<title>18&nbsp; Mplus: IRT – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/workflows/r/r.html" rel="next">
-<link href="../../chapters/tools/ides.html" rel="prev">
+<link href="../../chapters/analysis/power-analysis.html" rel="next">
+<link href="../../chapters/analysis/path-analysis.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></span></a>
   </div>
 </li>
@@ -265,7 +300,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span></a>
   </div>
 </li>
@@ -287,34 +322,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-our-ai-tools" id="toc-about-our-ai-tools" class="nav-link active" data-scroll-target="#about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</a></li>
-  <li><a href="#data-security-and-ai" id="toc-data-security-and-ai" class="nav-link" data-scroll-target="#data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</a></li>
-  <li><a href="#general-prompting-principles" id="toc-general-prompting-principles" class="nav-link" data-scroll-target="#general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</a></li>
-  <li><a href="#idea-generation" id="toc-idea-generation" class="nav-link" data-scroll-target="#idea-generation"><span class="header-section-number">7.4</span> Idea Generation</a>
-  <ul class="collapse">
-  <li><a href="#effect-size-interpretation" id="toc-effect-size-interpretation" class="nav-link" data-scroll-target="#effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</a></li>
-  <li><a href="#measurement-development" id="toc-measurement-development" class="nav-link" data-scroll-target="#measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</a></li>
-  </ul></li>
-  <li><a href="#reviewing-editing" id="toc-reviewing-editing" class="nav-link" data-scroll-target="#reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</a></li>
-  <li><a href="#data-management-analysis" id="toc-data-management-analysis" class="nav-link" data-scroll-target="#data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</a>
-  <ul class="collapse">
-  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles"><span class="header-section-number">7.6.1</span> General Principles</a></li>
-  <li><a href="#data-cleaning-and-wrangling" id="toc-data-cleaning-and-wrangling" class="nav-link" data-scroll-target="#data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</a></li>
-  <li><a href="#multilevel-modeling" id="toc-multilevel-modeling" class="nav-link" data-scroll-target="#multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</a></li>
-  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</a></li>
-  <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</a></li>
-  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</a></li>
-  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</a></li>
-  </ul></li>
+  <li><a href="#key-irt-concepts" id="toc-key-irt-concepts" class="nav-link active" data-scroll-target="#key-irt-concepts"><span class="header-section-number">18.1</span> Key IRT Concepts</a></li>
+  <li><a href="#irt-models" id="toc-irt-models" class="nav-link" data-scroll-target="#irt-models"><span class="header-section-number">18.2</span> IRT Models</a></li>
+  <li><a href="#binary-irt-2pl-model" id="toc-binary-irt-2pl-model" class="nav-link" data-scroll-target="#binary-irt-2pl-model"><span class="header-section-number">18.3</span> Binary IRT: 2PL Model</a></li>
+  <li><a href="#polytomous-irt-graded-response-model" id="toc-polytomous-irt-graded-response-model" class="nav-link" data-scroll-target="#polytomous-irt-graded-response-model"><span class="header-section-number">18.4</span> Polytomous IRT: Graded Response Model</a></li>
+  <li><a href="#interpreting-irt-output-with-parameterization-theta" id="toc-interpreting-irt-output-with-parameterization-theta" class="nav-link" data-scroll-target="#interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">18.5</span> Interpreting IRT Output with PARAMETERIZATION = THETA</a></li>
+  <li><a href="#differential-item-functioning-dif" id="toc-differential-item-functioning-dif" class="nav-link" data-scroll-target="#differential-item-functioning-dif"><span class="header-section-number">18.6</span> Differential Item Functioning (DIF)</a></li>
+  <li><a href="#test-information-function" id="toc-test-information-function" class="nav-link" data-scroll-target="#test-information-function"><span class="header-section-number">18.7</span> Test Information Function</a></li>
+  <li><a href="#running-irt-via-mplusautomation" id="toc-running-irt-via-mplusautomation" class="nav-link" data-scroll-target="#running-irt-via-mplusautomation"><span class="header-section-number">18.8</span> Running IRT via MplusAutomation</a></li>
+  <li><a href="#reporting-irt-results" id="toc-reporting-irt-results" class="nav-link" data-scroll-target="#reporting-irt-results"><span class="header-section-number">18.9</span> Reporting IRT Results</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></h1>
 </div>
 
 
@@ -331,282 +356,241 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.</p>
-<section id="about-our-ai-tools" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</h2>
-<p>CWER uses <strong>Claude</strong> (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. <strong>Gemini</strong> (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale’s Clarity platform (see below).</p>
-<p>We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.</p>
+<p>Item Response Theory (IRT) models the relationship between a latent trait (e.g., reading ability, SEL competence) and the probability of a particular response to each item. Unlike classical test theory, which focuses on scale-level statistics, IRT models item-level characteristics — how difficult each item is, how well it discriminates between respondents at different trait levels, and whether items function differently across groups. CWER uses IRT primarily for psychometric evaluation of scales and instruments.</p>
+<section id="key-irt-concepts" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="key-irt-concepts"><span class="header-section-number">18.1</span> Key IRT Concepts</h2>
+<p><strong>Latent trait (θ)</strong> — the underlying construct being measured, expressed on a standardized scale (typically mean = 0, SD = 1).</p>
+<p><strong>Item difficulty (b)</strong> — the point on the latent trait scale where a respondent has a 50% probability of endorsing the item (for binary items) or a particular response (for polytomous items). Higher values indicate harder or less frequently endorsed items.</p>
+<p><strong>Item discrimination (a)</strong> — how sharply an item distinguishes between respondents above and below the difficulty threshold. Higher discrimination means the item is more sensitive to differences in the latent trait.</p>
+<p><strong>Item characteristic curve (ICC)</strong> — a plot showing the probability of endorsing an item as a function of the latent trait. A well-discriminating item has a steep ICC.</p>
 </section>
-<section id="data-security-and-ai" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</h2>
-<p><strong>Yale’s Clarity platform</strong> (<a href="https://ai-chat.yale.edu/">clarity.yale.edu</a>) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.</p>
-<p>When using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.</p>
-</section>
-<section id="general-prompting-principles" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</h2>
-<p>Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:</p>
-<p><strong>Give context first.</strong> AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.</p>
-<p><strong>Be specific about what you want.</strong> “Help me clean this data” is too vague. “I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse.” gives the AI something concrete to work with.</p>
-<p><strong>Treat output as a first draft.</strong> Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.</p>
-<p><strong>Use AI as a thought partner, not an oracle.</strong> Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.</p>
-<p><strong>Note AI contributions.</strong> Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the <a href="../../chapters/about/team-member.html">Being a Team Member</a> chapter.</p>
-</section>
-<section id="idea-generation" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="idea-generation"><span class="header-section-number">7.4</span> Idea Generation</h2>
-<p>AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.</p>
-<section id="effect-size-interpretation" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</h3>
-<p>When evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen’s conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft’s adjusted benchmarks are:</p>
+<section id="irt-models" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="irt-models"><span class="header-section-number">18.2</span> IRT Models</h2>
+<p>The appropriate IRT model depends on your item format:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Category</th>
-<th>Threshold</th>
+<th>Item Format</th>
+<th>Common Models</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Small</td>
-<td>&lt; 0.05 SD</td>
+<td>Binary (yes/no, correct/incorrect)</td>
+<td>1PL (Rasch), 2PL, 3PL</td>
 </tr>
 <tr class="even">
-<td>Medium</td>
-<td>0.05–0.19 SD</td>
+<td>Ordinal (Likert)</td>
+<td>Graded Response Model (GRM), Partial Credit Model (PCM)</td>
 </tr>
 <tr class="odd">
-<td>Large</td>
-<td>≥ 0.20 SD</td>
+<td>Nominal (unordered categories)</td>
+<td>Nominal Response Model</td>
 </tr>
 </tbody>
 </table>
-<p>The median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.</p>
-<p>When asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen’s conventions.</p>
-<p><strong>System prompt for effect size work</strong> (use in a Claude Project or paste at the start of a conversation):</p>
-<pre><code>When evaluating education-related research involving effect sizes, 
-use Kraft (2019) benchmarks rather than Cohen's conventions: 
-small &lt; 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median 
-effect size across education RCTs is 0.10 SD. Note the following 
-when contextualizing effects: (1) whether the design is causal or 
-correlational, (2) whether the outcome is proximal or distal to the 
-intervention, (3) design features that may inflate effect sizes 
-(small/targeted samples, researcher-designed measures, TOT vs. ITT), 
-and (4) cost and scalability considerations.</code></pre>
-<p><strong>Interpreting an effect size:</strong></p>
-<pre><code>I am reviewing a study of an SEL intervention that reports a 
-Cohen's d of 0.18 on a teacher-reported SEL measure administered 
-immediately post-intervention. The study used a randomized design 
-with N=280 students in grades 3-5. Using Kraft (2019) benchmarks, 
-how should I interpret this effect size? What contextual factors 
-are relevant?</code></pre>
-<p><strong>Exploring a literature:</strong></p>
-<pre><code>I am designing a study on [topic]. Before I finalize the design, 
-what are the key bodies of empirical literature I should be 
-familiar with? What are the main debates or unresolved questions 
-in this area? Please be specific about subfields and landmark 
-papers where possible — I will verify and read the primary sources.</code></pre>
-<p><strong>Stress-testing a research design:</strong></p>
-<pre><code>Here is my proposed research design: [describe design]. Before 
-I finalize it, what are the strongest methodological objections 
-someone could raise? What threats to validity am I most exposed 
-to? What would a skeptical reviewer say about this approach?</code></pre>
+<p>For most CWER work with Likert-scale items, the <strong>Graded Response Model (GRM)</strong> is appropriate. For binary items, the <strong>2PL model</strong> is the standard choice. The 1PL (Rasch) model constrains all discriminations to be equal — use it when parsimony is a priority and the equal-discrimination assumption can be justified.</p>
 </section>
-<section id="measurement-development" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</h3>
-<p>For measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.</p>
-<p><strong>The reference document</strong> is <code>scale_best_practices.docx</code>, which lives in the lab’s shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick &amp; Presser (2010), Preston &amp; Colman (2000), Saris et al.&nbsp;(2010), Schaeffer &amp; Dykema (2020), Ward &amp; Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI’s general impressions of measurement best practices.</p>
-<p>This is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.</p>
-<p><strong>System prompt for the Claude Project:</strong></p>
-<pre><code>This involves measurement issues related to other research projects. 
-Take the role of an expert in measurement development. Use the 
-document on best practices to guide but feel free to go beyond this.</code></pre>
-<p>Attach <code>scale_best_practices.docx</code> to the project before beginning.</p>
-<p><strong>Designing a new scale:</strong></p>
-<pre><code>I am developing a teacher-report measure of student self-management 
-for use in grades K-3. The construct includes behavioral regulation, 
-emotional control, and goal-directed persistence. I plan to use a 
-5-point response scale. Based on the best practices document, what 
-response format and label set would you recommend? Are there any 
-considerations specific to teacher-report measures I should be 
-aware of?</code></pre>
-<p><strong>Reviewing existing items:</strong></p>
-<pre><code>Here are 8 draft items for a social awareness subscale. Please 
-review them against the best practices document and flag any 
-concerns about item wording, response format match, potential 
-acquiescence bias, or cognitive burden. Suggest revisions where 
-needed.
+<section id="binary-irt-2pl-model" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="binary-irt-2pl-model"><span class="header-section-number">18.3</span> Binary IRT: 2PL Model</h2>
+<pre><code>TITLE:    2PL IRT model
 
-[paste items here]</code></pre>
-<p><strong>Using AI as a thought partner on scale design:</strong></p>
-<pre><code>I have made the following decisions about my scale design: 
-[describe decisions]. Before I finalize, what considerations or 
-tradeoffs might I be overlooking? Are there bodies of psychometric 
-literature I should consult that the best practices document does 
-not cover?</code></pre>
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  TYPE = EFA 1 1;
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+OUTPUT:
+  STDYX;
+  TECH1;
+  TECH4;</code></pre>
+<p><strong>CATEGORICAL</strong> — tells Mplus the items are categorical (binary or ordinal). Required for IRT models.</p>
+<p><strong>PARAMETERIZATION = THETA</strong> — uses the IRT parameterization, which produces item discrimination (a) and difficulty (b) parameters directly. Without this, Mplus uses the default factor analytic parameterization.</p>
+<p><strong>TYPE = EFA 1 1</strong> — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.</p>
 </section>
+<section id="polytomous-irt-graded-response-model" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="polytomous-irt-graded-response-model"><span class="header-section-number">18.4</span> Polytomous IRT: Graded Response Model</h2>
+<p>For Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):</p>
+<pre><code>TITLE:    Graded Response Model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+OUTPUT:
+  STDYX;
+  TECH1;</code></pre>
+<p>The output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).</p>
 </section>
-<section id="reviewing-editing" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</h2>
-<p>When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.</p>
-<p><strong>System prompt for reviewing research writing:</strong></p>
-<pre><code>Content in here concerns research projects.
-
-When I ask you to review something I've written, check to make 
-sure of the following:
-1. Text is in APA format unless requested otherwise.
-2. The writing is clear, as free of jargon as possible, and concise.
-3. Logical arguments are sound.
-4. There are no statements that are weakly argued or lack 
-   justification. Arguments should not overstate or understate 
-   the evidence.
-5. If I'm critiquing someone's work, make sure I'm doing so 
-   charitably and accurately.
-
-Do not flatter me when reviewing my work. Be constructively 
-critical and put yourself in the role of a reviewer at a 
-scientific journal who is aiming to improve the work through 
-strong critique.</code></pre>
-<p><strong>Reviewing a manuscript section:</strong></p>
-<pre><code>Please review the following [methods / results / discussion] 
-section using the criteria in your instructions. Identify the 
-most important issues first, then secondary issues. Be specific 
-about what to fix and why.
-
-[paste text here]</code></pre>
-<p><strong>Verifying a reference:</strong></p>
-<pre><code>Please verify that the following reference is real and provide 
-a correctly formatted APA 7th edition citation and a sample 
-parenthetical in-text citation I can use directly in a manuscript.
-
-[paste reference here]</code></pre>
-<p><strong>Checking for misreporting:</strong></p>
-<pre><code>Here are my analysis results and the corresponding text from my 
-results section. Please check for any discrepancies between the 
-numbers in the text and the numbers in the output — wrong values, 
-rounding errors, or results described in the wrong direction.
-
-Results output: [paste output]
-Results text: [paste text]</code></pre>
-<p><strong>Drafting a methods section:</strong></p>
-<pre><code>I ran a multilevel model in R using lme4. Here are the details: 
-[describe model]. Write a methods section paragraph describing 
-the analytic approach in APA style, appropriate for a journal 
-manuscript. Do not invent any details — only use what I have 
-provided.</code></pre>
+<section id="interpreting-irt-output-with-parameterization-theta" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">18.5</span> Interpreting IRT Output with PARAMETERIZATION = THETA</h2>
+<p>With <code>PARAMETERIZATION = THETA</code>, the Mplus output provides:</p>
+<ul>
+<li><strong>Factor loadings</strong> in the MODEL RESULTS section correspond to item discriminations (a parameters). Higher values indicate better-discriminating items.</li>
+<li><strong>Thresholds</strong> correspond to item difficulty parameters (b parameters). For a 5-point Likert item, there are 4 thresholds representing the boundaries between response categories.</li>
+<li><strong>STDYX standardized loadings</strong> give the discrimination in a standardized metric comparable across items.</li>
+</ul>
+<p>General guidelines for interpreting discrimination parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Discrimination</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 0.50</td>
+<td>Poor — item provides little information</td>
+</tr>
+<tr class="even">
+<td>0.50–1.00</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>1.00–2.00</td>
+<td>Good</td>
+</tr>
+<tr class="even">
+<td>&gt; 2.00</td>
+<td>Very high</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="data-management-analysis" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</h2>
-<section id="general-principles" class="level3" data-number="7.6.1">
-<h3 data-number="7.6.1" class="anchored" data-anchor-id="general-principles"><span class="header-section-number">7.6.1</span> General Principles</h3>
-<p>Review every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter for the full quality control process.</p>
+<section id="differential-item-functioning-dif" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="differential-item-functioning-dif"><span class="header-section-number">18.6</span> Differential Item Functioning (DIF)</h2>
+<p>DIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.</p>
+<p>To test DIF in Mplus, use multiple-group CFA with measurement invariance tests — a constrained baseline model where item parameters are equal across groups is compared to a model where parameters are freed:</p>
+<pre><code>TITLE:    DIF analysis - gender
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid gender item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  GROUPING = gender (0=male 1=female);
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+MODEL female:
+  [item1$1 item1$2 item1$3 item1$4];
+
+OUTPUT:
+  STDYX;
+  MODINDICES(10);</code></pre>
+<p>The <code>MODEL female:</code> section frees the thresholds for <code>item1</code> in the female group, testing whether that item’s difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.</p>
 </section>
-<section id="data-cleaning-and-wrangling" class="level3" data-number="7.6.2">
-<h3 data-number="7.6.2" class="anchored" data-anchor-id="data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</h3>
-<p><strong>Recoding missing values:</strong></p>
-<pre><code>I am working in R using tidyverse. My dataset has variables coded 
--99 (skipped), -98 (not applicable), and -97 (data not available). 
-I want to recode all three to NA before analysis. The data are in 
-a dataframe called `data`. Write code to do this and then produce 
-a summary showing how many NAs each variable has.</code></pre>
-<p><strong>Merging datasets:</strong></p>
-<pre><code>I have two dataframes in R: `student_data` with one row per student 
-(N=342, key variable: student_id) and `school_data` with one row 
-per school (N=18, key variable: school_id). Each student has a 
-school_id variable. I want to merge school-level variables into 
-the student dataframe. Write tidyverse code to do this and include 
-checks to verify the merge worked correctly — row counts before 
-and after, and a check for any unmatched IDs.</code></pre>
-<p><strong>Reverse scoring:</strong></p>
-<pre><code>I have a scale in R with 10 items (sel_1 through sel_10). Items 
-3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
-code to reverse score these items and create new variables named 
-with the _r suffix, then compute a mean composite score across 
-all 10 items (using the reversed versions where applicable) 
-excluding cases with more than 20% missing data.</code></pre>
+<section id="test-information-function" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="test-information-function"><span class="header-section-number">18.7</span> Test Information Function</h2>
+<p>The Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.</p>
+<p>To obtain the TIF, request <code>PLOT2</code> in the OUTPUT section and use Mplus’s graphical output. With MplusAutomation, you can extract and plot item information curves in R using the <code>mirt</code> package, which provides more flexible IRT visualization than Mplus.</p>
 </section>
-<section id="multilevel-modeling" class="level3" data-number="7.6.3">
-<h3 data-number="7.6.3" class="anchored" data-anchor-id="multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</h3>
-<p><strong>Setting up a multilevel model in R:</strong></p>
-<pre><code>I am running a multilevel model in R using lme4. My data have 
-students nested within schools (N=342 students, N=18 schools). 
-The outcome is sel_total_mean (continuous). Level-1 predictors 
-are grade and gender. The level-2 predictor is school_size. 
-Write code to: (1) run a null model and calculate the ICC, 
-(2) add level-1 predictors, (3) add the level-2 predictor, 
-and (4) compare models. Use broom.mixed to extract results.</code></pre>
-<p><strong>Interpreting output:</strong></p>
-<pre><code>Here is the summary output from an lme4 model. Please help me 
-interpret the fixed effects, random effects, and variance 
-components. Flag anything that looks unusual or worth 
-investigating further.
-
-[paste output here]</code></pre>
+<section id="running-irt-via-mplusautomation" class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="running-irt-via-mplusautomation"><span class="header-section-number">18.8</span> Running IRT via MplusAutomation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Rename to Mplus-compatible names</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stuid  =</span> student_id,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">item1  =</span> sel_item_1,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">item2  =</span> sel_item_2,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">item3  =</span> sel_item_3,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">item4  =</span> sel_item_4,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">item5  =</span> sel_item_5,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">item6  =</span> sel_item_6,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">item7  =</span> sel_item_7,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">item8  =</span> sel_item_8,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">item9  =</span> sel_item_9,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">item10 =</span> sel_item_10</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Write data file</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Run model</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"irt_grm.inp"</span>))</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Read results</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"irt_grm.out"</span>))</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Extract discrimination parameters (factor loadings)</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>discriminations <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized <span class="sc">|&gt;</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"BY"</span>, paramHeader)) <span class="sc">|&gt;</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(param, est, se, est_se, pval)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract threshold parameters (difficulty)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>unstandardized <span class="sc">|&gt;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>, paramHeader)) <span class="sc">|&gt;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(paramHeader, param, est, se)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Save</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(discriminations, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"irt_discriminations.csv"</span>))</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(thresholds, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"irt_thresholds.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="meta-analysis" class="level3" data-number="7.6.4">
-<h3 data-number="7.6.4" class="anchored" data-anchor-id="meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</h3>
-<p><strong>Setting up a meta-analysis in R:</strong></p>
-<pre><code>I am running a meta-analysis in R using metafor with robust 
-variance estimation (RVE) via the clubSandwich package. I have 
-effect sizes in a dataframe called `meta_data` with columns: 
-study_id, effect_id, yi (effect size), vi (variance), and 
-moderator variables [list them]. Write code to fit a multilevel 
-random effects model with RVE, produce a forest plot, and test 
-for publication bias using Egger's test.</code></pre>
-</section>
-<section id="table-and-figure-production" class="level3" data-number="7.6.5">
-<h3 data-number="7.6.5" class="anchored" data-anchor-id="table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</h3>
-<p><strong>Producing a results table in Word:</strong></p>
-<pre><code>I have model results stored in a dataframe called `results` in R 
-with columns: term, estimate, std.error, conf.low, conf.high, 
-p.value. Write code using flextable and officer to produce an 
-APA-style results table and save it as a Word document at 
-output/tables/model_results.docx. Use Times New Roman 12pt, 
-include a table title, and format p-values to three decimal places.</code></pre>
-<p><strong>Saving a ggplot figure:</strong></p>
-<pre><code>I have a ggplot object called `p` in R. Write code to save it 
-as both a PNG (300 dpi, 6x4 inches) and a PDF to 
-output/figures/figure1. Use the here package for the file path.</code></pre>
-</section>
-<section id="debugging-code" class="level3" data-number="7.6.6">
-<h3 data-number="7.6.6" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</h3>
-<p><strong>Debugging an error:</strong></p>
-<pre><code>I am running the following R code and getting this error. 
-Please explain what is causing the error and provide corrected code.
-
-Code:
-[paste code]
-
-Error message:
-[paste error]
-
-Here is a sample of my data structure:
-[paste head(data) or glimpse(data) output]</code></pre>
-<p><strong>Code review:</strong></p>
-<pre><code>Please review the following R code for correctness, efficiency, 
-and adherence to tidyverse style conventions. Flag any potential 
-errors, inefficiencies, or places where the code could be 
-clearer. Do not rewrite the whole thing — just identify issues 
-and suggest targeted improvements.
-
-[paste code]</code></pre>
-</section>
-<section id="mplus-syntax" class="level3" data-number="7.6.7">
-<h3 data-number="7.6.7" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</h3>
-<p><strong>Writing a CFA model:</strong></p>
-<pre><code>Write Mplus syntax for a confirmatory factor analysis with the 
-following structure: one factor with 6 indicators, continuous 
-outcomes, WLSMV estimator, and FIML for missing data. The data 
-file is wave1_data.dat and the variables are [list them]. 
-Include MODEL FIT and STANDARDIZED output.</code></pre>
-<p><strong>Troubleshooting non-convergence:</strong></p>
-<pre><code>My Mplus model is not converging. Here is the output file. 
-Please identify the likely cause of the non-convergence and 
-suggest modifications to the syntax or starting values to 
-address it.
-
-[paste relevant sections of .out file]</code></pre>
+<section id="reporting-irt-results" class="level2" data-number="18.9">
+<h2 data-number="18.9" class="anchored" data-anchor-id="reporting-irt-results"><span class="header-section-number">18.9</span> Reporting IRT Results</h2>
+<p>A complete report of IRT analysis should include:</p>
+<ul>
+<li>The IRT model used and justification</li>
+<li>Estimator and software</li>
+<li>Item discrimination parameters with standard errors for all items</li>
+<li>Item difficulty (threshold) parameters for all items</li>
+<li>Model fit indices</li>
+<li>Test or scale information function</li>
+<li>Any items flagged for poor fit, low discrimination, or DIF</li>
+<li>Decision about item retention or revision based on IRT results</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1012,13 +996,13 @@ address it.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/tools/ides.html" class="pagination-link" aria-label="IDEs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IDEs</span></span>
+      <a href="../../chapters/analysis/path-analysis.html" class="pagination-link" aria-label="Mplus: Path Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/workflows/r/r.html" class="pagination-link" aria-label="R">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/power-analysis.html" class="pagination-link" aria-label="Mplus: Monte Carlo Power Analysis">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

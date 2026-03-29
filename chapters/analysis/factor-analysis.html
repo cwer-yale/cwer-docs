@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Working with AI – Child Wellbeing and Education Research</title>
+<title>15&nbsp; Mplus: CFA &amp; EFA – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,8 +68,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/workflows/r/r.html" rel="next">
-<link href="../../chapters/tools/ides.html" rel="prev">
+<link href="../../chapters/analysis/lme4.html" rel="next">
+<link href="../../chapters/analysis/ggplot2.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/factor-analysis.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/tools/ai-prompts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></span></a>
   </div>
 </li>
@@ -247,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></span></a>
   </div>
 </li>
@@ -287,34 +322,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-our-ai-tools" id="toc-about-our-ai-tools" class="nav-link active" data-scroll-target="#about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</a></li>
-  <li><a href="#data-security-and-ai" id="toc-data-security-and-ai" class="nav-link" data-scroll-target="#data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</a></li>
-  <li><a href="#general-prompting-principles" id="toc-general-prompting-principles" class="nav-link" data-scroll-target="#general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</a></li>
-  <li><a href="#idea-generation" id="toc-idea-generation" class="nav-link" data-scroll-target="#idea-generation"><span class="header-section-number">7.4</span> Idea Generation</a>
+  <li><a href="#confirmatory-factor-analysis-cfa" id="toc-confirmatory-factor-analysis-cfa" class="nav-link active" data-scroll-target="#confirmatory-factor-analysis-cfa"><span class="header-section-number">15.1</span> Confirmatory Factor Analysis (CFA)</a>
   <ul class="collapse">
-  <li><a href="#effect-size-interpretation" id="toc-effect-size-interpretation" class="nav-link" data-scroll-target="#effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</a></li>
-  <li><a href="#measurement-development" id="toc-measurement-development" class="nav-link" data-scroll-target="#measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</a></li>
+  <li><a href="#basic-cfa-syntax" id="toc-basic-cfa-syntax" class="nav-link" data-scroll-target="#basic-cfa-syntax"><span class="header-section-number">15.1.1</span> Basic CFA Syntax</a></li>
+  <li><a href="#key-syntax-elements" id="toc-key-syntax-elements" class="nav-link" data-scroll-target="#key-syntax-elements"><span class="header-section-number">15.1.2</span> Key Syntax Elements</a></li>
+  <li><a href="#interpreting-cfa-output" id="toc-interpreting-cfa-output" class="nav-link" data-scroll-target="#interpreting-cfa-output"><span class="header-section-number">15.1.3</span> Interpreting CFA Output</a></li>
+  <li><a href="#higher-order-cfa" id="toc-higher-order-cfa" class="nav-link" data-scroll-target="#higher-order-cfa"><span class="header-section-number">15.1.4</span> Higher-Order CFA</a></li>
+  <li><a href="#bifactor-cfa" id="toc-bifactor-cfa" class="nav-link" data-scroll-target="#bifactor-cfa"><span class="header-section-number">15.1.5</span> Bifactor CFA</a></li>
   </ul></li>
-  <li><a href="#reviewing-editing" id="toc-reviewing-editing" class="nav-link" data-scroll-target="#reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</a></li>
-  <li><a href="#data-management-analysis" id="toc-data-management-analysis" class="nav-link" data-scroll-target="#data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</a>
+  <li><a href="#exploratory-factor-analysis-efa" id="toc-exploratory-factor-analysis-efa" class="nav-link" data-scroll-target="#exploratory-factor-analysis-efa"><span class="header-section-number">15.2</span> Exploratory Factor Analysis (EFA)</a>
   <ul class="collapse">
-  <li><a href="#general-principles" id="toc-general-principles" class="nav-link" data-scroll-target="#general-principles"><span class="header-section-number">7.6.1</span> General Principles</a></li>
-  <li><a href="#data-cleaning-and-wrangling" id="toc-data-cleaning-and-wrangling" class="nav-link" data-scroll-target="#data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</a></li>
-  <li><a href="#multilevel-modeling" id="toc-multilevel-modeling" class="nav-link" data-scroll-target="#multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</a></li>
-  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</a></li>
-  <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</a></li>
-  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</a></li>
-  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</a></li>
+  <li><a href="#basic-efa-syntax" id="toc-basic-efa-syntax" class="nav-link" data-scroll-target="#basic-efa-syntax"><span class="header-section-number">15.2.1</span> Basic EFA Syntax</a></li>
+  <li><a href="#deciding-on-the-number-of-factors" id="toc-deciding-on-the-number-of-factors" class="nav-link" data-scroll-target="#deciding-on-the-number-of-factors"><span class="header-section-number">15.2.2</span> Deciding on the Number of Factors</a></li>
+  <li><a href="#esem" id="toc-esem" class="nav-link" data-scroll-target="#esem"><span class="header-section-number">15.2.3</span> ESEM</a></li>
   </ul></li>
+  <li><a href="#running-cfaefa-via-mplusautomation" id="toc-running-cfaefa-via-mplusautomation" class="nav-link" data-scroll-target="#running-cfaefa-via-mplusautomation"><span class="header-section-number">15.3</span> Running CFA/EFA via MplusAutomation</a></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison"><span class="header-section-number">15.4</span> Model Comparison</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/tools/tools-overview.html">Tools &amp; Setup</a></li><li class="breadcrumb-item"><a href="../../chapters/tools/ai-prompts.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/factor-analysis.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with AI</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></h1>
 </div>
 
 
@@ -331,282 +363,221 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.</p>
-<section id="about-our-ai-tools" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="about-our-ai-tools"><span class="header-section-number">7.1</span> About Our AI Tools</h2>
-<p>CWER uses <strong>Claude</strong> (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. <strong>Gemini</strong> (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale’s Clarity platform (see below).</p>
-<p>We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.</p>
-</section>
-<section id="data-security-and-ai" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="data-security-and-ai"><span class="header-section-number">7.2</span> Data Security and AI</h2>
-<p><strong>Yale’s Clarity platform</strong> (<a href="https://ai-chat.yale.edu/">clarity.yale.edu</a>) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.</p>
-<p>When using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.</p>
-</section>
-<section id="general-prompting-principles" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="general-prompting-principles"><span class="header-section-number">7.3</span> General Prompting Principles</h2>
-<p>Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:</p>
-<p><strong>Give context first.</strong> AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.</p>
-<p><strong>Be specific about what you want.</strong> “Help me clean this data” is too vague. “I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse.” gives the AI something concrete to work with.</p>
-<p><strong>Treat output as a first draft.</strong> Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.</p>
-<p><strong>Use AI as a thought partner, not an oracle.</strong> Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.</p>
-<p><strong>Note AI contributions.</strong> Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the <a href="../../chapters/about/team-member.html">Being a Team Member</a> chapter.</p>
-</section>
-<section id="idea-generation" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="idea-generation"><span class="header-section-number">7.4</span> Idea Generation</h2>
-<p>AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.</p>
-<section id="effect-size-interpretation" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="effect-size-interpretation"><span class="header-section-number">7.4.1</span> Effect Size Interpretation</h3>
-<p>When evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen’s conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft’s adjusted benchmarks are:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Category</th>
-<th>Threshold</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Small</td>
-<td>&lt; 0.05 SD</td>
-</tr>
-<tr class="even">
-<td>Medium</td>
-<td>0.05–0.19 SD</td>
-</tr>
-<tr class="odd">
-<td>Large</td>
-<td>≥ 0.20 SD</td>
-</tr>
-</tbody>
-</table>
-<p>The median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.</p>
-<p>When asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen’s conventions.</p>
-<p><strong>System prompt for effect size work</strong> (use in a Claude Project or paste at the start of a conversation):</p>
-<pre><code>When evaluating education-related research involving effect sizes, 
-use Kraft (2019) benchmarks rather than Cohen's conventions: 
-small &lt; 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median 
-effect size across education RCTs is 0.10 SD. Note the following 
-when contextualizing effects: (1) whether the design is causal or 
-correlational, (2) whether the outcome is proximal or distal to the 
-intervention, (3) design features that may inflate effect sizes 
-(small/targeted samples, researcher-designed measures, TOT vs. ITT), 
-and (4) cost and scalability considerations.</code></pre>
-<p><strong>Interpreting an effect size:</strong></p>
-<pre><code>I am reviewing a study of an SEL intervention that reports a 
-Cohen's d of 0.18 on a teacher-reported SEL measure administered 
-immediately post-intervention. The study used a randomized design 
-with N=280 students in grades 3-5. Using Kraft (2019) benchmarks, 
-how should I interpret this effect size? What contextual factors 
-are relevant?</code></pre>
-<p><strong>Exploring a literature:</strong></p>
-<pre><code>I am designing a study on [topic]. Before I finalize the design, 
-what are the key bodies of empirical literature I should be 
-familiar with? What are the main debates or unresolved questions 
-in this area? Please be specific about subfields and landmark 
-papers where possible — I will verify and read the primary sources.</code></pre>
-<p><strong>Stress-testing a research design:</strong></p>
-<pre><code>Here is my proposed research design: [describe design]. Before 
-I finalize it, what are the strongest methodological objections 
-someone could raise? What threats to validity am I most exposed 
-to? What would a skeptical reviewer say about this approach?</code></pre>
-</section>
-<section id="measurement-development" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="measurement-development"><span class="header-section-number">7.4.2</span> Measurement Development</h3>
-<p>For measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.</p>
-<p><strong>The reference document</strong> is <code>scale_best_practices.docx</code>, which lives in the lab’s shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick &amp; Presser (2010), Preston &amp; Colman (2000), Saris et al.&nbsp;(2010), Schaeffer &amp; Dykema (2020), Ward &amp; Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI’s general impressions of measurement best practices.</p>
-<p>This is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.</p>
-<p><strong>System prompt for the Claude Project:</strong></p>
-<pre><code>This involves measurement issues related to other research projects. 
-Take the role of an expert in measurement development. Use the 
-document on best practices to guide but feel free to go beyond this.</code></pre>
-<p>Attach <code>scale_best_practices.docx</code> to the project before beginning.</p>
-<p><strong>Designing a new scale:</strong></p>
-<pre><code>I am developing a teacher-report measure of student self-management 
-for use in grades K-3. The construct includes behavioral regulation, 
-emotional control, and goal-directed persistence. I plan to use a 
-5-point response scale. Based on the best practices document, what 
-response format and label set would you recommend? Are there any 
-considerations specific to teacher-report measures I should be 
-aware of?</code></pre>
-<p><strong>Reviewing existing items:</strong></p>
-<pre><code>Here are 8 draft items for a social awareness subscale. Please 
-review them against the best practices document and flag any 
-concerns about item wording, response format match, potential 
-acquiescence bias, or cognitive burden. Suggest revisions where 
-needed.
+<p>Confirmatory Factor Analysis (CFA) and Exploratory Factor Analysis (EFA) are among the most common analyses in CWER’s psychometric work. CFA tests whether a hypothesized factor structure fits the data. EFA explores the factor structure when the structure is unknown or uncertain. This chapter covers both, with syntax examples and the MplusAutomation workflow for running them from R.</p>
+<section id="confirmatory-factor-analysis-cfa" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="confirmatory-factor-analysis-cfa"><span class="header-section-number">15.1</span> Confirmatory Factor Analysis (CFA)</h2>
+<p>CFA is used when you have a theoretically motivated factor structure and want to test how well it fits your data. For example, you might hypothesize that 12 SEL items measure three latent factors (self-management, social awareness, relationship skills) and use CFA to test whether this structure is supported.</p>
+<section id="basic-cfa-syntax" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="basic-cfa-syntax"><span class="header-section-number">15.1.1</span> Basic CFA Syntax</h3>
+<pre><code>TITLE:    CFA - SEL three-factor model
 
-[paste items here]</code></pre>
-<p><strong>Using AI as a thought partner on scale design:</strong></p>
-<pre><code>I have made the following decisions about my scale design: 
-[describe decisions]. Before I finalize, what considerations or 
-tradeoffs might I be overlooking? Are there bodies of psychometric 
-literature I should consult that the best practices document does 
-not cover?</code></pre>
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid schlid selsm1 selsm2 selsm3 selsm4
+          selsa1 selsa2 selsa3 selrs1 selrs2 selrs3;
+  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = WLSMV;
+
+MODEL:
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+
+OUTPUT:
+  SAMPSTAT;
+  STDYX;
+  MODINDICES(10);
+  FIT;</code></pre>
+</section>
+<section id="key-syntax-elements" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="key-syntax-elements"><span class="header-section-number">15.1.2</span> Key Syntax Elements</h3>
+<p><strong>CLUSTER</strong> — specifies the clustering variable (e.g., school ID) when data are nested. Used with <code>TYPE = COMPLEX</code> to produce corrected standard errors.</p>
+<p><strong>TYPE = COMPLEX</strong> — accounts for non-independence due to clustering. Use whenever students are nested in classrooms or schools.</p>
+<p><strong>ESTIMATOR = WLSMV</strong> — recommended for ordinal (Likert) outcomes. Use <code>MLR</code> for continuous outcomes.</p>
+<p><strong>BY</strong> — defines the factor structure. <code>selfmgmt BY selsm1 selsm2 selsm3 selsm4</code> means the factor <code>selfmgmt</code> is measured by those four indicators.</p>
+<p><strong>STDYX</strong> — requests fully standardized output, including standardized factor loadings.</p>
+<p><strong>MODINDICES(10)</strong> — requests modification indices greater than 10, which can help identify sources of misfit.</p>
+</section>
+<section id="interpreting-cfa-output" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="interpreting-cfa-output"><span class="header-section-number">15.1.3</span> Interpreting CFA Output</h3>
+<p>After running the model, check the following in order:</p>
+<ol type="1">
+<li><strong>Model fit</strong> — CFI, TLI, RMSEA, SRMR (see fit guidelines in the <a href="mplus-overview.qmd">Mplus Overview</a> chapter)</li>
+<li><strong>Factor loadings</strong> — standardized loadings (STDYX) should generally be .40 or higher</li>
+<li><strong>Modification indices</strong> — large MIs suggest areas of misfit; consider theoretically motivated modifications</li>
+<li><strong>Factor correlations</strong> — very high correlations (&gt; .85) between factors may indicate discriminant validity problems</li>
+</ol>
+</section>
+<section id="higher-order-cfa" class="level3" data-number="15.1.4">
+<h3 data-number="15.1.4" class="anchored" data-anchor-id="higher-order-cfa"><span class="header-section-number">15.1.4</span> Higher-Order CFA</h3>
+<p>To specify a second-order factor (e.g., a general SEL factor underlying the three subscales):</p>
+<pre><code>MODEL:
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+  sel BY selfmgmt socaware relskill;</code></pre>
+</section>
+<section id="bifactor-cfa" class="level3" data-number="15.1.5">
+<h3 data-number="15.1.5" class="anchored" data-anchor-id="bifactor-cfa"><span class="header-section-number">15.1.5</span> Bifactor CFA</h3>
+<p>To specify a bifactor model (general factor + specific factors):</p>
+<pre><code>MODEL:
+  sel BY selsm1 selsm2 selsm3 selsm4
+         selsa1 selsa2 selsa3
+         selrs1 selrs2 selrs3;
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+
+  sel WITH selfmgmt@0;
+  sel WITH socaware@0;
+  sel WITH relskill@0;
+  selfmgmt WITH socaware@0;
+  selfmgmt WITH relskill@0;
+  socaware WITH relskill@0;</code></pre>
+<p>The <code>@0</code> fixes the correlation between factors to zero, which is required for a bifactor model.</p>
 </section>
 </section>
-<section id="reviewing-editing" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="reviewing-editing"><span class="header-section-number">7.5</span> Reviewing &amp; Editing</h2>
-<p>When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.</p>
-<p><strong>System prompt for reviewing research writing:</strong></p>
-<pre><code>Content in here concerns research projects.
+<section id="exploratory-factor-analysis-efa" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="exploratory-factor-analysis-efa"><span class="header-section-number">15.2</span> Exploratory Factor Analysis (EFA)</h2>
+<p>EFA is used when the factor structure is unknown or you want to explore how many factors underlie a set of items. Unlike CFA, EFA does not fix items to specific factors — it allows all items to load on all factors.</p>
+<section id="basic-efa-syntax" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="basic-efa-syntax"><span class="header-section-number">15.2.1</span> Basic EFA Syntax</h3>
+<pre><code>TITLE:    EFA - SEL items
 
-When I ask you to review something I've written, check to make 
-sure of the following:
-1. Text is in APA format unless requested otherwise.
-2. The writing is clear, as free of jargon as possible, and concise.
-3. Logical arguments are sound.
-4. There are no statements that are weakly argued or lack 
-   justification. Arguments should not overstate or understate 
-   the evidence.
-5. If I'm critiquing someone's work, make sure I'm doing so 
-   charitably and accurately.
+DATA:
+  FILE = wave1_data.dat;
 
-Do not flatter me when reviewing my work. Be constructively 
-critical and put yourself in the role of a reviewer at a 
-scientific journal who is aiming to improve the work through 
-strong critique.</code></pre>
-<p><strong>Reviewing a manuscript section:</strong></p>
-<pre><code>Please review the following [methods / results / discussion] 
-section using the criteria in your instructions. Identify the 
-most important issues first, then secondary issues. Be specific 
-about what to fix and why.
+VARIABLE:
+  NAMES = selsm1 selsm2 selsm3 selsm4
+          selsa1 selsa2 selsa3
+          selrs1 selrs2 selrs3;
+  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;
+  MISSING = ALL(-99 -98 -97 -96);
 
-[paste text here]</code></pre>
-<p><strong>Verifying a reference:</strong></p>
-<pre><code>Please verify that the following reference is real and provide 
-a correctly formatted APA 7th edition citation and a sample 
-parenthetical in-text citation I can use directly in a manuscript.
+ANALYSIS:
+  TYPE = EFA 1 4;
+  ESTIMATOR = WLSMV;
+  ROTATION = GEOMIN;
 
-[paste reference here]</code></pre>
-<p><strong>Checking for misreporting:</strong></p>
-<pre><code>Here are my analysis results and the corresponding text from my 
-results section. Please check for any discrepancies between the 
-numbers in the text and the numbers in the output — wrong values, 
-rounding errors, or results described in the wrong direction.
-
-Results output: [paste output]
-Results text: [paste text]</code></pre>
-<p><strong>Drafting a methods section:</strong></p>
-<pre><code>I ran a multilevel model in R using lme4. Here are the details: 
-[describe model]. Write a methods section paragraph describing 
-the analytic approach in APA style, appropriate for a journal 
-manuscript. Do not invent any details — only use what I have 
-provided.</code></pre>
+OUTPUT:
+  STDYX;</code></pre>
+<p><code>TYPE = EFA 1 4</code> tells Mplus to extract and compare solutions from 1 to 4 factors. Review the fit indices and interpretability of each solution to determine the best number of factors.</p>
+<p><strong>ROTATION = GEOMIN</strong> — an oblique rotation that allows factors to correlate. Preferred over orthogonal rotations (like varimax) for most psychological constructs, which are rarely truly independent.</p>
 </section>
-<section id="data-management-analysis" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="data-management-analysis"><span class="header-section-number">7.6</span> Data Management &amp; Analysis</h2>
-<section id="general-principles" class="level3" data-number="7.6.1">
-<h3 data-number="7.6.1" class="anchored" data-anchor-id="general-principles"><span class="header-section-number">7.6.1</span> General Principles</h3>
-<p>Review every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter for the full quality control process.</p>
+<section id="deciding-on-the-number-of-factors" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="deciding-on-the-number-of-factors"><span class="header-section-number">15.2.2</span> Deciding on the Number of Factors</h3>
+<p>Use multiple criteria:</p>
+<ul>
+<li><strong>Fit indices</strong> — look for acceptable CFI, TLI, RMSEA across solutions</li>
+<li><strong>Eigenvalues</strong> — factors with eigenvalues &gt; 1 are traditionally retained, though this rule alone is insufficient</li>
+<li><strong>Interpretability</strong> — the factor solution should make theoretical sense</li>
+<li><strong>Parsimony</strong> — prefer fewer factors when fit is similar across solutions</li>
+</ul>
 </section>
-<section id="data-cleaning-and-wrangling" class="level3" data-number="7.6.2">
-<h3 data-number="7.6.2" class="anchored" data-anchor-id="data-cleaning-and-wrangling"><span class="header-section-number">7.6.2</span> Data Cleaning and Wrangling</h3>
-<p><strong>Recoding missing values:</strong></p>
-<pre><code>I am working in R using tidyverse. My dataset has variables coded 
--99 (skipped), -98 (not applicable), and -97 (data not available). 
-I want to recode all three to NA before analysis. The data are in 
-a dataframe called `data`. Write code to do this and then produce 
-a summary showing how many NAs each variable has.</code></pre>
-<p><strong>Merging datasets:</strong></p>
-<pre><code>I have two dataframes in R: `student_data` with one row per student 
-(N=342, key variable: student_id) and `school_data` with one row 
-per school (N=18, key variable: school_id). Each student has a 
-school_id variable. I want to merge school-level variables into 
-the student dataframe. Write tidyverse code to do this and include 
-checks to verify the merge worked correctly — row counts before 
-and after, and a check for any unmatched IDs.</code></pre>
-<p><strong>Reverse scoring:</strong></p>
-<pre><code>I have a scale in R with 10 items (sel_1 through sel_10). Items 
-3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
-code to reverse score these items and create new variables named 
-with the _r suffix, then compute a mean composite score across 
-all 10 items (using the reversed versions where applicable) 
-excluding cases with more than 20% missing data.</code></pre>
+<section id="esem" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="esem"><span class="header-section-number">15.2.3</span> ESEM</h3>
+<p>Exploratory Structural Equation Modeling (ESEM) combines CFA and EFA — items are primarily associated with one factor but allowed to have small cross-loadings on other factors. This is often more realistic than pure CFA and produces better fit in psychological data:</p>
+<pre><code>ANALYSIS:
+  TYPE = EFA 3 3;
+  ESTIMATOR = WLSMV;
+  ROTATION = TARGET;
+
+MODEL:
+  ! Target rotation specifying expected primary loadings
+  f1 BY selsm1~1 selsm2~1 selsm3~1 selsm4~1
+        selsa1~0 selsa2~0 selsa3~0
+        selrs1~0 selrs2~0 selrs3~0;
+  f2 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0
+        selsa1~1 selsa2~1 selsa3~1
+        selrs1~0 selrs2~0 selrs3~0;
+  f3 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0
+        selsa1~0 selsa2~0 selsa3~0
+        selrs1~1 selrs2~1 selrs3~1;</code></pre>
+<p><code>~1</code> indicates a target loading of 1 (item primarily loads on this factor) and <code>~0</code> indicates a target of 0 (item expected to have near-zero loading on this factor).</p>
 </section>
-<section id="multilevel-modeling" class="level3" data-number="7.6.3">
-<h3 data-number="7.6.3" class="anchored" data-anchor-id="multilevel-modeling"><span class="header-section-number">7.6.3</span> Multilevel Modeling</h3>
-<p><strong>Setting up a multilevel model in R:</strong></p>
-<pre><code>I am running a multilevel model in R using lme4. My data have 
-students nested within schools (N=342 students, N=18 schools). 
-The outcome is sel_total_mean (continuous). Level-1 predictors 
-are grade and gender. The level-2 predictor is school_size. 
-Write code to: (1) run a null model and calculate the ICC, 
-(2) add level-1 predictors, (3) add the level-2 predictor, 
-and (4) compare models. Use broom.mixed to extract results.</code></pre>
-<p><strong>Interpreting output:</strong></p>
-<pre><code>Here is the summary output from an lme4 model. Please help me 
-interpret the fixed effects, random effects, and variance 
-components. Flag anything that looks unusual or worth 
-investigating further.
-
-[paste output here]</code></pre>
 </section>
-<section id="meta-analysis" class="level3" data-number="7.6.4">
-<h3 data-number="7.6.4" class="anchored" data-anchor-id="meta-analysis"><span class="header-section-number">7.6.4</span> Meta-Analysis</h3>
-<p><strong>Setting up a meta-analysis in R:</strong></p>
-<pre><code>I am running a meta-analysis in R using metafor with robust 
-variance estimation (RVE) via the clubSandwich package. I have 
-effect sizes in a dataframe called `meta_data` with columns: 
-study_id, effect_id, yi (effect size), vi (variance), and 
-moderator variables [list them]. Write code to fit a multilevel 
-random effects model with RVE, produce a forest plot, and test 
-for publication bias using Egger's test.</code></pre>
+<section id="running-cfaefa-via-mplusautomation" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="running-cfaefa-via-mplusautomation"><span class="header-section-number">15.3</span> Running CFA/EFA via MplusAutomation</h2>
+<p>The full R workflow for running CFA from R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load cleaned data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"cleaned"</span>, <span class="st">"wave1_cleaned.rds"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Rename to Mplus-compatible names</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>data_mplus <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm1 =</span> sel_selfmgmt_1,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm2 =</span> sel_selfmgmt_2,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm3 =</span> sel_selfmgmt_3,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsm4 =</span> sel_selfmgmt_4,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa1 =</span> sel_socaware_1,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa2 =</span> sel_socaware_2,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">selsa3 =</span> sel_socaware_3,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">selrs1 =</span> sel_relskill_1,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">selrs2 =</span> sel_relskill_2,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">selrs3 =</span> sel_relskill_3,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">schlid =</span> school_id,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">stuid  =</span> student_id</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Write Mplus data file</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">prepareMplusData</span>(</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  data_mplus,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"wave1_data.dat"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Run model (assumes cfa_model.inp is already written)</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.inp"</span>))</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Read results</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>, <span class="st">"cfa_model.out"</span>))</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Extract fit indices</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> output<span class="sc">$</span>summaries <span class="sc">|&gt;</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB, SRMR)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Extract standardized loadings</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> output<span class="sc">$</span>parameters<span class="sc">$</span>stdyx.standardized <span class="sc">|&gt;</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"BY"</span>, paramHeader))</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Save results</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(fit, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_fit.csv"</span>))</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(loadings, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"cfa_loadings.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="table-and-figure-production" class="level3" data-number="7.6.5">
-<h3 data-number="7.6.5" class="anchored" data-anchor-id="table-and-figure-production"><span class="header-section-number">7.6.5</span> Table and Figure Production</h3>
-<p><strong>Producing a results table in Word:</strong></p>
-<pre><code>I have model results stored in a dataframe called `results` in R 
-with columns: term, estimate, std.error, conf.low, conf.high, 
-p.value. Write code using flextable and officer to produce an 
-APA-style results table and save it as a Word document at 
-output/tables/model_results.docx. Use Times New Roman 12pt, 
-include a table title, and format p-values to three decimal places.</code></pre>
-<p><strong>Saving a ggplot figure:</strong></p>
-<pre><code>I have a ggplot object called `p` in R. Write code to save it 
-as both a PNG (300 dpi, 6x4 inches) and a PDF to 
-output/figures/figure1. Use the here package for the file path.</code></pre>
-</section>
-<section id="debugging-code" class="level3" data-number="7.6.6">
-<h3 data-number="7.6.6" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">7.6.6</span> Debugging Code</h3>
-<p><strong>Debugging an error:</strong></p>
-<pre><code>I am running the following R code and getting this error. 
-Please explain what is causing the error and provide corrected code.
-
-Code:
-[paste code]
-
-Error message:
-[paste error]
-
-Here is a sample of my data structure:
-[paste head(data) or glimpse(data) output]</code></pre>
-<p><strong>Code review:</strong></p>
-<pre><code>Please review the following R code for correctness, efficiency, 
-and adherence to tidyverse style conventions. Flag any potential 
-errors, inefficiencies, or places where the code could be 
-clearer. Do not rewrite the whole thing — just identify issues 
-and suggest targeted improvements.
-
-[paste code]</code></pre>
-</section>
-<section id="mplus-syntax" class="level3" data-number="7.6.7">
-<h3 data-number="7.6.7" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">7.6.7</span> Mplus Syntax</h3>
-<p><strong>Writing a CFA model:</strong></p>
-<pre><code>Write Mplus syntax for a confirmatory factor analysis with the 
-following structure: one factor with 6 indicators, continuous 
-outcomes, WLSMV estimator, and FIML for missing data. The data 
-file is wave1_data.dat and the variables are [list them]. 
-Include MODEL FIT and STANDARDIZED output.</code></pre>
-<p><strong>Troubleshooting non-convergence:</strong></p>
-<pre><code>My Mplus model is not converging. Here is the output file. 
-Please identify the likely cause of the non-convergence and 
-suggest modifications to the syntax or starting values to 
-address it.
-
-[paste relevant sections of .out file]</code></pre>
+<section id="model-comparison" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="model-comparison"><span class="header-section-number">15.4</span> Model Comparison</h2>
+<p>To compare nested models (e.g., one-factor vs.&nbsp;three-factor), use the DIFFTEST procedure with WLSMV:</p>
+<p>In the baseline model input, add:</p>
+<pre><code>SAVEDATA:
+  DIFFTEST = baseline.dat;</code></pre>
+<p>In the comparison model input, add:</p>
+<pre><code>ANALYSIS:
+  DIFFTEST = baseline.dat;</code></pre>
+<p>With MplusAutomation, run both models and compare fit indices:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run both models</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all output</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>all_output <span class="ot">&lt;-</span> <span class="fu">readModels</span>(<span class="fu">here</span>(<span class="st">"code"</span>, <span class="st">"mplus"</span>), <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare fit</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>fit_comparison <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_output, <span class="cf">function</span>(m) m<span class="sc">$</span>summaries) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="at">.id =</span> <span class="st">"model"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(model, CFI, TLI, RMSEA_Estimate, SRMR)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit_comparison)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1012,13 +983,13 @@ address it.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/tools/ides.html" class="pagination-link" aria-label="IDEs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">IDEs</span></span>
+      <a href="../../chapters/analysis/ggplot2.html" class="pagination-link" aria-label="Visualization with ggplot2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Visualization with ggplot2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/workflows/r/r.html" class="pagination-link" aria-label="R">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/lme4.html" class="pagination-link" aria-label="Multilevel Modeling with lme4">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Multilevel Modeling with lme4</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
