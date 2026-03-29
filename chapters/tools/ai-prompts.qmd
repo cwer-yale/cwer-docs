@@ -28,6 +28,25 @@ Getting useful output from AI requires clear, specific input. A few principles t
 
 **Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter.
 
+## Writing Assistance with Grammarly
+
+[Grammarly](https://www.grammarly.com) is an AI-powered writing assistant that checks grammar, spelling, punctuation, clarity, and style in real time. The recommended version for CWER team members is the **Grammarly desktop app**, which works seamlessly across all the applications you already use — Word, Outlook, email clients, web browsers, and desktop applications — without any copying and pasting. Suggestions appear inline wherever you are writing.
+
+For CWER work, Grammarly is most useful for:
+
+- Polishing manuscript drafts, reports, and partner communications before sharing
+- Catching typos and grammatical errors in research reports and grant proposals
+- Improving sentence clarity and concision in methods and results sections
+- Checking team member writing during the review process
+
+### Setup
+
+Download the Grammarly desktop app for Mac or Windows at [grammarly.com/desktop](https://www.grammarly.com/desktop). Installation is straightforward — once installed, Grammarly works automatically in the background across your applications. The free version covers grammar, spelling, and punctuation. Grammarly Pro adds clarity, tone, and style suggestions, which are useful for academic writing.
+
+### A Note on Data Privacy
+
+Do not use Grammarly with text containing sensitive research data or participant information. Grammarly processes text on external servers. For sensitive content, use Microsoft Word's built-in Editor (Review → Editor) instead, which provides grammar and style checking without sending text to external servers. You can also temporarily turn Grammarly off for a specific application using the Grammarly desktop app settings.
+
 ## Idea Generation
 
 AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.
