@@ -1,4 +1,4 @@
-# Mplus: Monte Carlo Power Analysis
+# Power Analysis
 
 Monte Carlo simulation in Mplus is used to determine the sample size needed to detect effects of a specified magnitude with adequate statistical power. Rather than relying on simple formulas (which assume simple designs), Monte Carlo simulation accounts for the complexity of your actual model — including latent variables, missing data, clustering, and multiple outcomes. CWER uses Monte Carlo simulation for grant proposals and study design decisions.
 
@@ -13,7 +13,9 @@ Monte Carlo simulation works by:
 
 This gives you a direct, empirical estimate of power for your specific model and design.
 
-## Basic Monte Carlo Syntax
+## Monte Carlo Simulation in Mplus
+
+### Basic Monte Carlo Syntax
 
 The following example estimates power for a CFA model with one factor and six indicators:
 ```
@@ -39,7 +41,7 @@ OUTPUT:
   TECH9;
 ```
 
-### Key Syntax Elements
+#### Key Syntax Elements
 
 **MONTECARLO** — replaces the DATA section; specifies simulation parameters instead of a data file.
 
@@ -65,7 +67,7 @@ The quality of a Monte Carlo analysis depends entirely on how well your populati
 
 For CFA, the key parameters are factor loadings and residual variances. If you specify a standardized loading of .70, the residual variance for that indicator is 1 - .70² = .51.
 
-## Power Analysis for Regression and Path Models
+### Power Analysis for Regression and Path Models
 
 For a path model testing whether professional development predicts teacher SEL practices:
 ```
@@ -94,7 +96,7 @@ OUTPUT:
 
 The asterisked values are population parameters. Here `tchsel ON pd*0.30` specifies that the path from PD to teacher SEL has a population value of 0.30 (standardized).
 
-## Power Analysis for Indirect Effects
+### Power Analysis for Indirect Effects
 
 To estimate power for a mediated (indirect) effect:
 ```
@@ -128,7 +130,7 @@ OUTPUT:
 
 The power for the indirect effect is reported in the output as the proportion of replications in which `indirect` is significant.
 
-## Accounting for Missing Data
+### Accounting for Missing Data
 
 To simulate power under planned missing data designs (e.g., a three-form design) or anticipated attrition:
 ```
@@ -143,7 +145,7 @@ MONTECARLO:
 
 `PATMISS` specifies the proportion of missing data for each variable. This allows you to estimate power under realistic attrition scenarios.
 
-## Running Monte Carlo via MplusAutomation
+### Running Monte Carlo via MplusAutomation
 
 Monte Carlo analyses can be run from R using the same `runModels()` and `readModels()` workflow:
 ```r
@@ -167,7 +169,7 @@ print(power)
 
 The `pct_sig_coef` column gives the proportion of replications in which each parameter was statistically significant — this is your power estimate.
 
-## Finding the Required Sample Size
+### Finding the Required Sample Size
 
 Run the same model at multiple sample sizes and plot power as a function of N:
 ```r
@@ -203,7 +205,7 @@ ggplot(results, aes(x = n, y = power)) +
 ggsave(here("output", "figures", "power_curve.png"), width = 6, height = 4, dpi = 300)
 ```
 
-## Reporting Monte Carlo Results
+### Reporting Monte Carlo Results
 
 A complete report of Monte Carlo power analysis should include:
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>20&nbsp; Mplus: Monte Carlo Power Analysis – Child Wellbeing and Education Research</title>
+<title>20&nbsp; Power Analysis – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/power-analysis.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/power-analysis.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CFA &amp; EFA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -300,19 +300,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/path-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Path Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/power-analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -328,26 +328,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#what-is-monte-carlo-simulation" id="toc-what-is-monte-carlo-simulation" class="nav-link active" data-scroll-target="#what-is-monte-carlo-simulation"><span class="header-section-number">20.1</span> What is Monte Carlo Simulation?</a></li>
-  <li><a href="#basic-monte-carlo-syntax" id="toc-basic-monte-carlo-syntax" class="nav-link" data-scroll-target="#basic-monte-carlo-syntax"><span class="header-section-number">20.2</span> Basic Monte Carlo Syntax</a>
+  <li><a href="#monte-carlo-simulation-in-mplus" id="toc-monte-carlo-simulation-in-mplus" class="nav-link" data-scroll-target="#monte-carlo-simulation-in-mplus"><span class="header-section-number">20.2</span> Monte Carlo Simulation in Mplus</a>
   <ul class="collapse">
-  <li><a href="#key-syntax-elements" id="toc-key-syntax-elements" class="nav-link" data-scroll-target="#key-syntax-elements"><span class="header-section-number">20.2.1</span> Key Syntax Elements</a></li>
+  <li><a href="#basic-monte-carlo-syntax" id="toc-basic-monte-carlo-syntax" class="nav-link" data-scroll-target="#basic-monte-carlo-syntax"><span class="header-section-number">20.2.1</span> Basic Monte Carlo Syntax</a></li>
   </ul></li>
-  <li><a href="#specifying-population-parameter-values" id="toc-specifying-population-parameter-values" class="nav-link" data-scroll-target="#specifying-population-parameter-values"><span class="header-section-number">20.3</span> Specifying Population Parameter Values</a></li>
-  <li><a href="#power-analysis-for-regression-and-path-models" id="toc-power-analysis-for-regression-and-path-models" class="nav-link" data-scroll-target="#power-analysis-for-regression-and-path-models"><span class="header-section-number">20.4</span> Power Analysis for Regression and Path Models</a></li>
-  <li><a href="#power-analysis-for-indirect-effects" id="toc-power-analysis-for-indirect-effects" class="nav-link" data-scroll-target="#power-analysis-for-indirect-effects"><span class="header-section-number">20.5</span> Power Analysis for Indirect Effects</a></li>
-  <li><a href="#accounting-for-missing-data" id="toc-accounting-for-missing-data" class="nav-link" data-scroll-target="#accounting-for-missing-data"><span class="header-section-number">20.6</span> Accounting for Missing Data</a></li>
-  <li><a href="#running-monte-carlo-via-mplusautomation" id="toc-running-monte-carlo-via-mplusautomation" class="nav-link" data-scroll-target="#running-monte-carlo-via-mplusautomation"><span class="header-section-number">20.7</span> Running Monte Carlo via MplusAutomation</a></li>
-  <li><a href="#finding-the-required-sample-size" id="toc-finding-the-required-sample-size" class="nav-link" data-scroll-target="#finding-the-required-sample-size"><span class="header-section-number">20.8</span> Finding the Required Sample Size</a></li>
-  <li><a href="#reporting-monte-carlo-results" id="toc-reporting-monte-carlo-results" class="nav-link" data-scroll-target="#reporting-monte-carlo-results"><span class="header-section-number">20.9</span> Reporting Monte Carlo Results</a></li>
+  <li><a href="#specifying-population-parameter-values" id="toc-specifying-population-parameter-values" class="nav-link" data-scroll-target="#specifying-population-parameter-values"><span class="header-section-number">20.3</span> Specifying Population Parameter Values</a>
+  <ul class="collapse">
+  <li><a href="#power-analysis-for-regression-and-path-models" id="toc-power-analysis-for-regression-and-path-models" class="nav-link" data-scroll-target="#power-analysis-for-regression-and-path-models"><span class="header-section-number">20.3.1</span> Power Analysis for Regression and Path Models</a></li>
+  <li><a href="#power-analysis-for-indirect-effects" id="toc-power-analysis-for-indirect-effects" class="nav-link" data-scroll-target="#power-analysis-for-indirect-effects"><span class="header-section-number">20.3.2</span> Power Analysis for Indirect Effects</a></li>
+  <li><a href="#accounting-for-missing-data" id="toc-accounting-for-missing-data" class="nav-link" data-scroll-target="#accounting-for-missing-data"><span class="header-section-number">20.3.3</span> Accounting for Missing Data</a></li>
+  <li><a href="#running-monte-carlo-via-mplusautomation" id="toc-running-monte-carlo-via-mplusautomation" class="nav-link" data-scroll-target="#running-monte-carlo-via-mplusautomation"><span class="header-section-number">20.3.4</span> Running Monte Carlo via MplusAutomation</a></li>
+  <li><a href="#finding-the-required-sample-size" id="toc-finding-the-required-sample-size" class="nav-link" data-scroll-target="#finding-the-required-sample-size"><span class="header-section-number">20.3.5</span> Finding the Required Sample Size</a></li>
+  <li><a href="#reporting-monte-carlo-results" id="toc-reporting-monte-carlo-results" class="nav-link" data-scroll-target="#reporting-monte-carlo-results"><span class="header-section-number">20.3.6</span> Reporting Monte Carlo Results</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/power-analysis.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/power-analysis.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></h1>
 </div>
 
 
@@ -376,8 +378,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>This gives you a direct, empirical estimate of power for your specific model and design.</p>
 </section>
-<section id="basic-monte-carlo-syntax" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="basic-monte-carlo-syntax"><span class="header-section-number">20.2</span> Basic Monte Carlo Syntax</h2>
+<section id="monte-carlo-simulation-in-mplus" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="monte-carlo-simulation-in-mplus"><span class="header-section-number">20.2</span> Monte Carlo Simulation in Mplus</h2>
+<section id="basic-monte-carlo-syntax" class="level3" data-number="20.2.1">
+<h3 data-number="20.2.1" class="anchored" data-anchor-id="basic-monte-carlo-syntax"><span class="header-section-number">20.2.1</span> Basic Monte Carlo Syntax</h3>
 <p>The following example estimates power for a CFA model with one factor and six indicators:</p>
 <pre><code>TITLE:    Monte Carlo - CFA power analysis
 
@@ -399,8 +403,8 @@ MODEL:
 
 OUTPUT:
   TECH9;</code></pre>
-<section id="key-syntax-elements" class="level3" data-number="20.2.1">
-<h3 data-number="20.2.1" class="anchored" data-anchor-id="key-syntax-elements"><span class="header-section-number">20.2.1</span> Key Syntax Elements</h3>
+<section id="key-syntax-elements" class="level4" data-number="20.2.1.1">
+<h4 data-number="20.2.1.1" class="anchored" data-anchor-id="key-syntax-elements"><span class="header-section-number">20.2.1.1</span> Key Syntax Elements</h4>
 <p><strong>MONTECARLO</strong> — replaces the DATA section; specifies simulation parameters instead of a data file.</p>
 <p><strong>NOBS</strong> — sample size to simulate. Run multiple analyses at different sample sizes to find where power reaches .80.</p>
 <p><strong>NREP</strong> — number of replications. 1000 is a reasonable starting point; 10000 gives more stable estimates.</p>
@@ -408,6 +412,7 @@ OUTPUT:
 <p><strong>MODEL POPULATION</strong> — the “true” population model used to generate data. Specify parameter values based on theory, prior research, or pilot data.</p>
 <p><strong>MODEL</strong> — the analysis model fit to each generated dataset. Usually matches MODEL POPULATION, but can differ to test robustness.</p>
 <p><strong>TECH9</strong> — requests information about any convergence failures across replications.</p>
+</section>
 </section>
 </section>
 <section id="specifying-population-parameter-values" class="level2" data-number="20.3">
@@ -419,9 +424,8 @@ OUTPUT:
 <li><strong>Theory</strong> — for completely novel studies, use theory to set plausible bounds and run sensitivity analyses across a range of values</li>
 </ul>
 <p>For CFA, the key parameters are factor loadings and residual variances. If you specify a standardized loading of .70, the residual variance for that indicator is 1 - .70² = .51.</p>
-</section>
-<section id="power-analysis-for-regression-and-path-models" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="power-analysis-for-regression-and-path-models"><span class="header-section-number">20.4</span> Power Analysis for Regression and Path Models</h2>
+<section id="power-analysis-for-regression-and-path-models" class="level3" data-number="20.3.1">
+<h3 data-number="20.3.1" class="anchored" data-anchor-id="power-analysis-for-regression-and-path-models"><span class="header-section-number">20.3.1</span> Power Analysis for Regression and Path Models</h3>
 <p>For a path model testing whether professional development predicts teacher SEL practices:</p>
 <pre><code>TITLE:    Monte Carlo - Path model power analysis
 
@@ -446,8 +450,8 @@ OUTPUT:
   TECH9;</code></pre>
 <p>The asterisked values are population parameters. Here <code>tchsel ON pd*0.30</code> specifies that the path from PD to teacher SEL has a population value of 0.30 (standardized).</p>
 </section>
-<section id="power-analysis-for-indirect-effects" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="power-analysis-for-indirect-effects"><span class="header-section-number">20.5</span> Power Analysis for Indirect Effects</h2>
+<section id="power-analysis-for-indirect-effects" class="level3" data-number="20.3.2">
+<h3 data-number="20.3.2" class="anchored" data-anchor-id="power-analysis-for-indirect-effects"><span class="header-section-number">20.3.2</span> Power Analysis for Indirect Effects</h3>
 <p>To estimate power for a mediated (indirect) effect:</p>
 <pre><code>TITLE:    Monte Carlo - Mediation power analysis
 
@@ -477,8 +481,8 @@ OUTPUT:
   TECH9;</code></pre>
 <p>The power for the indirect effect is reported in the output as the proportion of replications in which <code>indirect</code> is significant.</p>
 </section>
-<section id="accounting-for-missing-data" class="level2" data-number="20.6">
-<h2 data-number="20.6" class="anchored" data-anchor-id="accounting-for-missing-data"><span class="header-section-number">20.6</span> Accounting for Missing Data</h2>
+<section id="accounting-for-missing-data" class="level3" data-number="20.3.3">
+<h3 data-number="20.3.3" class="anchored" data-anchor-id="accounting-for-missing-data"><span class="header-section-number">20.3.3</span> Accounting for Missing Data</h3>
 <p>To simulate power under planned missing data designs (e.g., a three-form design) or anticipated attrition:</p>
 <pre><code>MONTECARLO:
   NAMES = y1 y2 y3 y4 y5 y6;
@@ -489,8 +493,8 @@ OUTPUT:
   PATPROB = 1.0;</code></pre>
 <p><code>PATMISS</code> specifies the proportion of missing data for each variable. This allows you to estimate power under realistic attrition scenarios.</p>
 </section>
-<section id="running-monte-carlo-via-mplusautomation" class="level2" data-number="20.7">
-<h2 data-number="20.7" class="anchored" data-anchor-id="running-monte-carlo-via-mplusautomation"><span class="header-section-number">20.7</span> Running Monte Carlo via MplusAutomation</h2>
+<section id="running-monte-carlo-via-mplusautomation" class="level3" data-number="20.3.4">
+<h3 data-number="20.3.4" class="anchored" data-anchor-id="running-monte-carlo-via-mplusautomation"><span class="header-section-number">20.3.4</span> Running Monte Carlo via MplusAutomation</h3>
 <p>Monte Carlo analyses can be run from R using the same <code>runModels()</code> and <code>readModels()</code> workflow:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -510,8 +514,8 @@ OUTPUT:
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(power)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>pct_sig_coef</code> column gives the proportion of replications in which each parameter was statistically significant — this is your power estimate.</p>
 </section>
-<section id="finding-the-required-sample-size" class="level2" data-number="20.8">
-<h2 data-number="20.8" class="anchored" data-anchor-id="finding-the-required-sample-size"><span class="header-section-number">20.8</span> Finding the Required Sample Size</h2>
+<section id="finding-the-required-sample-size" class="level3" data-number="20.3.5">
+<h3 data-number="20.3.5" class="anchored" data-anchor-id="finding-the-required-sample-size"><span class="header-section-number">20.3.5</span> Finding the Required Sample Size</h3>
 <p>Run the same model at multiple sample sizes and plot power as a function of N:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define sample sizes to test</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sample_sizes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">250</span>, <span class="dv">300</span>)</span>
@@ -544,8 +548,8 @@ OUTPUT:
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"figures"</span>, <span class="st">"power_curve.png"</span>), <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="reporting-monte-carlo-results" class="level2" data-number="20.9">
-<h2 data-number="20.9" class="anchored" data-anchor-id="reporting-monte-carlo-results"><span class="header-section-number">20.9</span> Reporting Monte Carlo Results</h2>
+<section id="reporting-monte-carlo-results" class="level3" data-number="20.3.6">
+<h3 data-number="20.3.6" class="anchored" data-anchor-id="reporting-monte-carlo-results"><span class="header-section-number">20.3.6</span> Reporting Monte Carlo Results</h3>
 <p>A complete report of Monte Carlo power analysis should include:</p>
 <ul>
 <li>The model tested and rationale for parameter values</li>
@@ -558,6 +562,7 @@ OUTPUT:
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -963,8 +968,8 @@ OUTPUT:
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/analysis/irt.html" class="pagination-link" aria-label="Mplus: IRT">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span>
+      <a href="../../chapters/analysis/irt.html" class="pagination-link" aria-label="Item Response Theory (IRT)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

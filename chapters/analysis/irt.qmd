@@ -1,4 +1,4 @@
-# Mplus: IRT
+# Item Response Theory (IRT)
 
 Item Response Theory (IRT) models the relationship between a latent trait (e.g., reading ability, SEL competence) and the probability of a particular response to each item. Unlike classical test theory, which focuses on scale-level statistics, IRT models item-level characteristics — how difficult each item is, how well it discriminates between respondents at different trait levels, and whether items function differently across groups. CWER uses IRT primarily for psychometric evaluation of scales and instruments.
 
@@ -24,7 +24,9 @@ The appropriate IRT model depends on your item format:
 
 For most CWER work with Likert-scale items, the **Graded Response Model (GRM)** is appropriate. For binary items, the **2PL model** is the standard choice. The 1PL (Rasch) model constrains all discriminations to be equal — use it when parsimony is a priority and the equal-discrimination assumption can be justified.
 
-## Binary IRT: 2PL Model
+## IRT in Mplus
+
+### Binary IRT: 2PL Model
 ```
 TITLE:    2PL IRT model
 
@@ -58,7 +60,7 @@ OUTPUT:
 
 **TYPE = EFA 1 1** — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.
 
-## Polytomous IRT: Graded Response Model
+### Polytomous IRT: Graded Response Model
 
 For Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):
 ```
@@ -88,7 +90,7 @@ OUTPUT:
 
 The output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).
 
-## Interpreting IRT Output with PARAMETERIZATION = THETA
+### Interpreting IRT Output with PARAMETERIZATION = THETA
 
 With `PARAMETERIZATION = THETA`, the Mplus output provides:
 
@@ -105,7 +107,7 @@ General guidelines for interpreting discrimination parameters:
 | 1.00–2.00 | Good |
 | > 2.00 | Very high |
 
-## Differential Item Functioning (DIF)
+### Differential Item Functioning (DIF)
 
 DIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.
 
@@ -141,13 +143,13 @@ OUTPUT:
 
 The `MODEL female:` section frees the thresholds for `item1` in the female group, testing whether that item's difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.
 
-## Test Information Function
+### Test Information Function
 
 The Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.
 
 To obtain the TIF, request `PLOT2` in the OUTPUT section and use Mplus's graphical output. With MplusAutomation, you can extract and plot item information curves in R using the `mirt` package, which provides more flexible IRT visualization than Mplus.
 
-## Running IRT via MplusAutomation
+### Running IRT via MplusAutomation
 ```r
 library(tidyverse)
 library(here)
@@ -199,7 +201,7 @@ write_csv(discriminations, here("output", "tables", "irt_discriminations.csv"))
 write_csv(thresholds, here("output", "tables", "irt_thresholds.csv"))
 ```
 
-## Reporting IRT Results
+### Reporting IRT Results
 
 A complete report of IRT analysis should include:
 

@@ -1,12 +1,12 @@
-# Mplus: CFA & EFA
+# CFA & EFA
 
 Confirmatory Factor Analysis (CFA) and Exploratory Factor Analysis (EFA) are among the most common analyses in CWER's psychometric work. CFA tests whether a hypothesized factor structure fits the data. EFA explores the factor structure when the structure is unknown or uncertain. This chapter covers both, with syntax examples and the MplusAutomation workflow for running them from R.
 
-## Confirmatory Factor Analysis (CFA)
+## Confirmatory Factor Analysis (CFA) with Mplus
 
 CFA is used when you have a theoretically motivated factor structure and want to test how well it fits your data. For example, you might hypothesize that 12 SEL items measure three latent factors (self-management, social awareness, relationship skills) and use CFA to test whether this structure is supported.
 
-### Basic CFA Syntax
+### Basic Mplus CFA Syntax
 ```
 TITLE:    CFA - SEL three-factor model
 
@@ -70,7 +70,7 @@ MODEL:
   sel BY selfmgmt socaware relskill;
 ```
 
-### Bifactor CFA
+### Bifactor CFA with Mplus
 
 To specify a bifactor model (general factor + specific factors):
 ```
@@ -92,11 +92,11 @@ MODEL:
 
 The `@0` fixes the correlation between factors to zero, which is required for a bifactor model.
 
-## Exploratory Factor Analysis (EFA)
+## Exploratory Factor Analysis (EFA) with Mplus
 
 EFA is used when the factor structure is unknown or you want to explore how many factors underlie a set of items. Unlike CFA, EFA does not fix items to specific factors — it allows all items to load on all factors.
 
-### Basic EFA Syntax
+### Basic EFA Syntax with Mplus
 ```
 TITLE:    EFA - SEL items
 
@@ -132,7 +132,7 @@ Use multiple criteria:
 - **Interpretability** — the factor solution should make theoretical sense
 - **Parsimony** — prefer fewer factors when fit is similar across solutions
 
-### ESEM
+### ESEM with Mplus
 
 Exploratory Structural Equation Modeling (ESEM) combines CFA and EFA — items are primarily associated with one factor but allowed to have small cross-loadings on other factors. This is often more realistic than pure CFA and produces better fit in psychological data:
 ```

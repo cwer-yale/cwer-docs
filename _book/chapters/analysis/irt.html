@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Mplus: IRT – Child Wellbeing and Education Research</title>
+<title>19&nbsp; Item Response Theory (IRT) – Child Wellbeing and Education Research</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Mplus: CFA &amp; EFA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CFA &amp; EFA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -301,19 +301,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/path-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Path Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,22 +330,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#key-irt-concepts" id="toc-key-irt-concepts" class="nav-link active" data-scroll-target="#key-irt-concepts"><span class="header-section-number">19.1</span> Key IRT Concepts</a></li>
   <li><a href="#irt-models" id="toc-irt-models" class="nav-link" data-scroll-target="#irt-models"><span class="header-section-number">19.2</span> IRT Models</a></li>
-  <li><a href="#binary-irt-2pl-model" id="toc-binary-irt-2pl-model" class="nav-link" data-scroll-target="#binary-irt-2pl-model"><span class="header-section-number">19.3</span> Binary IRT: 2PL Model</a></li>
-  <li><a href="#polytomous-irt-graded-response-model" id="toc-polytomous-irt-graded-response-model" class="nav-link" data-scroll-target="#polytomous-irt-graded-response-model"><span class="header-section-number">19.4</span> Polytomous IRT: Graded Response Model</a></li>
-  <li><a href="#interpreting-irt-output-with-parameterization-theta" id="toc-interpreting-irt-output-with-parameterization-theta" class="nav-link" data-scroll-target="#interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">19.5</span> Interpreting IRT Output with PARAMETERIZATION = THETA</a></li>
-  <li><a href="#differential-item-functioning-dif" id="toc-differential-item-functioning-dif" class="nav-link" data-scroll-target="#differential-item-functioning-dif"><span class="header-section-number">19.6</span> Differential Item Functioning (DIF)</a></li>
-  <li><a href="#test-information-function" id="toc-test-information-function" class="nav-link" data-scroll-target="#test-information-function"><span class="header-section-number">19.7</span> Test Information Function</a></li>
-  <li><a href="#running-irt-via-mplusautomation" id="toc-running-irt-via-mplusautomation" class="nav-link" data-scroll-target="#running-irt-via-mplusautomation"><span class="header-section-number">19.8</span> Running IRT via MplusAutomation</a></li>
-  <li><a href="#reporting-irt-results" id="toc-reporting-irt-results" class="nav-link" data-scroll-target="#reporting-irt-results"><span class="header-section-number">19.9</span> Reporting IRT Results</a></li>
+  <li><a href="#irt-in-mplus" id="toc-irt-in-mplus" class="nav-link" data-scroll-target="#irt-in-mplus"><span class="header-section-number">19.3</span> IRT in Mplus</a>
+  <ul class="collapse">
+  <li><a href="#binary-irt-2pl-model" id="toc-binary-irt-2pl-model" class="nav-link" data-scroll-target="#binary-irt-2pl-model"><span class="header-section-number">19.3.1</span> Binary IRT: 2PL Model</a></li>
+  <li><a href="#polytomous-irt-graded-response-model" id="toc-polytomous-irt-graded-response-model" class="nav-link" data-scroll-target="#polytomous-irt-graded-response-model"><span class="header-section-number">19.3.2</span> Polytomous IRT: Graded Response Model</a></li>
+  <li><a href="#interpreting-irt-output-with-parameterization-theta" id="toc-interpreting-irt-output-with-parameterization-theta" class="nav-link" data-scroll-target="#interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">19.3.3</span> Interpreting IRT Output with PARAMETERIZATION = THETA</a></li>
+  <li><a href="#differential-item-functioning-dif" id="toc-differential-item-functioning-dif" class="nav-link" data-scroll-target="#differential-item-functioning-dif"><span class="header-section-number">19.3.4</span> Differential Item Functioning (DIF)</a></li>
+  <li><a href="#test-information-function" id="toc-test-information-function" class="nav-link" data-scroll-target="#test-information-function"><span class="header-section-number">19.3.5</span> Test Information Function</a></li>
+  <li><a href="#running-irt-via-mplusautomation" id="toc-running-irt-via-mplusautomation" class="nav-link" data-scroll-target="#running-irt-via-mplusautomation"><span class="header-section-number">19.3.6</span> Running IRT via MplusAutomation</a></li>
+  <li><a href="#reporting-irt-results" id="toc-reporting-irt-results" class="nav-link" data-scroll-target="#reporting-irt-results"><span class="header-section-number">19.3.7</span> Reporting IRT Results</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/analysis/irt.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Mplus: IRT</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></h1>
 </div>
 
 
@@ -401,8 +404,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>For most CWER work with Likert-scale items, the <strong>Graded Response Model (GRM)</strong> is appropriate. For binary items, the <strong>2PL model</strong> is the standard choice. The 1PL (Rasch) model constrains all discriminations to be equal — use it when parsimony is a priority and the equal-discrimination assumption can be justified.</p>
 </section>
-<section id="binary-irt-2pl-model" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="binary-irt-2pl-model"><span class="header-section-number">19.3</span> Binary IRT: 2PL Model</h2>
+<section id="irt-in-mplus" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="irt-in-mplus"><span class="header-section-number">19.3</span> IRT in Mplus</h2>
+<section id="binary-irt-2pl-model" class="level3" data-number="19.3.1">
+<h3 data-number="19.3.1" class="anchored" data-anchor-id="binary-irt-2pl-model"><span class="header-section-number">19.3.1</span> Binary IRT: 2PL Model</h3>
 <pre><code>TITLE:    2PL IRT model
 
 DATA:
@@ -431,8 +436,8 @@ OUTPUT:
 <p><strong>PARAMETERIZATION = THETA</strong> — uses the IRT parameterization, which produces item discrimination (a) and difficulty (b) parameters directly. Without this, Mplus uses the default factor analytic parameterization.</p>
 <p><strong>TYPE = EFA 1 1</strong> — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.</p>
 </section>
-<section id="polytomous-irt-graded-response-model" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="polytomous-irt-graded-response-model"><span class="header-section-number">19.4</span> Polytomous IRT: Graded Response Model</h2>
+<section id="polytomous-irt-graded-response-model" class="level3" data-number="19.3.2">
+<h3 data-number="19.3.2" class="anchored" data-anchor-id="polytomous-irt-graded-response-model"><span class="header-section-number">19.3.2</span> Polytomous IRT: Graded Response Model</h3>
 <p>For Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):</p>
 <pre><code>TITLE:    Graded Response Model
 
@@ -458,8 +463,8 @@ OUTPUT:
   TECH1;</code></pre>
 <p>The output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).</p>
 </section>
-<section id="interpreting-irt-output-with-parameterization-theta" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">19.5</span> Interpreting IRT Output with PARAMETERIZATION = THETA</h2>
+<section id="interpreting-irt-output-with-parameterization-theta" class="level3" data-number="19.3.3">
+<h3 data-number="19.3.3" class="anchored" data-anchor-id="interpreting-irt-output-with-parameterization-theta"><span class="header-section-number">19.3.3</span> Interpreting IRT Output with PARAMETERIZATION = THETA</h3>
 <p>With <code>PARAMETERIZATION = THETA</code>, the Mplus output provides:</p>
 <ul>
 <li><strong>Factor loadings</strong> in the MODEL RESULTS section correspond to item discriminations (a parameters). Higher values indicate better-discriminating items.</li>
@@ -494,8 +499,8 @@ OUTPUT:
 </tbody>
 </table>
 </section>
-<section id="differential-item-functioning-dif" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="differential-item-functioning-dif"><span class="header-section-number">19.6</span> Differential Item Functioning (DIF)</h2>
+<section id="differential-item-functioning-dif" class="level3" data-number="19.3.4">
+<h3 data-number="19.3.4" class="anchored" data-anchor-id="differential-item-functioning-dif"><span class="header-section-number">19.3.4</span> Differential Item Functioning (DIF)</h3>
 <p>DIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.</p>
 <p>To test DIF in Mplus, use multiple-group CFA with measurement invariance tests — a constrained baseline model where item parameters are equal across groups is compared to a model where parameters are freed:</p>
 <pre><code>TITLE:    DIF analysis - gender
@@ -526,13 +531,13 @@ OUTPUT:
   MODINDICES(10);</code></pre>
 <p>The <code>MODEL female:</code> section frees the thresholds for <code>item1</code> in the female group, testing whether that item’s difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.</p>
 </section>
-<section id="test-information-function" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="test-information-function"><span class="header-section-number">19.7</span> Test Information Function</h2>
+<section id="test-information-function" class="level3" data-number="19.3.5">
+<h3 data-number="19.3.5" class="anchored" data-anchor-id="test-information-function"><span class="header-section-number">19.3.5</span> Test Information Function</h3>
 <p>The Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.</p>
 <p>To obtain the TIF, request <code>PLOT2</code> in the OUTPUT section and use Mplus’s graphical output. With MplusAutomation, you can extract and plot item information curves in R using the <code>mirt</code> package, which provides more flexible IRT visualization than Mplus.</p>
 </section>
-<section id="running-irt-via-mplusautomation" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="running-irt-via-mplusautomation"><span class="header-section-number">19.8</span> Running IRT via MplusAutomation</h2>
+<section id="running-irt-via-mplusautomation" class="level3" data-number="19.3.6">
+<h3 data-number="19.3.6" class="anchored" data-anchor-id="running-irt-via-mplusautomation"><span class="header-section-number">19.3.6</span> Running IRT via MplusAutomation</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MplusAutomation)</span>
@@ -582,8 +587,8 @@ OUTPUT:
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(discriminations, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"irt_discriminations.csv"</span>))</span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(thresholds, <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"irt_thresholds.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="reporting-irt-results" class="level2" data-number="19.9">
-<h2 data-number="19.9" class="anchored" data-anchor-id="reporting-irt-results"><span class="header-section-number">19.9</span> Reporting IRT Results</h2>
+<section id="reporting-irt-results" class="level3" data-number="19.3.7">
+<h3 data-number="19.3.7" class="anchored" data-anchor-id="reporting-irt-results"><span class="header-section-number">19.3.7</span> Reporting IRT Results</h3>
 <p>A complete report of IRT analysis should include:</p>
 <ul>
 <li>The IRT model used and justification</li>
@@ -597,6 +602,7 @@ OUTPUT:
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1002,13 +1008,13 @@ OUTPUT:
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/analysis/path-analysis.html" class="pagination-link" aria-label="Mplus: Path Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mplus: Path Analysis</span></span>
+      <a href="../../chapters/analysis/path-analysis.html" class="pagination-link" aria-label="Path Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Path Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/analysis/power-analysis.html" class="pagination-link" aria-label="Mplus: Monte Carlo Power Analysis">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Mplus: Monte Carlo Power Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/analysis/power-analysis.html" class="pagination-link" aria-label="Power Analysis">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,13 +1,5 @@
 # Multilevel Modeling with lme4
 
-`lme4` is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.
-
-Install and load it:
-```r
-install.packages("lme4")
-library(lme4)
-```
-
 ## When to Use Multilevel Modeling
 
 Multilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:
@@ -18,7 +10,17 @@ Multilevel modeling is appropriate when your data have a nested structure and ob
 
 Ignoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.
 
-## The Intraclass Correlation Coefficient
+## lme4
+
+`lme4` is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.
+
+Install and load it:
+```r
+install.packages("lme4")
+library(lme4)
+```
+
+### The Intraclass Correlation Coefficient
 
 Before fitting a full multilevel model, run an **unconditional means model** (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.
 ```r
@@ -34,7 +36,7 @@ icc(model_null)
 
 An ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.
 
-## Model Syntax
+### Model Syntax
 
 `lme4` uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:
 ```
@@ -80,7 +82,7 @@ tidy(model_2, effects = "fixed", conf.int = TRUE)
 
 This produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.
 
-## Comparing Models
+### Comparing Models
 
 Use `anova()` to compare nested models via likelihood ratio test:
 ```r
@@ -89,7 +91,7 @@ anova(model_1, model_2)
 
 This tests whether adding school-level predictors significantly improves model fit. Note that `lme4` uses REML estimation by default for variance components, but switches to ML for model comparisons — `anova()` handles this automatically.
 
-## Checking Assumptions
+### Checking Assumptions
 
 Examine residual plots to check model assumptions:
 ```r
@@ -104,7 +106,9 @@ qqline(resid(model_2))
 dotplot(ranef(model_2, condVar = TRUE))
 ```
 
-## When to Use Mplus Instead
+## Mplus
+
+### When to Use Mplus Instead
 
 `lme4` is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:
 

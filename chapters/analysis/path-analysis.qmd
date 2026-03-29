@@ -1,4 +1,4 @@
-# Mplus: Path Analysis
+# Path Analysis
 
 Path analysis is used to test hypothesized relationships among a set of observed variables. Unlike simple regression, path analysis allows you to model multiple outcomes simultaneously, include mediating variables, and test complex causal chains in a single model. CWER uses path analysis to examine how school, classroom, and student-level variables relate to academic and social-emotional outcomes.
 
@@ -8,7 +8,9 @@ A path model specifies directional relationships (paths) among observed variable
 
 For example, you might hypothesize that professional development predicts teacher SEL practices, which in turn predicts student SEL outcomes — a mediation model. Path analysis tests this entire chain in one model.
 
-## Basic Path Analysis Syntax
+## Path Analysis in Mplus
+
+### Basic Path Analysis Syntax
 ```
 TITLE:    Path analysis - PD to teacher practices to student outcomes
 
@@ -39,7 +41,7 @@ OUTPUT:
 
 The `ON` statement specifies regression paths. `stu_sel ON tch_sel grd` means student SEL is regressed on teacher SEL practices and grade.
 
-## Mediation Analysis
+### Mediation Analysis
 
 To test mediation (whether the effect of X on Y operates through M), define the indirect effect using MODEL INDIRECT or MODEL CONSTRAINT:
 ```
@@ -81,7 +83,7 @@ OUTPUT:
 
 **CINTERVAL(BCBOOTSTRAP)** — requests bias-corrected bootstrap confidence intervals, which are preferred over the Sobel test for testing mediation.
 
-## Multiple Mediators
+### Multiple Mediators
 
 For parallel mediation (multiple mediators operating simultaneously):
 ```
@@ -100,7 +102,7 @@ MODEL CONSTRAINT:
   total = a1*b1 + a2*b2 + c;
 ```
 
-## Moderation (Interaction Effects)
+### Moderation (Interaction Effects)
 
 To test whether the effect of X on Y differs by a moderator W, create an interaction term in R before running the model:
 ```r
@@ -116,7 +118,7 @@ MODEL:
 
 The coefficient for `xw` is the interaction effect. If significant, the effect of X on Y depends on the value of W.
 
-## Running Path Analysis via MplusAutomation
+### Running Path Analysis via MplusAutomation
 ```r
 library(tidyverse)
 library(here)
@@ -168,13 +170,13 @@ write_csv(paths, here("output", "tables", "path_coefficients.csv"))
 write_csv(indirect, here("output", "tables", "indirect_effects.csv"))
 ```
 
-## Model Fit for Path Models
+### Model Fit for Path Models
 
 Path models are evaluated using the same fit indices as CFA (see the [Mplus](../workflows/mplus/mplus.qmd) chapter). A just-identified model (where the number of estimated parameters equals the number of knowns) will always fit perfectly — you need at least one degree of freedom for fit to be meaningful.
 
 When a path model fits poorly, examine the modification indices to identify which paths might improve fit. Add paths only if they are theoretically justified — do not add paths purely to improve fit statistics.
 
-## Reporting Path Analysis Results
+### Reporting Path Analysis Results
 
 A complete report of path analysis results should include:
 
