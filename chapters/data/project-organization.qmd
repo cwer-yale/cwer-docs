@@ -29,6 +29,7 @@ my-project/
 ├── docs/                   # Reports, presentations, manuscripts
 └── README.md               # Project overview
 ```
+![The CWER project folder structure as it appears in the Positron Explorer panel.](../../images/positron-folders.png){fig-align="center" width="60%"}
 
 Not every project needs every subfolder. Adapt as needed, but keep the core separation between `data/raw/` and everything else intact.
 

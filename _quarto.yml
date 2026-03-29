@@ -5,7 +5,9 @@ project:
 book:
   title: "Child Wellbeing and Education Research"
   subtitle: "Team Guide"
-  author: "Michael Strambler"
+  author: 
+  - Michael J Strambler, PhD
+  - "Developed with Claude assistance"
   date: today
   repo-url: https://github.com/cwer-yale/cwer-docs
   chapters:

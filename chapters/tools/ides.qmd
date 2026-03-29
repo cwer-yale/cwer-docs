@@ -19,6 +19,8 @@ Key features relevant to CWER work:
 
 Download Positron at [positron.posit.co](https://positron.posit.co/).
 
+![The Positron interface showing the Explorer panel, editor, console, and plots panel.](../../images/positron-overview.png){fig-align="center" width="100%"}
+
 ### Getting Started in Positron
 
 Positron works by opening a **folder** as your workspace rather than individual files. When you start working on a project, use **File → Open Folder** to open the project's root directory. All of Positron's tools — the file explorer, R console, terminal, and Git panel — will then work relative to that folder.
@@ -41,6 +43,8 @@ For day-to-day Git operations, the Source Control panel is the most convenient a
 4. Type a commit message in the box at the top
 5. Click the **✓ Commit** button
 6. Click the **Sync** button (or the push icon) to push to GitHub
+
+![The Source Control panel in Positron showing staged changes ready to commit.](../../images/positron-git.png){fig-align="center" width="100%"}
 
 For pulling changes from teammates, click the **Sync** button or use the **...** menu and select **Pull**.
 
