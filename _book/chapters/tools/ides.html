@@ -280,7 +280,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#getting-started-in-positron" id="toc-getting-started-in-positron" class="nav-link" data-scroll-target="#getting-started-in-positron"><span class="header-section-number">6.1.1</span> Getting Started in Positron</a></li>
   <li><a href="#git-in-positron" id="toc-git-in-positron" class="nav-link" data-scroll-target="#git-in-positron"><span class="header-section-number">6.1.2</span> Git in Positron</a></li>
   </ul></li>
-  <li><a href="#cursor" id="toc-cursor" class="nav-link" data-scroll-target="#cursor"><span class="header-section-number">6.2</span> Cursor</a></li>
+  <li><a href="#cursor" id="toc-cursor" class="nav-link" data-scroll-target="#cursor"><span class="header-section-number">6.2</span> Cursor</a>
+  <ul class="collapse">
+  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features"><span class="header-section-number">6.2.1</span> Key Features</a></li>
+  <li><a href="#ai-chat" id="toc-ai-chat" class="nav-link" data-scroll-target="#ai-chat"><span class="header-section-number">6.2.2</span> AI Chat</a></li>
+  <li><a href="#git-in-cursor" id="toc-git-in-cursor" class="nav-link" data-scroll-target="#git-in-cursor"><span class="header-section-number">6.2.3</span> Git in Cursor</a></li>
+  <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download"><span class="header-section-number">6.2.4</span> Download</a></li>
+  </ul></li>
   <li><a href="#which-should-i-use" id="toc-which-should-i-use" class="nav-link" data-scroll-target="#which-should-i-use"><span class="header-section-number">6.3</span> Which Should I Use?</a></li>
   </ul>
 </nav>
@@ -321,6 +327,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Terminal</strong> — access the command line directly within the application</li>
 <li><strong>Extension support</strong> — install extensions to add functionality (see the Tools Overview chapter for recommended extensions)</li>
 </ul>
+<p><strong>Positron also offers AI support</strong>, but it does so by connecting to a model of your choice via an API. That is, you need to connect it to a model via your AI model account (e.g., Claude). This approach also charges a small amount per prompt. To avoid these charges, you can do all of your AI prompting in your Clarity or your Claude account and paste code into the Positron console. Alternatively, if you are relying heavily on AI support, Cursor may feel more natural (see below).</p>
 <p>Download Positron at <a href="https://positron.posit.co/">positron.posit.co</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -362,22 +369,55 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="cursor" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="cursor"><span class="header-section-number">6.2</span> Cursor</h2>
-<p><a href="https://www.cursor.com/">Cursor</a> is an IDE built on the same foundation as Positron and VS Code but with deeper AI integration woven throughout the editing experience. Where Positron treats AI as an add-on, Cursor builds AI assistance into the core of how you write code — it can suggest completions, edit code in response to natural language instructions, and answer questions about your codebase without leaving the editor.</p>
-<p>Cursor is a good choice for team members who are doing substantial coding work and want AI assistance that feels more seamless than copying and pasting between an IDE and a chat interface. It supports R, works with Quarto documents, and has the same Git integration as Positron.</p>
-<p>Key features that differentiate Cursor from Positron:</p>
+<p><a href="https://www.cursor.com/">Cursor</a> is an IDE built on the same foundation as Positron and VS Code but with deeper AI integration woven throughout the editing experience. Where Positron treats AI as an add-on, Cursor builds AI assistance into the core of how you write code. It can suggest completions, edit code in response to natural language instructions, and answer questions about your codebase without leaving the editor.</p>
+<p>Cursor is a good choice for team members who are doing substantial coding work and want AI assistance that feels more seamless than copying and pasting between an IDE and a chat interface. It supports R, Stata (through a Stata MCP extension), works with Quarto documents, and has the same Git integration as Positron.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/cursor-overview.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The Cursor interface showing the Explorer panel, editor, and AI chat panel.</figcaption>
+</figure>
+</div>
+<section id="key-features" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="key-features"><span class="header-section-number">6.2.1</span> Key Features</h3>
+<p>Main features that differentiate Cursor from Positron:</p>
 <ul>
-<li><strong>Inline AI editing</strong> — highlight code and give natural language instructions to edit it in place (e.g., “refactor this to use tidyverse” or “add error handling here”)</li>
-<li><strong>Chat with your codebase</strong> — ask questions about your project’s files and get answers that reference specific lines of code</li>
+<li><strong>Inline AI editing</strong> — highlight code and give natural language instructions to edit it in place (e.g., “recode this to use tidyverse” or “add error handling here”)</li>
+<li><strong>AI chat panel</strong> — a dedicated panel for asking questions about your code and project, accessible without leaving the editor</li>
 <li><strong>AI autocomplete</strong> — context-aware suggestions that go beyond standard autocomplete, drawing on the surrounding code and your project structure</li>
-<li><strong>Model choice</strong> — use Claude, GPT-4, or other models depending on the task</li>
+<li><strong>Model choice</strong> — use Claude, GPT-4, or other models depending on the task. Cursor’s default mode switches between AI models based on the task</li>
 </ul>
-<p>Cursor is optional; Positron is sufficient for most CWER work. But for team members doing complex R or Stata workflows where AI assistance is a regular part of the process, Cursor can meaningfully reduce friction.</p>
-<p>Download Cursor at <a href="https://www.cursor.com/">cursor.com</a>.</p>
+</section>
+<section id="ai-chat" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="ai-chat"><span class="header-section-number">6.2.2</span> AI Chat</h3>
+<p>The AI chat panel is one of Cursor’s most useful features for research workflows. You can ask questions about your code, request explanations of functions, or ask Cursor to help debug an error — all within the editor, with full awareness of your project’s files and context.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/cursor-chat.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The Cursor AI chat panel in action.</figcaption>
+</figure>
+</div>
+<p>To open the chat panel, press <strong>Cmd+L</strong> or click the chat icon in the right sidebar.</p>
+</section>
+<section id="git-in-cursor" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="git-in-cursor"><span class="header-section-number">6.2.3</span> Git in Cursor</h3>
+<p>Cursor has the same Source Control panel as Positron, accessible via the branching icon in the left sidebar. The workflow is identical — stage files, write a commit message, commit, and push.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../images/cursor-git.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The Source Control panel in Cursor showing staged changes ready to commit.</figcaption>
+</figure>
+</div>
+<p>One additional feature: Cursor can generate commit messages automatically based on your staged changes. Click the sparkle icon in the commit message box to generate a message.</p>
+</section>
+<section id="download" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="download"><span class="header-section-number">6.2.4</span> Download</h3>
+<p>Download Cursor at <a href="https://www.cursor.com/">cursor.com</a>. Cursor is free for individual use with generous limits on AI features.</p>
+</section>
 </section>
 <section id="which-should-i-use" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="which-should-i-use"><span class="header-section-number">6.3</span> Which Should I Use?</h2>
-<p>The choice is yours. For most CWER team members, <strong>starting with Positron</strong> may feel more natural, especially if you’ve experience with RStudio. It is purpose-built for data science, has excellent R and Quarto support, and is straightforward to learn. Once you are comfortable with your analysis workflows, consider trying Cursor if you find yourself frequently switching between your IDE and a chat interface for coding help.</p>
-<p>Both IDEs are free. You can have both installed and switch between them as they work with the same files and Git repositories.</p>
+<p>The choice is yours. For some CWER team members, <strong>starting with Positron</strong> may feel more natural, especially if you’ve had experience with RStudio. It is purpose-built for data science, has excellent R and Quarto support, and is straightforward to learn. Once you are comfortable with your analysis workflows, consider trying Cursor if you find yourself frequently switching between your IDE and a chat interface for coding help.</p>
+<p>You also don’t have to choose one over the other. Both IDEs are free. You can have both installed and switch between them as they work with the same files and Git repositories.</p>
 
 
 </section>
