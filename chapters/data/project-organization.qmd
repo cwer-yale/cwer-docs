@@ -148,13 +148,6 @@ Keep file names descriptive so their purpose is clear without opening them. Avoi
 
 The `docs/` folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike `output/`, which holds raw generated files, `docs/` holds polished, finalized deliverables.
 
-## File Naming Conventions
-
-- Use lowercase and underscores: `wave1_cleaned.rds`, not `Wave1Cleaned.rds` or `wave1 cleaned.rds`
-- Be descriptive: `wave1_provider_survey.csv`, not `data.csv`
-- Avoid spaces and special characters in all file and folder names
-- Do not use date prefixes on individual files — let Git track versions instead
-
 ## Cross-Software Data Format
 
 When data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:

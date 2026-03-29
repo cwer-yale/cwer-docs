@@ -356,8 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#the-output-folder" id="toc-the-output-folder" class="nav-link" data-scroll-target="#the-output-folder"><span class="header-section-number">11.5</span> The output/ Folder</a></li>
   <li><a href="#the-docs-folder" id="toc-the-docs-folder" class="nav-link" data-scroll-target="#the-docs-folder"><span class="header-section-number">11.6</span> The docs/ Folder</a></li>
-  <li><a href="#file-naming-conventions" id="toc-file-naming-conventions" class="nav-link" data-scroll-target="#file-naming-conventions"><span class="header-section-number">11.7</span> File Naming Conventions</a></li>
-  <li><a href="#cross-software-data-format" id="toc-cross-software-data-format" class="nav-link" data-scroll-target="#cross-software-data-format"><span class="header-section-number">11.8</span> Cross-Software Data Format</a></li>
+  <li><a href="#cross-software-data-format" id="toc-cross-software-data-format" class="nav-link" data-scroll-target="#cross-software-data-format"><span class="header-section-number">11.7</span> Cross-Software Data Format</a></li>
   </ul>
 </nav>
     </div>
@@ -535,17 +534,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="11.6" class="anchored" data-anchor-id="the-docs-folder"><span class="header-section-number">11.6</span> The docs/ Folder</h2>
 <p>The <code>docs/</code> folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike <code>output/</code>, which holds raw generated files, <code>docs/</code> holds polished, finalized deliverables.</p>
 </section>
-<section id="file-naming-conventions" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="file-naming-conventions"><span class="header-section-number">11.7</span> File Naming Conventions</h2>
-<ul>
-<li>Use lowercase and underscores: <code>wave1_cleaned.rds</code>, not <code>Wave1Cleaned.rds</code> or <code>wave1 cleaned.rds</code></li>
-<li>Be descriptive: <code>wave1_provider_survey.csv</code>, not <code>data.csv</code></li>
-<li>Avoid spaces and special characters in all file and folder names</li>
-<li>Do not use date prefixes on individual files — let Git track versions instead</li>
-</ul>
-</section>
-<section id="cross-software-data-format" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="cross-software-data-format"><span class="header-section-number">11.8</span> Cross-Software Data Format</h2>
+<section id="cross-software-data-format" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="cross-software-data-format"><span class="header-section-number">11.7</span> Cross-Software Data Format</h2>
 <p>When data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:</p>
 <ul>
 <li><strong>CSV</strong> is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS</li>

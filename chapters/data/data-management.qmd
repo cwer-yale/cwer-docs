@@ -42,6 +42,60 @@ A codebook is only useful if it is kept up to date. Update it whenever:
 
 Treat the codebook as part of the analysis, not an afterthought. Ideally, draft the codebook before data collection begins — this forces clarity about what you are measuring and how you will analyze it.
 
+## File and Folder Naming Conventions
+
+Consistent naming makes projects easier to navigate, reduces errors, and ensures files work correctly across different operating systems and software. CWER follows two conventions depending on context:
+
+- **Dashes for file and folder names** — dashes are URL-friendly and the standard for web-facing files. When Quarto renders documents, file names become URLs, and dashes produce cleaner, more readable links than underscores.
+- **Underscores for variable names** — snake_case is the standard for R, Stata, and data science broadly. See the [Variable Naming Conventions](#variable-naming-conventions) section above.
+
+| Context | Convention | Example |
+|---|---|---|
+| File names | kebab-case (dashes) | `data-wrangling.qmd` |
+| Folder names | kebab-case (dashes) | `cwer-docs/` |
+| Variable names | snake_case (underscores) | `sel_total_mean` |
+| R object names | snake_case (underscores) | `data_cleaned` |
+| Data files | snake_case (underscores) | `wave1_cleaned.rds` |
+
+Note that data files use underscores rather than dashes. This is because data files are read programmatically by R, Stata, and SPSS, where underscores are safer and more conventional than dashes.
+
+### Rules for All File and Folder Names
+
+- **Use lowercase only.** `wave1-cleaned.rds`, not `Wave1-Cleaned.rds`
+- **Be descriptive.** `wave1-provider-survey.csv` tells you what the file is; `data.csv` does not
+- **Avoid spaces.** Spaces in file names cause problems in terminal commands and some software. Use dashes or underscores instead
+- **Avoid special characters.** No parentheses, slashes, ampersands, or symbols of any kind
+- **No date prefixes on individual files.** Do not use names like `analysis-2025-10-01.qmd` — let Git track versions instead. If you genuinely need multiple dated versions to coexist (e.g., comparing model runs), use a dated subfolder inside `output/` rather than dating the file itself
+
+### Rules for Script Files
+
+Number scripts to reflect pipeline order:
+```
+code/
+├── 01-data-cleaning.qmd
+├── 02-descriptives.qmd
+├── 03-mlm-analysis.qmd
+└── 04-tables-figures.qmd
+```
+
+The two-digit prefix ensures scripts appear in order when listed. When you add a new script, use the next available number. If you retire a script, do not renumber the remaining ones — leave gaps rather than creating confusion about which outputs correspond to which script.
+
+### Rules for Output Files
+
+Name output files to reflect their content and the script that produced them:
+
+- `output/figures/sel-by-grade-boxplot.png` — descriptive, clear
+- `output/tables/wave1-mlm-results.docx` — clear what analysis and wave
+- Not: `output/figures/figure-final2.png` — tells you nothing
+
+When a script produces multiple outputs of the same type, use a consistent naming pattern:
+```
+output/figures/
+├── fig1-sel-distribution.png
+├── fig2-sel-by-grade.png
+└── fig3-sel-by-school.png
+```
+
 ## Variable Naming Conventions
 
 Consistent variable names make datasets easier to work with across software platforms, reduce errors, and make analysis code more readable. The following conventions apply to all CWER datasets.
