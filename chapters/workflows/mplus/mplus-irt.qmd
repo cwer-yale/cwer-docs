@@ -1,0 +1,213 @@
+# Mplus: IRT
+
+Item Response Theory (IRT) models the relationship between a latent trait (e.g., reading ability, SEL competence) and the probability of a particular response to each item. Unlike classical test theory, which focuses on scale-level statistics, IRT models item-level characteristics — how difficult each item is, how well it discriminates between respondents at different trait levels, and whether items function differently across groups. CWER uses IRT primarily for psychometric evaluation of scales and instruments.
+
+## Key IRT Concepts
+
+**Latent trait (θ)** — the underlying construct being measured, expressed on a standardized scale (typically mean = 0, SD = 1).
+
+**Item difficulty (b)** — the point on the latent trait scale where a respondent has a 50% probability of endorsing the item (for binary items) or a particular response (for polytomous items). Higher values indicate harder or less frequently endorsed items.
+
+**Item discrimination (a)** — how sharply an item distinguishes between respondents above and below the difficulty threshold. Higher discrimination means the item is more sensitive to differences in the latent trait.
+
+**Item characteristic curve (ICC)** — a plot showing the probability of endorsing an item as a function of the latent trait. A well-discriminating item has a steep ICC.
+
+## IRT Models
+
+The appropriate IRT model depends on your item format:
+
+| Item Format | Common Models |
+|---|---|
+| Binary (yes/no, correct/incorrect) | 1PL (Rasch), 2PL, 3PL |
+| Ordinal (Likert) | Graded Response Model (GRM), Partial Credit Model (PCM) |
+| Nominal (unordered categories) | Nominal Response Model |
+
+For most CWER work with Likert-scale items, the **Graded Response Model (GRM)** is appropriate. For binary items, the **2PL model** is the standard choice. The 1PL (Rasch) model constrains all discriminations to be equal — use it when parsimony is a priority and the equal-discrimination assumption can be justified.
+
+## Binary IRT: 2PL Model
+```
+TITLE:    2PL IRT model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  TYPE = EFA 1 1;
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+OUTPUT:
+  STDYX;
+  TECH1;
+  TECH4;
+```
+
+**CATEGORICAL** — tells Mplus the items are categorical (binary or ordinal). Required for IRT models.
+
+**PARAMETERIZATION = THETA** — uses the IRT parameterization, which produces item discrimination (a) and difficulty (b) parameters directly. Without this, Mplus uses the default factor analytic parameterization.
+
+**TYPE = EFA 1 1** — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.
+
+## Polytomous IRT: Graded Response Model
+
+For Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):
+```
+TITLE:    Graded Response Model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+OUTPUT:
+  STDYX;
+  TECH1;
+```
+
+The output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).
+
+## Interpreting IRT Output with PARAMETERIZATION = THETA
+
+With `PARAMETERIZATION = THETA`, the Mplus output provides:
+
+- **Factor loadings** in the MODEL RESULTS section correspond to item discriminations (a parameters). Higher values indicate better-discriminating items.
+- **Thresholds** correspond to item difficulty parameters (b parameters). For a 5-point Likert item, there are 4 thresholds representing the boundaries between response categories.
+- **STDYX standardized loadings** give the discrimination in a standardized metric comparable across items.
+
+General guidelines for interpreting discrimination parameters:
+
+| Discrimination | Interpretation |
+|---|---|
+| < 0.50 | Poor — item provides little information |
+| 0.50–1.00 | Moderate |
+| 1.00–2.00 | Good |
+| > 2.00 | Very high |
+
+## Differential Item Functioning (DIF)
+
+DIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.
+
+To test DIF in Mplus, use multiple-group CFA with measurement invariance tests — a constrained baseline model where item parameters are equal across groups is compared to a model where parameters are freed:
+```
+TITLE:    DIF analysis - gender
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid gender item1-item10;
+  USEVARIABLES = item1-item10;
+  CATEGORICAL = item1-item10;
+  GROUPING = gender (0=male 1=female);
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  ESTIMATOR = WLSMV;
+  PARAMETERIZATION = THETA;
+
+MODEL:
+  f BY item1-item10*;
+  f@1;
+
+MODEL female:
+  [item1$1 item1$2 item1$3 item1$4];
+
+OUTPUT:
+  STDYX;
+  MODINDICES(10);
+```
+
+The `MODEL female:` section frees the thresholds for `item1` in the female group, testing whether that item's difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.
+
+## Test Information Function
+
+The Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.
+
+To obtain the TIF, request `PLOT2` in the OUTPUT section and use Mplus's graphical output. With MplusAutomation, you can extract and plot item information curves in R using the `mirt` package, which provides more flexible IRT visualization than Mplus.
+
+## Running IRT via MplusAutomation
+```r
+library(tidyverse)
+library(here)
+library(MplusAutomation)
+
+# 1. Load data
+data <- readRDS(here("data", "cleaned", "wave1_cleaned.rds"))
+
+# 2. Rename to Mplus-compatible names
+data_mplus <- data |>
+  rename(
+    stuid  = student_id,
+    item1  = sel_item_1,
+    item2  = sel_item_2,
+    item3  = sel_item_3,
+    item4  = sel_item_4,
+    item5  = sel_item_5,
+    item6  = sel_item_6,
+    item7  = sel_item_7,
+    item8  = sel_item_8,
+    item9  = sel_item_9,
+    item10 = sel_item_10
+  )
+
+# 3. Write data file
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+
+# 4. Run model
+runModels(here("code", "mplus", "irt_grm.inp"))
+
+# 5. Read results
+output <- readModels(here("code", "mplus", "irt_grm.out"))
+
+# 6. Extract discrimination parameters (factor loadings)
+discriminations <- output$parameters$stdyx.standardized |>
+  filter(grepl("BY", paramHeader)) |>
+  select(param, est, se, est_se, pval)
+
+# 7. Extract threshold parameters (difficulty)
+thresholds <- output$parameters$unstandardized |>
+  filter(grepl("\\$", paramHeader)) |>
+  select(paramHeader, param, est, se)
+
+# 8. Save
+write_csv(discriminations, here("output", "tables", "irt_discriminations.csv"))
+write_csv(thresholds, here("output", "tables", "irt_thresholds.csv"))
+```
+
+## Reporting IRT Results
+
+A complete report of IRT analysis should include:
+
+- The IRT model used and justification
+- Estimator and software
+- Item discrimination parameters with standard errors for all items
+- Item difficulty (threshold) parameters for all items
+- Model fit indices
+- Test or scale information function
+- Any items flagged for poor fit, low discrimination, or DIF
+- Decision about item retention or revision based on IRT results

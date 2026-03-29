@@ -5,9 +5,10 @@ project:
 book:
   title: "Child Wellbeing and Education Research"
   subtitle: "Team Guide"
-  author: 
-  - Michael J Strambler, PhD
-  - "Developed with Claude assistance"
+  author:
+    - name: Michael Strambler
+      affiliation: Yale School of Medicine
+    - name: "Developed with Claude (Anthropic) assistance"
   date: today
   repo-url: https://github.com/cwer-yale/cwer-docs
   chapters:
@@ -30,6 +31,11 @@ book:
         - chapters/workflows/r/lme4.qmd
         - chapters/workflows/r/mplus-automation.qmd
         - chapters/workflows/r/renv.qmd
+        - chapters/workflows/mplus/mplus-overview.qmd
+        - chapters/workflows/mplus/mplus-cfa-efa.qmd
+        - chapters/workflows/mplus/mplus-path.qmd
+        - chapters/workflows/mplus/mplus-montecarlo.qmd
+        - chapters/workflows/mplus/mplus-irt.qmd
     - part: "Data Management"
       chapters:
         - chapters/data/project-organization.qmd

@@ -1,0 +1,216 @@
+# Mplus: Monte Carlo Power Analysis
+
+Monte Carlo simulation in Mplus is used to determine the sample size needed to detect effects of a specified magnitude with adequate statistical power. Rather than relying on simple formulas (which assume simple designs), Monte Carlo simulation accounts for the complexity of your actual model — including latent variables, missing data, clustering, and multiple outcomes. CWER uses Monte Carlo simulation for grant proposals and study design decisions.
+
+## What is Monte Carlo Simulation?
+
+Monte Carlo simulation works by:
+
+1. Specifying the population model — the "true" parameter values you expect based on theory or prior research
+2. Generating a large number of datasets (typically 1000–10000) from that population model at a given sample size
+3. Fitting the model to each dataset and recording whether parameters are statistically significant
+4. Calculating power as the proportion of datasets in which the parameter of interest is significant
+
+This gives you a direct, empirical estimate of power for your specific model and design.
+
+## Basic Monte Carlo Syntax
+
+The following example estimates power for a CFA model with one factor and six indicators:
+```
+TITLE:    Monte Carlo - CFA power analysis
+
+MONTECARLO:
+  NAMES = y1 y2 y3 y4 y5 y6;
+  NOBS = 200;
+  NREP = 1000;
+  SEED = 12345;
+
+MODEL POPULATION:
+  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;
+  f@1;
+  y1-y6*0.51;
+
+MODEL:
+  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;
+  f@1;
+  y1-y6*0.51;
+
+OUTPUT:
+  TECH9;
+```
+
+### Key Syntax Elements
+
+**MONTECARLO** — replaces the DATA section; specifies simulation parameters instead of a data file.
+
+**NOBS** — sample size to simulate. Run multiple analyses at different sample sizes to find where power reaches .80.
+
+**NREP** — number of replications. 1000 is a reasonable starting point; 10000 gives more stable estimates.
+
+**SEED** — random seed for reproducibility. Always set a seed so results can be replicated.
+
+**MODEL POPULATION** — the "true" population model used to generate data. Specify parameter values based on theory, prior research, or pilot data.
+
+**MODEL** — the analysis model fit to each generated dataset. Usually matches MODEL POPULATION, but can differ to test robustness.
+
+**TECH9** — requests information about any convergence failures across replications.
+
+## Specifying Population Parameter Values
+
+The quality of a Monte Carlo analysis depends entirely on how well your population parameter values reflect reality. Sources for these values:
+
+- **Prior research** — meta-analyses or studies on similar constructs and populations
+- **Pilot data** — if you have preliminary data, use it to estimate parameters
+- **Theory** — for completely novel studies, use theory to set plausible bounds and run sensitivity analyses across a range of values
+
+For CFA, the key parameters are factor loadings and residual variances. If you specify a standardized loading of .70, the residual variance for that indicator is 1 - .70² = .51.
+
+## Power Analysis for Regression and Path Models
+
+For a path model testing whether professional development predicts teacher SEL practices:
+```
+TITLE:    Monte Carlo - Path model power analysis
+
+MONTECARLO:
+  NAMES = pd tchsel stusel;
+  NOBS = 150;
+  NREP = 1000;
+  SEED = 54321;
+
+MODEL POPULATION:
+  tchsel ON pd*0.30;
+  stusel ON tchsel*0.35 pd*0.10;
+  pd*1.00;
+  tchsel*0.91;
+  stusel*0.87;
+
+MODEL:
+  tchsel ON pd;
+  stusel ON tchsel pd;
+
+OUTPUT:
+  TECH9;
+```
+
+The asterisked values are population parameters. Here `tchsel ON pd*0.30` specifies that the path from PD to teacher SEL has a population value of 0.30 (standardized).
+
+## Power Analysis for Indirect Effects
+
+To estimate power for a mediated (indirect) effect:
+```
+TITLE:    Monte Carlo - Mediation power analysis
+
+MONTECARLO:
+  NAMES = x m y;
+  NOBS = 200;
+  NREP = 1000;
+  SEED = 99999;
+
+MODEL POPULATION:
+  m ON x*0.40;
+  y ON m*0.35 x*0.15;
+  x*1.00;
+  m*0.84;
+  y*0.84;
+
+MODEL:
+  m ON x (a);
+  y ON m (b);
+  y ON x;
+
+MODEL CONSTRAINT:
+  NEW(indirect);
+  indirect = a*b;
+
+OUTPUT:
+  TECH9;
+```
+
+The power for the indirect effect is reported in the output as the proportion of replications in which `indirect` is significant.
+
+## Accounting for Missing Data
+
+To simulate power under planned missing data designs (e.g., a three-form design) or anticipated attrition:
+```
+MONTECARLO:
+  NAMES = y1 y2 y3 y4 y5 y6;
+  NOBS = 250;
+  NREP = 1000;
+  SEED = 12345;
+  PATMISS = y1(0.10) y2(0.10) y3(0.20) y4(0.20);
+  PATPROB = 1.0;
+```
+
+`PATMISS` specifies the proportion of missing data for each variable. This allows you to estimate power under realistic attrition scenarios.
+
+## Running Monte Carlo via MplusAutomation
+
+Monte Carlo analyses can be run from R using the same `runModels()` and `readModels()` workflow:
+```r
+library(tidyverse)
+library(here)
+library(MplusAutomation)
+
+# Run the Monte Carlo simulation
+runModels(here("code", "mplus", "montecarlo_cfa.inp"))
+
+# Read results
+mc_output <- readModels(here("code", "mplus", "montecarlo_cfa.out"))
+
+# Extract power estimates
+# Power is in the parameters section - look for the "Sig" column
+power <- mc_output$parameters$unstandardized |>
+  select(paramHeader, param, pct_sig_coef)
+
+print(power)
+```
+
+The `pct_sig_coef` column gives the proportion of replications in which each parameter was statistically significant — this is your power estimate.
+
+## Finding the Required Sample Size
+
+Run the same model at multiple sample sizes and plot power as a function of N:
+```r
+# Define sample sizes to test
+sample_sizes <- c(50, 100, 150, 200, 250, 300)
+
+# Run models at each N
+# (assumes you have separate .inp files for each N, or modify programmatically)
+results <- map_dfr(sample_sizes, function(n) {
+  # Read the output for this N
+  output <- readModels(here("code", "mplus", paste0("mc_n", n, ".out")))
+
+  # Extract power for the parameter of interest
+  power <- output$parameters$unstandardized |>
+    filter(param == "TCHSEL") |>
+    pull(pct_sig_coef)
+
+  tibble(n = n, power = power)
+})
+
+# Plot
+ggplot(results, aes(x = n, y = power)) +
+  geom_line() +
+  geom_point() +
+  geom_hline(yintercept = 0.80, linetype = "dashed", color = "red") +
+  labs(
+    x = "Sample Size",
+    y = "Power",
+    title = "Power as a Function of Sample Size"
+  ) +
+  theme_minimal()
+
+ggsave(here("output", "figures", "power_curve.png"), width = 6, height = 4, dpi = 300)
+```
+
+## Reporting Monte Carlo Results
+
+A complete report of Monte Carlo power analysis should include:
+
+- The model tested and rationale for parameter values
+- Sources for population parameter estimates (prior research, pilot data)
+- Number of replications and random seed
+- Power estimates for all key parameters at the chosen sample size
+- A power curve showing how power varies with sample size
+- Any convergence issues (from TECH9 output)
+- Sensitivity analyses if parameter estimates are uncertain

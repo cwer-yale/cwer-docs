@@ -1,0 +1,242 @@
+# Mplus: CFA & EFA
+
+Confirmatory Factor Analysis (CFA) and Exploratory Factor Analysis (EFA) are among the most common analyses in CWER's psychometric work. CFA tests whether a hypothesized factor structure fits the data. EFA explores the factor structure when the structure is unknown or uncertain. This chapter covers both, with syntax examples and the MplusAutomation workflow for running them from R.
+
+## Confirmatory Factor Analysis (CFA)
+
+CFA is used when you have a theoretically motivated factor structure and want to test how well it fits your data. For example, you might hypothesize that 12 SEL items measure three latent factors (self-management, social awareness, relationship skills) and use CFA to test whether this structure is supported.
+
+### Basic CFA Syntax
+```
+TITLE:    CFA - SEL three-factor model
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = stuid schlid selsm1 selsm2 selsm3 selsm4
+          selsa1 selsa2 selsa3 selrs1 selrs2 selrs3;
+  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = WLSMV;
+
+MODEL:
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+
+OUTPUT:
+  SAMPSTAT;
+  STDYX;
+  MODINDICES(10);
+  FIT;
+```
+
+### Key Syntax Elements
+
+**CLUSTER** — specifies the clustering variable (e.g., school ID) when data are nested. Used with `TYPE = COMPLEX` to produce corrected standard errors.
+
+**TYPE = COMPLEX** — accounts for non-independence due to clustering. Use whenever students are nested in classrooms or schools.
+
+**ESTIMATOR = WLSMV** — recommended for ordinal (Likert) outcomes. Use `MLR` for continuous outcomes.
+
+**BY** — defines the factor structure. `selfmgmt BY selsm1 selsm2 selsm3 selsm4` means the factor `selfmgmt` is measured by those four indicators.
+
+**STDYX** — requests fully standardized output, including standardized factor loadings.
+
+**MODINDICES(10)** — requests modification indices greater than 10, which can help identify sources of misfit.
+
+### Interpreting CFA Output
+
+After running the model, check the following in order:
+
+1. **Model fit** — CFI, TLI, RMSEA, SRMR (see fit guidelines in the [Mplus Overview](mplus-overview.qmd) chapter)
+2. **Factor loadings** — standardized loadings (STDYX) should generally be .40 or higher
+3. **Modification indices** — large MIs suggest areas of misfit; consider theoretically motivated modifications
+4. **Factor correlations** — very high correlations (> .85) between factors may indicate discriminant validity problems
+
+### Higher-Order CFA
+
+To specify a second-order factor (e.g., a general SEL factor underlying the three subscales):
+```
+MODEL:
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+  sel BY selfmgmt socaware relskill;
+```
+
+### Bifactor CFA
+
+To specify a bifactor model (general factor + specific factors):
+```
+MODEL:
+  sel BY selsm1 selsm2 selsm3 selsm4
+         selsa1 selsa2 selsa3
+         selrs1 selrs2 selrs3;
+  selfmgmt BY selsm1 selsm2 selsm3 selsm4;
+  socaware BY selsa1 selsa2 selsa3;
+  relskill BY selrs1 selrs2 selrs3;
+
+  sel WITH selfmgmt@0;
+  sel WITH socaware@0;
+  sel WITH relskill@0;
+  selfmgmt WITH socaware@0;
+  selfmgmt WITH relskill@0;
+  socaware WITH relskill@0;
+```
+
+The `@0` fixes the correlation between factors to zero, which is required for a bifactor model.
+
+## Exploratory Factor Analysis (EFA)
+
+EFA is used when the factor structure is unknown or you want to explore how many factors underlie a set of items. Unlike CFA, EFA does not fix items to specific factors — it allows all items to load on all factors.
+
+### Basic EFA Syntax
+```
+TITLE:    EFA - SEL items
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = selsm1 selsm2 selsm3 selsm4
+          selsa1 selsa2 selsa3
+          selrs1 selrs2 selrs3;
+  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;
+  MISSING = ALL(-99 -98 -97 -96);
+
+ANALYSIS:
+  TYPE = EFA 1 4;
+  ESTIMATOR = WLSMV;
+  ROTATION = GEOMIN;
+
+OUTPUT:
+  STDYX;
+```
+
+`TYPE = EFA 1 4` tells Mplus to extract and compare solutions from 1 to 4 factors. Review the fit indices and interpretability of each solution to determine the best number of factors.
+
+**ROTATION = GEOMIN** — an oblique rotation that allows factors to correlate. Preferred over orthogonal rotations (like varimax) for most psychological constructs, which are rarely truly independent.
+
+### Deciding on the Number of Factors
+
+Use multiple criteria:
+
+- **Fit indices** — look for acceptable CFI, TLI, RMSEA across solutions
+- **Eigenvalues** — factors with eigenvalues > 1 are traditionally retained, though this rule alone is insufficient
+- **Interpretability** — the factor solution should make theoretical sense
+- **Parsimony** — prefer fewer factors when fit is similar across solutions
+
+### ESEM
+
+Exploratory Structural Equation Modeling (ESEM) combines CFA and EFA — items are primarily associated with one factor but allowed to have small cross-loadings on other factors. This is often more realistic than pure CFA and produces better fit in psychological data:
+```
+ANALYSIS:
+  TYPE = EFA 3 3;
+  ESTIMATOR = WLSMV;
+  ROTATION = TARGET;
+
+MODEL:
+  ! Target rotation specifying expected primary loadings
+  f1 BY selsm1~1 selsm2~1 selsm3~1 selsm4~1
+        selsa1~0 selsa2~0 selsa3~0
+        selrs1~0 selrs2~0 selrs3~0;
+  f2 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0
+        selsa1~1 selsa2~1 selsa3~1
+        selrs1~0 selrs2~0 selrs3~0;
+  f3 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0
+        selsa1~0 selsa2~0 selsa3~0
+        selrs1~1 selrs2~1 selrs3~1;
+```
+
+`~1` indicates a target loading of 1 (item primarily loads on this factor) and `~0` indicates a target of 0 (item expected to have near-zero loading on this factor).
+
+## Running CFA/EFA via MplusAutomation
+
+The full R workflow for running CFA from R:
+```r
+library(tidyverse)
+library(here)
+library(MplusAutomation)
+
+# 1. Load cleaned data
+data <- readRDS(here("data", "cleaned", "wave1_cleaned.rds"))
+
+# 2. Rename to Mplus-compatible names
+data_mplus <- data |>
+  rename(
+    selsm1 = sel_selfmgmt_1,
+    selsm2 = sel_selfmgmt_2,
+    selsm3 = sel_selfmgmt_3,
+    selsm4 = sel_selfmgmt_4,
+    selsa1 = sel_socaware_1,
+    selsa2 = sel_socaware_2,
+    selsa3 = sel_socaware_3,
+    selrs1 = sel_relskill_1,
+    selrs2 = sel_relskill_2,
+    selrs3 = sel_relskill_3,
+    schlid = school_id,
+    stuid  = student_id
+  )
+
+# 3. Write Mplus data file
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+
+# 4. Run model (assumes cfa_model.inp is already written)
+runModels(here("code", "mplus", "cfa_model.inp"))
+
+# 5. Read results
+output <- readModels(here("code", "mplus", "cfa_model.out"))
+
+# 6. Extract fit indices
+fit <- output$summaries |>
+  select(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB, SRMR)
+
+# 7. Extract standardized loadings
+loadings <- output$parameters$stdyx.standardized |>
+  filter(grepl("BY", paramHeader))
+
+# 8. Save results
+write_csv(fit, here("output", "tables", "cfa_fit.csv"))
+write_csv(loadings, here("output", "tables", "cfa_loadings.csv"))
+```
+
+## Model Comparison
+
+To compare nested models (e.g., one-factor vs. three-factor), use the DIFFTEST procedure with WLSMV:
+
+In the baseline model input, add:
+```
+SAVEDATA:
+  DIFFTEST = baseline.dat;
+```
+
+In the comparison model input, add:
+```
+ANALYSIS:
+  DIFFTEST = baseline.dat;
+```
+
+With MplusAutomation, run both models and compare fit indices:
+```r
+# Run both models
+runModels(here("code", "mplus"))
+
+# Read all output
+all_output <- readModels(here("code", "mplus"), recursive = FALSE)
+
+# Compare fit
+fit_comparison <- lapply(all_output, function(m) m$summaries) |>
+  bind_rows(.id = "model") |>
+  select(model, CFI, TLI, RMSEA_Estimate, SRMR)
+
+print(fit_comparison)
+```

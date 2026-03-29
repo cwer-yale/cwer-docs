@@ -1,0 +1,186 @@
+# Mplus: Path Analysis
+
+Path analysis is used to test hypothesized relationships among a set of observed variables. Unlike simple regression, path analysis allows you to model multiple outcomes simultaneously, include mediating variables, and test complex causal chains in a single model. CWER uses path analysis to examine how school, classroom, and student-level variables relate to academic and social-emotional outcomes.
+
+## What is Path Analysis?
+
+A path model specifies directional relationships (paths) among observed variables. Each path is essentially a regression coefficient. The advantage over running separate regressions is that path analysis accounts for the correlations among predictors and outcomes simultaneously, providing a more accurate picture of the relationships in the data.
+
+For example, you might hypothesize that professional development predicts teacher SEL practices, which in turn predicts student SEL outcomes — a mediation model. Path analysis tests this entire chain in one model.
+
+## Basic Path Analysis Syntax
+```
+TITLE:    Path analysis - PD to teacher practices to student outcomes
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = schlid tchrid stuid pd_hrs tch_sel stu_sel grd;
+  USEVARIABLES = pd_hrs tch_sel stu_sel grd;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = MLR;
+
+MODEL:
+  ! Teacher SEL practices predicted by PD hours
+  tch_sel ON pd_hrs;
+
+  ! Student SEL predicted by teacher practices and grade
+  stu_sel ON tch_sel grd;
+
+OUTPUT:
+  STDYX;
+  CINTERVAL;
+```
+
+The `ON` statement specifies regression paths. `stu_sel ON tch_sel grd` means student SEL is regressed on teacher SEL practices and grade.
+
+## Mediation Analysis
+
+To test mediation (whether the effect of X on Y operates through M), define the indirect effect using MODEL INDIRECT or MODEL CONSTRAINT:
+```
+TITLE:    Mediation - PD -> teacher SEL -> student SEL
+
+DATA:
+  FILE = wave1_data.dat;
+
+VARIABLE:
+  NAMES = schlid pd_hrs tch_sel stu_sel;
+  USEVARIABLES = pd_hrs tch_sel stu_sel;
+  MISSING = ALL(-99 -98 -97 -96);
+  CLUSTER = schlid;
+
+ANALYSIS:
+  TYPE = COMPLEX;
+  ESTIMATOR = MLR;
+  BOOTSTRAP = 1000;
+
+MODEL:
+  tch_sel ON pd_hrs (a);
+  stu_sel ON tch_sel (b);
+  stu_sel ON pd_hrs (c);
+
+MODEL CONSTRAINT:
+  NEW(indirect direct total);
+  indirect = a*b;
+  direct = c;
+  total = a*b + c;
+
+OUTPUT:
+  STDYX;
+  CINTERVAL(BCBOOTSTRAP);
+```
+
+**BOOTSTRAP = 1000** — requests 1000 bootstrap samples for confidence intervals. Required for bias-corrected bootstrap CIs on indirect effects.
+
+**MODEL CONSTRAINT** — defines new parameters (here: indirect, direct, and total effects) as functions of labeled parameters.
+
+**CINTERVAL(BCBOOTSTRAP)** — requests bias-corrected bootstrap confidence intervals, which are preferred over the Sobel test for testing mediation.
+
+## Multiple Mediators
+
+For parallel mediation (multiple mediators operating simultaneously):
+```
+MODEL:
+  med1 ON x (a1);
+  med2 ON x (a2);
+  y ON med1 (b1);
+  y ON med2 (b2);
+  y ON x (c);
+
+MODEL CONSTRAINT:
+  NEW(ind1 ind2 total_ind total);
+  ind1 = a1*b1;
+  ind2 = a2*b2;
+  total_ind = a1*b1 + a2*b2;
+  total = a1*b1 + a2*b2 + c;
+```
+
+## Moderation (Interaction Effects)
+
+To test whether the effect of X on Y differs by a moderator W, create an interaction term in R before running the model:
+```r
+data_mplus <- data_mplus |>
+  mutate(xw = x_var * w_var)
+```
+
+Then include the interaction term in the Mplus syntax:
+```
+MODEL:
+  y ON x w xw;
+```
+
+The coefficient for `xw` is the interaction effect. If significant, the effect of X on Y depends on the value of W.
+
+## Running Path Analysis via MplusAutomation
+```r
+library(tidyverse)
+library(here)
+library(MplusAutomation)
+
+# 1. Load data
+data <- readRDS(here("data", "cleaned", "wave1_cleaned.rds"))
+
+# 2. Create interaction term if needed
+data <- data |>
+  mutate(pd_sel_int = pd_hrs * tch_sel_baseline)
+
+# 3. Rename to Mplus-compatible names
+data_mplus <- data |>
+  rename(
+    schlid  = school_id,
+    tchrid  = teacher_id,
+    pdhrs   = pd_hrs,
+    tchsel  = tch_sel,
+    stusel  = stu_sel_mean,
+    grd     = grade
+  )
+
+# 4. Write data file
+prepareMplusData(
+  data_mplus,
+  filename = here("code", "mplus", "wave1_data.dat")
+)
+
+# 5. Run model
+runModels(here("code", "mplus", "path_model.inp"))
+
+# 6. Read results
+output <- readModels(here("code", "mplus", "path_model.out"))
+
+# 7. Extract fit indices
+fit <- output$summaries |>
+  select(CFI, TLI, RMSEA_Estimate, SRMR)
+
+# 8. Extract path coefficients
+paths <- output$parameters$stdyx.standardized
+
+# 9. Extract indirect effects
+indirect <- output$parameters$indirect
+
+# 10. Save
+write_csv(fit, here("output", "tables", "path_fit.csv"))
+write_csv(paths, here("output", "tables", "path_coefficients.csv"))
+write_csv(indirect, here("output", "tables", "indirect_effects.csv"))
+```
+
+## Model Fit for Path Models
+
+Path models are evaluated using the same fit indices as CFA (see the [Mplus Overview](mplus-overview.qmd) chapter). A just-identified model (where the number of estimated parameters equals the number of knowns) will always fit perfectly — you need at least one degree of freedom for fit to be meaningful.
+
+When a path model fits poorly, examine the modification indices to identify which paths might improve fit. Add paths only if they are theoretically justified — do not add paths purely to improve fit statistics.
+
+## Reporting Path Analysis Results
+
+A complete report of path analysis results should include:
+
+- Sample size and missing data handling approach
+- Estimator used and justification
+- Model fit indices (CFI, TLI, RMSEA, SRMR) with confidence intervals for RMSEA
+- Table of path coefficients (unstandardized and standardized) with standard errors and p-values
+- For mediation: indirect effects with bootstrap confidence intervals
+- A path diagram if the model is complex enough to benefit from visual representation
