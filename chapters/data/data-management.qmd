@@ -117,7 +117,7 @@ This is a deliberate choice over alternatives like camelCase (`SelSelfmgmt1`) or
 - **Keep names short but meaningful.** Aim for 8 characters or fewer when possible for compatibility with older software, but never sacrifice clarity for brevity. A name like `rdg_score` is better than `rs` and better than `reading_comprehension_total_score`.
 - **Avoid spaces and special characters.** No spaces, hyphens, slashes, parentheses, or symbols of any kind.
 - **Never start a variable name with a number.** `wave1_n` is valid; `1_wave_n` is not.
-- **Avoid reserved words.** Do not use words that have special meaning in your analysis software, such as `if`, `else`, `true`, `false`, `NA`, `null`, `mean`, or `sum`.
+
 
 ### Naming Structure
 
