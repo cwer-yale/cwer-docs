@@ -10,7 +10,7 @@ Multilevel modeling is appropriate when your data have a nested structure and ob
 
 Ignoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.
 
-## lme4
+## Using R
 
 `lme4` is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.
 
@@ -71,7 +71,7 @@ summary(model_3)
 
 This estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).
 
-## Extracting Results
+### Extracting Results
 
 Use `broom.mixed` to extract fixed effect estimates in a tidy format:
 ```r
@@ -106,9 +106,9 @@ qqline(resid(model_2))
 dotplot(ranef(model_2, condVar = TRUE))
 ```
 
-## Mplus
+## Using Mplus
 
-### When to Use Mplus Instead
+### When to Use Mplus
 
 `lme4` is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:
 

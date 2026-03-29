@@ -902,56 +902,56 @@
   {
     "objectID": "chapters/analysis/lme4.html",
     "href": "chapters/analysis/lme4.html",
-    "title": "17  Multilevel Modeling with lme4",
+    "title": "17  Multilevel Modeling",
     "section": "",
     "text": "17.1 When to Use Multilevel Modeling\nMultilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:\nIgnoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/lme4.html#when-to-use-multilevel-modeling",
     "href": "chapters/analysis/lme4.html#when-to-use-multilevel-modeling",
-    "title": "17  Multilevel Modeling with lme4",
+    "title": "17  Multilevel Modeling",
     "section": "",
     "text": "Students nested within classrooms or schools\nRepeated measures nested within individuals\nTeachers nested within schools",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/lme4.html#lme4",
     "href": "chapters/analysis/lme4.html#lme4",
-    "title": "17  Multilevel Modeling with lme4",
+    "title": "17  Multilevel Modeling",
     "section": "17.2 lme4",
     "text": "17.2 lme4\nlme4 is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.\nInstall and load it:\ninstall.packages(\"lme4\")\nlibrary(lme4)\n\n17.2.1 The Intraclass Correlation Coefficient\nBefore fitting a full multilevel model, run an unconditional means model (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.\nmodel_null &lt;- lmer(sel_total_mean ~ 1 + (1 | school_id), data = data)\nsummary(model_null)\nCalculate the ICC using the performance package:\nlibrary(performance)\nicc(model_null)\nAn ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.\n\n\n17.2.2 Model Syntax\nlme4 uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:\noutcome ~ fixed_effects + (random_effects | grouping_variable)\nThe 1 inside the parentheses represents a random intercept — allowing the mean outcome to vary across groups.\n\n\n17.2.3 Adding Level-1 Predictors\nLevel-1 predictors are variables measured at the individual level (e.g., student-level variables):\nmodel_1 &lt;- lmer(sel_total_mean ~ grade + (1 | school_id), data = data)\nsummary(model_1)\n\n\n17.2.4 Adding Level-2 Predictors\nLevel-2 predictors are variables measured at the group level (e.g., school-level variables):\nmodel_2 &lt;- lmer(sel_total_mean ~ grade + school_size + (1 | school_id), data = data)\nsummary(model_2)\n\n\n17.2.5 Random Slope Model\nA random slope model allows the effect of a predictor to vary across groups:\nmodel_3 &lt;- lmer(sel_total_mean ~ grade + (1 + grade | school_id), data = data)\nsummary(model_3)\nThis estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/lme4.html#extracting-results",
     "href": "chapters/analysis/lme4.html#extracting-results",
-    "title": "17  Multilevel Modeling with lme4",
+    "title": "17  Multilevel Modeling",
     "section": "17.3 Extracting Results",
     "text": "17.3 Extracting Results\nUse broom.mixed to extract fixed effect estimates in a tidy format:\nlibrary(broom.mixed)\n\ntidy(model_2, effects = \"fixed\", conf.int = TRUE)\nThis produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.\n\n17.3.1 Comparing Models\nUse anova() to compare nested models via likelihood ratio test:\nanova(model_1, model_2)\nThis tests whether adding school-level predictors significantly improves model fit. Note that lme4 uses REML estimation by default for variance components, but switches to ML for model comparisons — anova() handles this automatically.\n\n\n17.3.2 Checking Assumptions\nExamine residual plots to check model assumptions:\n# Residuals vs fitted\nplot(model_2)\n\n# QQ plot of residuals\nqqnorm(resid(model_2))\nqqline(resid(model_2))\n\n# Random effects distribution\ndotplot(ranef(model_2, condVar = TRUE))",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/lme4.html#mplus",
     "href": "chapters/analysis/lme4.html#mplus",
-    "title": "17  Multilevel Modeling with lme4",
+    "title": "17  Multilevel Modeling",
     "section": "17.4 Mplus",
     "text": "17.4 Mplus\n\n17.4.1 When to Use Mplus Instead\nlme4 is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:\n\nYou need full information maximum likelihood (FIML) for missing data\nYour model involves latent variables or measurement models\nYou need multilevel SEM\nYou are estimating models with binary or ordinal outcomes in a multilevel framework\nYou need Monte Carlo simulation for power analysis\n\nSee the Mplus chapter for guidance on those cases.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling</span>"
     ]
   },
   {
