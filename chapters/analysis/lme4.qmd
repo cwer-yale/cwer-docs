@@ -114,4 +114,4 @@ dotplot(ranef(model_2, condVar = TRUE))
 - You are estimating models with binary or ordinal outcomes in a multilevel framework
 - You need Monte Carlo simulation for power analysis
 
-See the [Mplus Workflows](../../workflows/mplus/mplus-workflows.qmd) chapter for guidance on those cases.
+See the [Mplus](../../workflows/mplus/mplus.qmd) chapter for guidance on those cases.

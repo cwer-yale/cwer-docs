@@ -54,7 +54,7 @@ OUTPUT:
 
 After running the model, check the following in order:
 
-1. **Model fit** — CFI, TLI, RMSEA, SRMR (see fit guidelines in the [Mplus Overview](mplus-overview.qmd) chapter)
+1. **Model fit** — CFI, TLI, RMSEA, SRMR (see fit guidelines in the [Mplus](../workflows/mplus/mplus.qmd) chapter)
 2. **Factor loadings** — standardized loadings (STDYX) should generally be .40 or higher
 3. **Modification indices** — large MIs suggest areas of misfit; consider theoretically motivated modifications
 4. **Factor correlations** — very high correlations (> .85) between factors may indicate discriminant validity problems

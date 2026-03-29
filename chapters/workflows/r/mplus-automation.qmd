@@ -45,7 +45,7 @@ Document the full name-to-Mplus-name mapping in your script header so anyone rea
 
 ## Running a Mplus Model
 
-Write your Mplus syntax as a `.inp` file (see the [Mplus Workflows](../../workflows/mplus/mplus-workflows.qmd) chapter), then run it from R:
+Write your Mplus syntax as a `.inp` file (see the [Mplus](../../workflows/mplus/mplus.qmd) chapter), then run it from R:
 ```r
 runModels(here("code", "mplus", "cfa_model.inp"))
 ```
