@@ -847,56 +847,56 @@
   {
     "objectID": "chapters/analysis/factor-analysis.html",
     "href": "chapters/analysis/factor-analysis.html",
-    "title": "16  Mplus: CFA & EFA",
+    "title": "16  CFA & EFA",
     "section": "",
-    "text": "16.1 Confirmatory Factor Analysis (CFA)\nConfirmatory Factor Analysis (CFA) and Exploratory Factor Analysis (EFA) are among the most common analyses in CWER’s psychometric work. CFA tests whether a hypothesized factor structure fits the data. EFA explores the factor structure when the structure is unknown or uncertain. This chapter covers both, with syntax examples and the MplusAutomation workflow for running them from R.\nCFA is used when you have a theoretically motivated factor structure and want to test how well it fits your data. For example, you might hypothesize that 12 SEL items measure three latent factors (self-management, social awareness, relationship skills) and use CFA to test whether this structure is supported.",
+    "text": "16.1 Confirmatory Factor Analysis (CFA) with Mplus\nConfirmatory Factor Analysis (CFA) and Exploratory Factor Analysis (EFA) are among the most common analyses in CWER’s psychometric work. CFA tests whether a hypothesized factor structure fits the data. EFA explores the factor structure when the structure is unknown or uncertain. This chapter covers both, with syntax examples and the MplusAutomation workflow for running them from R.\nCFA is used when you have a theoretically motivated factor structure and want to test how well it fits your data. For example, you might hypothesize that 12 SEL items measure three latent factors (self-management, social awareness, relationship skills) and use CFA to test whether this structure is supported.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mplus: CFA & EFA</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>CFA & EFA</span>"
     ]
   },
   {
-    "objectID": "chapters/analysis/factor-analysis.html#confirmatory-factor-analysis-cfa",
-    "href": "chapters/analysis/factor-analysis.html#confirmatory-factor-analysis-cfa",
-    "title": "16  Mplus: CFA & EFA",
+    "objectID": "chapters/analysis/factor-analysis.html#confirmatory-factor-analysis-cfa-with-mplus",
+    "href": "chapters/analysis/factor-analysis.html#confirmatory-factor-analysis-cfa-with-mplus",
+    "title": "16  CFA & EFA",
     "section": "",
-    "text": "16.1.1 Basic CFA Syntax\nTITLE:    CFA - SEL three-factor model\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid schlid selsm1 selsm2 selsm3 selsm4\n          selsa1 selsa2 selsa3 selrs1 selrs2 selrs3;\n  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;\n  MISSING = ALL(-99 -98 -97 -96);\n  CLUSTER = schlid;\n\nANALYSIS:\n  TYPE = COMPLEX;\n  ESTIMATOR = WLSMV;\n\nMODEL:\n  selfmgmt BY selsm1 selsm2 selsm3 selsm4;\n  socaware BY selsa1 selsa2 selsa3;\n  relskill BY selrs1 selrs2 selrs3;\n\nOUTPUT:\n  SAMPSTAT;\n  STDYX;\n  MODINDICES(10);\n  FIT;\n\n\n16.1.2 Key Syntax Elements\nCLUSTER — specifies the clustering variable (e.g., school ID) when data are nested. Used with TYPE = COMPLEX to produce corrected standard errors.\nTYPE = COMPLEX — accounts for non-independence due to clustering. Use whenever students are nested in classrooms or schools.\nESTIMATOR = WLSMV — recommended for ordinal (Likert) outcomes. Use MLR for continuous outcomes.\nBY — defines the factor structure. selfmgmt BY selsm1 selsm2 selsm3 selsm4 means the factor selfmgmt is measured by those four indicators.\nSTDYX — requests fully standardized output, including standardized factor loadings.\nMODINDICES(10) — requests modification indices greater than 10, which can help identify sources of misfit.\n\n\n16.1.3 Interpreting CFA Output\nAfter running the model, check the following in order:\n\nModel fit — CFI, TLI, RMSEA, SRMR (see fit guidelines in the Mplus chapter)\nFactor loadings — standardized loadings (STDYX) should generally be .40 or higher\nModification indices — large MIs suggest areas of misfit; consider theoretically motivated modifications\nFactor correlations — very high correlations (&gt; .85) between factors may indicate discriminant validity problems\n\n\n\n16.1.4 Higher-Order CFA\nTo specify a second-order factor (e.g., a general SEL factor underlying the three subscales):\nMODEL:\n  selfmgmt BY selsm1 selsm2 selsm3 selsm4;\n  socaware BY selsa1 selsa2 selsa3;\n  relskill BY selrs1 selrs2 selrs3;\n  sel BY selfmgmt socaware relskill;\n\n\n16.1.5 Bifactor CFA\nTo specify a bifactor model (general factor + specific factors):\nMODEL:\n  sel BY selsm1 selsm2 selsm3 selsm4\n         selsa1 selsa2 selsa3\n         selrs1 selrs2 selrs3;\n  selfmgmt BY selsm1 selsm2 selsm3 selsm4;\n  socaware BY selsa1 selsa2 selsa3;\n  relskill BY selrs1 selrs2 selrs3;\n\n  sel WITH selfmgmt@0;\n  sel WITH socaware@0;\n  sel WITH relskill@0;\n  selfmgmt WITH socaware@0;\n  selfmgmt WITH relskill@0;\n  socaware WITH relskill@0;\nThe @0 fixes the correlation between factors to zero, which is required for a bifactor model.",
+    "text": "16.1.1 Basic Mplus CFA Syntax\nTITLE:    CFA - SEL three-factor model\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid schlid selsm1 selsm2 selsm3 selsm4\n          selsa1 selsa2 selsa3 selrs1 selrs2 selrs3;\n  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;\n  MISSING = ALL(-99 -98 -97 -96);\n  CLUSTER = schlid;\n\nANALYSIS:\n  TYPE = COMPLEX;\n  ESTIMATOR = WLSMV;\n\nMODEL:\n  selfmgmt BY selsm1 selsm2 selsm3 selsm4;\n  socaware BY selsa1 selsa2 selsa3;\n  relskill BY selrs1 selrs2 selrs3;\n\nOUTPUT:\n  SAMPSTAT;\n  STDYX;\n  MODINDICES(10);\n  FIT;\n\n\n16.1.2 Key Syntax Elements\nCLUSTER — specifies the clustering variable (e.g., school ID) when data are nested. Used with TYPE = COMPLEX to produce corrected standard errors.\nTYPE = COMPLEX — accounts for non-independence due to clustering. Use whenever students are nested in classrooms or schools.\nESTIMATOR = WLSMV — recommended for ordinal (Likert) outcomes. Use MLR for continuous outcomes.\nBY — defines the factor structure. selfmgmt BY selsm1 selsm2 selsm3 selsm4 means the factor selfmgmt is measured by those four indicators.\nSTDYX — requests fully standardized output, including standardized factor loadings.\nMODINDICES(10) — requests modification indices greater than 10, which can help identify sources of misfit.\n\n\n16.1.3 Interpreting CFA Output\nAfter running the model, check the following in order:\n\nModel fit — CFI, TLI, RMSEA, SRMR (see fit guidelines in the Mplus chapter)\nFactor loadings — standardized loadings (STDYX) should generally be .40 or higher\nModification indices — large MIs suggest areas of misfit; consider theoretically motivated modifications\nFactor correlations — very high correlations (&gt; .85) between factors may indicate discriminant validity problems\n\n\n\n16.1.4 Higher-Order CFA\nTo specify a second-order factor (e.g., a general SEL factor underlying the three subscales):\nMODEL:\n  selfmgmt BY selsm1 selsm2 selsm3 selsm4;\n  socaware BY selsa1 selsa2 selsa3;\n  relskill BY selrs1 selrs2 selrs3;\n  sel BY selfmgmt socaware relskill;\n\n\n16.1.5 Bifactor CFA with Mplus\nTo specify a bifactor model (general factor + specific factors):\nMODEL:\n  sel BY selsm1 selsm2 selsm3 selsm4\n         selsa1 selsa2 selsa3\n         selrs1 selrs2 selrs3;\n  selfmgmt BY selsm1 selsm2 selsm3 selsm4;\n  socaware BY selsa1 selsa2 selsa3;\n  relskill BY selrs1 selrs2 selrs3;\n\n  sel WITH selfmgmt@0;\n  sel WITH socaware@0;\n  sel WITH relskill@0;\n  selfmgmt WITH socaware@0;\n  selfmgmt WITH relskill@0;\n  socaware WITH relskill@0;\nThe @0 fixes the correlation between factors to zero, which is required for a bifactor model.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mplus: CFA & EFA</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>CFA & EFA</span>"
     ]
   },
   {
-    "objectID": "chapters/analysis/factor-analysis.html#exploratory-factor-analysis-efa",
-    "href": "chapters/analysis/factor-analysis.html#exploratory-factor-analysis-efa",
-    "title": "16  Mplus: CFA & EFA",
-    "section": "16.2 Exploratory Factor Analysis (EFA)",
-    "text": "16.2 Exploratory Factor Analysis (EFA)\nEFA is used when the factor structure is unknown or you want to explore how many factors underlie a set of items. Unlike CFA, EFA does not fix items to specific factors — it allows all items to load on all factors.\n\n16.2.1 Basic EFA Syntax\nTITLE:    EFA - SEL items\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = selsm1 selsm2 selsm3 selsm4\n          selsa1 selsa2 selsa3\n          selrs1 selrs2 selrs3;\n  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  TYPE = EFA 1 4;\n  ESTIMATOR = WLSMV;\n  ROTATION = GEOMIN;\n\nOUTPUT:\n  STDYX;\nTYPE = EFA 1 4 tells Mplus to extract and compare solutions from 1 to 4 factors. Review the fit indices and interpretability of each solution to determine the best number of factors.\nROTATION = GEOMIN — an oblique rotation that allows factors to correlate. Preferred over orthogonal rotations (like varimax) for most psychological constructs, which are rarely truly independent.\n\n\n16.2.2 Deciding on the Number of Factors\nUse multiple criteria:\n\nFit indices — look for acceptable CFI, TLI, RMSEA across solutions\nEigenvalues — factors with eigenvalues &gt; 1 are traditionally retained, though this rule alone is insufficient\nInterpretability — the factor solution should make theoretical sense\nParsimony — prefer fewer factors when fit is similar across solutions\n\n\n\n16.2.3 ESEM\nExploratory Structural Equation Modeling (ESEM) combines CFA and EFA — items are primarily associated with one factor but allowed to have small cross-loadings on other factors. This is often more realistic than pure CFA and produces better fit in psychological data:\nANALYSIS:\n  TYPE = EFA 3 3;\n  ESTIMATOR = WLSMV;\n  ROTATION = TARGET;\n\nMODEL:\n  ! Target rotation specifying expected primary loadings\n  f1 BY selsm1~1 selsm2~1 selsm3~1 selsm4~1\n        selsa1~0 selsa2~0 selsa3~0\n        selrs1~0 selrs2~0 selrs3~0;\n  f2 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0\n        selsa1~1 selsa2~1 selsa3~1\n        selrs1~0 selrs2~0 selrs3~0;\n  f3 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0\n        selsa1~0 selsa2~0 selsa3~0\n        selrs1~1 selrs2~1 selrs3~1;\n~1 indicates a target loading of 1 (item primarily loads on this factor) and ~0 indicates a target of 0 (item expected to have near-zero loading on this factor).",
+    "objectID": "chapters/analysis/factor-analysis.html#exploratory-factor-analysis-efa-with-mplus",
+    "href": "chapters/analysis/factor-analysis.html#exploratory-factor-analysis-efa-with-mplus",
+    "title": "16  CFA & EFA",
+    "section": "16.2 Exploratory Factor Analysis (EFA) with Mplus",
+    "text": "16.2 Exploratory Factor Analysis (EFA) with Mplus\nEFA is used when the factor structure is unknown or you want to explore how many factors underlie a set of items. Unlike CFA, EFA does not fix items to specific factors — it allows all items to load on all factors.\n\n16.2.1 Basic EFA Syntax with Mplus\nTITLE:    EFA - SEL items\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = selsm1 selsm2 selsm3 selsm4\n          selsa1 selsa2 selsa3\n          selrs1 selrs2 selrs3;\n  USEVARIABLES = selsm1-selsm4 selsa1-selsa3 selrs1-selrs3;\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  TYPE = EFA 1 4;\n  ESTIMATOR = WLSMV;\n  ROTATION = GEOMIN;\n\nOUTPUT:\n  STDYX;\nTYPE = EFA 1 4 tells Mplus to extract and compare solutions from 1 to 4 factors. Review the fit indices and interpretability of each solution to determine the best number of factors.\nROTATION = GEOMIN — an oblique rotation that allows factors to correlate. Preferred over orthogonal rotations (like varimax) for most psychological constructs, which are rarely truly independent.\n\n\n16.2.2 Deciding on the Number of Factors\nUse multiple criteria:\n\nFit indices — look for acceptable CFI, TLI, RMSEA across solutions\nEigenvalues — factors with eigenvalues &gt; 1 are traditionally retained, though this rule alone is insufficient\nInterpretability — the factor solution should make theoretical sense\nParsimony — prefer fewer factors when fit is similar across solutions\n\n\n\n16.2.3 ESEM with Mplus\nExploratory Structural Equation Modeling (ESEM) combines CFA and EFA — items are primarily associated with one factor but allowed to have small cross-loadings on other factors. This is often more realistic than pure CFA and produces better fit in psychological data:\nANALYSIS:\n  TYPE = EFA 3 3;\n  ESTIMATOR = WLSMV;\n  ROTATION = TARGET;\n\nMODEL:\n  ! Target rotation specifying expected primary loadings\n  f1 BY selsm1~1 selsm2~1 selsm3~1 selsm4~1\n        selsa1~0 selsa2~0 selsa3~0\n        selrs1~0 selrs2~0 selrs3~0;\n  f2 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0\n        selsa1~1 selsa2~1 selsa3~1\n        selrs1~0 selrs2~0 selrs3~0;\n  f3 BY selsm1~0 selsm2~0 selsm3~0 selsm4~0\n        selsa1~0 selsa2~0 selsa3~0\n        selrs1~1 selrs2~1 selrs3~1;\n~1 indicates a target loading of 1 (item primarily loads on this factor) and ~0 indicates a target of 0 (item expected to have near-zero loading on this factor).",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mplus: CFA & EFA</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>CFA & EFA</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/factor-analysis.html#running-cfaefa-via-mplusautomation",
     "href": "chapters/analysis/factor-analysis.html#running-cfaefa-via-mplusautomation",
-    "title": "16  Mplus: CFA & EFA",
+    "title": "16  CFA & EFA",
     "section": "16.3 Running CFA/EFA via MplusAutomation",
     "text": "16.3 Running CFA/EFA via MplusAutomation\nThe full R workflow for running CFA from R:\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load cleaned data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Rename to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    selsm1 = sel_selfmgmt_1,\n    selsm2 = sel_selfmgmt_2,\n    selsm3 = sel_selfmgmt_3,\n    selsm4 = sel_selfmgmt_4,\n    selsa1 = sel_socaware_1,\n    selsa2 = sel_socaware_2,\n    selsa3 = sel_socaware_3,\n    selrs1 = sel_relskill_1,\n    selrs2 = sel_relskill_2,\n    selrs3 = sel_relskill_3,\n    schlid = school_id,\n    stuid  = student_id\n  )\n\n# 3. Write Mplus data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 4. Run model (assumes cfa_model.inp is already written)\nrunModels(here(\"code\", \"mplus\", \"cfa_model.inp\"))\n\n# 5. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"cfa_model.out\"))\n\n# 6. Extract fit indices\nfit &lt;- output$summaries |&gt;\n  select(CFI, TLI, RMSEA_Estimate, RMSEA_90CI_LB, RMSEA_90CI_UB, SRMR)\n\n# 7. Extract standardized loadings\nloadings &lt;- output$parameters$stdyx.standardized |&gt;\n  filter(grepl(\"BY\", paramHeader))\n\n# 8. Save results\nwrite_csv(fit, here(\"output\", \"tables\", \"cfa_fit.csv\"))\nwrite_csv(loadings, here(\"output\", \"tables\", \"cfa_loadings.csv\"))",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mplus: CFA & EFA</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>CFA & EFA</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/factor-analysis.html#model-comparison",
     "href": "chapters/analysis/factor-analysis.html#model-comparison",
-    "title": "16  Mplus: CFA & EFA",
+    "title": "16  CFA & EFA",
     "section": "16.4 Model Comparison",
     "text": "16.4 Model Comparison\nTo compare nested models (e.g., one-factor vs. three-factor), use the DIFFTEST procedure with WLSMV:\nIn the baseline model input, add:\nSAVEDATA:\n  DIFFTEST = baseline.dat;\nIn the comparison model input, add:\nANALYSIS:\n  DIFFTEST = baseline.dat;\nWith MplusAutomation, run both models and compare fit indices:\n# Run both models\nrunModels(here(\"code\", \"mplus\"))\n\n# Read all output\nall_output &lt;- readModels(here(\"code\", \"mplus\"), recursive = FALSE)\n\n# Compare fit\nfit_comparison &lt;- lapply(all_output, function(m) m$summaries) |&gt;\n  bind_rows(.id = \"model\") |&gt;\n  select(model, CFI, TLI, RMSEA_Estimate, SRMR)\n\nprint(fit_comparison)",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mplus: CFA & EFA</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>CFA & EFA</span>"
     ]
   },
   {
@@ -904,7 +904,7 @@
     "href": "chapters/analysis/lme4.html",
     "title": "17  Multilevel Modeling with lme4",
     "section": "",
-    "text": "17.1 When to Use Multilevel Modeling\nlme4 is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.\nInstall and load it:\nMultilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:\nIgnoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.",
+    "text": "17.1 When to Use Multilevel Modeling\nMultilevel modeling is appropriate when your data have a nested structure and observations within the same group are likely more similar to each other than to observations in other groups. Common examples in CWER work include:\nIgnoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
@@ -922,22 +922,11 @@
     ]
   },
   {
-    "objectID": "chapters/analysis/lme4.html#the-intraclass-correlation-coefficient",
-    "href": "chapters/analysis/lme4.html#the-intraclass-correlation-coefficient",
+    "objectID": "chapters/analysis/lme4.html#lme4",
+    "href": "chapters/analysis/lme4.html#lme4",
     "title": "17  Multilevel Modeling with lme4",
-    "section": "17.2 The Intraclass Correlation Coefficient",
-    "text": "17.2 The Intraclass Correlation Coefficient\nBefore fitting a full multilevel model, run an unconditional means model (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.\nmodel_null &lt;- lmer(sel_total_mean ~ 1 + (1 | school_id), data = data)\nsummary(model_null)\nCalculate the ICC using the performance package:\nlibrary(performance)\nicc(model_null)\nAn ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/lme4.html#model-syntax",
-    "href": "chapters/analysis/lme4.html#model-syntax",
-    "title": "17  Multilevel Modeling with lme4",
-    "section": "17.3 Model Syntax",
-    "text": "17.3 Model Syntax\nlme4 uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:\noutcome ~ fixed_effects + (random_effects | grouping_variable)\nThe 1 inside the parentheses represents a random intercept — allowing the mean outcome to vary across groups.\n\n17.3.1 Adding Level-1 Predictors\nLevel-1 predictors are variables measured at the individual level (e.g., student-level variables):\nmodel_1 &lt;- lmer(sel_total_mean ~ grade + (1 | school_id), data = data)\nsummary(model_1)\n\n\n17.3.2 Adding Level-2 Predictors\nLevel-2 predictors are variables measured at the group level (e.g., school-level variables):\nmodel_2 &lt;- lmer(sel_total_mean ~ grade + school_size + (1 | school_id), data = data)\nsummary(model_2)\n\n\n17.3.3 Random Slope Model\nA random slope model allows the effect of a predictor to vary across groups:\nmodel_3 &lt;- lmer(sel_total_mean ~ grade + (1 + grade | school_id), data = data)\nsummary(model_3)\nThis estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).",
+    "section": "17.2 lme4",
+    "text": "17.2 lme4\nlme4 is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.\nInstall and load it:\ninstall.packages(\"lme4\")\nlibrary(lme4)\n\n17.2.1 The Intraclass Correlation Coefficient\nBefore fitting a full multilevel model, run an unconditional means model (also called a null model or intercept-only model) to estimate the intraclass correlation coefficient (ICC). The ICC tells you how much of the total variance in the outcome is attributable to the grouping variable.\nmodel_null &lt;- lmer(sel_total_mean ~ 1 + (1 | school_id), data = data)\nsummary(model_null)\nCalculate the ICC using the performance package:\nlibrary(performance)\nicc(model_null)\nAn ICC of .10 means 10% of the variance in SEL scores is between schools. A general rule of thumb is that multilevel modeling is warranted when the ICC is .05 or higher, though you should use judgment based on the research context.\n\n\n17.2.2 Model Syntax\nlme4 uses a formula syntax that extends standard R model syntax. Fixed effects are specified as in standard regression. Random effects are specified in parentheses:\noutcome ~ fixed_effects + (random_effects | grouping_variable)\nThe 1 inside the parentheses represents a random intercept — allowing the mean outcome to vary across groups.\n\n\n17.2.3 Adding Level-1 Predictors\nLevel-1 predictors are variables measured at the individual level (e.g., student-level variables):\nmodel_1 &lt;- lmer(sel_total_mean ~ grade + (1 | school_id), data = data)\nsummary(model_1)\n\n\n17.2.4 Adding Level-2 Predictors\nLevel-2 predictors are variables measured at the group level (e.g., school-level variables):\nmodel_2 &lt;- lmer(sel_total_mean ~ grade + school_size + (1 | school_id), data = data)\nsummary(model_2)\n\n\n17.2.5 Random Slope Model\nA random slope model allows the effect of a predictor to vary across groups:\nmodel_3 &lt;- lmer(sel_total_mean ~ grade + (1 + grade | school_id), data = data)\nsummary(model_3)\nThis estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
@@ -947,41 +936,19 @@
     "objectID": "chapters/analysis/lme4.html#extracting-results",
     "href": "chapters/analysis/lme4.html#extracting-results",
     "title": "17  Multilevel Modeling with lme4",
-    "section": "17.4 Extracting Results",
-    "text": "17.4 Extracting Results\nUse broom.mixed to extract fixed effect estimates in a tidy format:\nlibrary(broom.mixed)\n\ntidy(model_2, effects = \"fixed\", conf.int = TRUE)\nThis produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.",
+    "section": "17.3 Extracting Results",
+    "text": "17.3 Extracting Results\nUse broom.mixed to extract fixed effect estimates in a tidy format:\nlibrary(broom.mixed)\n\ntidy(model_2, effects = \"fixed\", conf.int = TRUE)\nThis produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.\n\n17.3.1 Comparing Models\nUse anova() to compare nested models via likelihood ratio test:\nanova(model_1, model_2)\nThis tests whether adding school-level predictors significantly improves model fit. Note that lme4 uses REML estimation by default for variance components, but switches to ML for model comparisons — anova() handles this automatically.\n\n\n17.3.2 Checking Assumptions\nExamine residual plots to check model assumptions:\n# Residuals vs fitted\nplot(model_2)\n\n# QQ plot of residuals\nqqnorm(resid(model_2))\nqqline(resid(model_2))\n\n# Random effects distribution\ndotplot(ranef(model_2, condVar = TRUE))",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
     ]
   },
   {
-    "objectID": "chapters/analysis/lme4.html#comparing-models",
-    "href": "chapters/analysis/lme4.html#comparing-models",
+    "objectID": "chapters/analysis/lme4.html#mplus",
+    "href": "chapters/analysis/lme4.html#mplus",
     "title": "17  Multilevel Modeling with lme4",
-    "section": "17.5 Comparing Models",
-    "text": "17.5 Comparing Models\nUse anova() to compare nested models via likelihood ratio test:\nanova(model_1, model_2)\nThis tests whether adding school-level predictors significantly improves model fit. Note that lme4 uses REML estimation by default for variance components, but switches to ML for model comparisons — anova() handles this automatically.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/lme4.html#checking-assumptions",
-    "href": "chapters/analysis/lme4.html#checking-assumptions",
-    "title": "17  Multilevel Modeling with lme4",
-    "section": "17.6 Checking Assumptions",
-    "text": "17.6 Checking Assumptions\nExamine residual plots to check model assumptions:\n# Residuals vs fitted\nplot(model_2)\n\n# QQ plot of residuals\nqqnorm(resid(model_2))\nqqline(resid(model_2))\n\n# Random effects distribution\ndotplot(ranef(model_2, condVar = TRUE))",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/lme4.html#when-to-use-mplus-instead",
-    "href": "chapters/analysis/lme4.html#when-to-use-mplus-instead",
-    "title": "17  Multilevel Modeling with lme4",
-    "section": "17.7 When to Use Mplus Instead",
-    "text": "17.7 When to Use Mplus Instead\nlme4 is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:\n\nYou need full information maximum likelihood (FIML) for missing data\nYour model involves latent variables or measurement models\nYou need multilevel SEM\nYou are estimating models with binary or ordinal outcomes in a multilevel framework\nYou need Monte Carlo simulation for power analysis\n\nSee the Mplus chapter for guidance on those cases.",
+    "section": "17.4 Mplus",
+    "text": "17.4 Mplus\n\n17.4.1 When to Use Mplus Instead\nlme4 is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:\n\nYou need full information maximum likelihood (FIML) for missing data\nYour model involves latent variables or measurement models\nYou need multilevel SEM\nYou are estimating models with binary or ordinal outcomes in a multilevel framework\nYou need Monte Carlo simulation for power analysis\n\nSee the Mplus chapter for guidance on those cases.",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Multilevel Modeling with lme4</span>"
@@ -990,298 +957,100 @@
   {
     "objectID": "chapters/analysis/path-analysis.html",
     "href": "chapters/analysis/path-analysis.html",
-    "title": "18  Mplus: Path Analysis",
+    "title": "18  Path Analysis",
     "section": "",
     "text": "18.1 What is Path Analysis?\nPath analysis is used to test hypothesized relationships among a set of observed variables. Unlike simple regression, path analysis allows you to model multiple outcomes simultaneously, include mediating variables, and test complex causal chains in a single model. CWER uses path analysis to examine how school, classroom, and student-level variables relate to academic and social-emotional outcomes.\nA path model specifies directional relationships (paths) among observed variables. Each path is essentially a regression coefficient. The advantage over running separate regressions is that path analysis accounts for the correlations among predictors and outcomes simultaneously, providing a more accurate picture of the relationships in the data.\nFor example, you might hypothesize that professional development predicts teacher SEL practices, which in turn predicts student SEL outcomes — a mediation model. Path analysis tests this entire chain in one model.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Path Analysis</span>"
     ]
   },
   {
-    "objectID": "chapters/analysis/path-analysis.html#basic-path-analysis-syntax",
-    "href": "chapters/analysis/path-analysis.html#basic-path-analysis-syntax",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.2 Basic Path Analysis Syntax",
-    "text": "18.2 Basic Path Analysis Syntax\nTITLE:    Path analysis - PD to teacher practices to student outcomes\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = schlid tchrid stuid pd_hrs tch_sel stu_sel grd;\n  USEVARIABLES = pd_hrs tch_sel stu_sel grd;\n  MISSING = ALL(-99 -98 -97 -96);\n  CLUSTER = schlid;\n\nANALYSIS:\n  TYPE = COMPLEX;\n  ESTIMATOR = MLR;\n\nMODEL:\n  ! Teacher SEL practices predicted by PD hours\n  tch_sel ON pd_hrs;\n\n  ! Student SEL predicted by teacher practices and grade\n  stu_sel ON tch_sel grd;\n\nOUTPUT:\n  STDYX;\n  CINTERVAL;\nThe ON statement specifies regression paths. stu_sel ON tch_sel grd means student SEL is regressed on teacher SEL practices and grade.",
+    "objectID": "chapters/analysis/path-analysis.html#path-analysis-in-mplus",
+    "href": "chapters/analysis/path-analysis.html#path-analysis-in-mplus",
+    "title": "18  Path Analysis",
+    "section": "18.2 Path Analysis in Mplus",
+    "text": "18.2 Path Analysis in Mplus\n\n18.2.1 Basic Path Analysis Syntax\nTITLE:    Path analysis - PD to teacher practices to student outcomes\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = schlid tchrid stuid pd_hrs tch_sel stu_sel grd;\n  USEVARIABLES = pd_hrs tch_sel stu_sel grd;\n  MISSING = ALL(-99 -98 -97 -96);\n  CLUSTER = schlid;\n\nANALYSIS:\n  TYPE = COMPLEX;\n  ESTIMATOR = MLR;\n\nMODEL:\n  ! Teacher SEL practices predicted by PD hours\n  tch_sel ON pd_hrs;\n\n  ! Student SEL predicted by teacher practices and grade\n  stu_sel ON tch_sel grd;\n\nOUTPUT:\n  STDYX;\n  CINTERVAL;\nThe ON statement specifies regression paths. stu_sel ON tch_sel grd means student SEL is regressed on teacher SEL practices and grade.\n\n\n18.2.2 Mediation Analysis\nTo test mediation (whether the effect of X on Y operates through M), define the indirect effect using MODEL INDIRECT or MODEL CONSTRAINT:\nTITLE:    Mediation - PD -&gt; teacher SEL -&gt; student SEL\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = schlid pd_hrs tch_sel stu_sel;\n  USEVARIABLES = pd_hrs tch_sel stu_sel;\n  MISSING = ALL(-99 -98 -97 -96);\n  CLUSTER = schlid;\n\nANALYSIS:\n  TYPE = COMPLEX;\n  ESTIMATOR = MLR;\n  BOOTSTRAP = 1000;\n\nMODEL:\n  tch_sel ON pd_hrs (a);\n  stu_sel ON tch_sel (b);\n  stu_sel ON pd_hrs (c);\n\nMODEL CONSTRAINT:\n  NEW(indirect direct total);\n  indirect = a*b;\n  direct = c;\n  total = a*b + c;\n\nOUTPUT:\n  STDYX;\n  CINTERVAL(BCBOOTSTRAP);\nBOOTSTRAP = 1000 — requests 1000 bootstrap samples for confidence intervals. Required for bias-corrected bootstrap CIs on indirect effects.\nMODEL CONSTRAINT — defines new parameters (here: indirect, direct, and total effects) as functions of labeled parameters.\nCINTERVAL(BCBOOTSTRAP) — requests bias-corrected bootstrap confidence intervals, which are preferred over the Sobel test for testing mediation.\n\n\n18.2.3 Multiple Mediators\nFor parallel mediation (multiple mediators operating simultaneously):\nMODEL:\n  med1 ON x (a1);\n  med2 ON x (a2);\n  y ON med1 (b1);\n  y ON med2 (b2);\n  y ON x (c);\n\nMODEL CONSTRAINT:\n  NEW(ind1 ind2 total_ind total);\n  ind1 = a1*b1;\n  ind2 = a2*b2;\n  total_ind = a1*b1 + a2*b2;\n  total = a1*b1 + a2*b2 + c;\n\n\n18.2.4 Moderation (Interaction Effects)\nTo test whether the effect of X on Y differs by a moderator W, create an interaction term in R before running the model:\ndata_mplus &lt;- data_mplus |&gt;\n  mutate(xw = x_var * w_var)\nThen include the interaction term in the Mplus syntax:\nMODEL:\n  y ON x w xw;\nThe coefficient for xw is the interaction effect. If significant, the effect of X on Y depends on the value of W.\n\n\n18.2.5 Running Path Analysis via MplusAutomation\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Create interaction term if needed\ndata &lt;- data |&gt;\n  mutate(pd_sel_int = pd_hrs * tch_sel_baseline)\n\n# 3. Rename to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    schlid  = school_id,\n    tchrid  = teacher_id,\n    pdhrs   = pd_hrs,\n    tchsel  = tch_sel,\n    stusel  = stu_sel_mean,\n    grd     = grade\n  )\n\n# 4. Write data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 5. Run model\nrunModels(here(\"code\", \"mplus\", \"path_model.inp\"))\n\n# 6. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"path_model.out\"))\n\n# 7. Extract fit indices\nfit &lt;- output$summaries |&gt;\n  select(CFI, TLI, RMSEA_Estimate, SRMR)\n\n# 8. Extract path coefficients\npaths &lt;- output$parameters$stdyx.standardized\n\n# 9. Extract indirect effects\nindirect &lt;- output$parameters$indirect\n\n# 10. Save\nwrite_csv(fit, here(\"output\", \"tables\", \"path_fit.csv\"))\nwrite_csv(paths, here(\"output\", \"tables\", \"path_coefficients.csv\"))\nwrite_csv(indirect, here(\"output\", \"tables\", \"indirect_effects.csv\"))\n\n\n18.2.6 Model Fit for Path Models\nPath models are evaluated using the same fit indices as CFA (see the Mplus chapter). A just-identified model (where the number of estimated parameters equals the number of knowns) will always fit perfectly — you need at least one degree of freedom for fit to be meaningful.\nWhen a path model fits poorly, examine the modification indices to identify which paths might improve fit. Add paths only if they are theoretically justified — do not add paths purely to improve fit statistics.\n\n\n18.2.7 Reporting Path Analysis Results\nA complete report of path analysis results should include:\n\nSample size and missing data handling approach\nEstimator used and justification\nModel fit indices (CFI, TLI, RMSEA, SRMR) with confidence intervals for RMSEA\nTable of path coefficients (unstandardized and standardized) with standard errors and p-values\nFor mediation: indirect effects with bootstrap confidence intervals\nA path diagram if the model is complex enough to benefit from visual representation",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/path-analysis.html#mediation-analysis",
-    "href": "chapters/analysis/path-analysis.html#mediation-analysis",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.3 Mediation Analysis",
-    "text": "18.3 Mediation Analysis\nTo test mediation (whether the effect of X on Y operates through M), define the indirect effect using MODEL INDIRECT or MODEL CONSTRAINT:\nTITLE:    Mediation - PD -&gt; teacher SEL -&gt; student SEL\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = schlid pd_hrs tch_sel stu_sel;\n  USEVARIABLES = pd_hrs tch_sel stu_sel;\n  MISSING = ALL(-99 -98 -97 -96);\n  CLUSTER = schlid;\n\nANALYSIS:\n  TYPE = COMPLEX;\n  ESTIMATOR = MLR;\n  BOOTSTRAP = 1000;\n\nMODEL:\n  tch_sel ON pd_hrs (a);\n  stu_sel ON tch_sel (b);\n  stu_sel ON pd_hrs (c);\n\nMODEL CONSTRAINT:\n  NEW(indirect direct total);\n  indirect = a*b;\n  direct = c;\n  total = a*b + c;\n\nOUTPUT:\n  STDYX;\n  CINTERVAL(BCBOOTSTRAP);\nBOOTSTRAP = 1000 — requests 1000 bootstrap samples for confidence intervals. Required for bias-corrected bootstrap CIs on indirect effects.\nMODEL CONSTRAINT — defines new parameters (here: indirect, direct, and total effects) as functions of labeled parameters.\nCINTERVAL(BCBOOTSTRAP) — requests bias-corrected bootstrap confidence intervals, which are preferred over the Sobel test for testing mediation.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/path-analysis.html#multiple-mediators",
-    "href": "chapters/analysis/path-analysis.html#multiple-mediators",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.4 Multiple Mediators",
-    "text": "18.4 Multiple Mediators\nFor parallel mediation (multiple mediators operating simultaneously):\nMODEL:\n  med1 ON x (a1);\n  med2 ON x (a2);\n  y ON med1 (b1);\n  y ON med2 (b2);\n  y ON x (c);\n\nMODEL CONSTRAINT:\n  NEW(ind1 ind2 total_ind total);\n  ind1 = a1*b1;\n  ind2 = a2*b2;\n  total_ind = a1*b1 + a2*b2;\n  total = a1*b1 + a2*b2 + c;",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/path-analysis.html#moderation-interaction-effects",
-    "href": "chapters/analysis/path-analysis.html#moderation-interaction-effects",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.5 Moderation (Interaction Effects)",
-    "text": "18.5 Moderation (Interaction Effects)\nTo test whether the effect of X on Y differs by a moderator W, create an interaction term in R before running the model:\ndata_mplus &lt;- data_mplus |&gt;\n  mutate(xw = x_var * w_var)\nThen include the interaction term in the Mplus syntax:\nMODEL:\n  y ON x w xw;\nThe coefficient for xw is the interaction effect. If significant, the effect of X on Y depends on the value of W.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/path-analysis.html#running-path-analysis-via-mplusautomation",
-    "href": "chapters/analysis/path-analysis.html#running-path-analysis-via-mplusautomation",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.6 Running Path Analysis via MplusAutomation",
-    "text": "18.6 Running Path Analysis via MplusAutomation\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Create interaction term if needed\ndata &lt;- data |&gt;\n  mutate(pd_sel_int = pd_hrs * tch_sel_baseline)\n\n# 3. Rename to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    schlid  = school_id,\n    tchrid  = teacher_id,\n    pdhrs   = pd_hrs,\n    tchsel  = tch_sel,\n    stusel  = stu_sel_mean,\n    grd     = grade\n  )\n\n# 4. Write data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 5. Run model\nrunModels(here(\"code\", \"mplus\", \"path_model.inp\"))\n\n# 6. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"path_model.out\"))\n\n# 7. Extract fit indices\nfit &lt;- output$summaries |&gt;\n  select(CFI, TLI, RMSEA_Estimate, SRMR)\n\n# 8. Extract path coefficients\npaths &lt;- output$parameters$stdyx.standardized\n\n# 9. Extract indirect effects\nindirect &lt;- output$parameters$indirect\n\n# 10. Save\nwrite_csv(fit, here(\"output\", \"tables\", \"path_fit.csv\"))\nwrite_csv(paths, here(\"output\", \"tables\", \"path_coefficients.csv\"))\nwrite_csv(indirect, here(\"output\", \"tables\", \"indirect_effects.csv\"))",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/path-analysis.html#model-fit-for-path-models",
-    "href": "chapters/analysis/path-analysis.html#model-fit-for-path-models",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.7 Model Fit for Path Models",
-    "text": "18.7 Model Fit for Path Models\nPath models are evaluated using the same fit indices as CFA (see the Mplus chapter). A just-identified model (where the number of estimated parameters equals the number of knowns) will always fit perfectly — you need at least one degree of freedom for fit to be meaningful.\nWhen a path model fits poorly, examine the modification indices to identify which paths might improve fit. Add paths only if they are theoretically justified — do not add paths purely to improve fit statistics.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/path-analysis.html#reporting-path-analysis-results",
-    "href": "chapters/analysis/path-analysis.html#reporting-path-analysis-results",
-    "title": "18  Mplus: Path Analysis",
-    "section": "18.8 Reporting Path Analysis Results",
-    "text": "18.8 Reporting Path Analysis Results\nA complete report of path analysis results should include:\n\nSample size and missing data handling approach\nEstimator used and justification\nModel fit indices (CFI, TLI, RMSEA, SRMR) with confidence intervals for RMSEA\nTable of path coefficients (unstandardized and standardized) with standard errors and p-values\nFor mediation: indirect effects with bootstrap confidence intervals\nA path diagram if the model is complex enough to benefit from visual representation",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Mplus: Path Analysis</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Path Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/irt.html",
     "href": "chapters/analysis/irt.html",
-    "title": "19  Mplus: IRT",
+    "title": "19  Item Response Theory (IRT)",
     "section": "",
     "text": "19.1 Key IRT Concepts\nItem Response Theory (IRT) models the relationship between a latent trait (e.g., reading ability, SEL competence) and the probability of a particular response to each item. Unlike classical test theory, which focuses on scale-level statistics, IRT models item-level characteristics — how difficult each item is, how well it discriminates between respondents at different trait levels, and whether items function differently across groups. CWER uses IRT primarily for psychometric evaluation of scales and instruments.\nLatent trait (θ) — the underlying construct being measured, expressed on a standardized scale (typically mean = 0, SD = 1).\nItem difficulty (b) — the point on the latent trait scale where a respondent has a 50% probability of endorsing the item (for binary items) or a particular response (for polytomous items). Higher values indicate harder or less frequently endorsed items.\nItem discrimination (a) — how sharply an item distinguishes between respondents above and below the difficulty threshold. Higher discrimination means the item is more sensitive to differences in the latent trait.\nItem characteristic curve (ICC) — a plot showing the probability of endorsing an item as a function of the latent trait. A well-discriminating item has a steep ICC.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Item Response Theory (IRT)</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/irt.html#irt-models",
     "href": "chapters/analysis/irt.html#irt-models",
-    "title": "19  Mplus: IRT",
+    "title": "19  Item Response Theory (IRT)",
     "section": "19.2 IRT Models",
     "text": "19.2 IRT Models\nThe appropriate IRT model depends on your item format:\n\n\n\n\n\n\n\nItem Format\nCommon Models\n\n\n\n\nBinary (yes/no, correct/incorrect)\n1PL (Rasch), 2PL, 3PL\n\n\nOrdinal (Likert)\nGraded Response Model (GRM), Partial Credit Model (PCM)\n\n\nNominal (unordered categories)\nNominal Response Model\n\n\n\nFor most CWER work with Likert-scale items, the Graded Response Model (GRM) is appropriate. For binary items, the 2PL model is the standard choice. The 1PL (Rasch) model constrains all discriminations to be equal — use it when parsimony is a priority and the equal-discrimination assumption can be justified.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Item Response Theory (IRT)</span>"
     ]
   },
   {
-    "objectID": "chapters/analysis/irt.html#binary-irt-2pl-model",
-    "href": "chapters/analysis/irt.html#binary-irt-2pl-model",
-    "title": "19  Mplus: IRT",
-    "section": "19.3 Binary IRT: 2PL Model",
-    "text": "19.3 Binary IRT: 2PL Model\nTITLE:    2PL IRT model\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid item1-item10;\n  USEVARIABLES = item1-item10;\n  CATEGORICAL = item1-item10;\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  TYPE = EFA 1 1;\n  ESTIMATOR = WLSMV;\n  PARAMETERIZATION = THETA;\n\nMODEL:\n  f BY item1-item10*;\n  f@1;\n\nOUTPUT:\n  STDYX;\n  TECH1;\n  TECH4;\nCATEGORICAL — tells Mplus the items are categorical (binary or ordinal). Required for IRT models.\nPARAMETERIZATION = THETA — uses the IRT parameterization, which produces item discrimination (a) and difficulty (b) parameters directly. Without this, Mplus uses the default factor analytic parameterization.\nTYPE = EFA 1 1 — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.",
+    "objectID": "chapters/analysis/irt.html#irt-in-mplus",
+    "href": "chapters/analysis/irt.html#irt-in-mplus",
+    "title": "19  Item Response Theory (IRT)",
+    "section": "19.3 IRT in Mplus",
+    "text": "19.3 IRT in Mplus\n\n19.3.1 Binary IRT: 2PL Model\nTITLE:    2PL IRT model\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid item1-item10;\n  USEVARIABLES = item1-item10;\n  CATEGORICAL = item1-item10;\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  TYPE = EFA 1 1;\n  ESTIMATOR = WLSMV;\n  PARAMETERIZATION = THETA;\n\nMODEL:\n  f BY item1-item10*;\n  f@1;\n\nOUTPUT:\n  STDYX;\n  TECH1;\n  TECH4;\nCATEGORICAL — tells Mplus the items are categorical (binary or ordinal). Required for IRT models.\nPARAMETERIZATION = THETA — uses the IRT parameterization, which produces item discrimination (a) and difficulty (b) parameters directly. Without this, Mplus uses the default factor analytic parameterization.\nTYPE = EFA 1 1 — fits a one-factor EFA, which is equivalent to a unidimensional IRT model.\n\n\n19.3.2 Polytomous IRT: Graded Response Model\nFor Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):\nTITLE:    Graded Response Model\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid item1-item10;\n  USEVARIABLES = item1-item10;\n  CATEGORICAL = item1-item10;\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  ESTIMATOR = WLSMV;\n  PARAMETERIZATION = THETA;\n\nMODEL:\n  f BY item1-item10*;\n  f@1;\n\nOUTPUT:\n  STDYX;\n  TECH1;\nThe output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).\n\n\n19.3.3 Interpreting IRT Output with PARAMETERIZATION = THETA\nWith PARAMETERIZATION = THETA, the Mplus output provides:\n\nFactor loadings in the MODEL RESULTS section correspond to item discriminations (a parameters). Higher values indicate better-discriminating items.\nThresholds correspond to item difficulty parameters (b parameters). For a 5-point Likert item, there are 4 thresholds representing the boundaries between response categories.\nSTDYX standardized loadings give the discrimination in a standardized metric comparable across items.\n\nGeneral guidelines for interpreting discrimination parameters:\n\n\n\nDiscrimination\nInterpretation\n\n\n\n\n&lt; 0.50\nPoor — item provides little information\n\n\n0.50–1.00\nModerate\n\n\n1.00–2.00\nGood\n\n\n&gt; 2.00\nVery high\n\n\n\n\n\n19.3.4 Differential Item Functioning (DIF)\nDIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.\nTo test DIF in Mplus, use multiple-group CFA with measurement invariance tests — a constrained baseline model where item parameters are equal across groups is compared to a model where parameters are freed:\nTITLE:    DIF analysis - gender\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid gender item1-item10;\n  USEVARIABLES = item1-item10;\n  CATEGORICAL = item1-item10;\n  GROUPING = gender (0=male 1=female);\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  ESTIMATOR = WLSMV;\n  PARAMETERIZATION = THETA;\n\nMODEL:\n  f BY item1-item10*;\n  f@1;\n\nMODEL female:\n  [item1$1 item1$2 item1$3 item1$4];\n\nOUTPUT:\n  STDYX;\n  MODINDICES(10);\nThe MODEL female: section frees the thresholds for item1 in the female group, testing whether that item’s difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.\n\n\n19.3.5 Test Information Function\nThe Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.\nTo obtain the TIF, request PLOT2 in the OUTPUT section and use Mplus’s graphical output. With MplusAutomation, you can extract and plot item information curves in R using the mirt package, which provides more flexible IRT visualization than Mplus.\n\n\n19.3.6 Running IRT via MplusAutomation\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Rename to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    stuid  = student_id,\n    item1  = sel_item_1,\n    item2  = sel_item_2,\n    item3  = sel_item_3,\n    item4  = sel_item_4,\n    item5  = sel_item_5,\n    item6  = sel_item_6,\n    item7  = sel_item_7,\n    item8  = sel_item_8,\n    item9  = sel_item_9,\n    item10 = sel_item_10\n  )\n\n# 3. Write data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 4. Run model\nrunModels(here(\"code\", \"mplus\", \"irt_grm.inp\"))\n\n# 5. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"irt_grm.out\"))\n\n# 6. Extract discrimination parameters (factor loadings)\ndiscriminations &lt;- output$parameters$stdyx.standardized |&gt;\n  filter(grepl(\"BY\", paramHeader)) |&gt;\n  select(param, est, se, est_se, pval)\n\n# 7. Extract threshold parameters (difficulty)\nthresholds &lt;- output$parameters$unstandardized |&gt;\n  filter(grepl(\"\\\\$\", paramHeader)) |&gt;\n  select(paramHeader, param, est, se)\n\n# 8. Save\nwrite_csv(discriminations, here(\"output\", \"tables\", \"irt_discriminations.csv\"))\nwrite_csv(thresholds, here(\"output\", \"tables\", \"irt_thresholds.csv\"))\n\n\n19.3.7 Reporting IRT Results\nA complete report of IRT analysis should include:\n\nThe IRT model used and justification\nEstimator and software\nItem discrimination parameters with standard errors for all items\nItem difficulty (threshold) parameters for all items\nModel fit indices\nTest or scale information function\nAny items flagged for poor fit, low discrimination, or DIF\nDecision about item retention or revision based on IRT results",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/irt.html#polytomous-irt-graded-response-model",
-    "href": "chapters/analysis/irt.html#polytomous-irt-graded-response-model",
-    "title": "19  Mplus: IRT",
-    "section": "19.4 Polytomous IRT: Graded Response Model",
-    "text": "19.4 Polytomous IRT: Graded Response Model\nFor Likert-scale items, the Graded Response Model estimates a discrimination parameter and multiple threshold parameters (one for each category boundary):\nTITLE:    Graded Response Model\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid item1-item10;\n  USEVARIABLES = item1-item10;\n  CATEGORICAL = item1-item10;\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  ESTIMATOR = WLSMV;\n  PARAMETERIZATION = THETA;\n\nMODEL:\n  f BY item1-item10*;\n  f@1;\n\nOUTPUT:\n  STDYX;\n  TECH1;\nThe output will include discrimination parameters (equivalent to factor loadings in STDYX output) and threshold parameters (equivalent to item difficulty at each category boundary).",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/irt.html#interpreting-irt-output-with-parameterization-theta",
-    "href": "chapters/analysis/irt.html#interpreting-irt-output-with-parameterization-theta",
-    "title": "19  Mplus: IRT",
-    "section": "19.5 Interpreting IRT Output with PARAMETERIZATION = THETA",
-    "text": "19.5 Interpreting IRT Output with PARAMETERIZATION = THETA\nWith PARAMETERIZATION = THETA, the Mplus output provides:\n\nFactor loadings in the MODEL RESULTS section correspond to item discriminations (a parameters). Higher values indicate better-discriminating items.\nThresholds correspond to item difficulty parameters (b parameters). For a 5-point Likert item, there are 4 thresholds representing the boundaries between response categories.\nSTDYX standardized loadings give the discrimination in a standardized metric comparable across items.\n\nGeneral guidelines for interpreting discrimination parameters:\n\n\n\nDiscrimination\nInterpretation\n\n\n\n\n&lt; 0.50\nPoor — item provides little information\n\n\n0.50–1.00\nModerate\n\n\n1.00–2.00\nGood\n\n\n&gt; 2.00\nVery high",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/irt.html#differential-item-functioning-dif",
-    "href": "chapters/analysis/irt.html#differential-item-functioning-dif",
-    "title": "19  Mplus: IRT",
-    "section": "19.6 Differential Item Functioning (DIF)",
-    "text": "19.6 Differential Item Functioning (DIF)\nDIF occurs when an item functions differently for different groups (e.g., by gender or race/ethnicity) after controlling for the latent trait. DIF analysis is important for establishing measurement fairness.\nTo test DIF in Mplus, use multiple-group CFA with measurement invariance tests — a constrained baseline model where item parameters are equal across groups is compared to a model where parameters are freed:\nTITLE:    DIF analysis - gender\n\nDATA:\n  FILE = wave1_data.dat;\n\nVARIABLE:\n  NAMES = stuid gender item1-item10;\n  USEVARIABLES = item1-item10;\n  CATEGORICAL = item1-item10;\n  GROUPING = gender (0=male 1=female);\n  MISSING = ALL(-99 -98 -97 -96);\n\nANALYSIS:\n  ESTIMATOR = WLSMV;\n  PARAMETERIZATION = THETA;\n\nMODEL:\n  f BY item1-item10*;\n  f@1;\n\nMODEL female:\n  [item1$1 item1$2 item1$3 item1$4];\n\nOUTPUT:\n  STDYX;\n  MODINDICES(10);\nThe MODEL female: section frees the thresholds for item1 in the female group, testing whether that item’s difficulty parameters differ by gender. Items showing significant DIF should be examined carefully and may need to be revised or dropped.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/irt.html#test-information-function",
-    "href": "chapters/analysis/irt.html#test-information-function",
-    "title": "19  Mplus: IRT",
-    "section": "19.7 Test Information Function",
-    "text": "19.7 Test Information Function\nThe Test Information Function (TIF) shows how precisely the scale measures the latent trait at different points along the trait continuum. A well-designed scale has high information in the range of the trait most relevant to your research question.\nTo obtain the TIF, request PLOT2 in the OUTPUT section and use Mplus’s graphical output. With MplusAutomation, you can extract and plot item information curves in R using the mirt package, which provides more flexible IRT visualization than Mplus.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/irt.html#running-irt-via-mplusautomation",
-    "href": "chapters/analysis/irt.html#running-irt-via-mplusautomation",
-    "title": "19  Mplus: IRT",
-    "section": "19.8 Running IRT via MplusAutomation",
-    "text": "19.8 Running IRT via MplusAutomation\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# 1. Load data\ndata &lt;- readRDS(here(\"data\", \"cleaned\", \"wave1_cleaned.rds\"))\n\n# 2. Rename to Mplus-compatible names\ndata_mplus &lt;- data |&gt;\n  rename(\n    stuid  = student_id,\n    item1  = sel_item_1,\n    item2  = sel_item_2,\n    item3  = sel_item_3,\n    item4  = sel_item_4,\n    item5  = sel_item_5,\n    item6  = sel_item_6,\n    item7  = sel_item_7,\n    item8  = sel_item_8,\n    item9  = sel_item_9,\n    item10 = sel_item_10\n  )\n\n# 3. Write data file\nprepareMplusData(\n  data_mplus,\n  filename = here(\"code\", \"mplus\", \"wave1_data.dat\")\n)\n\n# 4. Run model\nrunModels(here(\"code\", \"mplus\", \"irt_grm.inp\"))\n\n# 5. Read results\noutput &lt;- readModels(here(\"code\", \"mplus\", \"irt_grm.out\"))\n\n# 6. Extract discrimination parameters (factor loadings)\ndiscriminations &lt;- output$parameters$stdyx.standardized |&gt;\n  filter(grepl(\"BY\", paramHeader)) |&gt;\n  select(param, est, se, est_se, pval)\n\n# 7. Extract threshold parameters (difficulty)\nthresholds &lt;- output$parameters$unstandardized |&gt;\n  filter(grepl(\"\\\\$\", paramHeader)) |&gt;\n  select(paramHeader, param, est, se)\n\n# 8. Save\nwrite_csv(discriminations, here(\"output\", \"tables\", \"irt_discriminations.csv\"))\nwrite_csv(thresholds, here(\"output\", \"tables\", \"irt_thresholds.csv\"))",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/irt.html#reporting-irt-results",
-    "href": "chapters/analysis/irt.html#reporting-irt-results",
-    "title": "19  Mplus: IRT",
-    "section": "19.9 Reporting IRT Results",
-    "text": "19.9 Reporting IRT Results\nA complete report of IRT analysis should include:\n\nThe IRT model used and justification\nEstimator and software\nItem discrimination parameters with standard errors for all items\nItem difficulty (threshold) parameters for all items\nModel fit indices\nTest or scale information function\nAny items flagged for poor fit, low discrimination, or DIF\nDecision about item retention or revision based on IRT results",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mplus: IRT</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Item Response Theory (IRT)</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/power-analysis.html",
     "href": "chapters/analysis/power-analysis.html",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
+    "title": "20  Power Analysis",
     "section": "",
     "text": "20.1 What is Monte Carlo Simulation?\nMonte Carlo simulation in Mplus is used to determine the sample size needed to detect effects of a specified magnitude with adequate statistical power. Rather than relying on simple formulas (which assume simple designs), Monte Carlo simulation accounts for the complexity of your actual model — including latent variables, missing data, clustering, and multiple outcomes. CWER uses Monte Carlo simulation for grant proposals and study design decisions.\nMonte Carlo simulation works by:\nThis gives you a direct, empirical estimate of power for your specific model and design.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Power Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/power-analysis.html#what-is-monte-carlo-simulation",
     "href": "chapters/analysis/power-analysis.html#what-is-monte-carlo-simulation",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
+    "title": "20  Power Analysis",
     "section": "",
     "text": "Specifying the population model — the “true” parameter values you expect based on theory or prior research\nGenerating a large number of datasets (typically 1000–10000) from that population model at a given sample size\nFitting the model to each dataset and recording whether parameters are statistically significant\nCalculating power as the proportion of datasets in which the parameter of interest is significant",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Power Analysis</span>"
     ]
   },
   {
-    "objectID": "chapters/analysis/power-analysis.html#basic-monte-carlo-syntax",
-    "href": "chapters/analysis/power-analysis.html#basic-monte-carlo-syntax",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.2 Basic Monte Carlo Syntax",
-    "text": "20.2 Basic Monte Carlo Syntax\nThe following example estimates power for a CFA model with one factor and six indicators:\nTITLE:    Monte Carlo - CFA power analysis\n\nMONTECARLO:\n  NAMES = y1 y2 y3 y4 y5 y6;\n  NOBS = 200;\n  NREP = 1000;\n  SEED = 12345;\n\nMODEL POPULATION:\n  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;\n  f@1;\n  y1-y6*0.51;\n\nMODEL:\n  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;\n  f@1;\n  y1-y6*0.51;\n\nOUTPUT:\n  TECH9;\n\n20.2.1 Key Syntax Elements\nMONTECARLO — replaces the DATA section; specifies simulation parameters instead of a data file.\nNOBS — sample size to simulate. Run multiple analyses at different sample sizes to find where power reaches .80.\nNREP — number of replications. 1000 is a reasonable starting point; 10000 gives more stable estimates.\nSEED — random seed for reproducibility. Always set a seed so results can be replicated.\nMODEL POPULATION — the “true” population model used to generate data. Specify parameter values based on theory, prior research, or pilot data.\nMODEL — the analysis model fit to each generated dataset. Usually matches MODEL POPULATION, but can differ to test robustness.\nTECH9 — requests information about any convergence failures across replications.",
+    "objectID": "chapters/analysis/power-analysis.html#monte-carlo-simulation-in-mplus",
+    "href": "chapters/analysis/power-analysis.html#monte-carlo-simulation-in-mplus",
+    "title": "20  Power Analysis",
+    "section": "20.2 Monte Carlo Simulation in Mplus",
+    "text": "20.2 Monte Carlo Simulation in Mplus\n\n20.2.1 Basic Monte Carlo Syntax\nThe following example estimates power for a CFA model with one factor and six indicators:\nTITLE:    Monte Carlo - CFA power analysis\n\nMONTECARLO:\n  NAMES = y1 y2 y3 y4 y5 y6;\n  NOBS = 200;\n  NREP = 1000;\n  SEED = 12345;\n\nMODEL POPULATION:\n  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;\n  f@1;\n  y1-y6*0.51;\n\nMODEL:\n  f BY y1*0.70 y2*0.65 y3*0.70 y4*0.65 y5*0.60 y6*0.65;\n  f@1;\n  y1-y6*0.51;\n\nOUTPUT:\n  TECH9;\n\n20.2.1.1 Key Syntax Elements\nMONTECARLO — replaces the DATA section; specifies simulation parameters instead of a data file.\nNOBS — sample size to simulate. Run multiple analyses at different sample sizes to find where power reaches .80.\nNREP — number of replications. 1000 is a reasonable starting point; 10000 gives more stable estimates.\nSEED — random seed for reproducibility. Always set a seed so results can be replicated.\nMODEL POPULATION — the “true” population model used to generate data. Specify parameter values based on theory, prior research, or pilot data.\nMODEL — the analysis model fit to each generated dataset. Usually matches MODEL POPULATION, but can differ to test robustness.\nTECH9 — requests information about any convergence failures across replications.",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Power Analysis</span>"
     ]
   },
   {
     "objectID": "chapters/analysis/power-analysis.html#specifying-population-parameter-values",
     "href": "chapters/analysis/power-analysis.html#specifying-population-parameter-values",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
+    "title": "20  Power Analysis",
     "section": "20.3 Specifying Population Parameter Values",
-    "text": "20.3 Specifying Population Parameter Values\nThe quality of a Monte Carlo analysis depends entirely on how well your population parameter values reflect reality. Sources for these values:\n\nPrior research — meta-analyses or studies on similar constructs and populations\nPilot data — if you have preliminary data, use it to estimate parameters\nTheory — for completely novel studies, use theory to set plausible bounds and run sensitivity analyses across a range of values\n\nFor CFA, the key parameters are factor loadings and residual variances. If you specify a standardized loading of .70, the residual variance for that indicator is 1 - .70² = .51.",
+    "text": "20.3 Specifying Population Parameter Values\nThe quality of a Monte Carlo analysis depends entirely on how well your population parameter values reflect reality. Sources for these values:\n\nPrior research — meta-analyses or studies on similar constructs and populations\nPilot data — if you have preliminary data, use it to estimate parameters\nTheory — for completely novel studies, use theory to set plausible bounds and run sensitivity analyses across a range of values\n\nFor CFA, the key parameters are factor loadings and residual variances. If you specify a standardized loading of .70, the residual variance for that indicator is 1 - .70² = .51.\n\n20.3.1 Power Analysis for Regression and Path Models\nFor a path model testing whether professional development predicts teacher SEL practices:\nTITLE:    Monte Carlo - Path model power analysis\n\nMONTECARLO:\n  NAMES = pd tchsel stusel;\n  NOBS = 150;\n  NREP = 1000;\n  SEED = 54321;\n\nMODEL POPULATION:\n  tchsel ON pd*0.30;\n  stusel ON tchsel*0.35 pd*0.10;\n  pd*1.00;\n  tchsel*0.91;\n  stusel*0.87;\n\nMODEL:\n  tchsel ON pd;\n  stusel ON tchsel pd;\n\nOUTPUT:\n  TECH9;\nThe asterisked values are population parameters. Here tchsel ON pd*0.30 specifies that the path from PD to teacher SEL has a population value of 0.30 (standardized).\n\n\n20.3.2 Power Analysis for Indirect Effects\nTo estimate power for a mediated (indirect) effect:\nTITLE:    Monte Carlo - Mediation power analysis\n\nMONTECARLO:\n  NAMES = x m y;\n  NOBS = 200;\n  NREP = 1000;\n  SEED = 99999;\n\nMODEL POPULATION:\n  m ON x*0.40;\n  y ON m*0.35 x*0.15;\n  x*1.00;\n  m*0.84;\n  y*0.84;\n\nMODEL:\n  m ON x (a);\n  y ON m (b);\n  y ON x;\n\nMODEL CONSTRAINT:\n  NEW(indirect);\n  indirect = a*b;\n\nOUTPUT:\n  TECH9;\nThe power for the indirect effect is reported in the output as the proportion of replications in which indirect is significant.\n\n\n20.3.3 Accounting for Missing Data\nTo simulate power under planned missing data designs (e.g., a three-form design) or anticipated attrition:\nMONTECARLO:\n  NAMES = y1 y2 y3 y4 y5 y6;\n  NOBS = 250;\n  NREP = 1000;\n  SEED = 12345;\n  PATMISS = y1(0.10) y2(0.10) y3(0.20) y4(0.20);\n  PATPROB = 1.0;\nPATMISS specifies the proportion of missing data for each variable. This allows you to estimate power under realistic attrition scenarios.\n\n\n20.3.4 Running Monte Carlo via MplusAutomation\nMonte Carlo analyses can be run from R using the same runModels() and readModels() workflow:\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# Run the Monte Carlo simulation\nrunModels(here(\"code\", \"mplus\", \"montecarlo_cfa.inp\"))\n\n# Read results\nmc_output &lt;- readModels(here(\"code\", \"mplus\", \"montecarlo_cfa.out\"))\n\n# Extract power estimates\n# Power is in the parameters section - look for the \"Sig\" column\npower &lt;- mc_output$parameters$unstandardized |&gt;\n  select(paramHeader, param, pct_sig_coef)\n\nprint(power)\nThe pct_sig_coef column gives the proportion of replications in which each parameter was statistically significant — this is your power estimate.\n\n\n20.3.5 Finding the Required Sample Size\nRun the same model at multiple sample sizes and plot power as a function of N:\n# Define sample sizes to test\nsample_sizes &lt;- c(50, 100, 150, 200, 250, 300)\n\n# Run models at each N\n# (assumes you have separate .inp files for each N, or modify programmatically)\nresults &lt;- map_dfr(sample_sizes, function(n) {\n  # Read the output for this N\n  output &lt;- readModels(here(\"code\", \"mplus\", paste0(\"mc_n\", n, \".out\")))\n\n  # Extract power for the parameter of interest\n  power &lt;- output$parameters$unstandardized |&gt;\n    filter(param == \"TCHSEL\") |&gt;\n    pull(pct_sig_coef)\n\n  tibble(n = n, power = power)\n})\n\n# Plot\nggplot(results, aes(x = n, y = power)) +\n  geom_line() +\n  geom_point() +\n  geom_hline(yintercept = 0.80, linetype = \"dashed\", color = \"red\") +\n  labs(\n    x = \"Sample Size\",\n    y = \"Power\",\n    title = \"Power as a Function of Sample Size\"\n  ) +\n  theme_minimal()\n\nggsave(here(\"output\", \"figures\", \"power_curve.png\"), width = 6, height = 4, dpi = 300)\n\n\n20.3.6 Reporting Monte Carlo Results\nA complete report of Monte Carlo power analysis should include:\n\nThe model tested and rationale for parameter values\nSources for population parameter estimates (prior research, pilot data)\nNumber of replications and random seed\nPower estimates for all key parameters at the chosen sample size\nA power curve showing how power varies with sample size\nAny convergence issues (from TECH9 output)\nSensitivity analyses if parameter estimates are uncertain",
     "crumbs": [
       "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/power-analysis.html#power-analysis-for-regression-and-path-models",
-    "href": "chapters/analysis/power-analysis.html#power-analysis-for-regression-and-path-models",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.4 Power Analysis for Regression and Path Models",
-    "text": "20.4 Power Analysis for Regression and Path Models\nFor a path model testing whether professional development predicts teacher SEL practices:\nTITLE:    Monte Carlo - Path model power analysis\n\nMONTECARLO:\n  NAMES = pd tchsel stusel;\n  NOBS = 150;\n  NREP = 1000;\n  SEED = 54321;\n\nMODEL POPULATION:\n  tchsel ON pd*0.30;\n  stusel ON tchsel*0.35 pd*0.10;\n  pd*1.00;\n  tchsel*0.91;\n  stusel*0.87;\n\nMODEL:\n  tchsel ON pd;\n  stusel ON tchsel pd;\n\nOUTPUT:\n  TECH9;\nThe asterisked values are population parameters. Here tchsel ON pd*0.30 specifies that the path from PD to teacher SEL has a population value of 0.30 (standardized).",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/power-analysis.html#power-analysis-for-indirect-effects",
-    "href": "chapters/analysis/power-analysis.html#power-analysis-for-indirect-effects",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.5 Power Analysis for Indirect Effects",
-    "text": "20.5 Power Analysis for Indirect Effects\nTo estimate power for a mediated (indirect) effect:\nTITLE:    Monte Carlo - Mediation power analysis\n\nMONTECARLO:\n  NAMES = x m y;\n  NOBS = 200;\n  NREP = 1000;\n  SEED = 99999;\n\nMODEL POPULATION:\n  m ON x*0.40;\n  y ON m*0.35 x*0.15;\n  x*1.00;\n  m*0.84;\n  y*0.84;\n\nMODEL:\n  m ON x (a);\n  y ON m (b);\n  y ON x;\n\nMODEL CONSTRAINT:\n  NEW(indirect);\n  indirect = a*b;\n\nOUTPUT:\n  TECH9;\nThe power for the indirect effect is reported in the output as the proportion of replications in which indirect is significant.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/power-analysis.html#accounting-for-missing-data",
-    "href": "chapters/analysis/power-analysis.html#accounting-for-missing-data",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.6 Accounting for Missing Data",
-    "text": "20.6 Accounting for Missing Data\nTo simulate power under planned missing data designs (e.g., a three-form design) or anticipated attrition:\nMONTECARLO:\n  NAMES = y1 y2 y3 y4 y5 y6;\n  NOBS = 250;\n  NREP = 1000;\n  SEED = 12345;\n  PATMISS = y1(0.10) y2(0.10) y3(0.20) y4(0.20);\n  PATPROB = 1.0;\nPATMISS specifies the proportion of missing data for each variable. This allows you to estimate power under realistic attrition scenarios.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/power-analysis.html#running-monte-carlo-via-mplusautomation",
-    "href": "chapters/analysis/power-analysis.html#running-monte-carlo-via-mplusautomation",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.7 Running Monte Carlo via MplusAutomation",
-    "text": "20.7 Running Monte Carlo via MplusAutomation\nMonte Carlo analyses can be run from R using the same runModels() and readModels() workflow:\nlibrary(tidyverse)\nlibrary(here)\nlibrary(MplusAutomation)\n\n# Run the Monte Carlo simulation\nrunModels(here(\"code\", \"mplus\", \"montecarlo_cfa.inp\"))\n\n# Read results\nmc_output &lt;- readModels(here(\"code\", \"mplus\", \"montecarlo_cfa.out\"))\n\n# Extract power estimates\n# Power is in the parameters section - look for the \"Sig\" column\npower &lt;- mc_output$parameters$unstandardized |&gt;\n  select(paramHeader, param, pct_sig_coef)\n\nprint(power)\nThe pct_sig_coef column gives the proportion of replications in which each parameter was statistically significant — this is your power estimate.",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/power-analysis.html#finding-the-required-sample-size",
-    "href": "chapters/analysis/power-analysis.html#finding-the-required-sample-size",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.8 Finding the Required Sample Size",
-    "text": "20.8 Finding the Required Sample Size\nRun the same model at multiple sample sizes and plot power as a function of N:\n# Define sample sizes to test\nsample_sizes &lt;- c(50, 100, 150, 200, 250, 300)\n\n# Run models at each N\n# (assumes you have separate .inp files for each N, or modify programmatically)\nresults &lt;- map_dfr(sample_sizes, function(n) {\n  # Read the output for this N\n  output &lt;- readModels(here(\"code\", \"mplus\", paste0(\"mc_n\", n, \".out\")))\n\n  # Extract power for the parameter of interest\n  power &lt;- output$parameters$unstandardized |&gt;\n    filter(param == \"TCHSEL\") |&gt;\n    pull(pct_sig_coef)\n\n  tibble(n = n, power = power)\n})\n\n# Plot\nggplot(results, aes(x = n, y = power)) +\n  geom_line() +\n  geom_point() +\n  geom_hline(yintercept = 0.80, linetype = \"dashed\", color = \"red\") +\n  labs(\n    x = \"Sample Size\",\n    y = \"Power\",\n    title = \"Power as a Function of Sample Size\"\n  ) +\n  theme_minimal()\n\nggsave(here(\"output\", \"figures\", \"power_curve.png\"), width = 6, height = 4, dpi = 300)",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/power-analysis.html#reporting-monte-carlo-results",
-    "href": "chapters/analysis/power-analysis.html#reporting-monte-carlo-results",
-    "title": "20  Mplus: Monte Carlo Power Analysis",
-    "section": "20.9 Reporting Monte Carlo Results",
-    "text": "20.9 Reporting Monte Carlo Results\nA complete report of Monte Carlo power analysis should include:\n\nThe model tested and rationale for parameter values\nSources for population parameter estimates (prior research, pilot data)\nNumber of replications and random seed\nPower estimates for all key parameters at the chosen sample size\nA power curve showing how power varies with sample size\nAny convergence issues (from TECH9 output)\nSensitivity analyses if parameter estimates are uncertain",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Mplus: Monte Carlo Power Analysis</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Power Analysis</span>"
     ]
   }
 ]
