@@ -1,4 +1,4 @@
-# Multilevel Modeling with lme4
+# Multilevel Modeling
 
 ## When to Use Multilevel Modeling
 
