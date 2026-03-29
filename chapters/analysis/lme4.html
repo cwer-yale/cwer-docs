@@ -329,22 +329,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#when-to-use-multilevel-modeling" id="toc-when-to-use-multilevel-modeling" class="nav-link active" data-scroll-target="#when-to-use-multilevel-modeling"><span class="header-section-number">17.1</span> When to Use Multilevel Modeling</a></li>
-  <li><a href="#lme4" id="toc-lme4" class="nav-link" data-scroll-target="#lme4"><span class="header-section-number">17.2</span> lme4</a>
+  <li><a href="#using-r" id="toc-using-r" class="nav-link" data-scroll-target="#using-r"><span class="header-section-number">17.2</span> Using R</a>
   <ul class="collapse">
   <li><a href="#the-intraclass-correlation-coefficient" id="toc-the-intraclass-correlation-coefficient" class="nav-link" data-scroll-target="#the-intraclass-correlation-coefficient"><span class="header-section-number">17.2.1</span> The Intraclass Correlation Coefficient</a></li>
   <li><a href="#model-syntax" id="toc-model-syntax" class="nav-link" data-scroll-target="#model-syntax"><span class="header-section-number">17.2.2</span> Model Syntax</a></li>
   <li><a href="#adding-level-1-predictors" id="toc-adding-level-1-predictors" class="nav-link" data-scroll-target="#adding-level-1-predictors"><span class="header-section-number">17.2.3</span> Adding Level-1 Predictors</a></li>
   <li><a href="#adding-level-2-predictors" id="toc-adding-level-2-predictors" class="nav-link" data-scroll-target="#adding-level-2-predictors"><span class="header-section-number">17.2.4</span> Adding Level-2 Predictors</a></li>
   <li><a href="#random-slope-model" id="toc-random-slope-model" class="nav-link" data-scroll-target="#random-slope-model"><span class="header-section-number">17.2.5</span> Random Slope Model</a></li>
+  <li><a href="#extracting-results" id="toc-extracting-results" class="nav-link" data-scroll-target="#extracting-results"><span class="header-section-number">17.2.6</span> Extracting Results</a></li>
+  <li><a href="#comparing-models" id="toc-comparing-models" class="nav-link" data-scroll-target="#comparing-models"><span class="header-section-number">17.2.7</span> Comparing Models</a></li>
+  <li><a href="#checking-assumptions" id="toc-checking-assumptions" class="nav-link" data-scroll-target="#checking-assumptions"><span class="header-section-number">17.2.8</span> Checking Assumptions</a></li>
   </ul></li>
-  <li><a href="#extracting-results" id="toc-extracting-results" class="nav-link" data-scroll-target="#extracting-results"><span class="header-section-number">17.3</span> Extracting Results</a>
+  <li><a href="#using-mplus" id="toc-using-mplus" class="nav-link" data-scroll-target="#using-mplus"><span class="header-section-number">17.3</span> Using Mplus</a>
   <ul class="collapse">
-  <li><a href="#comparing-models" id="toc-comparing-models" class="nav-link" data-scroll-target="#comparing-models"><span class="header-section-number">17.3.1</span> Comparing Models</a></li>
-  <li><a href="#checking-assumptions" id="toc-checking-assumptions" class="nav-link" data-scroll-target="#checking-assumptions"><span class="header-section-number">17.3.2</span> Checking Assumptions</a></li>
-  </ul></li>
-  <li><a href="#mplus" id="toc-mplus" class="nav-link" data-scroll-target="#mplus"><span class="header-section-number">17.4</span> Mplus</a>
-  <ul class="collapse">
-  <li><a href="#when-to-use-mplus-instead" id="toc-when-to-use-mplus-instead" class="nav-link" data-scroll-target="#when-to-use-mplus-instead"><span class="header-section-number">17.4.1</span> When to Use Mplus Instead</a></li>
+  <li><a href="#when-to-use-mplus" id="toc-when-to-use-mplus" class="nav-link" data-scroll-target="#when-to-use-mplus"><span class="header-section-number">17.3.1</span> When to Use Mplus</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -381,8 +379,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Ignoring this nesting and running a standard regression violates the assumption of independent observations, which inflates Type I error rates and produces incorrect standard errors. Multilevel modeling accounts for the non-independence by estimating variance at each level of the hierarchy.</p>
 </section>
-<section id="lme4" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="lme4"><span class="header-section-number">17.2</span> lme4</h2>
+<section id="using-r" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="using-r"><span class="header-section-number">17.2</span> Using R</h2>
 <p><code>lme4</code> is the standard R package for multilevel (hierarchical) modeling. Use it for data with a nested structure — students within classrooms, classrooms within schools, repeated measures within individuals.</p>
 <p>Install and load it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lme4"</span>)</span>
@@ -422,22 +420,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This estimates both a random intercept (mean SEL varies by school) and a random slope (the effect of grade on SEL varies by school).</p>
 </section>
-</section>
-<section id="extracting-results" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="extracting-results"><span class="header-section-number">17.3</span> Extracting Results</h2>
+<section id="extracting-results" class="level3" data-number="17.2.6">
+<h3 data-number="17.2.6" class="anchored" data-anchor-id="extracting-results"><span class="header-section-number">17.2.6</span> Extracting Results</h3>
 <p>Use <code>broom.mixed</code> to extract fixed effect estimates in a tidy format:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_2, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This produces a dataframe with one row per fixed effect, including estimates, standard errors, and confidence intervals — easy to pass to a table-making function.</p>
-<section id="comparing-models" class="level3" data-number="17.3.1">
-<h3 data-number="17.3.1" class="anchored" data-anchor-id="comparing-models"><span class="header-section-number">17.3.1</span> Comparing Models</h3>
+</section>
+<section id="comparing-models" class="level3" data-number="17.2.7">
+<h3 data-number="17.2.7" class="anchored" data-anchor-id="comparing-models"><span class="header-section-number">17.2.7</span> Comparing Models</h3>
 <p>Use <code>anova()</code> to compare nested models via likelihood ratio test:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_1, model_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This tests whether adding school-level predictors significantly improves model fit. Note that <code>lme4</code> uses REML estimation by default for variance components, but switches to ML for model comparisons — <code>anova()</code> handles this automatically.</p>
 </section>
-<section id="checking-assumptions" class="level3" data-number="17.3.2">
-<h3 data-number="17.3.2" class="anchored" data-anchor-id="checking-assumptions"><span class="header-section-number">17.3.2</span> Checking Assumptions</h3>
+<section id="checking-assumptions" class="level3" data-number="17.2.8">
+<h3 data-number="17.2.8" class="anchored" data-anchor-id="checking-assumptions"><span class="header-section-number">17.2.8</span> Checking Assumptions</h3>
 <p>Examine residual plots to check model assumptions:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuals vs fitted</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_2)</span>
@@ -450,10 +448,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(<span class="fu">ranef</span>(model_2, <span class="at">condVar =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="mplus" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="mplus"><span class="header-section-number">17.4</span> Mplus</h2>
-<section id="when-to-use-mplus-instead" class="level3" data-number="17.4.1">
-<h3 data-number="17.4.1" class="anchored" data-anchor-id="when-to-use-mplus-instead"><span class="header-section-number">17.4.1</span> When to Use Mplus Instead</h3>
+<section id="using-mplus" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="using-mplus"><span class="header-section-number">17.3</span> Using Mplus</h2>
+<section id="when-to-use-mplus" class="level3" data-number="17.3.1">
+<h3 data-number="17.3.1" class="anchored" data-anchor-id="when-to-use-mplus"><span class="header-section-number">17.3.1</span> When to Use Mplus</h3>
 <p><code>lme4</code> is well-suited for standard multilevel models with continuous outcomes. Consider using Mplus instead when:</p>
 <ul>
 <li>You need full information maximum likelihood (FIML) for missing data</li>
