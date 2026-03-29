@@ -1,0 +1,31 @@
+## AI Prompt Examples
+
+**Recoding missing values:**
+```
+I am working in R using tidyverse. My dataset has variables coded 
+-99 (skipped), -98 (not applicable), and -97 (data not available). 
+I want to recode all three to NA before analysis. The data are in 
+a dataframe called `data`. Write code to do this and then produce 
+a summary showing how many NAs each variable has.
+```
+
+**Merging datasets:**
+```
+I have two dataframes in R: `student_data` with one row per student 
+(N=342, key variable: student_id) and `school_data` with one row 
+per school (N=18, key variable: school_id). Each student has a 
+school_id variable. I want to merge school-level variables into 
+the student dataframe. Write tidyverse code to do this and include 
+checks to verify the merge worked correctly — row counts before 
+and after, and a check for any unmatched IDs.
+```
+
+**Reverse scoring:**
+```
+I have a scale in R with 10 items (sel_1 through sel_10). Items 
+3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
+code to reverse score these items and create new variables named 
+with the _r suffix, then compute a mean composite score across 
+all 10 items (using the reversed versions where applicable) 
+excluding cases with more than 20% missing data.
+```
