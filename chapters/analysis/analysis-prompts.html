@@ -304,12 +304,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-cleaning-and-wrangling" id="toc-data-cleaning-and-wrangling" class="nav-link active" data-scroll-target="#data-cleaning-and-wrangling"><span class="header-section-number">22.1</span> Data Cleaning and Wrangling</a></li>
-  <li><a href="#multilevel-modeling" id="toc-multilevel-modeling" class="nav-link" data-scroll-target="#multilevel-modeling"><span class="header-section-number">22.2</span> Multilevel Modeling</a></li>
-  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">22.3</span> Meta-Analysis</a></li>
-  <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">22.4</span> Table and Figure Production</a></li>
-  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">22.5</span> Debugging Code</a></li>
-  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">22.6</span> Mplus Syntax</a></li>
+  <li><a href="#multilevel-modeling" id="toc-multilevel-modeling" class="nav-link active" data-scroll-target="#multilevel-modeling"><span class="header-section-number">22.1</span> Multilevel Modeling</a></li>
+  <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">22.2</span> Meta-Analysis</a></li>
+  <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">22.3</span> Table and Figure Production</a></li>
+  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">22.4</span> Debugging Code</a></li>
+  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">22.5</span> Mplus Syntax</a></li>
   </ul>
 </nav>
     </div>
@@ -335,32 +334,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="data-cleaning-and-wrangling" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="data-cleaning-and-wrangling"><span class="header-section-number">22.1</span> Data Cleaning and Wrangling</h2>
-<p><strong>Recoding missing values:</strong></p>
-<pre><code>I am working in R using tidyverse. My dataset has variables coded 
--99 (skipped), -98 (not applicable), and -97 (data not available). 
-I want to recode all three to NA before analysis. The data are in 
-a dataframe called `data`. Write code to do this and then produce 
-a summary showing how many NAs each variable has.</code></pre>
-<p><strong>Merging datasets:</strong></p>
-<pre><code>I have two dataframes in R: `student_data` with one row per student 
-(N=342, key variable: student_id) and `school_data` with one row 
-per school (N=18, key variable: school_id). Each student has a 
-school_id variable. I want to merge school-level variables into 
-the student dataframe. Write tidyverse code to do this and include 
-checks to verify the merge worked correctly — row counts before 
-and after, and a check for any unmatched IDs.</code></pre>
-<p><strong>Reverse scoring:</strong></p>
-<pre><code>I have a scale in R with 10 items (sel_1 through sel_10). Items 
-3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
-code to reverse score these items and create new variables named 
-with the _r suffix, then compute a mean composite score across 
-all 10 items (using the reversed versions where applicable) 
-excluding cases with more than 20% missing data.</code></pre>
-</section>
-<section id="multilevel-modeling" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="multilevel-modeling"><span class="header-section-number">22.2</span> Multilevel Modeling</h2>
+<section id="multilevel-modeling" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="multilevel-modeling"><span class="header-section-number">22.1</span> Multilevel Modeling</h2>
 <p><strong>Setting up a multilevel model in R:</strong></p>
 <pre><code>I am running a multilevel model in R using lme4. My data have 
 students nested within schools (N=342 students, N=18 schools). 
@@ -377,8 +352,8 @@ investigating further.
 
 [paste output here]</code></pre>
 </section>
-<section id="meta-analysis" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="meta-analysis"><span class="header-section-number">22.3</span> Meta-Analysis</h2>
+<section id="meta-analysis" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="meta-analysis"><span class="header-section-number">22.2</span> Meta-Analysis</h2>
 <p><strong>Setting up a meta-analysis in R:</strong></p>
 <pre><code>I am running a meta-analysis in R using metafor with robust 
 variance estimation (RVE) via the clubSandwich package. I have 
@@ -388,8 +363,8 @@ moderator variables [list them]. Write code to fit a multilevel
 random effects model with RVE, produce a forest plot, and test 
 for publication bias using Egger's test.</code></pre>
 </section>
-<section id="table-and-figure-production" class="level2" data-number="22.4">
-<h2 data-number="22.4" class="anchored" data-anchor-id="table-and-figure-production"><span class="header-section-number">22.4</span> Table and Figure Production</h2>
+<section id="table-and-figure-production" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="table-and-figure-production"><span class="header-section-number">22.3</span> Table and Figure Production</h2>
 <p><strong>Producing a results table in Word:</strong></p>
 <pre><code>I have model results stored in a dataframe called `results` in R 
 with columns: term, estimate, std.error, conf.low, conf.high, 
@@ -402,8 +377,8 @@ include a table title, and format p-values to three decimal places.</code></pre>
 as both a PNG (300 dpi, 6x4 inches) and a PDF to 
 output/figures/figure1. Use the here package for the file path.</code></pre>
 </section>
-<section id="debugging-code" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">22.5</span> Debugging Code</h2>
+<section id="debugging-code" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">22.4</span> Debugging Code</h2>
 <p><strong>Debugging an error:</strong></p>
 <pre><code>I am running the following R code and getting this error. 
 Please explain what is causing the error and provide corrected code.
@@ -425,8 +400,8 @@ and suggest targeted improvements.
 
 [paste code]</code></pre>
 </section>
-<section id="mplus-syntax" class="level2" data-number="22.6">
-<h2 data-number="22.6" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">22.6</span> Mplus Syntax</h2>
+<section id="mplus-syntax" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">22.5</span> Mplus Syntax</h2>
 <p><strong>Writing a CFA model:</strong></p>
 <pre><code>Write Mplus syntax for a confirmatory factor analysis with the 
 following structure: one factor with 6 indicators, continuous 

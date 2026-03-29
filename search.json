@@ -361,11 +361,11 @@
     ]
   },
   {
-    "objectID": "chapters/tools/ai-prompts.html#data-management-analysis",
-    "href": "chapters/tools/ai-prompts.html#data-management-analysis",
+    "objectID": "chapters/tools/ai-prompts.html#data-management-and-analysis",
+    "href": "chapters/tools/ai-prompts.html#data-management-and-analysis",
     "title": "8  Working with AI",
-    "section": "8.7 Data Management & Analysis",
-    "text": "8.7 Data Management & Analysis\n\n8.7.1 General Principles\nReview every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the Statistical Analysis chapter for the full quality control process.\n\n\n8.7.2 Data Cleaning and Wrangling\nRecoding missing values:\nI am working in R using tidyverse. My dataset has variables coded \n-99 (skipped), -98 (not applicable), and -97 (data not available). \nI want to recode all three to NA before analysis. The data are in \na dataframe called `data`. Write code to do this and then produce \na summary showing how many NAs each variable has.\nMerging datasets:\nI have two dataframes in R: `student_data` with one row per student \n(N=342, key variable: student_id) and `school_data` with one row \nper school (N=18, key variable: school_id). Each student has a \nschool_id variable. I want to merge school-level variables into \nthe student dataframe. Write tidyverse code to do this and include \nchecks to verify the merge worked correctly — row counts before \nand after, and a check for any unmatched IDs.\nReverse scoring:\nI have a scale in R with 10 items (sel_1 through sel_10). Items \n3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse \ncode to reverse score these items and create new variables named \nwith the _r suffix, then compute a mean composite score across \nall 10 items (using the reversed versions where applicable) \nexcluding cases with more than 20% missing data.\n\n\n8.7.3 Multilevel Modeling\nSetting up a multilevel model in R:\nI am running a multilevel model in R using lme4. My data have \nstudents nested within schools (N=342 students, N=18 schools). \nThe outcome is sel_total_mean (continuous). Level-1 predictors \nare grade and gender. The level-2 predictor is school_size. \nWrite code to: (1) run a null model and calculate the ICC, \n(2) add level-1 predictors, (3) add the level-2 predictor, \nand (4) compare models. Use broom.mixed to extract results.\nInterpreting output:\nHere is the summary output from an lme4 model. Please help me \ninterpret the fixed effects, random effects, and variance \ncomponents. Flag anything that looks unusual or worth \ninvestigating further.\n\n[paste output here]\n\n\n8.7.4 Meta-Analysis\nSetting up a meta-analysis in R:\nI am running a meta-analysis in R using metafor with robust \nvariance estimation (RVE) via the clubSandwich package. I have \neffect sizes in a dataframe called `meta_data` with columns: \nstudy_id, effect_id, yi (effect size), vi (variance), and \nmoderator variables [list them]. Write code to fit a multilevel \nrandom effects model with RVE, produce a forest plot, and test \nfor publication bias using Egger's test.\n\n\n8.7.5 Table and Figure Production\nProducing a results table in Word:\nI have model results stored in a dataframe called `results` in R \nwith columns: term, estimate, std.error, conf.low, conf.high, \np.value. Write code using flextable and officer to produce an \nAPA-style results table and save it as a Word document at \noutput/tables/model_results.docx. Use Times New Roman 12pt, \ninclude a table title, and format p-values to three decimal places.\nSaving a ggplot figure:\nI have a ggplot object called `p` in R. Write code to save it \nas both a PNG (300 dpi, 6x4 inches) and a PDF to \noutput/figures/figure1. Use the here package for the file path.\n\n\n8.7.6 Debugging Code\nDebugging an error:\nI am running the following R code and getting this error. \nPlease explain what is causing the error and provide corrected code.\n\nCode:\n[paste code]\n\nError message:\n[paste error]\n\nHere is a sample of my data structure:\n[paste head(data) or glimpse(data) output]\nCode review:\nPlease review the following R code for correctness, efficiency, \nand adherence to tidyverse style conventions. Flag any potential \nerrors, inefficiencies, or places where the code could be \nclearer. Do not rewrite the whole thing — just identify issues \nand suggest targeted improvements.\n\n[paste code]\n\n\n8.7.7 Mplus Syntax\nWriting a CFA model:\nWrite Mplus syntax for a confirmatory factor analysis with the \nfollowing structure: one factor with 6 indicators, continuous \noutcomes, WLSMV estimator, and FIML for missing data. The data \nfile is wave1_data.dat and the variables are [list them]. \nInclude MODEL FIT and STANDARDIZED output.\nTroubleshooting non-convergence:\nMy Mplus model is not converging. Here is the output file. \nPlease identify the likely cause of the non-convergence and \nsuggest modifications to the syntax or starting values to \naddress it.\n\n[paste relevant sections of .out file]",
+    "section": "8.7 Data Management and Analysis",
+    "text": "8.7 Data Management and Analysis\nAI is an invaluable tool for speeding up data management and analysis tasks. See the Data Management and Statistical Analysis sections for examples of prompts.",
     "crumbs": [
       "Tools & Setup",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Working with AI</span>"
@@ -1080,18 +1080,7 @@
     "href": "chapters/analysis/analysis-prompts.html",
     "title": "22  AI Prompt Examples",
     "section": "",
-    "text": "22.1 Data Cleaning and Wrangling\nRecoding missing values:\nMerging datasets:\nReverse scoring:",
-    "crumbs": [
-      "Statistical Analysis",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/analysis/analysis-prompts.html#data-cleaning-and-wrangling",
-    "href": "chapters/analysis/analysis-prompts.html#data-cleaning-and-wrangling",
-    "title": "22  AI Prompt Examples",
-    "section": "",
-    "text": "I am working in R using tidyverse. My dataset has variables coded \n-99 (skipped), -98 (not applicable), and -97 (data not available). \nI want to recode all three to NA before analysis. The data are in \na dataframe called `data`. Write code to do this and then produce \na summary showing how many NAs each variable has.\n\nI have two dataframes in R: `student_data` with one row per student \n(N=342, key variable: student_id) and `school_data` with one row \nper school (N=18, key variable: school_id). Each student has a \nschool_id variable. I want to merge school-level variables into \nthe student dataframe. Write tidyverse code to do this and include \nchecks to verify the merge worked correctly — row counts before \nand after, and a check for any unmatched IDs.\n\nI have a scale in R with 10 items (sel_1 through sel_10). Items \n3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse \ncode to reverse score these items and create new variables named \nwith the _r suffix, then compute a mean composite score across \nall 10 items (using the reversed versions where applicable) \nexcluding cases with more than 20% missing data.",
+    "text": "22.1 Multilevel Modeling\nSetting up a multilevel model in R:\nInterpreting output:",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
@@ -1101,8 +1090,8 @@
     "objectID": "chapters/analysis/analysis-prompts.html#multilevel-modeling",
     "href": "chapters/analysis/analysis-prompts.html#multilevel-modeling",
     "title": "22  AI Prompt Examples",
-    "section": "22.2 Multilevel Modeling",
-    "text": "22.2 Multilevel Modeling\nSetting up a multilevel model in R:\nI am running a multilevel model in R using lme4. My data have \nstudents nested within schools (N=342 students, N=18 schools). \nThe outcome is sel_total_mean (continuous). Level-1 predictors \nare grade and gender. The level-2 predictor is school_size. \nWrite code to: (1) run a null model and calculate the ICC, \n(2) add level-1 predictors, (3) add the level-2 predictor, \nand (4) compare models. Use broom.mixed to extract results.\nInterpreting output:\nHere is the summary output from an lme4 model. Please help me \ninterpret the fixed effects, random effects, and variance \ncomponents. Flag anything that looks unusual or worth \ninvestigating further.\n\n[paste output here]",
+    "section": "",
+    "text": "I am running a multilevel model in R using lme4. My data have \nstudents nested within schools (N=342 students, N=18 schools). \nThe outcome is sel_total_mean (continuous). Level-1 predictors \nare grade and gender. The level-2 predictor is school_size. \nWrite code to: (1) run a null model and calculate the ICC, \n(2) add level-1 predictors, (3) add the level-2 predictor, \nand (4) compare models. Use broom.mixed to extract results.\n\nHere is the summary output from an lme4 model. Please help me \ninterpret the fixed effects, random effects, and variance \ncomponents. Flag anything that looks unusual or worth \ninvestigating further.\n\n[paste output here]",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
@@ -1112,8 +1101,8 @@
     "objectID": "chapters/analysis/analysis-prompts.html#meta-analysis",
     "href": "chapters/analysis/analysis-prompts.html#meta-analysis",
     "title": "22  AI Prompt Examples",
-    "section": "22.3 Meta-Analysis",
-    "text": "22.3 Meta-Analysis\nSetting up a meta-analysis in R:\nI am running a meta-analysis in R using metafor with robust \nvariance estimation (RVE) via the clubSandwich package. I have \neffect sizes in a dataframe called `meta_data` with columns: \nstudy_id, effect_id, yi (effect size), vi (variance), and \nmoderator variables [list them]. Write code to fit a multilevel \nrandom effects model with RVE, produce a forest plot, and test \nfor publication bias using Egger's test.",
+    "section": "22.2 Meta-Analysis",
+    "text": "22.2 Meta-Analysis\nSetting up a meta-analysis in R:\nI am running a meta-analysis in R using metafor with robust \nvariance estimation (RVE) via the clubSandwich package. I have \neffect sizes in a dataframe called `meta_data` with columns: \nstudy_id, effect_id, yi (effect size), vi (variance), and \nmoderator variables [list them]. Write code to fit a multilevel \nrandom effects model with RVE, produce a forest plot, and test \nfor publication bias using Egger's test.",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
@@ -1123,8 +1112,8 @@
     "objectID": "chapters/analysis/analysis-prompts.html#table-and-figure-production",
     "href": "chapters/analysis/analysis-prompts.html#table-and-figure-production",
     "title": "22  AI Prompt Examples",
-    "section": "22.4 Table and Figure Production",
-    "text": "22.4 Table and Figure Production\nProducing a results table in Word:\nI have model results stored in a dataframe called `results` in R \nwith columns: term, estimate, std.error, conf.low, conf.high, \np.value. Write code using flextable and officer to produce an \nAPA-style results table and save it as a Word document at \noutput/tables/model_results.docx. Use Times New Roman 12pt, \ninclude a table title, and format p-values to three decimal places.\nSaving a ggplot figure:\nI have a ggplot object called `p` in R. Write code to save it \nas both a PNG (300 dpi, 6x4 inches) and a PDF to \noutput/figures/figure1. Use the here package for the file path.",
+    "section": "22.3 Table and Figure Production",
+    "text": "22.3 Table and Figure Production\nProducing a results table in Word:\nI have model results stored in a dataframe called `results` in R \nwith columns: term, estimate, std.error, conf.low, conf.high, \np.value. Write code using flextable and officer to produce an \nAPA-style results table and save it as a Word document at \noutput/tables/model_results.docx. Use Times New Roman 12pt, \ninclude a table title, and format p-values to three decimal places.\nSaving a ggplot figure:\nI have a ggplot object called `p` in R. Write code to save it \nas both a PNG (300 dpi, 6x4 inches) and a PDF to \noutput/figures/figure1. Use the here package for the file path.",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
@@ -1134,8 +1123,8 @@
     "objectID": "chapters/analysis/analysis-prompts.html#debugging-code",
     "href": "chapters/analysis/analysis-prompts.html#debugging-code",
     "title": "22  AI Prompt Examples",
-    "section": "22.5 Debugging Code",
-    "text": "22.5 Debugging Code\nDebugging an error:\nI am running the following R code and getting this error. \nPlease explain what is causing the error and provide corrected code.\n\nCode:\n[paste code]\n\nError message:\n[paste error]\n\nHere is a sample of my data structure:\n[paste head(data) or glimpse(data) output]\nCode review:\nPlease review the following R code for correctness, efficiency, \nand adherence to tidyverse style conventions. Flag any potential \nerrors, inefficiencies, or places where the code could be \nclearer. Do not rewrite the whole thing — just identify issues \nand suggest targeted improvements.\n\n[paste code]",
+    "section": "22.4 Debugging Code",
+    "text": "22.4 Debugging Code\nDebugging an error:\nI am running the following R code and getting this error. \nPlease explain what is causing the error and provide corrected code.\n\nCode:\n[paste code]\n\nError message:\n[paste error]\n\nHere is a sample of my data structure:\n[paste head(data) or glimpse(data) output]\nCode review:\nPlease review the following R code for correctness, efficiency, \nand adherence to tidyverse style conventions. Flag any potential \nerrors, inefficiencies, or places where the code could be \nclearer. Do not rewrite the whole thing — just identify issues \nand suggest targeted improvements.\n\n[paste code]",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
@@ -1145,8 +1134,8 @@
     "objectID": "chapters/analysis/analysis-prompts.html#mplus-syntax",
     "href": "chapters/analysis/analysis-prompts.html#mplus-syntax",
     "title": "22  AI Prompt Examples",
-    "section": "22.6 Mplus Syntax",
-    "text": "22.6 Mplus Syntax\nWriting a CFA model:\nWrite Mplus syntax for a confirmatory factor analysis with the \nfollowing structure: one factor with 6 indicators, continuous \noutcomes, WLSMV estimator, and FIML for missing data. The data \nfile is wave1_data.dat and the variables are [list them]. \nInclude MODEL FIT and STANDARDIZED output.\nTroubleshooting non-convergence:\nMy Mplus model is not converging. Here is the output file. \nPlease identify the likely cause of the non-convergence and \nsuggest modifications to the syntax or starting values to \naddress it.\n\n[paste relevant sections of .out file]",
+    "section": "22.5 Mplus Syntax",
+    "text": "22.5 Mplus Syntax\nWriting a CFA model:\nWrite Mplus syntax for a confirmatory factor analysis with the \nfollowing structure: one factor with 6 indicators, continuous \noutcomes, WLSMV estimator, and FIML for missing data. The data \nfile is wave1_data.dat and the variables are [list them]. \nInclude MODEL FIT and STANDARDIZED output.\nTroubleshooting non-convergence:\nMy Mplus model is not converging. Here is the output file. \nPlease identify the likely cause of the non-convergence and \nsuggest modifications to the syntax or starting values to \naddress it.\n\n[paste relevant sections of .out file]",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
