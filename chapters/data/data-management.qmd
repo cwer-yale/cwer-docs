@@ -204,7 +204,11 @@ When constructing short Mplus names, follow these guidelines:
 
 ## Missing Data Codes
 
-Missing data arise for different reasons, and distinguishing between them is important for accurate analysis. CWER uses the following numeric codes for missing data across all projects and software platforms:
+Missing data arise for different reasons, and distinguishing between them is important for accurate analysis and documentation. CWER uses a two-step approach: numeric codes for storage, and software-native formats for analysis.
+
+### Step 1: Storage Codes
+
+Use the following numeric codes in all raw and cleaned data files across all projects. These codes travel across software platforms — a CSV file with `-99` is readable by R, Stata, SPSS, and Mplus alike.
 
 | Code | Meaning |
 |---|---|
@@ -213,21 +217,53 @@ Missing data arise for different reasons, and distinguishing between them is imp
 | `-97` | Data not available (data exist but were not collected or could not be obtained) |
 | `-96` | Removed during data cleaning (e.g., identified as invalid response) |
 
-### Rules for Missing Data Codes
+These codes should be applied consistently within a project and documented in the codebook for each variable that uses them.
 
-- Apply missing codes consistently within a project. Document which codes are used for each variable in the codebook.
-- Never use `0` to represent missing data unless `0` is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.
-- When importing data into analysis software, recode these values to the software's native missing data format before running any analyses:
-  - **R**: recode to `NA`
-  - **Stata**: recode to `.` (or named missings `.a`, `.b` for different types)
-  - **Mplus**: declare missing values in the `MISSING` statement
-  - **SPSS**: declare as user-missing values
+Never use `0` to represent missing data unless `0` is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.
 
-Failing to recode missing data codes before analysis is one of the most common sources of errors in quantitative research. A `-99` included in a mean calculation will silently produce a wrong answer. Always check for missing values before running analyses.
+### Step 2: Analysis-Ready Formats
+
+Before running any analysis, recode CWER storage codes to each software's native missing data format. This is a required step — failing to recode is one of the most common sources of errors in quantitative research. A `-99` included in a mean calculation will silently produce a wrong answer.
+
+**R** — recode to `NA`:
+```r
+data <- data |>
+  mutate(across(everything(), ~ if_else(. %in% c(-99, -98, -97, -96), NA, .)))
+```
+
+**Stata** — recode to `.`:
+```stata
+foreach var of varlist _all {
+  recode `var' (-99 -98 -97 -96 = .)
+}
+```
+
+**Mplus** — declare in the `MISSING` statement:
+```
+VARIABLE:
+  MISSING = ALL(-99 -98 -97 -96);
+```
+
+**SPSS** — declare as user-missing values:
+```
+MISSING VALUES ALL (-99, -98, -97, -96).
+```
+
+Do this recoding step in your cleaning script (`code/01-data-cleaning.qmd` or equivalent) so that all downstream analysis scripts work with properly coded missing data from the start.
 
 ### Documenting Missingness
 
 For every dataset, produce a missing data summary as part of your cleaning script. At minimum, report the number and percentage of missing values for each variable. Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.
+
+In R:
+```r
+data |>
+  summarise(across(everything(), ~ sum(is.na(.)))) |>
+  pivot_longer(everything(), names_to = "variable", values_to = "n_missing") |>
+  mutate(pct_missing = round(n_missing / nrow(data) * 100, 1)) |>
+  filter(n_missing > 0) |>
+  arrange(desc(n_missing))
+```
 
 ## Data Cleaning Standards
 
