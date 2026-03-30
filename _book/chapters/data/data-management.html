@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -228,6 +263,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Data Wrangling with tidyverse</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data/data-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">AI Prompt Examples</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -242,43 +283,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/statistical-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Statistical Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualization with ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Visualization with ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/factor-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CFA &amp; EFA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">CFA &amp; EFA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/lme4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Multilevel Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Multilevel Modeling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/path-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Path Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Path Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/irt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Item Response Theory (IRT)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/analysis/power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/analysis/analysis-prompts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">AI Prompt Examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,23 +347,30 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#example-row" id="toc-example-row" class="nav-link" data-scroll-target="#example-row"><span class="header-section-number">12.1.3</span> Example Row</a></li>
   <li><a href="#keeping-codebooks-current" id="toc-keeping-codebooks-current" class="nav-link" data-scroll-target="#keeping-codebooks-current"><span class="header-section-number">12.1.4</span> Keeping Codebooks Current</a></li>
   </ul></li>
-  <li><a href="#variable-naming-conventions" id="toc-variable-naming-conventions" class="nav-link" data-scroll-target="#variable-naming-conventions"><span class="header-section-number">12.2</span> Variable Naming Conventions</a>
+  <li><a href="#file-and-folder-naming-conventions" id="toc-file-and-folder-naming-conventions" class="nav-link" data-scroll-target="#file-and-folder-naming-conventions"><span class="header-section-number">12.2</span> File and Folder Naming Conventions</a>
   <ul class="collapse">
-  <li><a href="#why-snake_case" id="toc-why-snake_case" class="nav-link" data-scroll-target="#why-snake_case"><span class="header-section-number">12.2.1</span> Why Snake_case?</a></li>
-  <li><a href="#general-rules" id="toc-general-rules" class="nav-link" data-scroll-target="#general-rules"><span class="header-section-number">12.2.2</span> General Rules</a></li>
-  <li><a href="#naming-structure" id="toc-naming-structure" class="nav-link" data-scroll-target="#naming-structure"><span class="header-section-number">12.2.3</span> Naming Structure</a></li>
-  <li><a href="#id-variables" id="toc-id-variables" class="nav-link" data-scroll-target="#id-variables"><span class="header-section-number">12.2.4</span> ID Variables</a></li>
-  <li><a href="#wave-and-time-variables" id="toc-wave-and-time-variables" class="nav-link" data-scroll-target="#wave-and-time-variables"><span class="header-section-number">12.2.5</span> Wave and Time Variables</a></li>
-  <li><a href="#recoded-and-derived-variables" id="toc-recoded-and-derived-variables" class="nav-link" data-scroll-target="#recoded-and-derived-variables"><span class="header-section-number">12.2.6</span> Recoded and Derived Variables</a></li>
-  <li><a href="#variable-names-in-mplus" id="toc-variable-names-in-mplus" class="nav-link" data-scroll-target="#variable-names-in-mplus"><span class="header-section-number">12.2.7</span> Variable Names in Mplus</a></li>
+  <li><a href="#rules-for-all-file-and-folder-names" id="toc-rules-for-all-file-and-folder-names" class="nav-link" data-scroll-target="#rules-for-all-file-and-folder-names"><span class="header-section-number">12.2.1</span> Rules for All File and Folder Names</a></li>
+  <li><a href="#rules-for-script-files" id="toc-rules-for-script-files" class="nav-link" data-scroll-target="#rules-for-script-files"><span class="header-section-number">12.2.2</span> Rules for Script Files</a></li>
+  <li><a href="#rules-for-output-files" id="toc-rules-for-output-files" class="nav-link" data-scroll-target="#rules-for-output-files"><span class="header-section-number">12.2.3</span> Rules for Output Files</a></li>
   </ul></li>
-  <li><a href="#missing-data-codes" id="toc-missing-data-codes" class="nav-link" data-scroll-target="#missing-data-codes"><span class="header-section-number">12.3</span> Missing Data Codes</a>
+  <li><a href="#variable-naming-conventions" id="toc-variable-naming-conventions" class="nav-link" data-scroll-target="#variable-naming-conventions"><span class="header-section-number">12.3</span> Variable Naming Conventions</a>
   <ul class="collapse">
-  <li><a href="#rules-for-missing-data-codes" id="toc-rules-for-missing-data-codes" class="nav-link" data-scroll-target="#rules-for-missing-data-codes"><span class="header-section-number">12.3.1</span> Rules for Missing Data Codes</a></li>
-  <li><a href="#documenting-missingness" id="toc-documenting-missingness" class="nav-link" data-scroll-target="#documenting-missingness"><span class="header-section-number">12.3.2</span> Documenting Missingness</a></li>
+  <li><a href="#why-snake_case" id="toc-why-snake_case" class="nav-link" data-scroll-target="#why-snake_case"><span class="header-section-number">12.3.1</span> Why Snake_case?</a></li>
+  <li><a href="#general-rules" id="toc-general-rules" class="nav-link" data-scroll-target="#general-rules"><span class="header-section-number">12.3.2</span> General Rules</a></li>
+  <li><a href="#naming-structure" id="toc-naming-structure" class="nav-link" data-scroll-target="#naming-structure"><span class="header-section-number">12.3.3</span> Naming Structure</a></li>
+  <li><a href="#id-variables" id="toc-id-variables" class="nav-link" data-scroll-target="#id-variables"><span class="header-section-number">12.3.4</span> ID Variables</a></li>
+  <li><a href="#wave-and-time-variables" id="toc-wave-and-time-variables" class="nav-link" data-scroll-target="#wave-and-time-variables"><span class="header-section-number">12.3.5</span> Wave and Time Variables</a></li>
+  <li><a href="#recoded-and-derived-variables" id="toc-recoded-and-derived-variables" class="nav-link" data-scroll-target="#recoded-and-derived-variables"><span class="header-section-number">12.3.6</span> Recoded and Derived Variables</a></li>
+  <li><a href="#variable-names-in-mplus" id="toc-variable-names-in-mplus" class="nav-link" data-scroll-target="#variable-names-in-mplus"><span class="header-section-number">12.3.7</span> Variable Names in Mplus</a></li>
   </ul></li>
-  <li><a href="#data-cleaning-standards" id="toc-data-cleaning-standards" class="nav-link" data-scroll-target="#data-cleaning-standards"><span class="header-section-number">12.4</span> Data Cleaning Standards</a></li>
-  <li><a href="#a-note-on-sensitive-data" id="toc-a-note-on-sensitive-data" class="nav-link" data-scroll-target="#a-note-on-sensitive-data"><span class="header-section-number">12.5</span> A Note on Sensitive Data</a></li>
+  <li><a href="#missing-data-codes" id="toc-missing-data-codes" class="nav-link" data-scroll-target="#missing-data-codes"><span class="header-section-number">12.4</span> Missing Data Codes</a>
+  <ul class="collapse">
+  <li><a href="#step-1-storage-codes" id="toc-step-1-storage-codes" class="nav-link" data-scroll-target="#step-1-storage-codes"><span class="header-section-number">12.4.1</span> Step 1: Storage Codes</a></li>
+  <li><a href="#step-2-analysis-ready-formats" id="toc-step-2-analysis-ready-formats" class="nav-link" data-scroll-target="#step-2-analysis-ready-formats"><span class="header-section-number">12.4.2</span> Step 2: Analysis-Ready Formats</a></li>
+  <li><a href="#documenting-missingness" id="toc-documenting-missingness" class="nav-link" data-scroll-target="#documenting-missingness"><span class="header-section-number">12.4.3</span> Documenting Missingness</a></li>
+  </ul></li>
+  <li><a href="#data-cleaning-standards" id="toc-data-cleaning-standards" class="nav-link" data-scroll-target="#data-cleaning-standards"><span class="header-section-number">12.5</span> Data Cleaning Standards</a></li>
+  <li><a href="#a-note-on-sensitive-data" id="toc-a-note-on-sensitive-data" class="nav-link" data-scroll-target="#a-note-on-sensitive-data"><span class="header-section-number">12.6</span> A Note on Sensitive Data</a></li>
   </ul>
 </nav>
     </div>
@@ -451,11 +505,90 @@ ul.task-list li input[type="checkbox"] {
 <p>Treat the codebook as part of the analysis, not an afterthought. Ideally, draft the codebook before data collection begins — this forces clarity about what you are measuring and how you will analyze it.</p>
 </section>
 </section>
-<section id="variable-naming-conventions" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="variable-naming-conventions"><span class="header-section-number">12.2</span> Variable Naming Conventions</h2>
+<section id="file-and-folder-naming-conventions" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="file-and-folder-naming-conventions"><span class="header-section-number">12.2</span> File and Folder Naming Conventions</h2>
+<p>Consistent naming makes projects easier to navigate, reduces errors, and ensures files work correctly across different operating systems and software. CWER follows two conventions depending on context:</p>
+<ul>
+<li><strong>Dashes for file and folder names</strong> — dashes are URL-friendly and the standard for web-facing files. When Quarto renders documents, file names become URLs, and dashes produce cleaner, more readable links than underscores.</li>
+<li><strong>Underscores for variable names</strong> — snake_case is the standard for R, Stata, and data science broadly. See the <a href="#variable-naming-conventions">Variable Naming Conventions</a> section above.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Context</th>
+<th>Convention</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>File names</td>
+<td>kebab-case (dashes)</td>
+<td><code>data-wrangling.qmd</code></td>
+</tr>
+<tr class="even">
+<td>Folder names</td>
+<td>kebab-case (dashes)</td>
+<td><code>cwer-docs/</code></td>
+</tr>
+<tr class="odd">
+<td>Variable names</td>
+<td>snake_case (underscores)</td>
+<td><code>sel_total_mean</code></td>
+</tr>
+<tr class="even">
+<td>R object names</td>
+<td>snake_case (underscores)</td>
+<td><code>data_cleaned</code></td>
+</tr>
+<tr class="odd">
+<td>Data files</td>
+<td>snake_case (underscores)</td>
+<td><code>wave1_cleaned.rds</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that data files use underscores rather than dashes. This is because data files are read programmatically by R, Stata, and SPSS, where underscores are safer and more conventional than dashes.</p>
+<section id="rules-for-all-file-and-folder-names" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="rules-for-all-file-and-folder-names"><span class="header-section-number">12.2.1</span> Rules for All File and Folder Names</h3>
+<ul>
+<li><strong>Use lowercase only.</strong> <code>wave1-cleaned.rds</code>, not <code>Wave1-Cleaned.rds</code></li>
+<li><strong>Be descriptive.</strong> <code>wave1-provider-survey.csv</code> tells you what the file is; <code>data.csv</code> does not</li>
+<li><strong>Avoid spaces.</strong> Spaces in file names cause problems in terminal commands and some software. Use dashes or underscores instead</li>
+<li><strong>Avoid special characters.</strong> No parentheses, slashes, ampersands, or symbols of any kind</li>
+<li><strong>No date prefixes on individual files.</strong> Do not use names like <code>analysis-2025-10-01.qmd</code> — let Git track versions instead. If you genuinely need multiple dated versions to coexist (e.g., comparing model runs), use a dated subfolder inside <code>output/</code> rather than dating the file itself</li>
+</ul>
+</section>
+<section id="rules-for-script-files" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="rules-for-script-files"><span class="header-section-number">12.2.2</span> Rules for Script Files</h3>
+<p>Number scripts to reflect pipeline order:</p>
+<pre><code>code/
+├── 01-data-cleaning.qmd
+├── 02-descriptives.qmd
+├── 03-mlm-analysis.qmd
+└── 04-tables-figures.qmd</code></pre>
+<p>The two-digit prefix ensures scripts appear in order when listed. When you add a new script, use the next available number. If you retire a script, do not renumber the remaining ones — leave gaps rather than creating confusion about which outputs correspond to which script.</p>
+</section>
+<section id="rules-for-output-files" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="rules-for-output-files"><span class="header-section-number">12.2.3</span> Rules for Output Files</h3>
+<p>Name output files to reflect their content and the script that produced them:</p>
+<ul>
+<li><code>output/figures/sel-by-grade-boxplot.png</code> — descriptive, clear</li>
+<li><code>output/tables/wave1-mlm-results.docx</code> — clear what analysis and wave</li>
+<li>Not: <code>output/figures/figure-final2.png</code> — tells you nothing</li>
+</ul>
+<p>When a script produces multiple outputs of the same type, use a consistent naming pattern:</p>
+<pre><code>output/figures/
+├── fig1-sel-distribution.png
+├── fig2-sel-by-grade.png
+└── fig3-sel-by-school.png</code></pre>
+</section>
+</section>
+<section id="variable-naming-conventions" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="variable-naming-conventions"><span class="header-section-number">12.3</span> Variable Naming Conventions</h2>
 <p>Consistent variable names make datasets easier to work with across software platforms, reduce errors, and make analysis code more readable. The following conventions apply to all CWER datasets.</p>
-<section id="why-snake_case" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="why-snake_case"><span class="header-section-number">12.2.1</span> Why Snake_case?</h3>
+<section id="why-snake_case" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="why-snake_case"><span class="header-section-number">12.3.1</span> Why Snake_case?</h3>
 <p>CWER uses <strong>snake_case</strong> — lowercase letters with underscores between words — as the standard naming convention. For example: <code>sel_selfmgmt_1</code>, <code>teacher_id</code>, <code>rdg_score_z</code>.</p>
 <p>This is a deliberate choice over alternatives like camelCase (<code>SelSelfmgmt1</code>) or PascalCase (<code>SelSelfMgmt1</code>) for several reasons:</p>
 <ul>
@@ -464,19 +597,18 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Industry standard.</strong> Snake_case is the dominant convention in data science — it is what R’s tidyverse, Python, and most database systems use. RAs with any quantitative background will already be familiar with it.</li>
 </ul>
 </section>
-<section id="general-rules" class="level3" data-number="12.2.2">
-<h3 data-number="12.2.2" class="anchored" data-anchor-id="general-rules"><span class="header-section-number">12.2.2</span> General Rules</h3>
+<section id="general-rules" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="general-rules"><span class="header-section-number">12.3.2</span> General Rules</h3>
 <ul>
 <li><strong>Use lowercase letters only.</strong> <code>sel_score</code>, not <code>SEL_Score</code> or <code>Sel_Score</code>.</li>
 <li><strong>Use underscores to separate words.</strong> <code>teacher_rating</code>, not <code>teacherrating</code> or <code>teacher.rating</code>.</li>
 <li><strong>Keep names short but meaningful.</strong> Aim for 8 characters or fewer when possible for compatibility with older software, but never sacrifice clarity for brevity. A name like <code>rdg_score</code> is better than <code>rs</code> and better than <code>reading_comprehension_total_score</code>.</li>
 <li><strong>Avoid spaces and special characters.</strong> No spaces, hyphens, slashes, parentheses, or symbols of any kind.</li>
 <li><strong>Never start a variable name with a number.</strong> <code>wave1_n</code> is valid; <code>1_wave_n</code> is not.</li>
-<li><strong>Avoid reserved words.</strong> Do not use words that have special meaning in your analysis software, such as <code>if</code>, <code>else</code>, <code>true</code>, <code>false</code>, <code>NA</code>, <code>null</code>, <code>mean</code>, or <code>sum</code>.</li>
 </ul>
 </section>
-<section id="naming-structure" class="level3" data-number="12.2.3">
-<h3 data-number="12.2.3" class="anchored" data-anchor-id="naming-structure"><span class="header-section-number">12.2.3</span> Naming Structure</h3>
+<section id="naming-structure" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="naming-structure"><span class="header-section-number">12.3.3</span> Naming Structure</h3>
 <p>For survey and scale items, use the following structure:</p>
 <pre><code>[construct]_[subscale]_[item number]</code></pre>
 <p>Examples: - <code>sel_selfmgmt_1</code> — SEL scale, self-management subscale, item 1 - <code>sel_selfmgmt_2</code> — SEL scale, self-management subscale, item 2 - <code>sel_socaware_1</code> — SEL scale, social awareness subscale, item 1</p>
@@ -494,8 +626,8 @@ ul.task-list li input[type="checkbox"] {
 <li><code>student_id</code> — student identifier</li>
 </ul>
 </section>
-<section id="id-variables" class="level3" data-number="12.2.4">
-<h3 data-number="12.2.4" class="anchored" data-anchor-id="id-variables"><span class="header-section-number">12.2.4</span> ID Variables</h3>
+<section id="id-variables" class="level3" data-number="12.3.4">
+<h3 data-number="12.3.4" class="anchored" data-anchor-id="id-variables"><span class="header-section-number">12.3.4</span> ID Variables</h3>
 <p>Every dataset must include at least one ID variable that uniquely identifies each row. Follow these rules for ID variables:</p>
 <ul>
 <li>Name ID variables with the unit of observation followed by <code>_id</code>: <code>student_id</code>, <code>teacher_id</code>, <code>school_id</code>, <code>provider_id</code></li>
@@ -504,8 +636,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Document the ID scheme in the codebook, including how IDs were assigned and whether they are consistent across waves or datasets</li>
 </ul>
 </section>
-<section id="wave-and-time-variables" class="level3" data-number="12.2.5">
-<h3 data-number="12.2.5" class="anchored" data-anchor-id="wave-and-time-variables"><span class="header-section-number">12.2.5</span> Wave and Time Variables</h3>
+<section id="wave-and-time-variables" class="level3" data-number="12.3.5">
+<h3 data-number="12.3.5" class="anchored" data-anchor-id="wave-and-time-variables"><span class="header-section-number">12.3.5</span> Wave and Time Variables</h3>
 <p>For longitudinal projects, include a wave or time indicator:</p>
 <ul>
 <li><code>wave</code> — numeric wave indicator (1, 2, 3)</li>
@@ -519,8 +651,8 @@ ul.task-list li input[type="checkbox"] {
 <li><code>sel_total_mean_w2</code> — SEL total mean, Wave 2</li>
 </ul>
 </section>
-<section id="recoded-and-derived-variables" class="level3" data-number="12.2.6">
-<h3 data-number="12.2.6" class="anchored" data-anchor-id="recoded-and-derived-variables"><span class="header-section-number">12.2.6</span> Recoded and Derived Variables</h3>
+<section id="recoded-and-derived-variables" class="level3" data-number="12.3.6">
+<h3 data-number="12.3.6" class="anchored" data-anchor-id="recoded-and-derived-variables"><span class="header-section-number">12.3.6</span> Recoded and Derived Variables</h3>
 <p>When you recode or derive a variable from an existing one, create a new variable rather than overwriting the original. Append a suffix to indicate the transformation:</p>
 <table class="caption-top table">
 <thead>
@@ -565,8 +697,8 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>Never overwrite raw variables. Always create a new variable and document it in the codebook.</p>
 </section>
-<section id="variable-names-in-mplus" class="level3" data-number="12.2.7">
-<h3 data-number="12.2.7" class="anchored" data-anchor-id="variable-names-in-mplus"><span class="header-section-number">12.2.7</span> Variable Names in Mplus</h3>
+<section id="variable-names-in-mplus" class="level3" data-number="12.3.7">
+<h3 data-number="12.3.7" class="anchored" data-anchor-id="variable-names-in-mplus"><span class="header-section-number">12.3.7</span> Variable Names in Mplus</h3>
 <p>Mplus imposes an 8-character limit on variable names, which creates a tension with snake_case. An underscore uses one of those 8 characters, leaving only 7 for meaningful content. For example, <code>sel_sm_1</code> hits the limit exactly, while longer names like <code>sel_selfmgmt_1</code> (14 characters) are simply not valid in Mplus syntax.</p>
 <p>The recommended approach is to maintain full snake_case names in your master datasets and remap to short Mplus-compatible names only when preparing Mplus input files. The <code>MplusAutomation</code> package in R makes this straightforward — you can keep descriptive names in R, write a short name mapping when exporting to Mplus, and map results back to full names when importing output. This way your master data and R code stay readable, and your Mplus syntax stays within the character limit.</p>
 <p>When constructing short Mplus names, follow these guidelines:</p>
@@ -577,9 +709,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="missing-data-codes" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="missing-data-codes"><span class="header-section-number">12.3</span> Missing Data Codes</h2>
-<p>Missing data arise for different reasons, and distinguishing between them is important for accurate analysis. CWER uses the following numeric codes for missing data across all projects and software platforms:</p>
+<section id="missing-data-codes" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="missing-data-codes"><span class="header-section-number">12.4</span> Missing Data Codes</h2>
+<p>Missing data arise for different reasons, and distinguishing between them is important for accurate analysis and documentation. CWER uses a two-step approach: numeric codes for storage, and software-native formats for analysis.</p>
+<section id="step-1-storage-codes" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="step-1-storage-codes"><span class="header-section-number">12.4.1</span> Step 1: Storage Codes</h3>
+<p>Use the following numeric codes in all raw and cleaned data files across all projects. These codes travel across software platforms — a CSV file with <code>-99</code> is readable by R, Stata, SPSS, and Mplus alike.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -610,28 +745,40 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="rules-for-missing-data-codes" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="rules-for-missing-data-codes"><span class="header-section-number">12.3.1</span> Rules for Missing Data Codes</h3>
-<ul>
-<li>Apply missing codes consistently within a project. Document which codes are used for each variable in the codebook.</li>
-<li>Never use <code>0</code> to represent missing data unless <code>0</code> is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.</li>
-<li>When importing data into analysis software, recode these values to the software’s native missing data format before running any analyses:
-<ul>
-<li><strong>R</strong>: recode to <code>NA</code></li>
-<li><strong>Stata</strong>: recode to <code>.</code> (or named missings <code>.a</code>, <code>.b</code> for different types)</li>
-<li><strong>Mplus</strong>: declare missing values in the <code>MISSING</code> statement</li>
-<li><strong>SPSS</strong>: declare as user-missing values</li>
-</ul></li>
-</ul>
-<p>Failing to recode missing data codes before analysis is one of the most common sources of errors in quantitative research. A <code>-99</code> included in a mean calculation will silently produce a wrong answer. Always check for missing values before running analyses.</p>
+<p>These codes should be applied consistently within a project and documented in the codebook for each variable that uses them.</p>
+<p>Never use <code>0</code> to represent missing data unless <code>0</code> is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.</p>
 </section>
-<section id="documenting-missingness" class="level3" data-number="12.3.2">
-<h3 data-number="12.3.2" class="anchored" data-anchor-id="documenting-missingness"><span class="header-section-number">12.3.2</span> Documenting Missingness</h3>
+<section id="step-2-analysis-ready-formats" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="step-2-analysis-ready-formats"><span class="header-section-number">12.4.2</span> Step 2: Analysis-Ready Formats</h3>
+<p>Before running any analysis, recode CWER storage codes to each software’s native missing data format. This is a required step — failing to recode is one of the most common sources of errors in quantitative research. A <code>-99</code> included in a mean calculation will silently produce a wrong answer.</p>
+<p><strong>R</strong> — recode to <code>NA</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">if_else</span>(. <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="sc">-</span><span class="dv">98</span>, <span class="sc">-</span><span class="dv">97</span>, <span class="sc">-</span><span class="dv">96</span>), <span class="cn">NA</span>, .)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Stata</strong> — recode to <code>.</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> <span class="dt">_all</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">recode</span> <span class="ot">`var'</span> (-99 -98 -97 -96 = .)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Mplus</strong> — declare in the <code>MISSING</code> statement:</p>
+<pre><code>VARIABLE:
+  MISSING = ALL(-99 -98 -97 -96);</code></pre>
+<p><strong>SPSS</strong> — declare as user-missing values:</p>
+<pre><code>MISSING VALUES ALL (-99, -98, -97, -96).</code></pre>
+<p>Do this recoding step in your cleaning script (<code>code/01-data-cleaning.qmd</code> or equivalent) so that all downstream analysis scripts work with properly coded missing data from the start.</p>
+</section>
+<section id="documenting-missingness" class="level3" data-number="12.4.3">
+<h3 data-number="12.4.3" class="anchored" data-anchor-id="documenting-missingness"><span class="header-section-number">12.4.3</span> Documenting Missingness</h3>
 <p>For every dataset, produce a missing data summary as part of your cleaning script. At minimum, report the number and percentage of missing values for each variable. Flag any variables with more than 10% missing for discussion with Mike or Joanna before proceeding with analysis.</p>
+<p>In R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.)))) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="at">values_to =</span> <span class="st">"n_missing"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct_missing =</span> <span class="fu">round</span>(n_missing <span class="sc">/</span> <span class="fu">nrow</span>(data) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n_missing <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_missing))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="data-cleaning-standards" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="data-cleaning-standards"><span class="header-section-number">12.4</span> Data Cleaning Standards</h2>
+<section id="data-cleaning-standards" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="data-cleaning-standards"><span class="header-section-number">12.5</span> Data Cleaning Standards</h2>
 <p>Data cleaning scripts (<code>code/01_data_cleaning.qmd</code> or equivalent) should follow these standards:</p>
 <ol type="1">
 <li><strong>Never modify raw data.</strong> Read from <code>data/raw/</code>, write cleaned files to <code>data/cleaned/</code>.</li>
@@ -641,8 +788,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Have your cleaning code reviewed.</strong> Follow the quality control process described in the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter.</li>
 </ol>
 </section>
-<section id="a-note-on-sensitive-data" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="a-note-on-sensitive-data"><span class="header-section-number">12.5</span> A Note on Sensitive Data</h2>
+<section id="a-note-on-sensitive-data" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="a-note-on-sensitive-data"><span class="header-section-number">12.6</span> A Note on Sensitive Data</h2>
 <p>Variables that could identify participants — names, addresses, birthdates, school names in small samples, teacher names — require special handling. See the <a href="../../chapters/about/team-member.html">Being a Team Member</a> chapter for data security requirements. As a general rule:</p>
 <ul>
 <li>Strip identifying variables from analysis datasets as early as possible in the cleaning process</li>

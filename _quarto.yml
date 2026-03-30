@@ -6,7 +6,7 @@ book:
   title: "Child Wellbeing and Education Research"
   subtitle: "Team Guide"
   author:
-    - name: Michael Strambler
+    - name: Michael Strambler, PhD
       affiliation: Yale School of Medicine
     - name: "Developed with Claude (Anthropic) assistance"
   date: today
@@ -32,6 +32,7 @@ book:
         - chapters/data/project-organization.qmd
         - chapters/data/data-management.qmd
         - chapters/data/data-wrangling.qmd
+        - chapters/data/data-prompts.qmd
     - part: "Statistical Analysis"
       chapters:
         - chapters/analysis/statistical-analysis.qmd
@@ -41,6 +42,7 @@ book:
         - chapters/analysis/path-analysis.qmd
         - chapters/analysis/irt.qmd
         - chapters/analysis/power-analysis.qmd
+        - chapters/analysis/analysis-prompts.qmd
 
 format:
   html:

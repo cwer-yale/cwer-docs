@@ -14,7 +14,9 @@
 
 ## Using AI for Data Analysis
 
-AI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. Used well, AI is like having a knowledgeable collaborator available at all times. A few principles for using AI effectively and responsibly:
+## Reminder on Using AI for Data Analysis
+
+Make sure to review the "General Prompting Principles" in the [Working with AI](../tools/ai-prompts.qmd) chapter. AI tools like Claude can dramatically accelerate data analysis work, especially for writing and debugging code. When used well, AI is like having a highly knowledgeable collaborator available 24/7. A few principles from the [Working with AI](../tools/ai-prompts.qmd) chapter worth reiterating:
 
 1. **Never share identifiable participant data with AI tools.** You can share non-ePHI data in Yale's Clarity only. Otherwise, paste only anonymized or synthetic examples when asking for help with data-related code. You can create such examples in Clarity if it's helpful.
 2. **Always review and understand the code AI produces before running it.** Do not run code you cannot explain. You can always use AI to help you understand the code by asking it to explain it. 

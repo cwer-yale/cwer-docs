@@ -28,6 +28,25 @@ Getting useful output from AI requires clear, specific input. A few principles t
 
 **Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter.
 
+## Writing Assistance with Grammarly
+
+[Grammarly](https://www.grammarly.com) is an AI-powered writing assistant that checks grammar, spelling, punctuation, clarity, and style in real time. The recommended version for CWER team members is the **Grammarly desktop app**, which works seamlessly across all the applications you already use — Word, Outlook, email clients, web browsers, and desktop applications — without any copying and pasting. Suggestions appear inline wherever you are writing.
+
+For CWER work, Grammarly is most useful for:
+
+- Polishing manuscript drafts, reports, and partner communications before sharing
+- Catching typos and grammatical errors in research reports and grant proposals
+- Improving sentence clarity and concision in methods and results sections
+- Checking team member writing during the review process
+
+### Setup
+
+Download the Grammarly desktop app for Mac or Windows at [grammarly.com/desktop](https://www.grammarly.com/desktop). Installation is straightforward — once installed, Grammarly works automatically in the background across your applications. The free version covers grammar, spelling, and punctuation. Grammarly Pro adds clarity, tone, and style suggestions, which are useful for academic writing.
+
+### A Note on Data Privacy
+
+Do not use Grammarly with text containing sensitive research data or participant information. Grammarly processes text on external servers. For sensitive content, use Microsoft Word's built-in Editor (Review → Editor) instead, which provides grammar and style checking without sending text to external servers. You can also temporarily turn Grammarly off for a specific application using the Grammarly desktop app settings.
+
 ## Idea Generation
 
 AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.
@@ -133,7 +152,6 @@ tradeoffs might I be overlooking? Are there bodies of psychometric
 literature I should consult that the best practices document does 
 not cover?
 ```
-
 ## Reviewing & Editing
 
 When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.
@@ -198,144 +216,6 @@ manuscript. Do not invent any details — only use what I have
 provided.
 ```
 
-## Data Management & Analysis
+## Data Management and Analysis
 
-### General Principles
-
-Review every piece of AI-generated code before running it. Test on a small subset of data first. If you cannot explain what the code does, go back and ask AI to walk you through it line by line before running it. See the [Statistical Analysis](../analysis/statistical-analysis.qmd) chapter for the full quality control process.
-
-### Data Cleaning and Wrangling
-
-**Recoding missing values:**
-```
-I am working in R using tidyverse. My dataset has variables coded 
--99 (skipped), -98 (not applicable), and -97 (data not available). 
-I want to recode all three to NA before analysis. The data are in 
-a dataframe called `data`. Write code to do this and then produce 
-a summary showing how many NAs each variable has.
-```
-
-**Merging datasets:**
-```
-I have two dataframes in R: `student_data` with one row per student 
-(N=342, key variable: student_id) and `school_data` with one row 
-per school (N=18, key variable: school_id). Each student has a 
-school_id variable. I want to merge school-level variables into 
-the student dataframe. Write tidyverse code to do this and include 
-checks to verify the merge worked correctly — row counts before 
-and after, and a check for any unmatched IDs.
-```
-
-**Reverse scoring:**
-```
-I have a scale in R with 10 items (sel_1 through sel_10). Items 
-3, 6, and 9 are reverse scored on a 1-5 scale. Write tidyverse 
-code to reverse score these items and create new variables named 
-with the _r suffix, then compute a mean composite score across 
-all 10 items (using the reversed versions where applicable) 
-excluding cases with more than 20% missing data.
-```
-
-### Multilevel Modeling
-
-**Setting up a multilevel model in R:**
-```
-I am running a multilevel model in R using lme4. My data have 
-students nested within schools (N=342 students, N=18 schools). 
-The outcome is sel_total_mean (continuous). Level-1 predictors 
-are grade and gender. The level-2 predictor is school_size. 
-Write code to: (1) run a null model and calculate the ICC, 
-(2) add level-1 predictors, (3) add the level-2 predictor, 
-and (4) compare models. Use broom.mixed to extract results.
-```
-
-**Interpreting output:**
-```
-Here is the summary output from an lme4 model. Please help me 
-interpret the fixed effects, random effects, and variance 
-components. Flag anything that looks unusual or worth 
-investigating further.
-
-[paste output here]
-```
-
-### Meta-Analysis
-
-**Setting up a meta-analysis in R:**
-```
-I am running a meta-analysis in R using metafor with robust 
-variance estimation (RVE) via the clubSandwich package. I have 
-effect sizes in a dataframe called `meta_data` with columns: 
-study_id, effect_id, yi (effect size), vi (variance), and 
-moderator variables [list them]. Write code to fit a multilevel 
-random effects model with RVE, produce a forest plot, and test 
-for publication bias using Egger's test.
-```
-
-### Table and Figure Production
-
-**Producing a results table in Word:**
-```
-I have model results stored in a dataframe called `results` in R 
-with columns: term, estimate, std.error, conf.low, conf.high, 
-p.value. Write code using flextable and officer to produce an 
-APA-style results table and save it as a Word document at 
-output/tables/model_results.docx. Use Times New Roman 12pt, 
-include a table title, and format p-values to three decimal places.
-```
-
-**Saving a ggplot figure:**
-```
-I have a ggplot object called `p` in R. Write code to save it 
-as both a PNG (300 dpi, 6x4 inches) and a PDF to 
-output/figures/figure1. Use the here package for the file path.
-```
-
-### Debugging Code
-
-**Debugging an error:**
-```
-I am running the following R code and getting this error. 
-Please explain what is causing the error and provide corrected code.
-
-Code:
-[paste code]
-
-Error message:
-[paste error]
-
-Here is a sample of my data structure:
-[paste head(data) or glimpse(data) output]
-```
-
-**Code review:**
-```
-Please review the following R code for correctness, efficiency, 
-and adherence to tidyverse style conventions. Flag any potential 
-errors, inefficiencies, or places where the code could be 
-clearer. Do not rewrite the whole thing — just identify issues 
-and suggest targeted improvements.
-
-[paste code]
-```
-
-### Mplus Syntax
-
-**Writing a CFA model:**
-```
-Write Mplus syntax for a confirmatory factor analysis with the 
-following structure: one factor with 6 indicators, continuous 
-outcomes, WLSMV estimator, and FIML for missing data. The data 
-file is wave1_data.dat and the variables are [list them]. 
-Include MODEL FIT and STANDARDIZED output.
-```
-
-**Troubleshooting non-convergence:**
-```
-My Mplus model is not converging. Here is the output file. 
-Please identify the likely cause of the non-convergence and 
-suggest modifications to the syntax or starting values to 
-address it.
-
-[paste relevant sections of .out file]
-```
+AI is an invaluable tool for speeding up data management and analysis tasks. See the [Data Management](../data/data-prompts.qmd)  and [Statistical Analysis](../analysis/analysis-prompts.qmd) sections for examples of prompts.  

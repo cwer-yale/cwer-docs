@@ -6,7 +6,7 @@ Every member must complete and stay current with the appropriate human research 
 
 ## Data Security and Privacy
 
-Collecting data from someone is like collecting a part of their person, and we have an ethical obligation to treat this information with the utmost care. Accordingly, we take data security very seriously. Data of moderate or high risk should be handled with the procedures described below (see Yale's definitions of risk [here](https://your.yale.edu/technology/data-security/protect-your-data)).
+Collecting data from someone is like collecting a part of their person, and we have an ethical obligation to treat this information with the utmost care. Accordingly, we take data security very seriously. Data of moderate or high risk should be handled with the procedures described below (see Yale's definitions of risk [here](https://cybersecurity.yale.edu/know-your-risk#:~:text=Yale%20uses%20three%20risk%20classifications%20for%20data,on%20risk%20using%20Minimum%20Security%20Standards%20(MSS).)).
 
 - If you are not sure whether data are moderate or high-risk, ask either Mike or Joanna before you do anything — or just treat the data as high risk. It is always better to be more cautious when in doubt. Check the IRB protocol and data sharing agreements on issues regarding data protection and sharing.
 
@@ -31,4 +31,4 @@ Some of the practices we aim to use include:
 - Using methods appropriate for communicating meaningful, interpretable, and accurate findings
 - Establishing data analysis plans *prior* to data collection to:
   - Ensure we collect the proper data and have an adequate sample size to address the research questions
-  - Help avoid biased practices like [HARKing](https://psyarxiv.com/un372/) (hypothesizing after results are known) and [*p*-hacking](https://psychology.wikia.org/wiki/P-hacking) (intentionally or unintentionally tweaking analyses to reach statistical significance)
+  - Help avoid biased practices like [HARKing](https://journals.sagepub.com/doi/10.1207/s15327957pspr0203_4) (hypothesizing after results are known) and [*p*-hacking](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002106&) (intentionally or unintentionally tweaking analyses to reach statistical significance)
