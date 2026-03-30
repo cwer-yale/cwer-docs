@@ -44,6 +44,9 @@ book:
         - chapters/analysis/power-analysis.qmd
         - chapters/analysis/analysis-prompts.qmd
 
+execute:
+  freeze: auto
+
 format:
   html:
     theme: cosmo
