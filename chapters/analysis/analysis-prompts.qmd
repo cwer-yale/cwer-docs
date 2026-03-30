@@ -83,6 +83,72 @@ and suggest targeted improvements.
 [paste code]
 ```
 
+## Power Analysis
+
+**Conducting a power analysis for a multilevel mediation:**
+```
+I am planning a study and need to conduct a power analysis for a
+multilevel mediation model using Monte Carlo simulation in Mplus.
+My design has [Level-1 units, e.g., students] nested within
+[Level-2 units, e.g., schools]. The model tests whether [mediator,
+e.g., teacher practices] mediates the relationship between
+[predictor, e.g., professional development] and [outcome, e.g.,
+student SEL], where the predictor varies at Level [1 or 2] and the
+outcome is at Level [1 or 2].
+
+Based on prior research, I expect the following population parameter
+values: [a path ≈ X, b path ≈ X, direct effect ≈ X]. I anticipate
+approximately [N] Level-2 units and [N] Level-1 units per cluster.
+
+Please write Mplus Monte Carlo syntax for this model and walk me
+through: (1) how to specify the multilevel mediation structure,
+(2) how to define the indirect effect and obtain power for it,
+(3) how to interpret the output, and (4) how to determine the
+sample size needed to achieve power of .80.
+```
+
+## IRT
+
+**Running a Graded Response Model:**
+```
+I am running an IRT analysis in Mplus using the Graded Response
+Model (GRM) for a Likert-scale instrument. My dataset is
+[filename].dat and contains [N] respondents and [N] items
+([list item names or range, e.g., item1-item12]). Items use a
+[N]-point response scale. I want to: (1) estimate item
+discrimination and threshold parameters, (2) evaluate item fit
+and flag any poorly performing items, and (3) examine the test
+information function.
+
+Write Mplus syntax for this model using the THETA parameterization
+and WLSMV estimator. Then explain how to interpret the
+discrimination and threshold parameters in the output, and what
+thresholds I should use to identify items with poor discrimination
+or extreme difficulty.
+```
+
+**Interpreting IRT output:**
+```
+Here is the Mplus output from a Graded Response Model. Please help
+me interpret the discrimination parameters and thresholds for each
+item. Flag any items with low discrimination (< 0.50), extreme
+thresholds, or other characteristics that would warrant revision
+or removal. Summarize the overall psychometric quality of the scale.
+
+[paste relevant sections of .out file]
+```
+
+**Testing for differential item functioning (DIF):**
+```
+I want to test for differential item functioning (DIF) in my IRT
+model by [grouping variable, e.g., gender or race/ethnicity].
+My Mplus model is a Graded Response Model with [N] items.
+Write syntax to test DIF using a multiple-group approach with
+the THETA parameterization. Explain how to identify which items
+show significant DIF, how to interpret the results, and what
+steps to take if DIF is detected.
+```
+
 ## Mplus Syntax
 
 **Writing a CFA model:**

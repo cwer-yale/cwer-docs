@@ -308,7 +308,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#meta-analysis" id="toc-meta-analysis" class="nav-link" data-scroll-target="#meta-analysis"><span class="header-section-number">22.2</span> Meta-Analysis</a></li>
   <li><a href="#table-and-figure-production" id="toc-table-and-figure-production" class="nav-link" data-scroll-target="#table-and-figure-production"><span class="header-section-number">22.3</span> Table and Figure Production</a></li>
   <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">22.4</span> Debugging Code</a></li>
-  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">22.5</span> Mplus Syntax</a></li>
+  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">22.5</span> Power Analysis</a></li>
+  <li><a href="#irt" id="toc-irt" class="nav-link" data-scroll-target="#irt"><span class="header-section-number">22.6</span> IRT</a></li>
+  <li><a href="#mplus-syntax" id="toc-mplus-syntax" class="nav-link" data-scroll-target="#mplus-syntax"><span class="header-section-number">22.7</span> Mplus Syntax</a></li>
   </ul>
 </nav>
     </div>
@@ -400,8 +402,64 @@ and suggest targeted improvements.
 
 [paste code]</code></pre>
 </section>
-<section id="mplus-syntax" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">22.5</span> Mplus Syntax</h2>
+<section id="power-analysis" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">22.5</span> Power Analysis</h2>
+<p><strong>Conducting a power analysis for a multilevel mediation:</strong></p>
+<pre><code>I am planning a study and need to conduct a power analysis for a
+multilevel mediation model using Monte Carlo simulation in Mplus.
+My design has [Level-1 units, e.g., students] nested within
+[Level-2 units, e.g., schools]. The model tests whether [mediator,
+e.g., teacher practices] mediates the relationship between
+[predictor, e.g., professional development] and [outcome, e.g.,
+student SEL], where the predictor varies at Level [1 or 2] and the
+outcome is at Level [1 or 2].
+
+Based on prior research, I expect the following population parameter
+values: [a path ≈ X, b path ≈ X, direct effect ≈ X]. I anticipate
+approximately [N] Level-2 units and [N] Level-1 units per cluster.
+
+Please write Mplus Monte Carlo syntax for this model and walk me
+through: (1) how to specify the multilevel mediation structure,
+(2) how to define the indirect effect and obtain power for it,
+(3) how to interpret the output, and (4) how to determine the
+sample size needed to achieve power of .80.</code></pre>
+</section>
+<section id="irt" class="level2" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="irt"><span class="header-section-number">22.6</span> IRT</h2>
+<p><strong>Running a Graded Response Model:</strong></p>
+<pre><code>I am running an IRT analysis in Mplus using the Graded Response
+Model (GRM) for a Likert-scale instrument. My dataset is
+[filename].dat and contains [N] respondents and [N] items
+([list item names or range, e.g., item1-item12]). Items use a
+[N]-point response scale. I want to: (1) estimate item
+discrimination and threshold parameters, (2) evaluate item fit
+and flag any poorly performing items, and (3) examine the test
+information function.
+
+Write Mplus syntax for this model using the THETA parameterization
+and WLSMV estimator. Then explain how to interpret the
+discrimination and threshold parameters in the output, and what
+thresholds I should use to identify items with poor discrimination
+or extreme difficulty.</code></pre>
+<p><strong>Interpreting IRT output:</strong></p>
+<pre><code>Here is the Mplus output from a Graded Response Model. Please help
+me interpret the discrimination parameters and thresholds for each
+item. Flag any items with low discrimination (&lt; 0.50), extreme
+thresholds, or other characteristics that would warrant revision
+or removal. Summarize the overall psychometric quality of the scale.
+
+[paste relevant sections of .out file]</code></pre>
+<p><strong>Testing for differential item functioning (DIF):</strong></p>
+<pre><code>I want to test for differential item functioning (DIF) in my IRT
+model by [grouping variable, e.g., gender or race/ethnicity].
+My Mplus model is a Graded Response Model with [N] items.
+Write syntax to test DIF using a multiple-group approach with
+the THETA parameterization. Explain how to identify which items
+show significant DIF, how to interpret the results, and what
+steps to take if DIF is detected.</code></pre>
+</section>
+<section id="mplus-syntax" class="level2" data-number="22.7">
+<h2 data-number="22.7" class="anchored" data-anchor-id="mplus-syntax"><span class="header-section-number">22.7</span> Mplus Syntax</h2>
 <p><strong>Writing a CFA model:</strong></p>
 <pre><code>Write Mplus syntax for a confirmatory factor analysis with the 
 following structure: one factor with 6 indicators, continuous 

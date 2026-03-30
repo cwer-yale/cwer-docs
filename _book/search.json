@@ -1131,11 +1131,33 @@
     ]
   },
   {
+    "objectID": "chapters/analysis/analysis-prompts.html#power-analysis",
+    "href": "chapters/analysis/analysis-prompts.html#power-analysis",
+    "title": "22  AI Prompt Examples",
+    "section": "22.5 Power Analysis",
+    "text": "22.5 Power Analysis\nConducting a power analysis for a multilevel mediation:\nI am planning a study and need to conduct a power analysis for a\nmultilevel mediation model using Monte Carlo simulation in Mplus.\nMy design has [Level-1 units, e.g., students] nested within\n[Level-2 units, e.g., schools]. The model tests whether [mediator,\ne.g., teacher practices] mediates the relationship between\n[predictor, e.g., professional development] and [outcome, e.g.,\nstudent SEL], where the predictor varies at Level [1 or 2] and the\noutcome is at Level [1 or 2].\n\nBased on prior research, I expect the following population parameter\nvalues: [a path ≈ X, b path ≈ X, direct effect ≈ X]. I anticipate\napproximately [N] Level-2 units and [N] Level-1 units per cluster.\n\nPlease write Mplus Monte Carlo syntax for this model and walk me\nthrough: (1) how to specify the multilevel mediation structure,\n(2) how to define the indirect effect and obtain power for it,\n(3) how to interpret the output, and (4) how to determine the\nsample size needed to achieve power of .80.",
+    "crumbs": [
+      "Statistical Analysis",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/analysis/analysis-prompts.html#irt",
+    "href": "chapters/analysis/analysis-prompts.html#irt",
+    "title": "22  AI Prompt Examples",
+    "section": "22.6 IRT",
+    "text": "22.6 IRT\nRunning a Graded Response Model:\nI am running an IRT analysis in Mplus using the Graded Response\nModel (GRM) for a Likert-scale instrument. My dataset is\n[filename].dat and contains [N] respondents and [N] items\n([list item names or range, e.g., item1-item12]). Items use a\n[N]-point response scale. I want to: (1) estimate item\ndiscrimination and threshold parameters, (2) evaluate item fit\nand flag any poorly performing items, and (3) examine the test\ninformation function.\n\nWrite Mplus syntax for this model using the THETA parameterization\nand WLSMV estimator. Then explain how to interpret the\ndiscrimination and threshold parameters in the output, and what\nthresholds I should use to identify items with poor discrimination\nor extreme difficulty.\nInterpreting IRT output:\nHere is the Mplus output from a Graded Response Model. Please help\nme interpret the discrimination parameters and thresholds for each\nitem. Flag any items with low discrimination (&lt; 0.50), extreme\nthresholds, or other characteristics that would warrant revision\nor removal. Summarize the overall psychometric quality of the scale.\n\n[paste relevant sections of .out file]\nTesting for differential item functioning (DIF):\nI want to test for differential item functioning (DIF) in my IRT\nmodel by [grouping variable, e.g., gender or race/ethnicity].\nMy Mplus model is a Graded Response Model with [N] items.\nWrite syntax to test DIF using a multiple-group approach with\nthe THETA parameterization. Explain how to identify which items\nshow significant DIF, how to interpret the results, and what\nsteps to take if DIF is detected.",
+    "crumbs": [
+      "Statistical Analysis",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
+    ]
+  },
+  {
     "objectID": "chapters/analysis/analysis-prompts.html#mplus-syntax",
     "href": "chapters/analysis/analysis-prompts.html#mplus-syntax",
     "title": "22  AI Prompt Examples",
-    "section": "22.5 Mplus Syntax",
-    "text": "22.5 Mplus Syntax\nWriting a CFA model:\nWrite Mplus syntax for a confirmatory factor analysis with the \nfollowing structure: one factor with 6 indicators, continuous \noutcomes, WLSMV estimator, and FIML for missing data. The data \nfile is wave1_data.dat and the variables are [list them]. \nInclude MODEL FIT and STANDARDIZED output.\nTroubleshooting non-convergence:\nMy Mplus model is not converging. Here is the output file. \nPlease identify the likely cause of the non-convergence and \nsuggest modifications to the syntax or starting values to \naddress it.\n\n[paste relevant sections of .out file]",
+    "section": "22.7 Mplus Syntax",
+    "text": "22.7 Mplus Syntax\nWriting a CFA model:\nWrite Mplus syntax for a confirmatory factor analysis with the \nfollowing structure: one factor with 6 indicators, continuous \noutcomes, WLSMV estimator, and FIML for missing data. The data \nfile is wave1_data.dat and the variables are [list them]. \nInclude MODEL FIT and STANDARDIZED output.\nTroubleshooting non-convergence:\nMy Mplus model is not converging. Here is the output file. \nPlease identify the likely cause of the non-convergence and \nsuggest modifications to the syntax or starting values to \naddress it.\n\n[paste relevant sections of .out file]",
     "crumbs": [
       "Statistical Analysis",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>AI Prompt Examples</span>"
