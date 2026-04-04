@@ -340,23 +340,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-core-principle" id="toc-the-core-principle" class="nav-link active" data-scroll-target="#the-core-principle"><span class="header-section-number">11.1</span> The Core Principle</a></li>
-  <li><a href="#standard-project-structure" id="toc-standard-project-structure" class="nav-link" data-scroll-target="#standard-project-structure"><span class="header-section-number">11.2</span> Standard Project Structure</a></li>
-  <li><a href="#the-data-folder" id="toc-the-data-folder" class="nav-link" data-scroll-target="#the-data-folder"><span class="header-section-number">11.3</span> The data/ Folder</a>
+  <li><a href="#standard-organization" id="toc-standard-organization" class="nav-link active" data-scroll-target="#standard-organization"><span class="header-section-number">11.1</span> Standard Organization</a>
   <ul class="collapse">
-  <li><a href="#dataraw" id="toc-dataraw" class="nav-link" data-scroll-target="#dataraw"><span class="header-section-number">11.3.1</span> data/raw/</a></li>
-  <li><a href="#datacleaned" id="toc-datacleaned" class="nav-link" data-scroll-target="#datacleaned"><span class="header-section-number">11.3.2</span> data/cleaned/</a></li>
-  <li><a href="#datareadme.md" id="toc-datareadme.md" class="nav-link" data-scroll-target="#datareadme.md"><span class="header-section-number">11.3.3</span> data/README.md</a></li>
+  <li><a href="#the-short-version" id="toc-the-short-version" class="nav-link" data-scroll-target="#the-short-version"><span class="header-section-number">11.1.1</span> The Short Version</a></li>
+  <li><a href="#folders" id="toc-folders" class="nav-link" data-scroll-target="#folders"><span class="header-section-number">11.1.2</span> Folders</a></li>
+  <li><a href="#files" id="toc-files" class="nav-link" data-scroll-target="#files"><span class="header-section-number">11.1.3</span> Files</a></li>
+  <li><a href="#version-control-for-collaborative-documents" id="toc-version-control-for-collaborative-documents" class="nav-link" data-scroll-target="#version-control-for-collaborative-documents"><span class="header-section-number">11.1.4</span> Version Control for Collaborative Documents</a></li>
+  <li><a href="#what-to-avoid" id="toc-what-to-avoid" class="nav-link" data-scroll-target="#what-to-avoid"><span class="header-section-number">11.1.5</span> What to Avoid</a></li>
   </ul></li>
-  <li><a href="#the-code-folder" id="toc-the-code-folder" class="nav-link" data-scroll-target="#the-code-folder"><span class="header-section-number">11.4</span> The code/ Folder</a>
+  <li><a href="#technical-coding-organization" id="toc-technical-coding-organization" class="nav-link" data-scroll-target="#technical-coding-organization"><span class="header-section-number">11.2</span> Technical Coding Organization</a>
   <ul class="collapse">
-  <li><a href="#script-headers" id="toc-script-headers" class="nav-link" data-scroll-target="#script-headers"><span class="header-section-number">11.4.1</span> Script Headers</a></li>
-  <li><a href="#script-status" id="toc-script-status" class="nav-link" data-scroll-target="#script-status"><span class="header-section-number">11.4.2</span> Script Status</a></li>
-  <li><a href="#exploratory-scripts" id="toc-exploratory-scripts" class="nav-link" data-scroll-target="#exploratory-scripts"><span class="header-section-number">11.4.3</span> Exploratory Scripts</a></li>
+  <li><a href="#the-core-principle" id="toc-the-core-principle" class="nav-link" data-scroll-target="#the-core-principle"><span class="header-section-number">11.2.1</span> The Core Principle</a></li>
+  <li><a href="#technical-project-structure" id="toc-technical-project-structure" class="nav-link" data-scroll-target="#technical-project-structure"><span class="header-section-number">11.2.2</span> Technical Project Structure</a></li>
+  <li><a href="#the-data-folder" id="toc-the-data-folder" class="nav-link" data-scroll-target="#the-data-folder"><span class="header-section-number">11.2.3</span> The data/ Folder</a></li>
+  <li><a href="#the-code-folder" id="toc-the-code-folder" class="nav-link" data-scroll-target="#the-code-folder"><span class="header-section-number">11.2.4</span> The code/ Folder</a></li>
+  <li><a href="#the-output-folder" id="toc-the-output-folder" class="nav-link" data-scroll-target="#the-output-folder"><span class="header-section-number">11.2.5</span> The output/ Folder</a></li>
+  <li><a href="#the-docs-folder" id="toc-the-docs-folder" class="nav-link" data-scroll-target="#the-docs-folder"><span class="header-section-number">11.2.6</span> The docs/ Folder</a></li>
+  <li><a href="#cross-software-data-format" id="toc-cross-software-data-format" class="nav-link" data-scroll-target="#cross-software-data-format"><span class="header-section-number">11.2.7</span> Cross-Software Data Format</a></li>
   </ul></li>
-  <li><a href="#the-output-folder" id="toc-the-output-folder" class="nav-link" data-scroll-target="#the-output-folder"><span class="header-section-number">11.5</span> The output/ Folder</a></li>
-  <li><a href="#the-docs-folder" id="toc-the-docs-folder" class="nav-link" data-scroll-target="#the-docs-folder"><span class="header-section-number">11.6</span> The docs/ Folder</a></li>
-  <li><a href="#cross-software-data-format" id="toc-cross-software-data-format" class="nav-link" data-scroll-target="#cross-software-data-format"><span class="header-section-number">11.7</span> Cross-Software Data Format</a></li>
   </ul>
 </nav>
     </div>
@@ -383,17 +384,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>A well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.</p>
-<section id="the-core-principle" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">11.1</span> The Core Principle</h2>
-<p>Every project has two types of files, and keeping them separate is the foundation of everything else:</p>
+<p>We use two types of organizational structures. One is for <strong>standard</strong> non-coding files. This is for files like literature, manuscripts, grant proposals, and so on. This will be the most commonly accessed structure. The other structure is for <strong>technical</strong> files that involve coding and data analysis.</p>
+<section id="standard-organization" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="standard-organization"><span class="header-section-number">11.1</span> Standard Organization</h2>
+<p>Use the following conventions for all non-coding folders and files stored on OneDrive or other shared drives.</p>
+<section id="the-short-version" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="the-short-version"><span class="header-section-number">11.1.1</span> The Short Version</h3>
+<ul>
+<li>Folders and files: Title Case with spaces</li>
+<li>Dates: Always YYYY-MM-DD at the start</li>
+<li>Versions: v1, v2, v3 at the end</li>
+<li>No special characters: &amp; # % @ $</li>
+</ul>
+</section>
+<section id="folders" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="folders"><span class="header-section-number">11.1.2</span> Folders</h3>
+<p>Use Title Case with spaces. Keep names short and descriptive.</p>
+<pre><code>SEL Adverse Effects Project/
+├── Raw Data/
+├── Manuscripts/
+│   ├── Prevention Science Journal/
+│   └── SEL Journal/
+├── Presentations/
+│   ├── SREE/
+│   └── AERA/
+├── Meeting Notes/
+├── IRB/
+└── Grant Materials/</code></pre>
+</section>
+<section id="files" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="files"><span class="header-section-number">11.1.3</span> Files</h3>
+<p><strong>Documents with dates</strong> (meeting notes, memos, correspondence) — Format: <code>YYYY-MM-DD Description.ext</code></p>
+<pre><code>2026-03-15 CWER Team Meeting Notes.docx
+2026-01-20 PEER Partner Update.docx
+2026-02-01 IRB Amendment Submission.pdf</code></pre>
+<p><strong>Documents with versions</strong> (manuscripts, reports, protocols) — Format: <code>Description vN.ext</code> or <code>Description vN Initials.ext</code></p>
+<pre><code>SEL Adverse Effects Manuscript v1.docx
+SEL Adverse Effects Manuscript v2 MS.docx
+SEL Adverse Effects Manuscript v3 JM.docx
+Sway Classroom Protocol v4.docx</code></pre>
+<p><strong>Data files</strong> — Format: <code>YYYY-MM-DD Description.ext</code> or <code>ProjectName Description YYYY-MM-DD.ext</code></p>
+<pre><code>2026-03-01 SEL Adverse Effects Cleaned Data.xlsx
+PEER 2025-2026 Teacher Survey Data.sav</code></pre>
+<p><strong>Presentations</strong> — Format: <code>YYYY-MM-DD Event or Audience Description.ext</code></p>
+<pre><code>2026-04-10 AERA SEL Meta-Analysis Slides.pptx
+2026-03-15 PEER Partner Dashboard Presentation.pptx</code></pre>
+</section>
+<section id="version-control-for-collaborative-documents" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="version-control-for-collaborative-documents"><span class="header-section-number">11.1.4</span> Version Control for Collaborative Documents</h3>
+<ol type="1">
+<li>Never save over someone else’s version</li>
+<li>Add your initials when returning edits: <code>v2 MS</code></li>
+<li>The lead author consolidates edits and advances the version number: <code>v3</code></li>
+<li>Mark the final submitted version clearly: <code>v5 FINAL SUBMITTED</code></li>
+<li>After submission, archive older versions in a subfolder called <code>Previous Versions/</code></li>
+</ol>
+</section>
+<section id="what-to-avoid" class="level3" data-number="11.1.5">
+<h3 data-number="11.1.5" class="anchored" data-anchor-id="what-to-avoid"><span class="header-section-number">11.1.5</span> What to Avoid</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Avoid</th>
+<th>Use Instead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>final_FINAL_v2_forreal.docx</code></td>
+<td><code>Manuscript v4 FINAL SUBMITTED.docx</code></td>
+</tr>
+<tr class="even">
+<td><code>March 15 meeting.docx</code></td>
+<td><code>2026-03-15 Team Meeting Notes.docx</code></td>
+</tr>
+<tr class="odd">
+<td><code>MSmeetingnotes3-15.docx</code></td>
+<td><code>2026-03-15 Team Meeting Notes.docx</code></td>
+</tr>
+<tr class="even">
+<td><code>SEL&amp;EdReport.docx</code></td>
+<td><code>SEL and Ed Report.docx</code></td>
+</tr>
+<tr class="odd">
+<td><code>data (copy) (2).xlsx</code></td>
+<td><code>Data v2.xlsx</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="technical-coding-organization" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="technical-coding-organization"><span class="header-section-number">11.2</span> Technical Coding Organization</h2>
+<section id="the-core-principle" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">11.2.1</span> The Core Principle</h3>
+<p>For technical organization, every project has two types of files, and keeping them separate is the foundation of everything else:</p>
 <ol type="1">
 <li><p><strong>Input files are fixed.</strong> Data that comes from outside the project such as partner-provided files, downloaded datasets, or exported survey data, goes in <code>data/raw/</code> and is never modified by your scripts. If you need a cleaned version, your script reads the original, transforms it, and saves the result to <code>data/cleaned/</code>.</p></li>
 <li><p><strong>Outputs are reproducible.</strong> Everything your scripts produce such as figures, tables, and rendered reports goes in <code>output/</code> and can always be regenerated by rerunning the script that created it. Because of this, they are not committed to GitHub.</p></li>
 </ol>
 <p>When you know that everything in <code>data/raw/</code> is an original, untouched input, you can always trust it as the ground truth for the project.</p>
 </section>
-<section id="standard-project-structure" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="standard-project-structure"><span class="header-section-number">11.2</span> Standard Project Structure</h2>
+<section id="technical-project-structure" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="technical-project-structure"><span class="header-section-number">11.2.2</span> Technical Project Structure</h3>
 <p>A typical CWER project looks like this:</p>
 <pre><code>my-project/
 ├── data/                   # All data files
@@ -415,10 +508,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Not every project needs every subfolder. Adapt as needed, but keep the core separation between <code>data/raw/</code> and everything else intact.</p>
 </section>
-<section id="the-data-folder" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="the-data-folder"><span class="header-section-number">11.3</span> The data/ Folder</h2>
-<section id="dataraw" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="dataraw"><span class="header-section-number">11.3.1</span> data/raw/</h3>
+<section id="the-data-folder" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="the-data-folder"><span class="header-section-number">11.2.3</span> The data/ Folder</h3>
+<section id="dataraw" class="level4" data-number="11.2.3.1">
+<h4 data-number="11.2.3.1" class="anchored" data-anchor-id="dataraw"><span class="header-section-number">11.2.3.1</span> data/raw/</h4>
 <p>The <code>data/raw/</code> folder holds files that come from <strong>outside</strong> the project — things your scripts read but never modify. This includes:</p>
 <ul>
 <li>Survey data exported from Qualtrics or a partner system</li>
@@ -428,12 +521,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Treat everything in <code>data/raw/</code> as read-only. Scripts read from it but never write to it. If a raw file needs to be corrected, replace it and document the change in <code>data/README.md</code>. Do not silently overwrite it.</p>
 </section>
-<section id="datacleaned" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="datacleaned"><span class="header-section-number">11.3.2</span> data/cleaned/</h3>
+<section id="datacleaned" class="level4" data-number="11.2.3.2">
+<h4 data-number="11.2.3.2" class="anchored" data-anchor-id="datacleaned"><span class="header-section-number">11.2.3.2</span> data/cleaned/</h4>
 <p>The <code>data/cleaned/</code> folder holds processed versions of raw data produced by your cleaning scripts. These are intermediate files that other scripts will use as inputs, such as merged datasets, recoded variables, reshaped files, and so on. Because cleaned files are generated by code, they can always be recreated by rerunning the cleaning script.</p>
 </section>
-<section id="datareadme.md" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="datareadme.md"><span class="header-section-number">11.3.3</span> data/README.md</h3>
+<section id="datareadme.md" class="level4" data-number="11.2.3.3">
+<h4 data-number="11.2.3.3" class="anchored" data-anchor-id="datareadme.md"><span class="header-section-number">11.2.3.3</span> data/README.md</h4>
 <p><strong>Always include a <code>data/README.md</code></strong> that documents where each raw file came from, when it was received, and any relevant notes. This takes two minutes to write and is invaluable six months later when you are trying to remember which version of a dataset came from which partner, or which Qualtrics export corresponds to which wave of data collection.</p>
 <p>Example <code>data/README.md</code>:</p>
 <pre><code># Data Sources
@@ -449,8 +542,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 - Notes: Version 3 adds items from the revised teacher observation protocol</code></pre>
 </section>
 </section>
-<section id="the-code-folder" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="the-code-folder"><span class="header-section-number">11.4</span> The code/ Folder</h2>
+<section id="the-code-folder" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="the-code-folder"><span class="header-section-number">11.2.4</span> The code/ Folder</h3>
 <p>Analysis scripts are numbered to reflect the order of the pipeline:</p>
 <pre><code>code/
 ├── 01_data_cleaning.qmd
@@ -461,30 +554,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The two-digit prefix means scripts appear in pipeline order when you list the folder. Script 01 reads from <code>data/raw/</code> and writes cleaned files to <code>data/cleaned/</code>. Script 02 reads from <code>data/cleaned/</code> and produces descriptives. A new team member can look at the file list and understand the overall flow without reading any code.</p>
 <p>Numbers reflect <strong>logical order</strong>, not strict dependencies. Script 04 might read outputs from both scripts 01 and 03. The numbering just helps you understand the overall structure.</p>
 <p><strong>When you add a new script, assign the next available number. If you retire a script, do not renumber the others.</strong> Leave gaps rather than creating confusion about which script a particular output came from.</p>
-<section id="script-headers" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="script-headers"><span class="header-section-number">11.4.1</span> Script Headers</h3>
+<section id="script-headers" class="level4" data-number="11.2.4.1">
+<h4 data-number="11.2.4.1" class="anchored" data-anchor-id="script-headers"><span class="header-section-number">11.2.4.1</span> Script Headers</h4>
 <p>Every script should begin with a header block identifying the author, purpose, inputs, and outputs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Script:  01_data_cleaning.qmd</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author:  Your Name (your.email@yale.edu)</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Created: 2025-10-01</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Purpose: Clean and merge Wave 1 survey data</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs:  data/raw/care4kids_survey_wave1.csv</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Outputs: data/cleaned/wave1_cleaned.rds</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># AI:      Code developed with Claude assistance</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Review:  Reviewed by Michael Strambler, 2025-10-05</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Script:  01_data_cleaning.qmd</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author:  Your Name (your.email@yale.edu)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Created: 2025-10-01</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Purpose: Clean and merge Wave 1 survey data</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs:  data/raw/care4kids_survey_wave1.csv</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Outputs: data/cleaned/wave1_cleaned.rds</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># AI:      Code developed with Claude assistance</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Review:  Reviewed by Michael Strambler, 2025-10-05</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>AI</code> and <code>Review</code> lines reflect our commitments to transparency and quality control described in the <a href="../../chapters/analysis/statistical-analysis.html">Statistical Analysis</a> chapter.</p>
 </section>
-<section id="script-status" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="script-status"><span class="header-section-number">11.4.2</span> Script Status</h3>
+<section id="script-status" class="level4" data-number="11.2.4.2">
+<h4 data-number="11.2.4.2" class="anchored" data-anchor-id="script-status"><span class="header-section-number">11.2.4.2</span> Script Status</h4>
 <p>Add a <code>status</code> field to each script’s YAML header to signal where it is in its lifecycle:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Multilevel Model Analysis"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Multilevel Model Analysis"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -513,13 +606,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>When results are heading toward a report or publication, mark the relevant scripts <code>finalized</code>. This signals to collaborators that any changes should be intentional and that outputs should be re-verified if the script is rerun.</p>
 </section>
-<section id="exploratory-scripts" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="exploratory-scripts"><span class="header-section-number">11.4.3</span> Exploratory Scripts</h3>
+<section id="exploratory-scripts" class="level4" data-number="11.2.4.3">
+<h4 data-number="11.2.4.3" class="anchored" data-anchor-id="exploratory-scripts"><span class="header-section-number">11.2.4.3</span> Exploratory Scripts</h4>
 <p>Think of the <code>code/exploratory/</code> subfolder as a playground for for one-off analyses, sanity checks, and ideas you are testing. Exploratory scripts follow relaxed rules with no number prefixes required, and nothing else in the project depends on their outputs. This makes it safe to experiment without worrying about breaking the main pipeline. If an exploratory analysis turns out to be valuable, promote it to a numbered script in the main directory.</p>
 </section>
 </section>
-<section id="the-output-folder" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="the-output-folder"><span class="header-section-number">11.5</span> The output/ Folder</h2>
+<section id="the-output-folder" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="the-output-folder"><span class="header-section-number">11.2.5</span> The output/ Folder</h3>
 <p>All generated outputs go in <code>output/</code>, organized into two subfolders:</p>
 <pre><code>output/
 ├── tables/
@@ -530,12 +623,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     └── figure2_scatter.pdf</code></pre>
 <p>Keep file names descriptive so their purpose is clear without opening them. Avoid generic names like <code>table1.docx</code> or <code>figure_final.png</code>.</p>
 </section>
-<section id="the-docs-folder" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="the-docs-folder"><span class="header-section-number">11.6</span> The docs/ Folder</h2>
+<section id="the-docs-folder" class="level3" data-number="11.2.6">
+<h3 data-number="11.2.6" class="anchored" data-anchor-id="the-docs-folder"><span class="header-section-number">11.2.6</span> The docs/ Folder</h3>
 <p>The <code>docs/</code> folder holds reports, presentations, manuscripts, and other documents intended for external audiences or stakeholders. These are the human-readable products of the project — the things you send to partners, funders, or journals. Unlike <code>output/</code>, which holds raw generated files, <code>docs/</code> holds polished, finalized deliverables.</p>
 </section>
-<section id="cross-software-data-format" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="cross-software-data-format"><span class="header-section-number">11.7</span> Cross-Software Data Format</h2>
+<section id="cross-software-data-format" class="level3" data-number="11.2.7">
+<h3 data-number="11.2.7" class="anchored" data-anchor-id="cross-software-data-format"><span class="header-section-number">11.2.7</span> Cross-Software Data Format</h3>
 <p>When data produced by one software needs to be read by another — for example, R producing a dataset that Mplus will read, or Stata producing a file that R will analyze — save in a format both can read:</p>
 <ul>
 <li><strong>CSV</strong> is the most universally accessible format and the default choice for sharing data across R, Stata, Mplus, and SPSS</li>
@@ -545,6 +638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Within a single software environment, use native formats where appropriate (<code>.rds</code> for R objects, <code>.dta</code> for Stata) to preserve data types and attributes.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
