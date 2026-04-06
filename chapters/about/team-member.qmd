@@ -8,15 +8,15 @@ Every member must complete and stay current with the appropriate human research 
 
 Collecting data from someone is like collecting a part of their person, and we have an ethical obligation to treat this information with the utmost care. Accordingly, we take data security very seriously. Data of moderate or high risk should be handled with the procedures described below (see Yale's definitions of risk [here](https://cybersecurity.yale.edu/know-your-risk#:~:text=Yale%20uses%20three%20risk%20classifications%20for%20data,on%20risk%20using%20Minimum%20Security%20Standards%20(MSS).)).
 
-- If you are not sure whether data are moderate or high-risk, ask either Mike or Joanna before you do anything — or just treat the data as high risk. It is always better to be more cautious when in doubt. Check the IRB protocol and data sharing agreements on issues regarding data protection and sharing.
+- If you are not sure whether data are moderate or high-risk, ask either Mike or Joanna before you do anything, or just treat the data as high risk. It is always better to be more cautious when in doubt. Check the IRB protocol and data sharing agreements on issues regarding data protection and sharing.
 
-- Moderate and high-risk data can **only** be saved in the following places: (1) the Yale server (Storage @ Yale); (2) Yale Secure Box (this is different from "regular" Yale Box); (3) Yale-managed Microsoft OneDrive or SharePoint; (4) temporarily on a Yale-managed encrypted hard drive; or (5) temporarily on a Yale-issued IronKey flash drive.
+- Moderate and high-risk data can **only** be saved in the following places: (1) Yale-managed Microsoft OneDrive or SharePoint;(2) the Yale server (Storage @ Yale); (3) temporarily on a Yale-managed encrypted hard drive; or (4) temporarily on a Yale-issued secure flash drive.
 
-- Saving data on Yale encrypted hard drives or IronKey flash drives should **only** be done when you do not have access to the internet, or you need to transfer data from one location to another. In such cases, immediately transfer data to the server or Secure Box when you have internet access.
+- Saving data on Yale encrypted hard drives or Yale-issued secure flash drives should **only** be done when you do not have access to the internet, or you need to transfer data from one location to another. In such cases, immediately transfer data to Yale OneDrive/Sharepoint or Storage @ Yale when you have internet access.
 
-- **Never** electronically transmit data with personally identifiable information through any means other than Yale's Secure File Transfer (or another secure FTP process when partners are transmitting files). Although Yale has a Microsoft Outlook email encryption feature, never use this for transmitting moderate or high-risk data — it is too easy to make a mistake.
+- **Never** electronically transmit data with personally identifiable information through any means other than Yale's OneDrive (or another secure FTP process when partners are transmitting files). Although Yale has a Microsoft Outlook email encryption feature, never use this for transmitting moderate or high-risk data — it is too easy to make a mistake.
 
-- Yale issues [free high-security flash drives](https://yale.service-now.com/it?id=service_offering&sys_id=87688dcd6fbb31007ee2abcf9f3ee427) upon request. It is a good idea to have one on hand in case you need to temporarily store sensitive data. This is secure enough to store high-risk data, but only for transporting data from one secure system to another.
+- Yale issues [free high-security flash drives](https://yale.service-now.com/it?id=service_offering&sys_id=87688dcd6fbb31007ee2abcf9f3ee427) upon request. It is a good idea to have one on hand in case you need to temporarily store sensitive data or transfer data from a partner's computer. This is secure enough to store high-risk data, but only for transporting data from one secure system to another. It shoud not be used for long-term storage.
 
 ## Open Science & Research Integrity
 
