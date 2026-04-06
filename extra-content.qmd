@@ -102,3 +102,7 @@ not cover?
 ## Data Management and Analysis
 
 AI is an invaluable tool for speeding up data management and analysis tasks. See the [Data Management](../data/data-prompts.qmd)  and [Statistical Analysis](../analysis/analysis-prompts.qmd) sections for examples of prompts. 
+
+# Claude Code
+
+Claude Code is a command-line AI coding tool from Anthropic that can assist with writing, editing, and explaining code directly in your terminal. It is particularly useful for larger coding tasks where you want AI assistance without leaving your development environment. Claude Code is optional but recommended for team members doing substantial R or Stata work. See the Getting Started chapter for setup guidance.

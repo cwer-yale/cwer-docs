@@ -23,7 +23,6 @@ book:
         - chapters/tools/tools-overview.qmd
         - chapters/tools/github.qmd
         - chapters/tools/ides.qmd
-        - chapters/tools/claude-code.qmd
         - chapters/tools/ai-prompts.qmd
         - chapters/workflows/r/r.qmd
         - chapters/workflows/mplus/mplus.qmd
