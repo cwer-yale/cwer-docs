@@ -1,167 +1,117 @@
-# Working with AI
+# AI Tools
 
-This chapter describes how CWER uses AI tools across three areas of research work: idea generation, reviewing and editing, and data management and analysis. Each section includes the prompts and setups we use in practice.
+This chapter describes how we use AI tools for idea generation and reviewing and editing. See the Data Management and Statistical Analysis sections for using AI for those types of tasks. 
 
-## About Our AI Tools
+## Recommended AI Tools
 
-CWER uses **Claude** (by Anthropic) as its primary AI tool. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic's serious attention to the ethical development of AI. **Gemini** (by Google) is our secondary recommendation for the same reasons — strong performance combined with a developer that takes responsible AI seriously. Both are available through Yale's Clarity platform (see below).
+### General Purpose LLMs: Claude & Gemini
 
-We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.
+[Claude](https://claude.ai/new) (Anthropic) and [Gemini](https://gemini.google.com/app) (Google) are large language model assistants useful at multiple stages of the research process. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. Gemini (by Google) is our secondary recommendation for the same reasons. Both are highly capable for tasks where the researcher supplies the content and the AI assists with processing, drafting, or reasoning.
 
-## Data Security and AI
+However, **neither Claude nor Gemini should be trusted to retrieve citations, report statistics, or make factual claims about the literature without verification**. Use Consensus (see below), Google Scholar, or a traditional database search for evidence retrieval. Use Claude and Gemini for everything that surrounds that evidence such as, writing, coding, organizing, and reasoning.
 
-**Yale's Clarity platform** ([clarity.yale.edu](https://ai-chat.yale.edu/)) is the only platform approved for working with identifiable or sensitive research data. Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data with the exception of electronic Protected Health Information (ePHI). If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.
+**Claude** is particularly useful for:
 
-When using Claude.ai, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.
+- **Long document analysis** — reading and synthesizing lengthy manuscripts, reports, grant applications, or literature with a large context window
+- **Writing and editing** — drafting, revising, and improving research prose including introductions, discussion sections, and abstracts
+- **Statistical code** — writing and debugging R, Stata, Mplus, and SPSS code with strong attention to methodological context
+- **Structured reasoning** — working through analytic decisions, research design questions, and interpretation of findings
+- **Document creation** — producing formatted reports, codebooks, and documentation from existing content
 
-## General Prompting Principles
+**Gemini** is particularly useful for:
 
-Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:
+- **Google Workspace integration** — working directly within Google Docs, Sheets, Slides, and Gmail for in-context drafting and editing
+- **Web-connected search** — retrieving and summarizing current information from the web alongside AI reasoning
+- **Multimodal tasks** — analyzing images, figures, and mixed-format documents
+- **[NotebookLM](https://notebooklm.google.com/)** — Google's tool powered by Gemini is especially useful for uploading numerous PDFs (e.g., a set of papers for a review) and asking questions across them. Since it references specific information from the documents, this can be very helpful for supporting the review and synthesis of literature. 
 
-**Give context first.** AI tools have no memory of your project unless you tell them. Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.
+### Consensus
+[Consensus](https://consensus.app/) is an AI-powered academic search engine that retrieves and synthesizes findings directly from peer-reviewed literature. It's designed specifically for research questions and returns evidence-based answers grounded in specific papers rather than web results. Yale provides free Pro access to all faculty, staff, and students. To activate, sign up at consensus.app using your Yale email address.
 
-**Be specific about what you want.** "Help me clean this data" is too vague. "I have a CSV with 342 rows and 45 variables. I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse." gives the AI something concrete to work with.
+Consensus main features:
 
-**Treat output as a first draft.** Review every piece of AI-generated code before running it. Check that it does what you intended. AI output can be subtly wrong in ways that do not throw errors — always verify results against expectations.
+- **Evidence-based search** — results link directly to peer-reviewed sources with citations
+- **Consensus meter** — summarizes the degree of agreement or disagreement across studies on a given topic
+- **Study snapshots** — extracts key findings, sample sizes, and methods from individual papers
+- **Filters** — narrow results by study design, sample type, journal, and year
 
-**Use AI as a thought partner, not an oracle.** Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you — to surface considerations you may have missed, identify gaps in a plan, or present the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.
+Consensus is espcially useful for:
 
-**Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter.
+- Scoping a new research area quickly
+- Identifying key papers and research gaps before a systematic search
+- Checking the state of evidence on a specific claim or intervention
+- Supporting manuscript introductions and literature reviews
 
-## Writing Assistance with Grammarly
+### Grammarly
 
-[Grammarly](https://www.grammarly.com) is an AI-powered writing assistant that checks grammar, spelling, punctuation, clarity, and style in real time. The recommended version for CWER team members is the **Grammarly desktop app**, which works seamlessly across all the applications you already use — Word, Outlook, email clients, web browsers, and desktop applications — without any copying and pasting. Suggestions appear inline wherever you are writing.
+[Grammarly](https://www.grammarly.com) is an AI-powered writing assistant that checks grammar, spelling, punctuation, clarity, and style in real time. The recommended version for CWER team members is the **Grammarly desktop app**, which works across all the applications you already use like Word, Outlook, email clients, web browsers, and desktop applications, without any copying and pasting. Suggestions appear inline wherever you are writing.
 
-For CWER work, Grammarly is most useful for:
+Grammarly is most useful for:
 
 - Polishing manuscript drafts, reports, and partner communications before sharing
 - Catching typos and grammatical errors in research reports and grant proposals
 - Improving sentence clarity and concision in methods and results sections
 - Checking team member writing during the review process
 
-### Setup
-
-Download the Grammarly desktop app for Mac or Windows at [grammarly.com/desktop](https://www.grammarly.com/desktop). Installation is straightforward — once installed, Grammarly works automatically in the background across your applications. The free version covers grammar, spelling, and punctuation. Grammarly Pro adds clarity, tone, and style suggestions, which are useful for academic writing.
-
-### A Note on Data Privacy
-
 Do not use Grammarly with text containing sensitive research data or participant information. Grammarly processes text on external servers. For sensitive content, use Microsoft Word's built-in Editor (Review → Editor) instead, which provides grammar and style checking without sending text to external servers. You can also temporarily turn Grammarly off for a specific application using the Grammarly desktop app settings.
+
+### Yale's Clarity
+Yale developed its own platform for accessing existing AI models. It's called [Clarity](https://ai-chat.yale.edu/) and since it is designed to protect sensitive information **it is the only platform approved for working with identifiable or sensitive research data.** Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data **except for electronic Protected Health Information (ePHI)**. If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.
+
+When using Claude, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.
+
+We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.
+
+## General Prompting Principles
+
+Getting useful output from AI requires clear, specific input. A few principles that apply across all tasks:
+
+**Give context first.** AI tools have no memory of your project unless you tell them (you can do this in settings). Before asking for help, describe what you are working on, what software you are using, what you have already tried, and what the output should look like.
+
+**Be specific about what you want.** "Help me clean this data" is too vague. Here's a better prompt: "I need to recode variables coded -99 and -98 to NA, reverse score items 3, 7, and 12, and compute a mean composite score across items 1-10, excluding cases with more than 20% missing. Write R code using tidyverse." gives the AI something concrete to work with.
+
+**Treat output as a first draft.** Review AI-generated code before running it and check that it does what you intended after running it. AI output can be subtly wrong in ways that do not provide errors. Always verify results against expectations.
+
+**Use AI as a thought partner, not an oracle.** Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you. It's useful for surfacing considerations you may have missed, identifying gaps in a plan, or presenting the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.
+
+**Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter.
 
 ## Idea Generation
 
-AI is well-suited for early-stage thinking — exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.
+AI is well-suited for early-stage thinking such as exploring a literature you are less familiar with, stress-testing a research design, or identifying considerations you may have overlooked. The key is to treat AI output as a starting point that you verify and refine, not as a definitive answer.
 
-### Effect Size Interpretation
+### Examples
 
-When evaluating education research involving effect sizes, we use guidance from Kraft (2019), which provides empirically grounded benchmarks based on 1,942 effect sizes from 747 RCTs of education interventions. Cohen's conventional benchmarks (small = 0.2, medium = 0.5, large = 0.8) were derived from small lab studies and are far too large relative to what field-based education interventions actually produce. Kraft's adjusted benchmarks are:
+**Exploring an unfamiliar literature**
+> "I am designing a study on teacher emotional labor in high-poverty schools. What are the key theoretical frameworks and empirical debates I should be aware of before conducting a literature search?"
 
-| Category | Threshold |
-|---|---|
-| Small | < 0.05 SD |
-| Medium | 0.05–0.19 SD |
-| Large | ≥ 0.20 SD |
+**Stress-testing a research design**
+> "Here is my proposed design for a quasi-experimental study of an SEL intervention. What are the most significant threats to validity I should anticipate, and how might a reviewer challenge my methodological approach?"
 
-The median effect size across education RCTs is 0.10 SD. Large-scale, pre-registered RCTs produce medians as low as 0.03 SD.
+**Identifying overlooked considerations**
+> "We are developing a survey to measure school climate from the perspective of elementary students. What measurement challenges or practical considerations might we be overlooking?"
 
-When asking AI to help interpret or contextualize effect sizes, include this framing in your prompt so the AI applies these benchmarks rather than Cohen's conventions.
+**Generating hypotheses**
+> "Based on the stress-buffering model of social support, what hypotheses might I generate about the moderating role of teacher-student relationship quality on the effects of adverse childhood experiences on academic outcomes?"
 
-**System prompt for effect size work** (use in a Claude Project or paste at the start of a conversation):
-```
-When evaluating education-related research involving effect sizes, 
-use Kraft (2019) benchmarks rather than Cohen's conventions: 
-small < 0.05 SD, medium 0.05–0.19 SD, large ≥ 0.20 SD. The median 
-effect size across education RCTs is 0.10 SD. Note the following 
-when contextualizing effects: (1) whether the design is causal or 
-correlational, (2) whether the outcome is proximal or distal to the 
-intervention, (3) design features that may inflate effect sizes 
-(small/targeted samples, researcher-designed measures, TOT vs. ITT), 
-and (4) cost and scalability considerations.
-```
+**Brainstorming research questions**
+> "We have a longitudinal dataset with annual assessments of social-emotional skills and academic achievement from kindergarten through fifth grade in a high-poverty urban district. What research questions might be theoretically interesting and practically meaningful to pursue?"
 
-**Interpreting an effect size:**
-```
-I am reviewing a study of an SEL intervention that reports a 
-Cohen's d of 0.18 on a teacher-reported SEL measure administered 
-immediately post-intervention. The study used a randomized design 
-with N=280 students in grades 3-5. Using Kraft (2019) benchmarks, 
-how should I interpret this effect size? What contextual factors 
-are relevant?
-```
+**Anticipating limitations**
+> "What are the most common limitations reviewers identify in meta-analyses of school-based mental health interventions, and how are they typically addressed in the discussion section?"
 
-**Exploring a literature:**
-```
-I am designing a study on [topic]. Before I finalize the design, 
-what are the key bodies of empirical literature I should be 
-familiar with? What are the main debates or unresolved questions 
-in this area? Please be specific about subfields and landmark 
-papers where possible — I will verify and read the primary sources.
-```
-
-**Stress-testing a research design:**
-```
-Here is my proposed research design: [describe design]. Before 
-I finalize it, what are the strongest methodological objections 
-someone could raise? What threats to validity am I most exposed 
-to? What would a skeptical reviewer say about this approach?
-```
-
-### Measurement Development
-
-For measurement development work, we use a dedicated Claude Project (or Cowork session) with a system prompt and an attached reference document. This keeps the AI grounded in established psychometric evidence rather than generating advice from general knowledge alone.
-
-**The reference document** is `scale_best_practices.docx`, which lives in the lab's shared Google Drive. This document was built from primary scientific literature by psychometric experts — Krosnick & Presser (2010), Preston & Colman (2000), Saris et al. (2010), Schaeffer & Dykema (2020), Ward & Meade (2023), and others. The document was not generated by AI. AI was used as a thought partner during its development — asked to identify bodies of work and considerations that might be missing — but all editorial decisions about what to include were made by Mike. The result is a reference grounded in the actual scientific literature, not in AI's general impressions of measurement best practices.
-
-This is a concrete example of the thought partner approach: you drive the intellectual work, use AI to surface potential blind spots, and exercise your own judgment about what belongs. The AI does not write the document — it helps you ask better questions about what should be in it.
-
-**System prompt for the Claude Project:**
-```
-This involves measurement issues related to other research projects. 
-Take the role of an expert in measurement development. Use the 
-document on best practices to guide but feel free to go beyond this.
-```
-
-Attach `scale_best_practices.docx` to the project before beginning.
-
-**Designing a new scale:**
-```
-I am developing a teacher-report measure of student self-management 
-for use in grades K-3. The construct includes behavioral regulation, 
-emotional control, and goal-directed persistence. I plan to use a 
-5-point response scale. Based on the best practices document, what 
-response format and label set would you recommend? Are there any 
-considerations specific to teacher-report measures I should be 
-aware of?
-```
-
-**Reviewing existing items:**
-```
-Here are 8 draft items for a social awareness subscale. Please 
-review them against the best practices document and flag any 
-concerns about item wording, response format match, potential 
-acquiescence bias, or cognitive burden. Suggest revisions where 
-needed.
-
-[paste items here]
-```
-
-**Using AI as a thought partner on scale design:**
-```
-I have made the following decisions about my scale design: 
-[describe decisions]. Before I finalize, what considerations or 
-tradeoffs might I be overlooking? Are there bodies of psychometric 
-literature I should consult that the best practices document does 
-not cover?
-```
 ## Reviewing & Editing
 
 When asking AI to review written work, the most useful output comes from prompts that specify the review criteria clearly and explicitly discourage flattery. The following system prompt is used for reviewing research writing in CWER. It can be pasted at the start of a conversation or set as a system prompt in a Claude Project.
 
+### Examples 
+
 **System prompt for reviewing research writing:**
 ```
-Content in here concerns research projects.
-
-When I ask you to review something I've written, check to make 
-sure of the following:
+[Provided as instructions for Claude folder/project]. 
+The content in this folder concerns my research writing for 
+you to review. When I ask you to review something I've 
+written, ensure the following:
 1. Text is in APA format unless requested otherwise.
 2. The writing is clear, as free of jargon as possible, and concise.
 3. Logical arguments are sound.
@@ -177,7 +127,7 @@ scientific journal who is aiming to improve the work through
 strong critique.
 ```
 
-**Reviewing a manuscript section:**
+**Reviewing parts of your manuscript:**
 ```
 Please review the following [methods / results / discussion] 
 section using the criteria in your instructions. Identify the 
@@ -189,11 +139,9 @@ about what to fix and why.
 
 **Verifying a reference:**
 ```
-Please verify that the following reference is real and provide 
-a correctly formatted APA 7th edition citation and a sample 
-parenthetical in-text citation I can use directly in a manuscript.
+Please verify that all of my references are accurate and correctly formatted in APA 7th edition style.
 
-[paste reference here]
+[paste references here]
 ```
 
 **Checking for misreporting:**
@@ -207,15 +155,6 @@ Results output: [paste output]
 Results text: [paste text]
 ```
 
-**Drafting a methods section:**
-```
-I ran a multilevel model in R using lme4. Here are the details: 
-[describe model]. Write a methods section paragraph describing 
-the analytic approach in APA style, appropriate for a journal 
-manuscript. Do not invent any details — only use what I have 
-provided.
-```
 
-## Data Management and Analysis
 
-AI is an invaluable tool for speeding up data management and analysis tasks. See the [Data Management](../data/data-prompts.qmd)  and [Statistical Analysis](../analysis/analysis-prompts.qmd) sections for examples of prompts.  
+ 

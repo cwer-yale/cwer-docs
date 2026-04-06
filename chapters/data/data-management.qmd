@@ -104,7 +104,7 @@ Consistent variable names make datasets easier to work with across software plat
 
 CWER uses **snake_case** — lowercase letters with underscores between words — as the standard naming convention. For example: `sel_selfmgmt_1`, `teacher_id`, `rdg_score_z`.
 
-This is a deliberate choice over alternatives like camelCase (`SelSelfmgmt1`) or PascalCase (`SelSelfMgmt1`) for several reasons:
+This is a choice over alternatives like camelCase (`SelSelfmgmt1`) or PascalCase (`SelSelfMgmt1`) for several reasons:
 
 - **Cross-software portability.** Snake_case works cleanly across R, Stata, SPSS, and CSV files. Stata is case-sensitive, which means `RaceEth` and `raceeth` are treated as different variables — a common source of hard-to-find errors. Lowercase names eliminate this risk entirely.
 - **Readability.** `sel_selfmgmt_mean` is easier to parse at a glance than `SelSelfmgmtMean`, especially for longer names with multiple components.
@@ -165,10 +165,10 @@ Every dataset must include at least one ID variable that uniquely identifies eac
 
 For longitudinal projects, include a wave or time indicator:
 
-- `wave` — numeric wave indicator (1, 2, 3)
-- `time` — numeric time point
-- `year` — academic or calendar year
-- `season` — fall, spring (use text labels)
+- `wave` (`w` suffix)— numeric wave indicator (1, 2, 3)
+- `time` (`t` suffix)— numeric time point
+- `year` (`y` suffix)— academic or calendar year
+- `season` — fall, spring (use text labels: fall, spr, wntr,summr)
 
 When variable names need to distinguish across waves, append the wave to the end:
 
@@ -219,7 +219,7 @@ Use the following numeric codes in all raw and cleaned data files across all pro
 
 These codes should be applied consistently within a project and documented in the codebook for each variable that uses them.
 
-Never use `0` to represent missing data unless `0` is a meaningful response value that is completely distinct from missingness — and even then, use caution and document it explicitly.
+Don't use `0` to represent missing data unless `0` is a meaningful response value that is completely distinct from missingness. For example, if I responded is not asked a question about how many drinks they have per week because they previously indicated that they do not drink. And even then, use caution and document it explicitly.
 
 ### Step 2: Analysis-Ready Formats
 
@@ -272,8 +272,7 @@ Data cleaning scripts (`code/01_data_cleaning.qmd` or equivalent) should follow 
 1. **Never modify raw data.** Read from `data/raw/`, write cleaned files to `data/cleaned/`.
 2. **Document every decision.** When you recode, drop, or transform data, add a comment in the code explaining why.
 3. **Check merges carefully.** After any merge, verify that the row count and key variables look as expected. Document the check in the script header.
-4. **Produce a cleaning log.** At the end of the cleaning script, output a summary of what was done: original N, final N, variables added, variables recoded, missing data summary.
-5. **Have your cleaning code reviewed.** Follow the quality control process described in the [Statistical Analysis](../analysis/statistical-analysis.qmd) chapter.
+4. **Have your cleaning code reviewed.** Follow the quality control process described in the [Statistical Analysis](../analysis/statistical-analysis.qmd) chapter.
 
 ## A Note on Sensitive Data
 
@@ -281,4 +280,4 @@ Variables that could identify participants — names, addresses, birthdates, sch
 
 - Strip identifying variables from analysis datasets as early as possible in the cleaning process
 - Keep a separate, secure crosswalk file linking IDs to identifying information if re-identification is ever needed
-- Store crosswalk files in Yale OneDrive or Storage @ Yale, never in the project GitHub repository
+- Store crosswalk files in Yale OneDrive in a `Data` folder, **never in the project GitHub repository**

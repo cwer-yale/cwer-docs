@@ -1,6 +1,6 @@
 # Project Organization
 
-A well-organized project should answer basic questions through its structure alone. Where did the data come from? Which script produced which output? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Once internalized, setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.
+A well-organized project should answer basic questions through its structure alone. Where did the data come from? Which is the most current presentation file? Is this analysis current? And it should be able to do this without requiring anyone to read code or ask someone who was there. This chapter describes the folder conventions we use across CWER projects. Setting up a new project takes only a few minutes, but the payoff in clarity and reproducibility is substantial.
 
 We use two types of organizational structures. One is for **standard** non-coding files. This is for files like literature, manuscripts, grant proposals, and so on. This will be the most commonly accessed structure. The other structure is for **technical** files that involve coding and data analysis. 
 
@@ -35,26 +35,19 @@ SEL Adverse Effects Project/
 ### Files
 
 **Documents with dates** (meeting notes, memos, correspondence) — Format: `YYYY-MM-DD Description.ext`
+
+We use this date format so that files can easily sort chronologically. Although it's possible to sort files by the "Date Added" column in a folder, the metadata used for this can easily be lost or changed. Placing the date in the beginning of the name works much better. That being said, not all files need dates, so only use dates as needed.   
+
 ```
 2026-03-15 CWER Team Meeting Notes.docx
 2026-01-20 PEER Partner Update.docx
 2026-02-01 IRB Amendment Submission.pdf
 ```
-
-**Documents with versions** (manuscripts, reports, protocols) — Format: `Description vN.ext` or `Description vN Initials.ext`
-```
-SEL Adverse Effects Manuscript v1.docx
-SEL Adverse Effects Manuscript v2 MS.docx
-SEL Adverse Effects Manuscript v3 JM.docx
-Sway Classroom Protocol v4.docx
-```
-
 **Data files** — Format: `YYYY-MM-DD Description.ext` or `ProjectName Description YYYY-MM-DD.ext`
 ```
 2026-03-01 SEL Adverse Effects Cleaned Data.xlsx
 PEER 2025-2026 Teacher Survey Data.sav
 ```
-
 **Presentations** — Format: `YYYY-MM-DD Event or Audience Description.ext`
 ```
 2026-04-10 AERA SEL Meta-Analysis Slides.pptx
@@ -63,11 +56,14 @@ PEER 2025-2026 Teacher Survey Data.sav
 
 ### Version Control for Collaborative Documents
 
-1. Never save over someone else's version
-2. Add your initials when returning edits: `v2 MS`
-3. The lead author consolidates edits and advances the version number: `v3`
-4. Mark the final submitted version clearly: `v5 FINAL SUBMITTED`
-5. After submission, archive older versions in a subfolder called `Previous Versions/`
+Sometimes you may want to indicate the version of a file, especially when collaborating with others. OneDrive does have version control and this is useful as a backup, but it's good practice to not rely on this entirely for versioning. OneDrive has version limits, and it's not so easy to compare documents of different versions. When you have a substantial change that you want to indicate as a new version here are some rules to follow:
+
+1. Use `v#` suffix for versioning: `File Name v3` 
+2. Never save over someone else's version
+3. Add your initials when returning edits: `File Name v3 MS`
+4. The lead author consolidates edits and advances the version number: `v4`
+5. Mark the final submitted version clearly: `File Name v5 FINAL SUBMITTED`
+6. After submission, archive older versions in a subfolder called `Previous Versions/`
 
 ### What to Avoid
 
