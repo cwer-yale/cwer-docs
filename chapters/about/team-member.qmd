@@ -2,7 +2,7 @@
 
 ## Human Research Training
 
-Every member must complete and stay current with the appropriate human research trainings, including HIPAA, CITI basic training, and any other related Yale trainings. You can find this information [here](https://your.yale.edu/research-support/human-research/education-and-training/human-research-training).
+Every member must complete and stay current with the appropriate human research trainings, including HIPAA, CITI basic training, and any other related Yale trainings. You can find this information [here](https://research-support.yale.edu/research-compliance-regulatory-affairs/human-research-protection-program/training-education/human).
 
 ## Data Security and Privacy
 
