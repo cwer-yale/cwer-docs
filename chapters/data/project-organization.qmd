@@ -231,3 +231,5 @@ When data produced by one software needs to be read by another — for example, 
 - When saving from R for Mplus input, use `MplusAutomation` package functions to ensure the format is correct
 
 Within a single software environment, use native formats where appropriate (`.rds` for R objects, `.dta` for Stata) to preserve data types and attributes.
+
+For a full reference on file types you will encounter across a CWER project — including `.md`, `.qmd`, `.rmd`, `.json`, and `.yml` — see the [File Types Reference](file-types.qmd) chapter.

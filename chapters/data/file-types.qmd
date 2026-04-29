@@ -1,0 +1,164 @@
+# File Types Reference
+
+Research workflows involve many different file types — some store data, some contain code, some are plain documentation. Knowing what each format is, why it exists, and how to open or read it prevents confusion when you encounter an unfamiliar extension in a project folder or receive a file from a collaborator. This chapter covers the file types you are most likely to encounter at CWER.
+
+## Markdown (`.md`)
+
+Markdown is a lightweight plain-text format for writing formatted documents. It uses simple symbols to indicate formatting — `**bold**`, `# Heading`, `- list item` — that are readable as plain text and can also be rendered into styled HTML or PDF.
+
+**Purpose:** Documentation files, `README.md` files, notes, and simple reports. Every CWER project should have a `README.md` at the root and a `data/README.md` documenting data sources. Markdown is also the writing layer inside `.rmd` and `.qmd` files (see below).
+
+**How to open:** Any text editor, or in Positron/RStudio where it renders with a preview. GitHub renders `.md` files automatically when you browse a repository, making `README.md` files the standard way to document a project on GitHub.
+
+**Example in a CWER project:**
+```
+my-project/
+├── README.md           # Project overview — written in Markdown
+├── data/
+│   └── README.md       # Data source documentation — written in Markdown
+```
+
+## R Markdown (`.rmd`)
+
+R Markdown is a document format developed by Posit (formerly RStudio) that combines R code with narrative text written in Markdown. A `.rmd` file is a script and a report at the same time: when rendered, the code runs and its output — tables, figures, model results — is woven directly into the document.
+
+**Purpose:** Reproducible analysis scripts and reports. R Markdown was the standard for this kind of work before Quarto was released and you will encounter `.rmd` files in older CWER projects and code shared by external collaborators.
+
+**Relationship to `.qmd`:** R Markdown is the predecessor to Quarto's `.qmd` format. For new CWER work, always use `.qmd`. Existing `.rmd` files can usually be converted to `.qmd` by renaming the file and making small adjustments to the YAML header. See the [Quarto section](#quarto-markdown-.qmd) below.
+
+**How to open and render:** Open in Positron or RStudio. Render using the Knit button or:
+```r
+rmarkdown::render("code/01_data_cleaning.rmd")
+```
+
+**How to read (without running):** Any text editor. The file is plain text — you can open it in Notepad or TextEdit and read the code and prose even without R installed.
+
+## Quarto Markdown (`.qmd`)
+
+Quarto Markdown is the current CWER standard for analysis scripts and documents. Developed by Posit as the successor to R Markdown, `.qmd` files combine code chunks with narrative text and render into HTML, PDF, Word, and other formats. This very manual is built from `.qmd` files.
+
+**Purpose:** Every numbered analysis script in `code/` should be a `.qmd` file. They serve as both the script that runs the analysis and the record of what was done and why. When rendered, a `.qmd` produces a readable report alongside the output files it generates.
+
+**How it works:** A `.qmd` file has three components:
+
+1. A **YAML header** at the top (between `---` lines) that sets the title, author, date, and output format
+2. **Narrative text** written in Markdown
+3. **Code chunks** enclosed in triple backticks that run when the file is rendered
+
+Example structure:
+````markdown
+---
+title: "Wave 1 Data Cleaning"
+author: "Your Name"
+date: today
+status: development
+---
+
+## Overview
+
+This script cleans the Wave 1 survey data received from the CT Office of Early Childhood.
+
+```{{r}}
+library(tidyverse)
+data_raw <- read_csv("data/raw/care4kids_wave1.csv")
+```
+````
+
+**How to open and render:** Open in Positron or RStudio. Render with the Render button or:
+```r
+quarto::quarto_render("code/01_data_cleaning.qmd")
+```
+Or from the terminal:
+```bash
+quarto render code/01_data_cleaning.qmd
+```
+
+**Quarto vs. R Markdown at a glance:**
+
+| Feature | R Markdown (`.rmd`) | Quarto (`.qmd`) |
+|---|---|---|
+| Status at CWER | Legacy (existing projects) | Current standard |
+| Language support | Primarily R | R, Python, Stata, and more |
+| Output formats | HTML, PDF, Word | HTML, PDF, Word, books, websites, presentations |
+| Code chunk syntax | ` ```{r} ` | ` ```{r} ` (same) |
+| YAML options | R Markdown–specific | Extended Quarto options |
+
+## JSON (`.json`)
+
+JSON (JavaScript Object Notation) is a plain-text format that stores data as nested key–value pairs. It is not a spreadsheet or rectangular data format — it is a general-purpose structure for representing complex, hierarchical information.
+
+**Purpose:** You will encounter `.json` files most often when working with APIs, downloading data from web platforms, or working with configuration files. Some survey platforms and data repositories export in JSON format. It is not a format for storing your research data directly — convert it to a data frame as early as possible in your cleaning pipeline.
+
+**What it looks like:**
+```json
+{
+  "participant_id": "P001",
+  "wave": 1,
+  "responses": {
+    "sel_selfmgmt_1": 3,
+    "sel_selfmgmt_2": 4
+  }
+}
+```
+
+**How to read in R:**
+```r
+library(jsonlite)
+
+# Read a single JSON file into a list
+data_list <- fromJSON("data/raw/responses.json")
+
+# If the JSON is already rectangular (an array of records), it converts directly
+data_df <- fromJSON("data/raw/responses.json", flatten = TRUE)
+```
+
+**How to read in Stata:** Stata does not read JSON natively. The recommended approach is to read and convert the file in R first, then export to `.csv` or `.dta` for use in Stata:
+```r
+library(jsonlite)
+library(haven)
+
+data_df <- fromJSON("data/raw/responses.json", flatten = TRUE)
+write_dta(data_df, "data/cleaned/responses.dta")
+```
+
+**Note on nested JSON:** Real-world JSON files are often deeply nested — a single participant record may contain arrays of responses, which themselves contain sub-items. The `flatten = TRUE` argument in `fromJSON()` will attempt to collapse one level of nesting, but complex structures may require manual reshaping with `tidyr::unnest()`. If you receive JSON data that looks complicated, bring it to Mike or a more experienced team member before trying to parse it.
+
+## YAML (`.yml` / `.yaml`)
+
+YAML (YAML Ain't Markup Language) is a plain-text format for configuration and structured settings. It uses indentation to represent hierarchy and colons to separate keys from values.
+
+**Purpose:** Configuration files — not data or analysis files. The `_quarto.yml` file at the root of this manual is a YAML file that defines the book's title, author, chapter order, and output format. Every `.qmd` script also starts with a YAML header (between `---` lines) that sets the document's metadata.
+
+**What it looks like:**
+```yaml
+title: "Wave 1 Analysis"
+author: "Your Name"
+date: today
+status: development
+format: html
+```
+
+**Key rules for writing YAML:**
+
+- **Indentation matters.** Use spaces, not tabs. Misaligned indentation is the most common cause of YAML errors.
+- **Colons separate keys from values.** Always include a space after the colon: `key: value`, not `key:value`.
+- **Quotes are optional for plain text** but required if the value contains special characters like colons or brackets.
+
+**How to open:** Any text editor. In Positron and RStudio, `.yml` files open with syntax highlighting that makes the structure easier to read.
+
+**You will not analyze YAML.** You will edit it — adjusting a script's YAML header, adding a chapter to `_quarto.yml`, or updating a project's configuration. If editing `_quarto.yml` breaks the book build, check for indentation errors first.
+
+## Quick Reference
+
+| Extension | Type | CWER Use | Read in R |
+|---|---|---|---|
+| `.md` | Plain text / Markdown | README files, documentation | Any text editor |
+| `.rmd` | R Markdown script | Legacy analysis scripts | Positron / RStudio |
+| `.qmd` | Quarto Markdown script | Current analysis scripts | Positron / RStudio |
+| `.json` | Structured data | API exports, platform data | `jsonlite::fromJSON()` |
+| `.yml` / `.yaml` | Configuration | Quarto settings, script headers | Any text editor |
+| `.csv` | Rectangular data | Cross-software data sharing | `readr::read_csv()` |
+| `.rds` | R data object | R-to-R data handoff | `readRDS()` |
+| `.dta` | Stata data file | Stata datasets | `haven::read_dta()` |
+| `.sav` | SPSS data file | SPSS datasets | `haven::read_sav()` |
+| `.xlsx` | Excel spreadsheet | Codebooks, partner data | `readxl::read_excel()` |

@@ -29,6 +29,7 @@ book:
     - part: "Data Management"
       chapters:
         - chapters/data/project-organization.qmd
+        - chapters/data/file-types.qmd
         - chapters/data/data-management.qmd
         - chapters/data/data-wrangling.qmd
         - chapters/data/data-prompts.qmd
