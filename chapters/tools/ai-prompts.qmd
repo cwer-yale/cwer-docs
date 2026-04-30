@@ -1,6 +1,6 @@
 # AI Tools
 
-This chapter describes how we use AI tools for idea generation and reviewing and editing. See the Data Management and Statistical Analysis sections for using AI for those types of tasks. 
+This chapter describes how we use AI tools for idea generation and reviewing and editing. See the Data Management and Statistical Analysis sections for using AI for those types of tasks.
 
 ## Recommended AI Tools
 
@@ -8,7 +8,7 @@ This chapter describes how we use AI tools for idea generation and reviewing and
 
 [Claude](https://claude.ai/new) (Anthropic) and [Gemini](https://gemini.google.com/app) (Google) are large language model assistants useful at multiple stages of the research process. We chose Claude for two reasons: its strong performance on research and analytical tasks, and Anthropic’s serious attention to the ethical development of AI. Gemini (by Google) is our secondary recommendation for the same reasons. Both are highly capable for tasks where the researcher supplies the content and the AI assists with processing, drafting, or reasoning.
 
-However, **neither Claude nor Gemini should be trusted to retrieve citations, report statistics, or make factual claims about the literature without verification**. Use Consensus (see below), Google Scholar, or a traditional database search for evidence retrieval. Use Claude and Gemini for everything that surrounds that evidence such as, writing, coding, organizing, and reasoning.
+However, **neither Claude nor Gemini should be used as the primary way to retrieve citations, or make factual claims about the research literature without verification**. Use Consensus (see below), Google Scholar, or a traditional database search for evidence retrieval. Use Claude and Gemini for everything that surrounds that evidence such as, writing, coding, organizing, and reasoning.
 
 **Claude** is particularly useful for:
 
@@ -24,6 +24,22 @@ However, **neither Claude nor Gemini should be trusted to retrieve citations, re
 - **Web-connected search** — retrieving and summarizing current information from the web alongside AI reasoning
 - **Multimodal tasks** — analyzing images, figures, and mixed-format documents
 - **[NotebookLM](https://notebooklm.google.com/)** — Google's tool powered by Gemini is especially useful for uploading numerous PDFs (e.g., a set of papers for a review) and asking questions across them. Since it references specific information from the documents, this can be very helpful for supporting the review and synthesis of literature. 
+
+### Which Claude Interface to Use
+
+Claude is available through several interfaces, each suited to different kinds of work. For most CWER tasks, Claude Chat is the right starting point. Cowork and Claude Code are for more advanced workflows.
+
+**Claude Chat** ([claude.ai](https://claude.ai)) is the standard browser and mobile interface. This is where most team members will spend the majority of their time with Claude. Use it for writing and editing, reviewing documents, working through analysis decisions, generating prompts, and any conversational task where you are copying and pasting content into the window. No setup required beyond creating an account.
+
+**Claude Cowork** is a desktop application that gives Claude direct access to files on your computer. Rather than copying and pasting content into a chat window, Cowork can read, create, and edit files in a folder you select. Use it when a task involves multiple files, when you want Claude to produce a document you can open directly, or when you are working through a multi-step workflow that touches your local project folder. This manual, for example, was developed with Cowork.
+
+**Claude Code** is a command-line tool for technical coding work. It operates inside a project repository and can read and edit multiple files, run code, and work through a full analysis pipeline. It is most useful for team members who are comfortable in the terminal and want Claude to work directly within a GitHub repository alongside their scripts. For most CWER team members, Claude Chat handles everyday coding assistance well — Claude Code becomes valuable when tasks are complex enough to span many files or require running code in sequence.
+
+| Interface | Best for | Where to access |
+|---|---|---|
+| Claude Chat | Writing, editing, analysis questions, one-off code help | [claude.ai](https://claude.ai) or mobile app |
+| Claude Cowork | File-based tasks, document creation, multi-step workflows | Claude desktop app |
+| Claude Code | Coding projects in a repository, multi-file technical work | Terminal (advanced users) |
 
 ### Consensus
 [Consensus](https://consensus.app/) is an AI-powered academic search engine that retrieves and synthesizes findings directly from peer-reviewed literature. It's designed specifically for research questions and returns evidence-based answers grounded in specific papers rather than web results. Yale provides free Pro access to all faculty, staff, and students. To activate, sign up at consensus.app using your Yale email address.

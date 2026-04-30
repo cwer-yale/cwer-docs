@@ -153,8 +153,8 @@ format: html
 | Extension | Type | CWER Use | Read in R |
 |---|---|---|---|
 | `.md` | Plain text / Markdown | README files, documentation | Any text editor |
-| `.rmd` | R Markdown script | Legacy analysis scripts | Positron / RStudio |
-| `.qmd` | Quarto Markdown script | Current analysis scripts | Positron / RStudio |
+| `.rmd` | R Markdown script | Legacy analysis scripts | Positron / RStudio / Cursor|
+| `.qmd` | Quarto Markdown script | Current analysis scripts | Positron / RStudio / Cursor|
 | `.json` | Structured data | API exports, platform data | `jsonlite::fromJSON()` |
 | `.yml` / `.yaml` | Configuration | Quarto settings, script headers | Any text editor |
 | `.csv` | Rectangular data | Cross-software data sharing | `readr::read_csv()` |
