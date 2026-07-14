@@ -2,6 +2,8 @@
 
 This chapter describes how we use AI tools for idea generation and reviewing and editing. See the Data Management and Statistical Analysis sections for using AI for those types of tasks.
 
+The rules governing what data may go into which tool, and what funders and journals require of us, are in the [AI Policy](ai-policy.qmd) chapter. Read that first. This chapter assumes you have.
+
 ## Recommended AI Tools
 
 ### General Purpose LLMs: Claude & Gemini
@@ -69,12 +71,17 @@ Grammarly is most useful for:
 - Improving sentence clarity and concision in methods and results sections
 - Checking team member writing during the review process
 
-Do not use Grammarly with text containing sensitive research data or participant information. Grammarly processes text on external servers. For sensitive content, use Microsoft Word's built-in Editor (Review → Editor) instead, which provides grammar and style checking without sending text to external servers. You can also temporarily turn Grammarly off for a specific application using the Grammarly desktop app settings.
+Grammarly processes text on external servers, which makes it an AI tool subject to the [AI Policy](ai-policy.qmd) like any other. Do not use it with text containing sensitive research data or participant information. For sensitive content, use Microsoft Word's built-in Editor (Review → Editor) instead, which checks grammar and style without sending text to external servers. You can also temporarily turn Grammarly off for a specific application in the desktop app settings.
 
 ### Yale's Clarity
-Yale developed its own platform for accessing existing AI models. It's called [Clarity](https://ai-chat.yale.edu/) and since it is designed to protect sensitive information **it is the only platform approved for working with identifiable or sensitive research data.** Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It supports Claude, GPT-4o, and Gemini, and is appropriate for most high-risk data **except for electronic Protected Health Information (ePHI)**. If your work involves ePHI or data use agreements with external partners, check with Mike or Joanna before using any AI tool — including Clarity.
 
-When using Claude, Gemini, or any other external AI tool outside of Clarity, never paste real participant data. Use anonymized or synthetic examples instead.
+Yale developed its own platform for accessing existing AI models. It's called [Clarity](https://ai-chat.yale.edu/), and because it is designed to protect sensitive information, **it is the only platform approved for working with identifiable or sensitive research data.** Clarity provides secure, encrypted connections and assures that Yale data will not be used to train AI models. It offers a choice of models — Claude, ChatGPT, Gemini, and others — so you can pick the one suited to the task.
+
+Clarity is cleared for most high-risk data, but two limits matter for our work. **ePHI** requires the ePHI-approved "Health" agents specifically, under an approved IRB protocol and on a Yale-managed device. And **data under an agreement with an external partner** may be barred from Clarity entirely, regardless of Yale's risk classification, because the agreement is a promise we made to someone else. If your work involves either, talk to Mike or Joanna before using any AI tool, including Clarity. The [AI Policy](ai-policy.qmd) chapter explains why.
+
+Clarity has tradeoffs. It is the most secure option we have, and it lacks some features of the frontier products — it does not currently search the web or return live citations, which is one reason we use Consensus for evidence retrieval. For non-public work, use Clarity anyway. For public literature, teaching material, and your own non-confidential prose, use whichever tool does the job best.
+
+Custom Agents in Clarity let you build a purpose-specific assistant with your own system prompt and knowledge base at no cost. See the [AI Policy](ai-policy.qmd) chapter before building one.
 
 We do not have a blanket recommendation for other tools, though the landscape is evolving quickly. When in doubt, ask Mike or Joanna before using a new AI tool for anything related to lab work.
 
@@ -90,7 +97,7 @@ Getting useful output from AI requires clear, specific input. A few principles t
 
 **Use AI as a thought partner, not an oracle.** Some of the most valuable uses of AI are not asking it to produce something, but asking it to think alongside you. It's useful for surfacing considerations you may have missed, identifying gaps in a plan, or presenting the argument against an approach you are leaning toward. The measurement development prompt below is a concrete example of this in practice.
 
-**Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter.
+**Note AI contributions.** Document AI assistance in your script headers and, where appropriate, in manuscript methods sections. This reflects our commitment to research transparency described in the [Being a Team Member](../about/team-member.qmd) chapter. Journal disclosure requirements, including what to name and where, are in the [AI Policy](ai-policy.qmd) chapter.
 
 ## Idea Generation
 
