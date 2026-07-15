@@ -54,19 +54,19 @@ Never paste real participant data into Claude, Gemini, Consensus, NotebookLM, Gr
 
 ## The Clarity judgment call
 
-Clarity is the most secure option available to us. It is not the most capable. Both of those are true, and pretending otherwise produces a policy people quietly ignore.
+Clarity is the most secure option available to us, but it is not the most capable.
 
-Clarity gives us encrypted connections, no training on our inputs, coverage of most high-risk data, and a choice of models — Claude, ChatGPT, Gemini, and others — at no cost. What it does not give us is the full feature set of the frontier products. It does not currently search the web or return live citations, which is why we use Consensus for evidence retrieval. Image generation is unavailable. Chats are deleted after six months of inactivity, so do not treat it as an archive.
+Clarity gives us encrypted connections, no training on our inputs, coverage of most high-risk data, and a choice of models — Claude, ChatGPT, Gemini, and others — at no cost. What it does not give us is the full feature set of the frontier products. It does not currently search the web or return live citations, which is why we use Consensus for evidence retrieval. Image generation is unavailable. Agent creation is limited and require approval. Chats are deleted after six months of inactivity, so do not treat it as an archive.
 
-**For anything non-public, there is no tradeoff to weigh** — Claude and Gemini are simply not an option, so use Clarity. The judgment call exists only for low-risk work: public literature, teaching material, your own prose with nothing confidential in it. There, use the tool that does the job best. That is why the [AI Tools](ai-prompts.qmd) chapter still recommends Claude and Gemini for writing, reasoning, and code, and Consensus for literature.
+**For anything non-public, there is no tradeoff to weigh**, Claude and Gemini are simply not an option, so use Clarity. The judgment call exists only for low-risk work: public literature, teaching material, your own prose with nothing confidential in it. There, use the tool that does the job best. That is why the [AI Tools](ai-prompts.qmd) chapter still recommends Claude and Gemini for writing, reasoning, and code, and Consensus for literature.
 
-When in doubt about which side of the line something falls on, ask. The classification question is doing the real work here, and getting it wrong is the failure mode.
+When in doubt about which side of the line something falls on, ask. 
 
 ## Peer review
 
 **Do not put any part of a manuscript or grant application you are reviewing into any AI tool, including Clarity, unless there is a policy stating otherwise or you have received written approval.** No summarizing. No "help me organize my critique." No pasting the abstract.
 
-NIH prohibits reviewers from using large language models to analyze applications or formulate critiques ([NOT-OD-23-149](https://grants.nih.gov/grants/guide/notice-files/NOT-OD-23-149.html)), and reviewers sign a confidentiality agreement certifying compliance. That prohibition is not conditioned on security, so a secure platform does not cure it. NSF prohibits uploading proposal content to non-approved AI tools. ICMJE holds that reviewer confidentiality may prohibit uploading a manuscript where confidentiality cannot be assured, and requires disclosure to the journal when AI is used in a review.
+NIH prohibits reviewers from using large language models to analyze applications or formulate critiques ([NOT-OD-23-149](https://grants.nih.gov/grants/guide/notice-files/NOT-OD-23-149.html)), and reviewers sign a confidentiality agreement certifying compliance. That prohibition is not conditioned on security, so a secure platform does not cure it. NSF prohibits uploading proposal content to non-approved AI tools. International Committee of Medical Journal Editors (ICMJE) holds that reviewer confidentiality may prohibit uploading a manuscript where confidentiality cannot be assured, and requires disclosure to the journal when AI is used in a review.
 
 Sponsors that have published nothing specific about AI — IES, foundations, most agencies — still bind you through the confidentiality agreement you signed when you agreed to serve. The absence of an AI memo is not a loophole.
 
@@ -76,23 +76,23 @@ Two obligations are in play, and only one of them is about security. Confidentia
 
 **If you want to do more,** email the program officer or editor before you start, describe exactly what you propose, and keep the written answer.
 
-**If you have already done this,** tell Mike immediately. See "When something goes wrong" below.
+**If you have already done this,** tell Mike immediately. See "When something goes wrong" below. 
 
 ## Grant applications
 
 For NIH receipt dates from September 25, 2025 forward, applications substantially developed by AI — in whole or in sections — are not considered the applicant's original ideas and will not be considered ([NOT-OD-25-132](https://grants.nih.gov/grants/guide/notice-files/NOT-OD-25-132.html)). NIH also caps most PIs at six covered applications per calendar year, and states that AI-generated content detected after award may be referred to the Office of Research Integrity alongside enforcement actions up to termination.
 
-**Permitted:** editing prose you wrote; formatting and compliance checks against the solicitation; drafting boilerplate administrative sections where the facts come from you and you verify every one; simulated critique of your own draft to find its weaknesses.
+**Permitted:** editing prose you wrote; formatting and compliance checks against the solicitation; drafting boilerplate administrative sections where the facts come from you and you verify every one; simulated critique of your own draft to find its weaknesses (see Mike's hitjob-grant tool as an example).
 
-**Prohibited:** generating aims, significance, innovation, or approach as new text for you to revise; generating a research strategy from a prompt describing your interests; producing preliminary-data narratives you did not write.
+**Prohibited:** generating entire aims, significance, innovation, or approach as new text; generating a research strategy from a prompt describing your interests; producing entire data narratives you did not write.
 
-The scientific argument, the aims, the design, and the claims originate with us. Note the asymmetry with the peer review section: running an AI critique against *our own* draft is encouraged, and running one against someone else's manuscript while you are their reviewer is prohibited. These sit close together and people conflate them.
+The scientific argument, the aims, the design, and the claims originate with us. Note the asymmetry with the peer review section: running an AI critique against *our own* draft is encouraged, and running one against someone else's manuscript while you are their reviewer is prohibited. 
 
-NSF encourages proposers to state in the project description whether and how generative AI was used. Check each sponsor's current terms every cycle — these rules are still moving.
+NSF encourages proposers to state in the project description whether and how generative AI was used. Check each sponsor's current terms every cycle since these rules are still evolving.
 
 ## Publication
 
-**AI is never an author.** ICMJE and COPE agree: AI cannot take responsibility for the accuracy, integrity, and originality of the work, and responsibility is what authorship means.
+**AI is never an author.** AI cannot take responsibility for the accuracy, integrity, and originality of the work, and responsibility is what authorship means.
 
 **Disclose AI use at submission.** ICMJE directs journals to require disclosure of AI-assisted technologies used in producing the work, in both the cover letter and the manuscript, with writing assistance reported in the acknowledgments. COPE directs authors to disclose in the methods which tool was used and how, and its position covers writing, images, and the collection and analysis of data. Read the specific journal's instructions each time. **Nondisclosure may be construed as misconduct** — that is ICMJE's language, not ours.
 
@@ -112,13 +112,11 @@ This is also why we **note AI contributions in script headers** — a practice a
 
 Nothing produced with AI assistance enters a deliverable until a human has checked it.
 
-**Citations.** Open and read every reference an AI tool surfaces or formats. Not the abstract — the paper, to the extent your claim depends on it. Fabricated and subtly mis-attributed citations are the most common way AI use becomes a public embarrassment, and the error is invisible to anyone who does not check. This is why we use Consensus, Google Scholar, or a database search for evidence retrieval, never Claude or Gemini.
+**Citations.** Open and read every reference an AI tool surfaces or formats. Not the abstract — the paper, to the extent your claim depends on it. Fabricated and subtly mis-attributed citations are the most common way AI use becomes a public embarrassment, and the error is invisible to anyone who does not check. This it's preferable to use Consensus, Google Scholar, or a database search for evidence retrieval rather than Claude or Gemini.
 
 **Statistical code.** Review AI-assisted code line by line before it touches real data. Test it against a case with a known answer. Code that runs without error is not the same as code that is correct — a `-99` silently included in a mean produces a number, not a warning. Follow the quality control process in [Statistical Analysis](../analysis/statistical-analysis.qmd).
 
-**Analytic output.** AI does not choose the model specification, select covariates, or interpret results. A coefficient you did not derive is not a finding you can defend.
-
-**Qualitative coding.** AI-assisted coding requires validation against a hand-coded subset with reported agreement. If you cannot report the agreement, you cannot report the coding.
+**Analytic output.** AI should not blindly choose the model specification, select covariates, or interpret results. A coefficient you did not derive is not a finding you can defend.
 
 **Prose.** Read every sentence. If you would not say it, delete it. AI writing is fluent in a way that makes weak claims sound settled, and that fluency is the risk.
 
@@ -126,31 +124,21 @@ Nothing produced with AI assistance enters a deliverable until a human has check
 
 Our IRB protocols govern what we may do with participant data, and AI tools are third-party disclosures like any other. Clarity's security clearance does not amend a protocol.
 
-Before any participant data — identifiable or de-identified — goes into any AI tool, confirm that the approved protocol and consent language permit it. If they are silent, they do not permit it. We amend the protocol or we do not do it.
+Before any participant data--whether it's identifiable or de-identified--goes into any AI tool, confirm that the approved protocol and consent language permit it. If it's not in the protocol and you want to use AI, amend the protocol.
 
 If an AI tool is part of a study design rather than a back-office aid, it belongs in the protocol explicitly: what the tool does, what participants are told, how outputs are validated, and what happens when the tool errs.
 
 ## Custom agents in Clarity
 
-Clarity lets Yale faculty, staff, and sponsored students build [Custom Agents](https://ai.yale.edu/yales-ai-tools-and-resources/clarity-platform/custom-agents) at no cost — your own system prompt, a knowledge base of uploaded files, and control over who has access. Once a use case is approved, creation is self-service.
-
-This is where CWER gets durable value rather than ad hoc chat. Candidate uses:
-
-- A **reviewer-simulation agent** loaded with a study section's review criteria, pointed at our own drafts. This is analysis of our own work, permitted under the grant section above.
-- A **CWER standards agent** with this guide, our codebook conventions, and our R and Mplus templates as its knowledge base — so new RAs can ask it instead of asking the same eleven questions.
-- A **measures agent** holding our instruments, scoring rules, and psychometric documentation.
-
-Constraints to design around: the model is fixed at creation and cannot be changed, each user gets five agents, group access is not self-service, and **ePHI is explicitly a non-suitable use case for Custom Agents**. Approval is tied to a specific use case, so repurposing an agent requires a new request.
+Clarity lets Yale faculty, staff, and sponsored students build [Custom Agents](https://ai.yale.edu/yales-ai-tools-and-resources/clarity-platform/custom-agents) at no cost. You can create own system prompt, a knowledge base of uploaded files, and control over who has access. Some constratints are that the model is fixed at creation and cannot be changed, each user gets five agents, group access is not self-service, and **ePHI is explicitly a non-suitable use case for Custom Agents**. Approval is tied to a specific use case, so repurposing an agent requires a new request.
 
 Owners carry real obligations — access management, annual attestation, end-dating agents no longer in use, and notifying Yale if they leave. **Do not let a departing RA be the sole owner of an agent the lab depends on.** Talk to Mike before building one.
 
 ## When something goes wrong
 
-People make mistakes with these tools. Someone will paste a manuscript under review into a chat window without thinking. Someone will submit a draft with a citation that does not exist. Someone will run partner data through Clarity because Clarity is "approved."
+People make mistakes with these tools. For example, someone will paste a manuscript under review into a chat window without thinking. Someone will submit a draft with a citation that does not exist. Someone will run partner data through Clarity because Clarity is "approved."
 
 **Tell Mike or Joanna immediately.** Good-faith disclosure of an AI-related error is treated as exactly that: a correctable mistake, handled without penalty, and used to improve this policy. Concealment is a different matter and will be handled as a research integrity issue. Where the error involves a potential data incident, we contact the Yale Information Security Office.
-
-This asymmetry is deliberate. A policy that punishes honest reporting produces silence, and silence is how one careless paste becomes a retraction two years later.
 
 ## Keeping this current
 
